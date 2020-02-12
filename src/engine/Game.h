@@ -4,13 +4,13 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
-#include "DisplayObject.h"
+#include "DisplayObjectContainer.h"
 #include <vector>
 #include <set>
 
 using namespace std;
 
-class Game{
+class Game : public DisplayObjectContainer {
 
 public:
 

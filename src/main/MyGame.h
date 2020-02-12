@@ -5,6 +5,8 @@
 #include <SDL2/SDL_image.h>
 #include <iostream>
 #include "Game.h"
+#include "Sprite.h"
+#include "AnimatedSprite.h"
 
 
 using namespace std;
@@ -20,7 +22,16 @@ public:
 
 private:
 	
-	DisplayObject* character;
+	AnimatedSprite* sun;
+	Sprite* planet1;
+	Sprite* planet2;
+	Sprite* moon1_1;
+
+	DisplayObjectContainer* p1container;
+	DisplayObjectContainer* p2container;
+	DisplayObjectContainer* allSprites;
+
+	// DisplayObject* character;
 };
 
 #endif

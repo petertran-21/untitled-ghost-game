@@ -8,23 +8,18 @@ using namespace std;
 
 MyGame::MyGame() : Game(1200, 1000) {
 	instance = this;
-
-	allSprites = new DisplayObjectContainer();
-	// move that point to the middle
-	allSprites->position = {600, 500};
-	instance->addChild(allSprites);
-
-	sun = new AnimatedSprite("sun");
-	sun->addAnimation("./resources/solarSystem/", "Sun", 4, 2, true);
-	sun->play("Sun");
+	instance->pivot = {600, 500};
+	sun = new Sprite("sun","./resources/solarSystem/Sun_0.png");
 	// cout << sun->getWidth() << sun->getHeight();
-	sun->position = {0, 0};
+	sun->position = {600, 500};
 	sun->width = sun->height = 100;
-	sun->pivot = {50, 50};
-	allSprites->addChild(sun);
+	sun->pivot = {15, 15};
+	instance->addChild(sun);
 
 	p1container = new DisplayObjectContainer();
 	p2container = new DisplayObjectContainer();
+	p1container->position = {50, 50};
+	p2container->position = {50, 50};
 	sun->addChild(p1container);
 	sun->addChild(p2container);
 
@@ -51,6 +46,9 @@ MyGame::~MyGame(){
 
 
 void MyGame::update(set<SDL_Scancode> pressedKeys){
+	// sun = ((DisplayObjectContainer*)instance)->getChild("sun");
+	// DisplayObject* p1 = ((DisplayObjectContainer*)sun)->getChild("planet1");
+	// DisplayObject* p2 = ((DisplayObjectContainer*)sun)->getChild("planet2");
 	if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {
 		sun->position.x += 2;
 	}
@@ -80,19 +78,15 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 		p2container->position.x = 100*sin(p2container->rotation);
 	}
 	if (pressedKeys.find(SDL_SCANCODE_Q) != pressedKeys.end()) {
-		allSprites->scaleX *= 1.05;
-		allSprites->scaleY *= 1.05;
+		instance->scaleX *= 0.95;
+		instance->scaleY *= 0.95;
 	}
 	if (pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end()) {
-		allSprites->scaleX *= 1/1.05;
-		allSprites->scaleY *= 1/1.05;
+		instance->scaleX *= 1/0.95;
+		instance->scaleY *= 1/0.95;
 	}
-	if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end()) {
-		sun->play("Sun");
-	}
-	if (pressedKeys.find(SDL_SCANCODE_L) != pressedKeys.end()) {
-		sun->stop();
-	}
+	
+	sun->update(pressedKeys);
 	Game::update(pressedKeys);
 }
 
