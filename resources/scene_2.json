@@ -1,0 +1,46 @@
+{
+    "sprites": [
+        {
+            "id": "static_char",
+            "basePathFolder": "./resources/character/",
+            "posX": 250,
+            "posY": 250,
+            "pivotX": 0,
+            "pivotY": 0,
+            "rotation": 0.0,
+            "alpha": 255,
+            "isVisible": true,
+            "isStatic": true,
+            "isStaticBaseFile": "Idle_1.png",
+            "parent": ""
+        },
+        {
+            "id": "dead_char_2",
+            "basePathFolder": "./resources/character/",
+            "posX": 400,
+            "posY": 250,
+            "pivotX": 0,
+            "pivotY": 0,
+            "rotation": 0.0,
+            "alpha": 255,
+            "isVisible": true,
+            "isStatic": true,
+            "isStaticBaseFile": "Dead_30.png",
+            "parent": ""
+        },
+        {
+            "id": "dead_char_3",
+            "basePathFolder": "./resources/character/",
+            "posX": 325,
+            "posY": 375,
+            "pivotX": 0,
+            "pivotY": 0,
+            "rotation": 0.0,
+            "alpha": 255,
+            "isVisible": true,
+            "isStatic": true,
+            "isStaticBaseFile": "Walk_20.png",
+            "parent": ""
+        }
+    ]
+}
