@@ -14,6 +14,29 @@ MyGame::MyGame() : Game(1200, 1000) {
 	allSprites->position = {600, 500};
 	instance->addChild(allSprites);
 
+	//---------- Event Demo
+	character = new AnimatedSprite("character");
+	character->addAnimation("./resources/character/", "Idle", 16, 3, true);
+	character->play("Idle");
+	character->width = 400; character->height = 400;
+	character->position= {0, 0};
+	character->pivot = {character->width/2, character->height/2};
+	allSprites->addChild(character);
+
+	itemDisp = new EventDispatcher();
+
+	coin = new Sprite("coin", "./resources/items/coin.png");
+	coin->width = 100; coin->height = 100;
+	coin->position = {200, 0};
+	coin->pivot = {coin->width/2, coin->height/2};
+	coinEvent = new PickedUpEvent(itemDisp, character, coin);
+	allSprites->addChild(coin);
+
+	questManager = new QuestManager();
+	itemDisp->addEventListener(questManager, PickedUpEvent::COIN_PICKED_UP);
+	//----------
+
+
 	sun = new AnimatedSprite("sun");
 	sun->addAnimation("./resources/solarSystem/", "Sun", 4, 2, true);
 	sun->play("Sun");
@@ -47,14 +70,17 @@ MyGame::MyGame() : Game(1200, 1000) {
 }
 
 MyGame::~MyGame(){
+
 }
 
 
 void MyGame::update(set<SDL_Scancode> pressedKeys){
 	if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {
+		character->position.x += 1;
 		sun->position.x += 2;
 	}
 	if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end()) {
+		character->position.x -= 1;
 		sun->position.x -= 2;
 	}
 	if (pressedKeys.find(SDL_SCANCODE_DOWN) != pressedKeys.end()) {
@@ -93,9 +119,20 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 	if (pressedKeys.find(SDL_SCANCODE_L) != pressedKeys.end()) {
 		sun->stop();
 	}
+
+	coinEvent->checkCondition();
 	Game::update(pressedKeys);
 }
 
 void MyGame::draw(AffineTransform &at){
 	Game::draw(at);
+	// SDL_RenderClear(Game::renderer);
+	// // coin->draw(at);
+	// // if(walk) {
+	// // 	character->play("walk");
+	// // } else {
+	// // 	character->play("idle");
+	// // }
+	// // character->draw(at);
+	// SDL_RenderPresent(Game::renderer);
 }

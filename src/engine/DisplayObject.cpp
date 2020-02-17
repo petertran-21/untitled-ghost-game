@@ -1,4 +1,5 @@
 #include "DisplayObject.h"
+#include "AffineTransform.h"
 #include <string>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -36,7 +37,7 @@ DisplayObject::DisplayObject(string id, int red, int green, int blue){
 DisplayObject::~DisplayObject(){
 	//TODO: Get this freeing working
 	if(image != NULL) SDL_FreeSurface(image);
-	if(texture != NULL) SDL_DestroyTexture(texture);	
+	if(texture != NULL) SDL_DestroyTexture(texture);
 }
 
 void DisplayObject::loadTexture(string filepath){
@@ -58,12 +59,12 @@ void DisplayObject::setTexture(SDL_Texture* t){
 }
 
 void DisplayObject::update(set<SDL_Scancode> pressedKeys){
-	
+
 }
 
 void DisplayObject::draw(AffineTransform &at){
 	applyTransformations(at);
-	
+
 	if(curTexture != NULL && visible) {
 		SDL_Point origin = at.transformPoint(0, 0);
 		SDL_Point upperRight = at.transformPoint(width, 0);
@@ -82,9 +83,9 @@ void DisplayObject::draw(AffineTransform &at){
 		else {
 			flip = SDL_FLIP_HORIZONTAL;
 		}
-		
+
 		SDL_SetTextureAlphaMod(curTexture, alpha);
-		SDL_RenderCopyEx(Game::renderer, curTexture, NULL, &dstrect, calculateRotation(origin, upperRight), &corner, flip);	
+		SDL_RenderCopyEx(Game::renderer, curTexture, NULL, &dstrect, calculateRotation(origin, upperRight), &corner, flip);
 	}
 
 	reverseTransformations(at);

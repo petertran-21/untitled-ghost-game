@@ -42,3 +42,6 @@ clean:
 -include $(DEPS)
 
 MKDIR_P ?= mkdir -p
+
+start:
+	./bin/myGame
