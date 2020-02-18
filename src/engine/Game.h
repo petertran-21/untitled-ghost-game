@@ -5,6 +5,9 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #include "DisplayObjectContainer.h"
+#include "EventDispatcher.h"
+#include "PickedUpEvent.h"
+#include "QuestManager.h"
 #include <vector>
 #include <set>
 
@@ -38,7 +41,7 @@ private:
 	void initSDL();
 	void quitSDL();
 	set<SDL_Scancode> pressedKeys;
-	
+
 };
 
 #endif

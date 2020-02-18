@@ -7,6 +7,9 @@
 #include "Game.h"
 #include "Sprite.h"
 #include "AnimatedSprite.h"
+#include "EventDispatcher.h"
+#include "QuestManager.h"
+#include "PickedUpEvent.h"
 
 
 using namespace std;
@@ -21,7 +24,7 @@ public:
 	virtual void draw(AffineTransform &at);
 
 private:
-	
+
 	AnimatedSprite* sun;
 	Sprite* planet1;
 	Sprite* planet2;
@@ -30,6 +33,13 @@ private:
 	DisplayObjectContainer* p1container;
 	DisplayObjectContainer* p2container;
 	DisplayObjectContainer* allSprites;
+
+	AnimatedSprite* character;
+	Sprite* coin;
+
+	EventDispatcher* itemDisp;
+	QuestManager* questManager;
+	PickedUpEvent* coinEvent;
 
 	// DisplayObject* character;
 };
