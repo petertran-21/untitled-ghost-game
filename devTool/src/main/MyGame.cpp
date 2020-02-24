@@ -36,7 +36,8 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 		&& Game::mouse->selectBoxX2 == Game::mouse->selectBoxX && Game::mouse->selectBoxY2 == Game::mouse->selectBoxY) {
 			character->selected = true;
 		} else if (!(Game::mouse->selectBoxX2 == Game::mouse->selectBoxX) && !(Game::mouse->selectBoxY2 == Game::mouse->selectBoxY)) {
-			int topRX,topRY,botLX,botLY;
+			int topRX, topRY,botLX,botLY;
+			topRX = topRY = botLX = botLY = -1;
 			if(Game::mouse->selectBoxX < Game::mouse->selectBoxX2 && Game::mouse->selectBoxY < Game::mouse->selectBoxY2) { // is the current mouse location the topR of the rect ?
 				// start is top left, current is bottom right
 				topRX = Game::mouse->selectBoxX2;
