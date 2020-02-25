@@ -7,6 +7,7 @@
 #include "Game.h"
 #include "Sprite.h"
 #include "AnimatedSprite.h"
+#include "Scene.h"
 
 
 using namespace std;
@@ -23,7 +24,7 @@ public:
 private:
 
 	AnimatedSprite* character;
-	DisplayObjectContainer* allSprites;
+	Scene* allSprites;
 
 };
 

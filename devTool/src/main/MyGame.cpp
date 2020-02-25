@@ -3,13 +3,14 @@
 #include <iostream>
 #include "Sprite.h"
 #include "MyGame.h"
+#include "Scene.h"
 
 using namespace std;
 
 MyGame::MyGame() : Game(1200, 1000) {
 	instance = this;
 
-	allSprites = new DisplayObjectContainer();
+	allSprites = new Scene();
 	// move that point to the middle
 	instance->addChild(allSprites);
 
@@ -20,6 +21,7 @@ MyGame::MyGame() : Game(1200, 1000) {
 
 	character->width = character->height = 100 - (100 % Game::cellSize);
 	allSprites->addChild(character);
+
 
 }
 
@@ -102,6 +104,20 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 			}
 		}
 	}
+    
+    if (pressedKeys.find(SDL_SCANCODE_L) != pressedKeys.end()){
+        cout << "Load Scene: ";
+        string scenePath = "./resources/scenes/";
+        string sceneName;
+        cin >> sceneName;
+        cout << scenePath + sceneName << endl;
+        try{
+            allSprites->loadScene(scenePath + sceneName + ".json");
+        } catch(exception& e) {
+            cout << "Error: " << e.what() << endl;
+        }
+    }
+    
 	Game::update(pressedKeys);
 }
 

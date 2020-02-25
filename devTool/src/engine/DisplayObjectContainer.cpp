@@ -19,9 +19,7 @@ DisplayObjectContainer::DisplayObjectContainer(string id, int red, int green, in
 }
 
 DisplayObjectContainer::~DisplayObjectContainer() {
-    for (int i = 0; i < children.size(); i++ ) {
-        delete children[i];
-    }
+    children.clear();
 }
 
 void DisplayObjectContainer::addChild(DisplayObject* child) {
