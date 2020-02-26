@@ -121,6 +121,15 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
         }
     }
 
+	if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end()){
+		cout << "Save Scene: ";
+		string scenePath = "./resources/scenes/";
+		string sceneName;
+		cin >> sceneName;
+		cout << scenePath + sceneName << endl;
+		allSprites->saveScene(scenePath + sceneName);
+	}
+
 	Game::update(pressedKeys);
 }
 

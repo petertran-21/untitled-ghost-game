@@ -51,6 +51,10 @@ Animation* AnimatedSprite::getAnimation(string animName) {
     return NULL;
 }
 
+vector<Animation*> AnimatedSprite::getAnimations(){
+    return this->animations;
+}
+
 void AnimatedSprite::play(string animName) {
     Animation* anim = getAnimation(animName);
     if (anim != NULL) {

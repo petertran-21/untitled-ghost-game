@@ -33,6 +33,7 @@ public:
 
 	void addAnimation(string basepath, string animName, int numFrames, int frameRate, bool loop);
 	Animation* getAnimation(string animName);
+	vector<Animation*> getAnimations();
 
 	void play(string animName);
 	void replay();

@@ -1,0 +1,50 @@
+{
+    "id": "characterTemp",
+    "basePathFolder": "./resources/character/",
+    "posX": 0,
+    "posY": 0,
+    "pivotX": 0,
+    "pivotY": 0,
+    "rotation": 0.0,
+    "alpha": 255,
+    "isVisible": true,
+    "isStatic": false,
+    "parent": "",
+    "width": 100,
+    "height": 100,
+    "animationInfo": {
+    "playing": true,
+    "animations": [
+                   {
+                   "animId": "Run",
+                   "frameCount": 20,
+                   "frameRate": 3,
+                   "loop": true
+                   },
+                   {
+                       "animId": "Dead",
+                       "frameCount": 30,
+                       "frameRate": 3,
+                       "loop": false
+                   },
+                   {
+                    "animId": "Idle",
+                    "frameCount": 16,
+                    "frameRate": 3,
+                    "loop": true
+                    },
+                    {
+                        "animId": "Jump",
+                        "frameCount": 30,
+                        "frameRate": 3,
+                        "loop": false
+                    },
+                    {
+                        "animId": "Walk",
+                        "frameCount": 20,
+                        "frameRate": 3,
+                        "loop": true
+                        }
+                   ]
+    }
+    }
