@@ -23,6 +23,8 @@ void Scene::loadScene(string sceneFilePath){
         if (isStatic){
             std::string imgPath = sprite["basePathFolder"].get<std::string>() + sprite["isStaticBaseFile"].get<std::string>();
             unit = new DisplayObjectContainer(sprite["id"].get<std::string>(), imgPath);        // unit->width and unit->height get set here
+            unit->width = sprite["width"];
+            unit->height = sprite["height"];
         } else {
             unit = new AnimatedSprite();
             for (auto animation : sprite["animationInfo"]["animations"]){

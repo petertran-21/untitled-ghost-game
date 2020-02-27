@@ -51,12 +51,12 @@ public:
 	int alpha = 255;
 	bool facingRight = true;
 
+	SDL_Surface* image = NULL;
 private:
 	double distance(SDL_Point &p1, SDL_Point &p2);
 	double calculateRotation(SDL_Point &origin, SDL_Point &p);
 	
 	SDL_Texture* texture = NULL;
-	SDL_Surface* image = NULL;
 
 	/* Texture currently being drawn. Equal to texture for normal DO */
 	SDL_Texture* curTexture;

@@ -5,17 +5,18 @@
 #include <SDL2/SDL_image.h>
 #include <iostream>
 #include "Game.h"
-#include "Sprite.h"
 #include "AnimatedSprite.h"
 #include "EventDispatcher.h"
 #include "QuestManager.h"
 #include "PickedUpEvent.h"
-
+#include "Scene.h"
+#include "Sound.h"
+#include "Camera.h"
 
 using namespace std;
 
 class MyGame : public Game{
-
+	
 public:
 	MyGame();
 	virtual ~MyGame();
@@ -30,18 +31,14 @@ private:
 	Sprite* planet2;
 	Sprite* moon1_1;
 
-	DisplayObjectContainer* p1container;
-	DisplayObjectContainer* p2container;
-	DisplayObjectContainer* allSprites;
+	Camera* camera;
+	Sound* sound_manager;
+	Scene* scene_1;
+	Scene* scene_2;
 
-	AnimatedSprite* character;
-	Sprite* coin;
+	DisplayObjectContainer* main_character;
 
-	EventDispatcher* itemDisp;
-	QuestManager* questManager;
-	PickedUpEvent* coinEvent;
-
-	// DisplayObject* character;
+	bool using_scene_1;
 };
 
 #endif

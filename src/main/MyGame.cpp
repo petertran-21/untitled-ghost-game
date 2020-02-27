@@ -1,138 +1,154 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
-#include "Sprite.h"
+#include <algorithm>
 #include "MyGame.h"
 
 using namespace std;
 
-MyGame::MyGame() : Game(1200, 1000) {
-	instance = this;
+MyGame::MyGame() : Game(1200, 800){
+	camera = new Camera();
+	sound_manager = new Sound();
+	scene_1 = new Scene();
+	scene_2 = new Scene();
 
-	allSprites = new DisplayObjectContainer();
-	// move that point to the middle
-	allSprites->position = {600, 500};
-	instance->addChild(allSprites);
+	sound_manager->playSFX("./resources/coin.wav");
 
-	//---------- Event Demo
-	character = new AnimatedSprite("character");
-	character->addAnimation("./resources/character/", "Idle", 16, 3, true);
-	character->play("Idle");
-	character->width = 400; character->height = 400;
-	character->position= {0, 0};
-	character->pivot = {character->width/2, character->height/2};
-	allSprites->addChild(character);
+	scene_1->loadScene("./resources/scene_1.json");
+	main_character = new DisplayObjectContainer("main_character", "./resources/character/Idle_1.png");
 
-	itemDisp = new EventDispatcher();
+	this->addChild(camera);
+	camera->addChild(scene_1);
+	scene_1->addChild(main_character);
 
-	coin = new Sprite("coin", "./resources/items/coin.png");
-	coin->width = 100; coin->height = 100;
-	coin->position = {200, 0};
-	coin->pivot = {coin->width/2, coin->height/2};
-	coinEvent = new PickedUpEvent(itemDisp, character, coin);
-	allSprites->addChild(coin);
+	main_character->position.x = 600 - (main_character->width / 2);		// 1/2 screenwidth
+	main_character->position.y = 400 - (main_character->height / 2);	// 1/2 screenheight
 
-	questManager = new QuestManager();
-	itemDisp->addEventListener(questManager, PickedUpEvent::COIN_PICKED_UP);
-	//----------
-
-
-	sun = new AnimatedSprite("sun");
-	sun->addAnimation("./resources/solarSystem/", "Sun", 4, 2, true);
-	sun->play("Sun");
-	// cout << sun->getWidth() << sun->getHeight();
-	sun->position = {0, 0};
-	sun->width = sun->height = 100;
-	sun->pivot = {50, 50};
-	allSprites->addChild(sun);
-
-	p1container = new DisplayObjectContainer();
-	p2container = new DisplayObjectContainer();
-	sun->addChild(p1container);
-	sun->addChild(p2container);
-
-	planet1 = new Sprite("planet1","./resources/solarSystem/Planet.png");
-	planet1->position = {200, 0};
-	planet1->width = planet1->height = 30;
-	planet1->pivot = {15, 15};
-	p1container->addChild(planet1);
-
-	planet2 = new Sprite("planet2","./resources/solarSystem/Planet.png");
-	planet2->position = {300, 0};
-	planet2->width = planet2->height = 30;
-	planet2->pivot = {15, 15};
-	p2container->addChild(planet2);
-
-	moon1_1 = new Sprite("moon1_1", "./resources/solarSystem/Moon.png");
-	moon1_1->position = {50, 0};
-	moon1_1->width = moon1_1->height = 15;
-	planet1->addChild(moon1_1);
 }
 
 MyGame::~MyGame(){
-
+	delete scene_1;
+	delete scene_2;
+	delete sound_manager;
+	delete camera;
 }
 
-
 void MyGame::update(set<SDL_Scancode> pressedKeys){
-	if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {
-		character->position.x += 1;
-		sun->position.x += 2;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end()) {
-		character->position.x -= 1;
-		sun->position.x -= 2;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_DOWN) != pressedKeys.end()) {
-		sun->position.y += 2;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_UP) != pressedKeys.end()) {
-		sun->position.y -= 2;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_A) != pressedKeys.end()) {
-		// sun->rotation += 0.01;
-		p1container->rotation += 0.05;
-		p2container->rotation += 0.03;
-		planet1->rotation += 0.1;
-		p1container->position.x = 100*sin(p1container->rotation);
-		p2container->position.x = 100*sin(p2container->rotation);
-	}
-	if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end()) {
-		// sun->rotation -= 0.01;
-		p1container->rotation -= 0.05;
-		p2container->rotation -= 0.03;
-		planet1->rotation -= 0.1;
-		p1container->position.x = 100*sin(p1container->rotation);
-		p2container->position.x = 100*sin(p2container->rotation);
-	}
-	if (pressedKeys.find(SDL_SCANCODE_Q) != pressedKeys.end()) {
-		allSprites->scaleX *= 1.05;
-		allSprites->scaleY *= 1.05;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end()) {
-		allSprites->scaleX *= 1/1.05;
-		allSprites->scaleY *= 1/1.05;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end()) {
-		sun->play("Sun");
-	}
-	if (pressedKeys.find(SDL_SCANCODE_L) != pressedKeys.end()) {
-		sun->stop();
-	}
+	std::cout << "Camera: " << camera->position.x << " " << camera->position.y << " | ";
+	std::cout << "Sun Sprite: " << scene_1->getChild("test_sun")->position.x << " " << scene_1->getChild("test_sun")->position.y << " | ";
+	std::cout << "Character: " << main_character->position.x << " " << main_character->position.y << " | ";
+	std::cout << "Scene Pivot: " << scene_1->pivot.x << " " << scene_1->pivot.y << std::endl;
 
-	coinEvent->checkCondition();
+	if (main_character->position.y <= 300){
+		scene_1->scaleX = 2.0;
+		scene_1->scaleY = 2.0;
+
+		// Janky solution to zoom in on camera
+		camera->position = {-main_character->position.x, -main_character->position.y};
+	} else {
+		scene_1->scaleX = 1.0;
+		scene_1->scaleY = 1.0;
+
+		// Janky solution to keep camera centered on character
+		camera->position.x = -(main_character->position.x - (600 - (main_character->width / 2)));
+		camera->position.y = -(main_character->position.y - (400 - (main_character->height / 2)));
+	}
+	for (std::set<SDL_Scancode>::iterator it = pressedKeys.begin(); it != pressedKeys.end(); ++it){
+		switch(*it){
+			// Translation
+			case SDL_SCANCODE_LEFT:	// Left arrow key
+				if (main_character->position.x > 100){		// hardcoded boundaries...
+					camera->position.x += 5;
+					main_character->position.x -= 5;
+				}
+				// this->position.x -= 10;
+				// main_character->position.x -= 5;
+				break;
+			case SDL_SCANCODE_RIGHT:	// Right arrow key
+				if (main_character->position.y < 900 && main_character->position.x < 700 || main_character->position.y >= 900 && main_character->position.x < 1290){
+					camera->position.x -= 5;
+					main_character->position.x += 5;
+				}
+				// this->position.x += 10;
+				// main_character->position.x += 5;
+				break;
+			case SDL_SCANCODE_UP:	// Up arrow key
+				if (main_character->position.y > 95 && main_character->position.x <= 700 || main_character->position.x > 700 && main_character->position.y > 900){
+					camera->position.y += 5;
+					main_character->position.y -= 5;
+				}
+				// this->position.y -= 10;
+				// main_character->position.y -= 5;
+				break;
+			case SDL_SCANCODE_DOWN:	// Down arrow key
+				if (main_character->position.y < 1340){
+					camera->position.y -= 5;
+					main_character->position.y += 5;
+				}
+				// this->position.y += 10;
+				// main_character->position.y += 5;
+				break;
+			// Scaling
+			case SDL_SCANCODE_Q:
+				// camera->scaleX -= 0.1;
+				// camera->scaleY -= 0.1;
+				// if (this->scaleX > 0.2 && this->scaleY > 0.2){	// max size 0.1
+				// 	this->scaleX -= 0.1;
+				// 	this->scaleY -= 0.1;
+				// }
+				break;
+			case SDL_SCANCODE_W:
+				// camera->scaleX += 0.1;
+				// camera->scaleY += 0.1;
+				// this->scaleX += 0.1;
+				// this->scaleY += 0.1;
+				break;
+			// Pivot Movement
+			case SDL_SCANCODE_I:
+				// this->pivot.y-= 5;
+				break;
+			case SDL_SCANCODE_J:
+				// this->pivot.x-= 5;
+				break;
+			case SDL_SCANCODE_K:
+				// this->pivot.y+= 5;
+				break;
+			case SDL_SCANCODE_L:
+				// this->pivot.x+= 5;
+				break;
+			// Rotation
+			case SDL_SCANCODE_A:
+				// this->rotation++;
+				break;
+			case SDL_SCANCODE_S:
+				// this->rotation-=2;		// To future me: since at the start of update we're rotating++, we need -= to counteract more than normal.
+				break;
+			// Visibility
+			case SDL_SCANCODE_P:
+				// if (using_scene_1){		// We were using Scene 1, so switch to Scene 2 now.
+				// 	this->addChild(scene_2);
+				// 	this->children.erase(std::remove(this->children.begin(), this->children.end(), scene_1), this->children.end());
+				// } else {
+				// 	this->addChild(scene_1);
+				// 	this->children.erase(std::remove(this->children.begin(), this->children.end(), scene_2), this->children.end());
+				// }
+				// using_scene_1 = !using_scene_1;
+				break;
+			// Transparency
+			case SDL_SCANCODE_Z:	// Fade in
+				if (alpha < 250) { alpha += 5; }
+				break;
+			case SDL_SCANCODE_X:	// Fade out
+				if (alpha > 5){ alpha -= 5; }
+				break;
+		}
+
+	}
 	Game::update(pressedKeys);
 }
 
 void MyGame::draw(AffineTransform &at){
+	//SDL_RenderClear(Game::renderer);
 	Game::draw(at);
-	// SDL_RenderClear(Game::renderer);
-	// // coin->draw(at);
-	// // if(walk) {
-	// // 	character->play("walk");
-	// // } else {
-	// // 	character->play("idle");
-	// // }
-	// // character->draw(at);
-	// SDL_RenderPresent(Game::renderer);
+	//SDL_RenderPresent(Game::renderer);
 }
