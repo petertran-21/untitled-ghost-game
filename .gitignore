@@ -34,3 +34,5 @@
 # other folders
 bin/
 demos/
+.DS_Store
+.vscode/
