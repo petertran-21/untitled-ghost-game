@@ -1,52 +1,34 @@
 {
     "sprites": [
         {
-            "id": "sun",
-            "basePathFolder": "./resources/solarSystem/",
+            "id": "square_1",
+            "basePathFolder": "./resources/",
             "posX": 0,
             "posY": 0,
+            "width": 1500,
+            "height": 1500,
             "pivotX": 0,
             "pivotY": 0,
             "rotation": 0.0,
             "alpha": 255,
             "isVisible": true,
-            "isStatic": false,
-            "parent": "",
-            "animationInfo": {
-                "playing": true,
-                "animations": [
-                    {
-                        "animId": "Sun",
-                        "frameCount": 4,
-                        "frameRate": 3,
-                        "loop": true
-                    }
-                ]
-            }
+            "isStatic": true,
+            "isStaticBaseFile": "L.png"
         },
         {
-            "id": "testAnim",
-            "basePathFolder": "./resources/character/",
-            "posX": 125,
-            "posY": 125,
+            "id": "test_sun",
+            "basePathFolder": "./resources/solarSystem/",
+            "posX": 300,
+            "posY": 150,
+            "width": 100,
+            "height": 100,
             "pivotX": 0,
             "pivotY": 0,
             "rotation": 0.0,
             "alpha": 255,
             "isVisible": true,
-            "isStatic": false,
-            "parent": "sun",
-            "animationInfo": {
-                "playing": true,
-                "animations": [
-                    {
-                        "animId": "Run",
-                        "frameCount": 20,
-                        "frameRate": 3,
-                        "loop": true
-                    }
-                ]
-            }
+            "isStatic": true,
+            "isStaticBaseFile": "Sun_1.png"
         }
     ]
 }
