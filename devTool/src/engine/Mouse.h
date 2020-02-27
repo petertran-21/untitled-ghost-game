@@ -25,6 +25,7 @@ public:
   void drawSelectBox(SDL_Renderer *renderer);
 
   bool leftClick = false;
+  bool leftChanged = false;
 
   int selectBoxW = 0;
   int selectBoxH = 0;

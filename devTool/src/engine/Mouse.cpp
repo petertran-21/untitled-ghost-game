@@ -11,6 +11,7 @@ void Mouse::setState(SDL_Event event) {
       startCoords.x = event.motion.x;
       startCoords.y = event.motion.y;
       leftClick = true;
+      leftChanged = true;
       break;
     case SDL_MOUSEBUTTONUP:
       leftClick = false;

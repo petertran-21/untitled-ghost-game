@@ -4,10 +4,12 @@
 #include "Sprite.h"
 #include "MyGame.h"
 #include "Scene.h"
+#include "json.hpp"
 
 using namespace std;
+using json = nlohmann::json;
 
-MyGame::MyGame() : Game(1200, 1000) {
+MyGame::MyGame() : Game(1200, 700) {
 	instance = this;
 
 	allSprites = new Scene();
@@ -22,6 +24,61 @@ MyGame::MyGame() : Game(1200, 1000) {
 	character->width = character->height = 100 - (100 % Game::cellSize);
 	allSprites->addChild(character);
 
+	templateBar = new DisplayObjectContainer("templateBar", 64, 224, 208);
+	templateBar->alpha = 100;
+	templateBar->width = 1500;
+	templateBar->height = 200;
+	templateBar->position.x = 0;
+	templateBar->position.y = 500;
+
+	instance->addChild(templateBar);
+
+	// Load templates
+	std::ifstream i("./resources/templates/templates.json");
+	json templates = json::parse(i);
+	int offset = 20;
+	for (auto templ : templates["templates"]){
+		std::ifstream t(templ["path"]);
+		json spriteTemplate = json::parse(t);
+		//cout << spriteTemplate["id"] << endl;
+		if (spriteTemplate["isStatic"]){
+			Sprite* s = new Sprite( spriteTemplate["id"], spriteTemplate["basePathFolder"].get<std::string>() + spriteTemplate["isStaticBaseFile"].get<std::string>());
+			s->id = spriteTemplate["id"];
+			s->imgPath = spriteTemplate["basePathFolder"].get<std::string>() + spriteTemplate["isStaticBaseFile"].get<std::string>();
+			s->position.x = spriteTemplate["posX"].get<int>() + offset;
+			s->position.y = spriteTemplate["posY"].get<int>() + 60;
+			s->pivot.x = spriteTemplate["pivotX"];
+			s->pivot.y = spriteTemplate["pivotY"];
+			s->alpha = spriteTemplate["alpha"];
+			s->visible = spriteTemplate["isVisible"];
+			s->rotation = spriteTemplate["rotation"];
+			s->width = spriteTemplate["width"];
+			s->height = spriteTemplate["height"];
+			offset += 20 + s->width;
+			templateBar->addChild(s);
+		} else {
+			AnimatedSprite* a = new AnimatedSprite(spriteTemplate["id"]);
+			for (auto animation : spriteTemplate["animationInfo"]["animations"]){
+				a->addAnimation(spriteTemplate["basePathFolder"], animation["animId"], animation["frameCount"], animation["frameRate"], animation["loop"]);
+				a->play(animation["animId"]);
+			}
+
+			a->imgPath = spriteTemplate["basePathFolder"];
+			a->position.x = spriteTemplate["posX"].get<int>() + offset;
+			a->position.y = spriteTemplate["posY"].get<int>() + 60;
+			a->pivot.x = spriteTemplate["pivotX"];
+			a->pivot.y = spriteTemplate["pivotY"];
+			a->alpha = spriteTemplate["alpha"];
+			a->visible = spriteTemplate["isVisible"];
+			a->rotation = spriteTemplate["rotation"];
+			a->width = spriteTemplate["width"];
+			a->height = spriteTemplate["height"];
+			offset += 20 + a->width;
+			templateBar->addChild(a);
+		}
+	}
+
+	templateBar->width = offset + 100;
 
 }
 
@@ -78,6 +135,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 				}
 		}
 
+
 		if (character->selected) {
 			if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {
 				character->position.x += Game::cellSize;
@@ -108,6 +166,23 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 		}
 	}
 
+	for(DisplayObject* character : templateBar->children){
+			if (Game::mouse->leftChanged) {
+				if(character->position.x + templateBar->position.x < Game::mouse->selectBoxX && Game::mouse->selectBoxX < character->position.x + character->width + templateBar->position.x 
+			&& character->position.y + templateBar->position.y < Game::mouse->selectBoxY && Game::mouse->selectBoxY < character->position.y + character->height + templateBar->position.y
+			&& Game::mouse->selectBoxX2 == Game::mouse->selectBoxX && Game::mouse->selectBoxY2 == Game::mouse->selectBoxY) {
+				character->selected = true;
+				Game::mouse->leftChanged = false;
+				}
+			}  else {
+				character->selected = false;
+			}
+			if (character->selected){
+				//Make new Object and parent to scene
+				cout << character->id << endl;
+			}
+		}
+
     if (pressedKeys.find(SDL_SCANCODE_L) != pressedKeys.end()){
         cout << "Load Scene: ";
         string scenePath = "./resources/scenes/";
@@ -128,6 +203,18 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 		cin >> sceneName;
 		cout << scenePath + sceneName << endl;
 		allSprites->saveScene(scenePath + sceneName);
+	}
+
+	if (pressedKeys.find(SDL_SCANCODE_N) != pressedKeys.end()){
+		if (templateBar->position.x < Game::windowWidth){
+			templateBar->position.x += Game::cellSize;
+		} 
+	}
+
+	if (pressedKeys.find(SDL_SCANCODE_M) != pressedKeys.end()){
+		if (templateBar->position.x + templateBar->width > 0){
+			templateBar->position.x -= Game::cellSize;
+		} 
 	}
 
 	Game::update(pressedKeys);

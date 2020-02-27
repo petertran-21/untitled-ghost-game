@@ -25,6 +25,7 @@ private:
 
 	AnimatedSprite* character;
 	Scene* allSprites;
+	DisplayObjectContainer* templateBar;
 
 };
 

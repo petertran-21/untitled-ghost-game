@@ -1,0 +1,8 @@
+{
+    "templates": [
+        {
+            "name" : "character",
+            "path" : "./resources/templates/characterTemp.json"
+        }
+    ]
+}
