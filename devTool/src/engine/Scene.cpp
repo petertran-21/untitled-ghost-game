@@ -7,15 +7,17 @@
 #include <fstream>
 #include "json.hpp"
 #include <iomanip>
+#include <unordered_map>
 
 using json = nlohmann::json;
 // Scene contstructor just calls parent DOC constructor
-Scene::Scene() : DisplayObjectContainer(){}
+Scene::Scene() : DisplayObjectContainer(){this->type = "Scene";}
 
 void Scene::loadScene(string sceneFilePath){
     std::ifstream i(sceneFilePath);
     json j = json::parse(i);
-
+    unordered_map<string, DisplayObjectContainer*> parents = {};
+    unordered_map<DisplayObject*, string> needsParent = {};
 
     for (auto sprite : j["sprites"]){
         // Get sprite type (static or animated?).
@@ -49,14 +51,34 @@ void Scene::loadScene(string sceneFilePath){
         
         if (sprite["parent"] == "") {
             this->addChild(unit);
+            unit->parent = this;
+            cout << unit->id << endl;
+        } else {
+            // Need to find parent object
+            needsParent[unit] = sprite["parent"];
+
         }
+
+        parents[unit->id] = unit;
+        
     }
+    // Setting up parents
+    for (auto it : needsParent){
+        it.first->parent = parents[it.second];
+        //cout << it.first->id << endl;
+        //cout << it.second << endl;
+        parents[it.second]->addChild(it.first);
+    }
+    
+
 }
 
 void Scene::saveScene(string sceneFilePath){
     json j;
     j["sprites"] = {json::array()};
-    for (auto sprite : this->children){
+    vector<DisplayObject*>* objects = Scene::getAllObjects(this);
+
+    for (auto sprite : *objects){
         json jsonSprite = {
             {"id", sprite->id},
             {"basePathFolder", sprite->imgPath},
@@ -75,7 +97,9 @@ void Scene::saveScene(string sceneFilePath){
         string parent = "";
         if (sprite->parent != this){
             parent = sprite->parent->id;
+            //cout << parent << endl;
         }
+        
         jsonSprite["parent"] = parent;
 
         if (sprite->type == "AnimatedSprite"){
@@ -101,6 +125,24 @@ void Scene::saveScene(string sceneFilePath){
     
     std::ofstream o(sceneFilePath + ".json");
     o << std::setw(4) << j << std::endl;
+}
+
+vector<DisplayObject*>* Scene::getAllObjects(DisplayObject* sprite){
+    vector<DisplayObject*>* objects = new vector<DisplayObject*>();
+    if (sprite->type != "Scene"){
+        objects->push_back(sprite);
+    }
+    
+    if (sprite->type == "DisplayObject"){
+        return objects;
+    } else {
+        vector<DisplayObject*> spriteChildren = static_cast<DisplayObjectContainer*>(sprite)->children;
+        for (auto child : spriteChildren){
+            vector<DisplayObject*>* childsChildren = Scene::getAllObjects(child);
+            objects->insert(objects->end(), childsChildren->begin(), childsChildren->end());
+        }
+    }
+    return objects;
 }
 
 void Scene::update(set<SDL_Scancode> pressedKeys){
