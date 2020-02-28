@@ -1,0 +1,56 @@
+{
+    "sprites": [
+        {
+            "alpha": 255,
+            "animationInfo": {
+                "animations": [
+                    {
+                        "animId": "Idle",
+                        "frameCount": 16,
+                        "frameRate": 3,
+                        "loop": true
+                    }
+                ],
+                "playing": true
+            },
+            "basePathFolder": "",
+            "height": 100,
+            "id": "character",
+            "isStatic": false,
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 380,
+            "posY": 380,
+            "rotation": 0.0,
+            "width": 100
+        },
+        {
+            "alpha": 255,
+            "animationInfo": {
+                "animations": [
+                    {
+                        "animId": "Idle",
+                        "frameCount": 16,
+                        "frameRate": 3,
+                        "loop": true
+                    }
+                ],
+                "playing": true
+            },
+            "basePathFolder": "",
+            "height": 100,
+            "id": "character1",
+            "isStatic": false,
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 680,
+            "posY": 60,
+            "rotation": 0.0,
+            "width": 100
+        }
+    ]
+}

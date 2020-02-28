@@ -90,6 +90,11 @@ MyGame::MyGame() : Game(1200, 700) {
 
 	templateBar->width = offset + 100;
 
+	mouseDisp = new EventDispatcher();
+	mouseClick = new MouseClickEvent(mouseDisp, templateBar, Game::mouse);
+	clickManager = new ClickManager();
+	mouseDisp->addEventListener(clickManager, MouseClickEvent::TILE_SELECTED);
+
 }
 
 MyGame::~MyGame(){
@@ -139,17 +144,12 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 					 character->position.y + character->height > topRY &&
 					 botLY > character->position.y) {
 								character->selected = true;
-								character->isBeingDragged = true;
 				}
 			} else {
 					character->selected = false;
 				}
 
 			if(character->isBeingDragged) {
-				if(character->position.x < Game::mouse->selectBoxX2 && Game::mouse->selectBoxX2 < character->position.x + character->width
-				&& character->position.y < Game::mouse->selectBoxY2 && Game::mouse->selectBoxY2 < character->position.y + character->height) {
-					character->selected = true;
-				}
 				Game::mouse->isDraggingObject = true;
 				character->position.x = Game::mouse->curCoords.x - character->width/2;
 				character->position.y = Game::mouse->curCoords.y - character->height/2;
@@ -196,22 +196,20 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 		}
 	}
 
-	for(DisplayObject* character : templateBar->children){
-			if (Game::mouse->leftChanged) {
-				if(character->position.x + templateBar->position.x < Game::mouse->selectBoxX && Game::mouse->selectBoxX < character->position.x + character->width + templateBar->position.x
-			&& character->position.y + templateBar->position.y < Game::mouse->selectBoxY && Game::mouse->selectBoxY < character->position.y + character->height + templateBar->position.y
-			&& Game::mouse->selectBoxX2 == Game::mouse->selectBoxX && Game::mouse->selectBoxY2 == Game::mouse->selectBoxY) {
-				character->selected = true;
-				Game::mouse->leftChanged = false;
-				}
-			}  else {
-				character->selected = false;
-			}
-			if (character->selected){
-				//Make new Object and parent to scene
-				cout << character->id << endl;
-			}
-		}
+	// for(DisplayObject* character : templateBar->children){
+	// 		if (Game::mouse->leftClick) {
+	// 			if(character->position.x + templateBar->position.x < Game::mouse->selectBoxX && Game::mouse->selectBoxX < character->position.x + character->width + templateBar->position.x
+	// 		&& character->position.y + templateBar->position.y < Game::mouse->selectBoxY && Game::mouse->selectBoxY < character->position.y + character->height + templateBar->position.y) {
+	// 			character->selected = true;
+	// 		} else if (character->selected && Game::mouse->leftChanged){
+	// 			//Make new Object and parent to scene
+	// 			std::cout << character->id << std::endl;
+	// 			Game::mouse->leftChanged = false;
+	// 		} else {
+	// 				character->selected = false;
+	// 			}
+	// 		}
+	// 	}
 
     if (pressedKeys.find(SDL_SCANCODE_L) != pressedKeys.end()){
         cout << "Load Scene: ";
@@ -247,6 +245,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 		}
 	}
 
+	mouseClick->checkCondition();
 	Game::update(pressedKeys);
 }
 

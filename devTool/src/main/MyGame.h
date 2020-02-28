@@ -8,6 +8,9 @@
 #include "Sprite.h"
 #include "AnimatedSprite.h"
 #include "Scene.h"
+#include "EventDispatcher.h"
+#include "ClickManager.h"
+#include "MouseClickEvent.h"
 
 
 using namespace std;
@@ -27,6 +30,10 @@ private:
 	AnimatedSprite* character1;
 	Scene* allSprites;
 	DisplayObjectContainer* templateBar;
+
+	EventDispatcher* mouseDisp;
+	MouseClickEvent* mouseClick;
+	ClickManager* clickManager;
 
 };
 
