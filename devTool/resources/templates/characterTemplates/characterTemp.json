@@ -16,10 +16,10 @@
     "playing": true,
     "animations": [
                    {
-                   "animId": "Run",
-                   "frameCount": 20,
-                   "frameRate": 3,
-                   "loop": true
+                       "animId": "Run",
+                       "frameCount": 20,
+                       "frameRate": 3,
+                       "loop": true
                    },
                    {
                        "animId": "Dead",
@@ -28,10 +28,10 @@
                        "loop": false
                    },
                    {
-                    "animId": "Idle",
-                    "frameCount": 16,
-                    "frameRate": 3,
-                    "loop": true
+                        "animId": "Idle",
+                        "frameCount": 16,
+                        "frameRate": 3,
+                        "loop": true
                     },
                     {
                         "animId": "Jump",
@@ -44,7 +44,7 @@
                         "frameCount": 20,
                         "frameRate": 3,
                         "loop": true
-                        }
+                    }
                    ]
     }
     }

@@ -12,6 +12,7 @@
 #include "ClickManager.h"
 #include "MouseClickEvent.h"
 #include "Camera.h"
+#include "TemplateBar.h"
 
 
 using namespace std;
@@ -30,7 +31,7 @@ private:
 	AnimatedSprite* character;
 	AnimatedSprite* character1;
 	Scene* allSprites;
-	DisplayObjectContainer* templateBar;
+	TemplateBar* templateBar;
 
 	EventDispatcher* mouseDisp;
 	MouseClickEvent* mouseClick;

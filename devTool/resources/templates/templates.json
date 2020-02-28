@@ -2,11 +2,87 @@
     "templates": [
         {
             "name" : "character",
-            "path" : "./resources/templates/characterTemp.json"
+            "path" : "./resources/templates/characterTemplates/characterTemp.json"
         },
         {
             "name" : "staticCharacter",
-            "path" : "./resources/templates/staticTemp.json"
+            "path" : "./resources/templates/characterTemplates/staticTemp.json"
+        },
+        {
+            "name" : "npc",
+            "path" : "./resources/templates/characterTemplates/npcTemp.json"
+        },
+        {
+            "name" : "grendel",
+            "path" : "./resources/templates/characterTemplates/grendelTemp.json"
+        },
+        {
+            "name" : "snake",
+            "path" : "./resources/templates/animalTemplates/snakeTemp.json"
+        },
+        {
+            "name" : "crocodile",
+            "path" : "./resources/templates/animalTemplates/crocodileTemp.json"
+        },
+        {
+            "name" : "crab",
+            "path" : "./resources/templates/animalTemplates/crabTemp.json"
+        },
+        {
+            "name" : "horn",
+            "path" : "./resources/templates/itemTemplates/hornTemp.json"
+        },
+        {
+            "name" : "boat",
+            "path" : "./resources/templates/itemTemplates/boatTemp.json"
+        },
+        {
+            "name" : "itemPouch",
+            "path" : "./resources/templates/itemTemplates/itemPouchTemp.json"
+        },
+        {
+            "name" : "npc",
+            "path" : "./resources/templates/characterTemplates/npcTemp.json"
+        },
+        {
+            "name" : "bigDirt",
+            "path" : "./resources/templates/swampEnvTemplates/bigDirtTemp.json"
+        },
+        {
+            "name" : "smallDirt",
+            "path" : "./resources/templates/swampEnvTemplates/smallDirtTemp.json"
+        },
+        {
+            "name" : "bigGrass",
+            "path" : "./resources/templates/swampEnvTemplates/bigGrassTemp.json"
+        },
+        {
+            "name" : "smallGrass",
+            "path" : "./resources/templates/swampEnvTemplates/smallGrassTemp.json"
+        },
+        {
+            "name" : "pond",
+            "path" : "./resources/templates/swampEnvTemplates/pondTemp.json"
+        },
+        {
+            "name" : "dockHorizontal",
+            "path" : "./resources/templates/beachEnvTemplates/dockHorizontalTemp.json"
+        },
+        {
+            "name" : "dockVertical",
+            "path" : "./resources/templates/beachEnvTemplates/dockVerticalTemp.json"
+        },
+        {
+            "name" : "palm",
+            "path" : "./resources/templates/beachEnvTemplates/palmTemp.json"
+        },
+        {
+            "name" : "plank",
+            "path" : "./resources/templates/beachEnvTemplates/plankTemp.json"
+        },
+        {
+            "name" : "sand",
+            "path" : "./resources/templates/beachEnvTemplates/sandTemp.json"
         }
     ]
 }
