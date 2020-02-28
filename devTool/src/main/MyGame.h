@@ -11,6 +11,7 @@
 #include "EventDispatcher.h"
 #include "ClickManager.h"
 #include "MouseClickEvent.h"
+#include "Camera.h"
 
 
 using namespace std;
@@ -34,6 +35,9 @@ private:
 	EventDispatcher* mouseDisp;
 	MouseClickEvent* mouseClick;
 	ClickManager* clickManager;
+
+	Camera* camera;
+	bool noSpritesSelected = true;
 
 };
 

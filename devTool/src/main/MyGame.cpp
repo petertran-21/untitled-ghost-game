@@ -12,9 +12,10 @@ using json = nlohmann::json;
 MyGame::MyGame() : Game(1200, 700) {
 	instance = this;
 
+	camera = new Camera();
+	this->addChild(camera);
 	allSprites = new Scene();
-	// move that point to the middle
-	instance->addChild(allSprites);
+	camera->addChild(allSprites);
 
 	character = new AnimatedSprite("character");
 	character->addAnimation("./resources/character/", "Idle", 16, 3, true);
@@ -98,6 +99,7 @@ MyGame::MyGame() : Game(1200, 700) {
 }
 
 MyGame::~MyGame(){
+	delete camera;
 }
 
 
@@ -105,11 +107,12 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 	for(DisplayObject * character : allSprites->children) {
 	// X, Y is location of start, X2, Y2 is location of current
 		if (Game::mouse->leftClick) {
-			if(character->position.x < Game::mouse->selectBoxX && Game::mouse->selectBoxX < character->position.x + character->width
-			&& character->position.y < Game::mouse->selectBoxY && Game::mouse->selectBoxY < character->position.y + character->height
+			if(character->position.x + camera->position.x < Game::mouse->selectBoxX && Game::mouse->selectBoxX < character->position.x + character->width + camera->position.x
+			&& character->position.y + camera->position.y < Game::mouse->selectBoxY && Game::mouse->selectBoxY < character->position.y + character->height + camera->position.y
 			&& Game::mouse->selectBoxX2 == Game::mouse->selectBoxX && Game::mouse->selectBoxY2 == Game::mouse->selectBoxY) {
 				character->selected = true;
 				character->isBeingDragged = true;
+				this->noSpritesSelected = false;
 			} else if (!(Game::mouse->selectBoxX2 == Game::mouse->selectBoxX) && !(Game::mouse->selectBoxY2 == Game::mouse->selectBoxY)) {
 				int topRX, topRY,botLX,botLY;
 				topRX = topRY = botLX = botLY = -1;
@@ -139,11 +142,12 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 					botLY = Game::mouse->selectBoxY;
 				}
 
-				if(character->position.x < topRX &&
-					 botLX < character->position.x + character->width &&
-					 character->position.y + character->height > topRY &&
-					 botLY > character->position.y) {
+				if(character->position.x + camera->position.x < topRX &&
+					 botLX < character->position.x + character->width  + camera->position.x &&
+					 character->position.y + character->height + camera->position.y > topRY &&
+					 botLY > character->position.y + camera->position.y) {
 								character->selected = true;
+								this->noSpritesSelected = false;
 				}
 			} else {
 					character->selected = false;
@@ -151,8 +155,8 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 
 			if(character->isBeingDragged) {
 				Game::mouse->isDraggingObject = true;
-				character->position.x = Game::mouse->curCoords.x - character->width/2;
-				character->position.y = Game::mouse->curCoords.y - character->height/2;
+				character->position.x = (Game::mouse->curCoords.x - camera->position.x) - character->width/2;
+				character->position.y = (Game::mouse->curCoords.y - camera->position.y) - character->height/2;
 			}
 		} else {
 			Game::mouse->isDraggingObject = false;
@@ -188,41 +192,46 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 					character->width = floor((character->width/1.1)/Game::cellSize) * Game::cellSize;
 					character->height = floor((character->height/1.1)/Game::cellSize) * Game::cellSize;
 				}
+			} else {
+				this->noSpritesSelected = true;
 			}
 
 			if (pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end()) {
 				// handle copy paste
 			}
 		}
+
 	}
 
-	// for(DisplayObject* character : templateBar->children){
-	// 		if (Game::mouse->leftClick) {
-	// 			if(character->position.x + templateBar->position.x < Game::mouse->selectBoxX && Game::mouse->selectBoxX < character->position.x + character->width + templateBar->position.x
-	// 		&& character->position.y + templateBar->position.y < Game::mouse->selectBoxY && Game::mouse->selectBoxY < character->position.y + character->height + templateBar->position.y) {
-	// 			character->selected = true;
-	// 		} else if (character->selected && Game::mouse->leftChanged){
-	// 			//Make new Object and parent to scene
-	// 			std::cout << character->id << std::endl;
-	// 			Game::mouse->leftChanged = false;
-	// 		} else {
-	// 				character->selected = false;
-	// 			}
-	// 		}
-	// 	}
 
-    if (pressedKeys.find(SDL_SCANCODE_L) != pressedKeys.end()){
-        cout << "Load Scene: ";
-        string scenePath = "./resources/scenes/";
-        string sceneName;
-        cin >> sceneName;
-        cout << scenePath + sceneName << endl;
-        try{
-            allSprites->loadScene(scenePath + sceneName + ".json");
-        } catch(exception& e) {
-            cout << "Error: " << e.what() << endl;
-        }
-    }
+	if(noSpritesSelected) {
+		if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {
+			camera->position.x += Game::cellSize;
+		}
+		if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end()) {
+			camera->position.x -= Game::cellSize;
+		}
+		if (pressedKeys.find(SDL_SCANCODE_DOWN) != pressedKeys.end()) {
+			camera->position.y += Game::cellSize;
+		}
+		if (pressedKeys.find(SDL_SCANCODE_UP) != pressedKeys.end()) {
+			camera->position.y -= Game::cellSize;
+		}
+	}
+
+
+  if (pressedKeys.find(SDL_SCANCODE_L) != pressedKeys.end()){
+      cout << "Load Scene: ";
+      string scenePath = "./resources/scenes/";
+      string sceneName;
+      cin >> sceneName;
+      cout << scenePath + sceneName << endl;
+      try{
+          allSprites->loadScene(scenePath + sceneName + ".json");
+      } catch(exception& e) {
+          cout << "Error: " << e.what() << endl;
+      }
+  }
 
 	if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end()){
 		cout << "Save Scene: ";

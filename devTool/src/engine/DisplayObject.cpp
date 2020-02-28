@@ -80,6 +80,11 @@ void DisplayObject::draw(AffineTransform &at){
 	    SDL_SetRenderDrawColor(Game::renderer,200,155,255,1);
 	    SDL_RenderDrawRect(Game::renderer, &outline);
 		}
+		if (this->type == "scene") {
+			SDL_Rect outline = { origin.x, origin.y, w, h };
+	    SDL_SetRenderDrawColor(Game::renderer,200,155,255,1);
+	    SDL_RenderDrawRect(Game::renderer, &outline);
+		}
 		SDL_RendererFlip flip;
 		if (facingRight) {
 			flip = SDL_FLIP_NONE;
@@ -108,9 +113,9 @@ DisplayObject* DisplayObject::copy(){
 	copy->rotation = this->rotation;
 	copy->scaleX = this->scaleX;
 	copy->scaleY = this->scaleY;
-	
+
 	return copy;
-} 
+}
 
 void DisplayObject::applyTransformations(AffineTransform &at) {
 	at.translate(position.x, position.y);
