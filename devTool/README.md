@@ -8,7 +8,7 @@ To run, cd into devtool directory then run ./bin/mygame
 
 To load a scene, press L and then type in the name of scene in the command line. For example: to load scene_1.json press L and type scene_1 into the command line.
 
-To save a scenem press S and then type what you want to name the scene in the command line.
+To save a scene, press S and then type what you want to name the scene in the command line. The scene will be saved to the "scenes" folder in "resources" with the name entered by the user.
 
 To move the camera, use the arrow keys. You can only move the camera when no objects are selected.
 
