@@ -148,6 +148,25 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 
 			if (pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end()) {
 				// handle copy paste
+				if (!this->duplicatedLastFrame){
+					cout << "copying" << endl;
+					this->duplicatedLastFrame = true;
+					if (character->type == "Sprite"){
+						Sprite* copy = dynamic_cast<Sprite*>(character)->copy();
+						allSprites->addChild(copy);
+						copy->position.x += 5 * Game::cellSize;
+						copy->selected = false;
+					}
+					if (character->type == "AnimatedSprite"){
+						AnimatedSprite* copy = dynamic_cast<AnimatedSprite*>(character)->copy();
+						allSprites->addChild(copy);
+						copy->position.x += 5 * Game::cellSize;
+						copy->selected = false;
+					}
+				}
+				
+			} else {
+				this->duplicatedLastFrame = false;
 			}
 		}
 

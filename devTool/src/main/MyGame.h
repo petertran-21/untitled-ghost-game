@@ -38,6 +38,7 @@ private:
 	ClickManager* clickManager;
 
 	Camera* camera;
+	bool duplicatedLastFrame = true;
 	bool noSpritesSelected = true;
 
 };
