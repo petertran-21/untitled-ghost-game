@@ -36,6 +36,7 @@ public:
 
 	void applyTransformations(AffineTransform &at);
 	void reverseTransformations(AffineTransform &at);
+	virtual DisplayObject* copy();
 
 	int getWidth();
 	int getHeight();

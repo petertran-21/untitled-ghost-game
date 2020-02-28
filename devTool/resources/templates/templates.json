@@ -3,6 +3,10 @@
         {
             "name" : "character",
             "path" : "./resources/templates/characterTemp.json"
+        },
+        {
+            "name" : "staticCharacter",
+            "path" : "./resources/templates/staticTemp.json"
         }
     ]
 }

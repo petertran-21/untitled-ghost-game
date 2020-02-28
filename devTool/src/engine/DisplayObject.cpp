@@ -95,6 +95,24 @@ void DisplayObject::draw(AffineTransform &at){
 	reverseTransformations(at);
 }
 
+DisplayObject* DisplayObject::copy(){
+	DisplayObject* copy = new DisplayObject(to_string(rand()), this->imgPath);
+	copy->parent = this->parent;
+	copy->pivot = this->pivot;
+	int posY = (this->position.y) - ((this->position.y) % Game::cellSize);
+	copy->position.y = posY + 2 * Game::cellSize;
+	copy->position.x = this->position.y;
+	copy->width = this->width;
+	copy->height = this->height;
+	copy->visible = this->visible;
+	copy->alpha = this->alpha;
+	copy->rotation = this->rotation;
+	copy->scaleX = this->scaleX;
+	copy->scaleY = this->scaleY;
+	
+	return copy;
+} 
+
 void DisplayObject::applyTransformations(AffineTransform &at) {
 	at.translate(position.x, position.y);
 	at.rotate(rotation);

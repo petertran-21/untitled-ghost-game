@@ -2,6 +2,7 @@
 #include "AffineTransform.h"
 #include <vector>
 #include <string>
+#include "Game.h"
 
 using namespace std;
 
@@ -78,6 +79,28 @@ DisplayObject* DisplayObjectContainer::getChild(string id) {
         // check recursively?
     }
     return NULL;
+}
+
+DisplayObjectContainer* DisplayObjectContainer::copy(){
+    DisplayObjectContainer* copy = new DisplayObjectContainer(to_string(rand()), this->imgPath);
+	copy->parent = this->parent;
+	copy->pivot = this->pivot;
+	int posY = (this->position.y) - ((this->position.y) % Game::cellSize);
+	copy->position.y = posY + 2 * Game::cellSize;
+	copy->position.x = this->position.y;
+	copy->width = this->width;
+	copy->height = this->height;
+	copy->visible = this->visible;
+	copy->alpha = this->alpha;
+	copy->rotation = this->rotation;
+	copy->scaleX = this->scaleX;
+	copy->scaleY = this->scaleY;
+
+    for (auto child : children){
+        copy->addChild(child->copy());
+    }
+	
+	return copy;
 }
 
 void DisplayObjectContainer::update(set<SDL_Scancode> pressedKeys) {

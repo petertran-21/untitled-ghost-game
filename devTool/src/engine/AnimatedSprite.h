@@ -39,6 +39,8 @@ public:
 	void replay();
 	void stop();
 
+	virtual AnimatedSprite* copy();
+
 	virtual void update(set<SDL_Scancode> pressedKeys);
 	virtual void draw(AffineTransform &at);
 

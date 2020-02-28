@@ -77,6 +77,34 @@ void AnimatedSprite::stop() {
     this->playing = false;
 }
 
+AnimatedSprite* AnimatedSprite::copy(){
+    AnimatedSprite* copy = new AnimatedSprite();
+    copy->id = to_string(rand());
+    copy->imgPath = this->imgPath;
+	copy->parent = this->parent;
+	copy->pivot = this->pivot;
+	int posY = (this->position.y) - ((this->position.y) % Game::cellSize);
+	copy->position.y = posY + 2 * Game::cellSize;
+	copy->position.x = this->position.y;
+	copy->width = this->width;
+	copy->height = this->height;
+	copy->visible = this->visible;
+	copy->alpha = this->alpha;
+	copy->rotation = this->rotation;
+	copy->scaleX = this->scaleX;
+	copy->scaleY = this->scaleY;
+
+    for (auto child : children){
+        copy->addChild(child->copy());
+    }
+
+    for (Animation* an : this->animations){
+        copy->addAnimation(copy->imgPath, an->animName, an->numFrames, an->frameRate, an->loop);
+    }
+	
+	return copy;
+}
+
 void AnimatedSprite::update(set<SDL_Scancode> pressedKeys) {
     Sprite::update(pressedKeys);
     if (playing) {
