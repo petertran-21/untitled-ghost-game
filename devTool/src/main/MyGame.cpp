@@ -22,7 +22,17 @@ MyGame::MyGame() : Game(1200, 700) {
 	character->play("Idle");
 
 	character->width = character->height = 100 - (100 % Game::cellSize);
+	character->position.x = character->position.y = 0;
 	allSprites->addChild(character);
+
+	character1 = new AnimatedSprite("character1");
+	character1->addAnimation("./resources/character/", "Idle", 16, 3, true);
+
+	character1->play("Idle");
+
+	character1->width = character1->height = 100 - (100 % Game::cellSize);
+	character1->position.x = character1->position.y = Game::cellSize;
+	allSprites->addChild(character1);
 
 	templateBar = new DisplayObjectContainer("templateBar", 64, 224, 208);
 	templateBar->alpha = 100;
@@ -87,7 +97,6 @@ MyGame::~MyGame(){
 
 
 void MyGame::update(set<SDL_Scancode> pressedKeys){
-
 	for(DisplayObject * character : allSprites->children) {
 	// X, Y is location of start, X2, Y2 is location of current
 		if (Game::mouse->leftClick) {
@@ -95,6 +104,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 			&& character->position.y < Game::mouse->selectBoxY && Game::mouse->selectBoxY < character->position.y + character->height
 			&& Game::mouse->selectBoxX2 == Game::mouse->selectBoxX && Game::mouse->selectBoxY2 == Game::mouse->selectBoxY) {
 				character->selected = true;
+				character->isBeingDragged = true;
 			} else if (!(Game::mouse->selectBoxX2 == Game::mouse->selectBoxX) && !(Game::mouse->selectBoxY2 == Game::mouse->selectBoxY)) {
 				int topRX, topRY,botLX,botLY;
 				topRX = topRY = botLX = botLY = -1;
@@ -112,10 +122,10 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 					botLY = Game::mouse->selectBoxY2;
 				} else if(Game::mouse->selectBoxX < Game::mouse->selectBoxX2 && Game::mouse->selectBoxY > Game::mouse->selectBoxY2) { // is the current mouse location the topR of the rect ?
 					// start is bottom left, , current is top right
-					topRX = Game::mouse->selectBoxX;
-					topRY = Game::mouse->selectBoxY;
-					botLX = Game::mouse->selectBoxX2;
-					botLY = Game::mouse->selectBoxY2;
+					topRX = Game::mouse->selectBoxX2;
+					topRY = Game::mouse->selectBoxY2;
+					botLX = Game::mouse->selectBoxX;
+					botLY = Game::mouse->selectBoxY;
 				} else if(Game::mouse->selectBoxX > Game::mouse->selectBoxX2 && Game::mouse->selectBoxY > Game::mouse->selectBoxY2) { // is the current mouse location the topR of the rect ?
 					// start is bottom right, , current is top left
 					topRX = Game::mouse->selectBoxX;
@@ -129,10 +139,26 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 					 character->position.y + character->height > topRY &&
 					 botLY > character->position.y) {
 								character->selected = true;
+								character->isBeingDragged = true;
 				}
 			} else {
 					character->selected = false;
 				}
+
+			if(character->isBeingDragged) {
+				if(character->position.x < Game::mouse->selectBoxX2 && Game::mouse->selectBoxX2 < character->position.x + character->width
+				&& character->position.y < Game::mouse->selectBoxY2 && Game::mouse->selectBoxY2 < character->position.y + character->height) {
+					character->selected = true;
+				}
+				Game::mouse->isDraggingObject = true;
+				character->position.x = Game::mouse->curCoords.x - character->width/2;
+				character->position.y = Game::mouse->curCoords.y - character->height/2;
+			}
+		} else {
+			Game::mouse->isDraggingObject = false;
+			character->position.x = character->position.x - (character->position.x % Game::cellSize);
+			character->position.y = character->position.y - (character->position.y % Game::cellSize);
+			character->isBeingDragged = false;
 		}
 
 
@@ -163,12 +189,16 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 					character->height = floor((character->height/1.1)/Game::cellSize) * Game::cellSize;
 				}
 			}
+
+			if (pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end()) {
+				// handle copy paste
+			}
 		}
 	}
 
 	for(DisplayObject* character : templateBar->children){
 			if (Game::mouse->leftChanged) {
-				if(character->position.x + templateBar->position.x < Game::mouse->selectBoxX && Game::mouse->selectBoxX < character->position.x + character->width + templateBar->position.x 
+				if(character->position.x + templateBar->position.x < Game::mouse->selectBoxX && Game::mouse->selectBoxX < character->position.x + character->width + templateBar->position.x
 			&& character->position.y + templateBar->position.y < Game::mouse->selectBoxY && Game::mouse->selectBoxY < character->position.y + character->height + templateBar->position.y
 			&& Game::mouse->selectBoxX2 == Game::mouse->selectBoxX && Game::mouse->selectBoxY2 == Game::mouse->selectBoxY) {
 				character->selected = true;
@@ -208,13 +238,13 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 	if (pressedKeys.find(SDL_SCANCODE_N) != pressedKeys.end()){
 		if (templateBar->position.x < Game::windowWidth){
 			templateBar->position.x += Game::cellSize;
-		} 
+		}
 	}
 
 	if (pressedKeys.find(SDL_SCANCODE_M) != pressedKeys.end()){
 		if (templateBar->position.x + templateBar->width > 0){
 			templateBar->position.x -= Game::cellSize;
-		} 
+		}
 	}
 
 	Game::update(pressedKeys);

@@ -51,6 +51,7 @@ public:
 	int alpha = 255;
 	bool facingRight = true;
 	bool selected = false;
+	bool isBeingDragged = false;
 
 private:
 	double distance(SDL_Point &p1, SDL_Point &p2);

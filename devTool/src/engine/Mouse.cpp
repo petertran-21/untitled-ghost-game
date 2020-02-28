@@ -19,6 +19,7 @@ void Mouse::setState(SDL_Event event) {
     case SDL_MOUSEMOTION:
       curCoords.x = event.motion.x;
       curCoords.y = event.motion.y;
+      mouseMoving = true;
       break;
   }
 }
@@ -27,7 +28,7 @@ Mouse::MouseLocation Mouse::getMouseLocation() {
   return curCoords;
 }
 void Mouse::drawSelectBox(SDL_Renderer *renderer) {
-  if (leftClick) {
+  if (leftClick && !isDraggingObject) {
     selectBoxW = curCoords.x - startCoords.x;
     selectBoxH = curCoords.y - startCoords.y;
     selectBoxX = startCoords.x;
