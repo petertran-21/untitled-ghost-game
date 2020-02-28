@@ -168,6 +168,25 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 			} else {
 				this->duplicatedLastFrame = false;
 			}
+
+			if (pressedKeys.find(SDL_SCANCODE_Z)!= pressedKeys.end()){
+				character->alpha >= 255 ? character->alpha = 255 : character->alpha += 5;
+			}
+
+			if (pressedKeys.find(SDL_SCANCODE_X)!= pressedKeys.end()){
+				character->alpha <= 0 ? character->alpha = 0 : character->alpha -= 5;
+			}
+
+			if (pressedKeys.find(SDL_SCANCODE_I)!= pressedKeys.end()){
+				cout << "Current id: " << character->id << endl;
+				cout << "Change id (y/n)" << endl;
+				string answer = "";
+				cin >> answer;
+				if (answer == "y"){
+					cout << "New id: ";
+					cin >> character->id;
+				}
+			}
 		}
 
 	}
