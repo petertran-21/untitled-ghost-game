@@ -93,8 +93,6 @@ AnimatedSprite* AnimatedSprite::copy(){
 	copy->scaleX = this->scaleX;
 	copy->scaleY = this->scaleY;
 
-    copy->playing = this->playing;
-
     for (auto child : children){
         copy->addChild(child->copy());
     }
@@ -102,6 +100,8 @@ AnimatedSprite* AnimatedSprite::copy(){
     for (Animation* an : this->animations){
         copy->addAnimation(copy->imgPath, an->animName, an->numFrames, an->frameRate, an->loop);
         cout << copy->imgPath << an->animName << endl;
+        copy->play(an->animName);
+        
     }
 	
 	return copy;
