@@ -119,7 +119,8 @@ void Scene::saveScene(string sceneFilePath){
         } else {
             jsonSprite["isStatic"] = true;
             int lastslash = sprite->imgPath.find_last_of("/");
-            jsonSprite["isStaticBaseFile"] = sprite->imgPath.substr(lastslash);
+            jsonSprite["isStaticBaseFile"] = sprite->imgPath.substr(lastslash+1);
+            jsonSprite["basePathFolder"] = sprite->imgPath.substr(0, lastslash+1);
         }
         cout << sprite->id << endl;
         j["sprites"].push_back(jsonSprite);

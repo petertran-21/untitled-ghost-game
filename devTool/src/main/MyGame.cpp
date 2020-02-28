@@ -91,7 +91,7 @@ MyGame::MyGame() : Game(1200, 700) {
 	templateBar->width = offset + 100;
 
 	mouseDisp = new EventDispatcher();
-	mouseClick = new MouseClickEvent(mouseDisp, templateBar, Game::mouse);
+	mouseClick = new MouseClickEvent(mouseDisp, templateBar, Game::mouse, allSprites);
 	clickManager = new ClickManager();
 	mouseDisp->addEventListener(clickManager, MouseClickEvent::TILE_SELECTED);
 

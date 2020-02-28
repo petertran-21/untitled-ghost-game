@@ -8,18 +8,20 @@
 #include "EventDispatcher.h"
 #include "DisplayObjectContainer.h"
 #include "Mouse.h"
+#include "Scene.h"
 
 using namespace std;
 
 class MouseClickEvent : public Event {
 public:
   MouseClickEvent();
-  MouseClickEvent(EventDispatcher* source, DisplayObjectContainer* character, Mouse* mouse);
+  MouseClickEvent(EventDispatcher* source, DisplayObjectContainer* character, Mouse* mouse, Scene* scene);
   ~MouseClickEvent();
   void checkCondition();
 
   DisplayObjectContainer* character;
   Mouse* mouse;
+  Scene* scene;
   bool print = false;
   bool printed = false;
 

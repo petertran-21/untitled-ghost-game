@@ -9,11 +9,13 @@ const string MouseClickEvent::TILE_SELECTED = "TILE_SELECTED";
 MouseClickEvent::MouseClickEvent() : Event() {
   this->character = NULL;
   this->mouse = NULL;
+  this->scene = NULL;
 }
 
-MouseClickEvent::MouseClickEvent(EventDispatcher* source, DisplayObjectContainer* character, Mouse* mouse) : Event(MouseClickEvent::TILE_SELECTED, source) {
+MouseClickEvent::MouseClickEvent(EventDispatcher* source, DisplayObjectContainer* character, Mouse* mouse, Scene* scene) : Event(MouseClickEvent::TILE_SELECTED, source) {
   this->character = character;
   this->mouse = mouse;
+  this->scene = scene;
 }
 
 MouseClickEvent::~MouseClickEvent(){

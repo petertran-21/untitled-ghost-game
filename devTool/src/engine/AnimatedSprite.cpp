@@ -83,9 +83,8 @@ AnimatedSprite* AnimatedSprite::copy(){
     copy->imgPath = this->imgPath;
 	copy->parent = this->parent;
 	copy->pivot = this->pivot;
-	int posY = (this->position.y) - ((this->position.y) % Game::cellSize);
-	copy->position.y = posY + 2 * Game::cellSize;
-	copy->position.x = this->position.y;
+	copy->position.y = this->position.y;
+	copy->position.x = this->position.x;
 	copy->width = this->width;
 	copy->height = this->height;
 	copy->visible = this->visible;
@@ -94,12 +93,15 @@ AnimatedSprite* AnimatedSprite::copy(){
 	copy->scaleX = this->scaleX;
 	copy->scaleY = this->scaleY;
 
+    copy->playing = this->playing;
+
     for (auto child : children){
         copy->addChild(child->copy());
     }
 
     for (Animation* an : this->animations){
         copy->addAnimation(copy->imgPath, an->animName, an->numFrames, an->frameRate, an->loop);
+        cout << copy->imgPath << an->animName << endl;
     }
 	
 	return copy;

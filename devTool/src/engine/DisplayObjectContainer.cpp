@@ -85,9 +85,8 @@ DisplayObjectContainer* DisplayObjectContainer::copy(){
     DisplayObjectContainer* copy = new DisplayObjectContainer(to_string(rand()), this->imgPath);
 	copy->parent = this->parent;
 	copy->pivot = this->pivot;
-	int posY = (this->position.y) - ((this->position.y) % Game::cellSize);
-	copy->position.y = posY + 2 * Game::cellSize;
-	copy->position.x = this->position.y;
+	copy->position.y = this->position.y;
+	copy->position.x = this->position.x;
 	copy->width = this->width;
 	copy->height = this->height;
 	copy->visible = this->visible;
