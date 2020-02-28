@@ -75,22 +75,17 @@ void DisplayObject::draw(AffineTransform &at){
 		int h = (int)distance(upperRight, lowerRight);
 
 		SDL_Rect dstrect = { origin.x, origin.y, w, h };
-		if (selected) {
-			SDL_Rect outline = { origin.x, origin.y, w, h };
-	    SDL_SetRenderDrawColor(Game::renderer,200,155,255,1);
-	    SDL_RenderDrawRect(Game::renderer, &outline);
-		}
-		if (this->type == "scene") {
-			SDL_Rect outline = { origin.x, origin.y, w, h };
-	    SDL_SetRenderDrawColor(Game::renderer,200,155,255,1);
-	    SDL_RenderDrawRect(Game::renderer, &outline);
-		}
 		SDL_RendererFlip flip;
 		if (facingRight) {
 			flip = SDL_FLIP_NONE;
 		}
 		else {
 			flip = SDL_FLIP_HORIZONTAL;
+		}
+
+		if (selected) {
+			DisplayObject* selectBox = new DisplayObject("selectBox",200,155,255);
+	    SDL_RenderCopyEx(Game::renderer, selectBox->curTexture, NULL, &dstrect, calculateRotation(origin, upperRight), &corner, flip);
 		}
 
 		SDL_SetTextureAlphaMod(curTexture, alpha);
