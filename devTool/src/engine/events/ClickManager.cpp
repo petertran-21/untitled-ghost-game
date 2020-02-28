@@ -21,16 +21,16 @@ void ClickManager::handleEvent(Event* e) {
         if (child->type == "AnimatedSprite"){
           AnimatedSprite* duplicate = dynamic_cast<AnimatedSprite*>(child)->copy();
           duplicate->parent = event->scene;
-          duplicate->position.x += child->parent->position.x;
-          duplicate->position.y = child->parent->position.y - duplicate->height;
+          duplicate->position.x += child->parent->position.x - event->scene->parent->position.x;
+          duplicate->position.y = child->parent->position.y - duplicate->height - event->scene->parent->position.y;
           event->scene->addChild(duplicate);
           cout << duplicate->imgPath << endl;
         }
         if (child->type == "Sprite"){
           Sprite* duplicate = dynamic_cast<Sprite*>(child)->copy();
           duplicate->parent = event->scene;
-          duplicate->position.x += child->parent->position.x;
-          duplicate->position.y = child->parent->position.y - duplicate->height;
+          duplicate->position.x += child->parent->position.x - event->scene->parent->position.x;
+          duplicate->position.y = child->parent->position.y - duplicate->height - event->scene->parent->position.y;
           event->scene->addChild(duplicate);
         }
       }
