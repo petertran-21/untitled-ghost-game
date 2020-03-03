@@ -25,23 +25,10 @@ public:
 
 private:
 
-	AnimatedSprite* sun;
-	Sprite* planet1;
-	Sprite* planet2;
-	Sprite* moon1_1;
-
-	DisplayObjectContainer* p1container;
-	DisplayObjectContainer* p2container;
 	DisplayObjectContainer* allSprites;
 
 	AnimatedSprite* character;
-	Sprite* coin;
 
-	EventDispatcher* itemDisp;
-	QuestManager* questManager;
-	PickedUpEvent* coinEvent;
-
-	// DisplayObject* character;
 };
 
 #endif

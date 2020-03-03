@@ -15,7 +15,7 @@ unsigned int Game::frameCounter = 0;
 
 Game::Game(int windowWidth, int windowHeight){
 	Game::instance = this;
-	
+
 	this->windowWidth = windowWidth;
 	this->windowHeight = windowHeight;
 
@@ -79,7 +79,6 @@ void Game::start(){
 				pressedKeys.erase(event.key.keysym.scancode);
 				break;
 		}
-	
 	}
 }
 
