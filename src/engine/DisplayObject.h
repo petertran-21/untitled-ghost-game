@@ -50,6 +50,7 @@ public:
 	double rotation = 0.0; // in radians
 	int alpha = 255;
 	bool facingRight = true;
+	string layer="foreground";
 
 	SDL_Surface* image = NULL;
 private:

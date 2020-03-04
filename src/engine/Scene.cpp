@@ -41,8 +41,18 @@ void Scene::loadScene(string sceneFilePath){
         unit->alpha = sprite["alpha"];
         unit->visible = sprite["isVisible"];
         unit->rotation = sprite["rotation"];
-        DisplayObjectContainer::children.push_back(unit);
-        this->addChild(unit);
+        unit->layer = sprite["layer"];
+        if(unit->layer=="background"){
+            Scene::background.push_back(unit);
+        }
+        if(unit->layer=="middleground"){
+            Scene::middleground.push_back(unit);
+        }
+        if(unit->layer=="foreground"){
+            Scene::foreground.push_back(unit);
+        }
+        //DisplayObjectContainer::children.push_back(unit);
+        //this->addChild(unit);
     }
 }
 
@@ -51,5 +61,22 @@ void Scene::update(set<SDL_Scancode> pressedKeys){
 }
 
 void Scene::draw(AffineTransform &at){
+//    DisplayObjectContainer::draw(at);
+
     DisplayObjectContainer::draw(at);
+    applyTransformations(at);
+    at.translate(pivot.x, pivot.y);
+    for (int i = 0; i < background.size(); i++) {
+        background[i]->draw(at);
+    }
+    for (int i = 0; i < middleground.size(); i++) {
+        middleground[i]->draw(at);
+    }
+    for (int i = 0; i < foreground.size(); i++) {
+        foreground[i]->draw(at);
+    }
+    at.translate(-pivot.x, -pivot.y);
+    reverseTransformations(at);
+
+
 }
