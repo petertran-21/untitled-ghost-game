@@ -15,9 +15,10 @@ MyGame::MyGame() : Game(1200, 1000) {
 	//---------- SpriteSheet Demo
 	character = new AnimatedSprite("character");
 	character->addSpriteSheet("./resources/character/character_idle.png", "./resources/character/character_animations.xml", "idle", 16, 2, true);
+	character->addSpriteSheet("./resources/character/character_walk.png", "./resources/character/character_animations2.xml", "walk", 16, 2, true);
 	allSprites->addChild(character);
 
-	character->play("idle");
+	character->play("walk");
 
 
 	//----------
@@ -42,13 +43,14 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 
 	}
 	if (pressedKeys.find(SDL_SCANCODE_A) != pressedKeys.end()) {
-
+		character->scaleX *= 1.1;
+		character->scaleY *= 1.1;
 	}
 	if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end()) {
 
 	}
 	if (pressedKeys.find(SDL_SCANCODE_Q) != pressedKeys.end()) {
-
+		character->rotation += 0.1;
 	}
 	if (pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end()) {
 

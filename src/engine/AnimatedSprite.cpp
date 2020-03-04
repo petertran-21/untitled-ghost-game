@@ -76,7 +76,6 @@ void AnimatedSprite::addSpriteSheet(string spriteSheetPath, string xmlFilePath, 
       sheet->layers[i] = l;
       i++;
     }
-
     this->spriteSheets.push_back(sheet);
 
 }
@@ -117,11 +116,12 @@ void AnimatedSprite::play(string animName) {
       SpriteSheet* anim = getSpriteSheet(animName);
       if (anim != NULL) {
           this->currentSpriteSheet = anim;
+          this->currentSpriteSheet->curLayer = 0;
           frameCount = 0;
           playingSheet = true;
           playing = false;
 
-          DisplayObject::loadTexture(anim->spriteSheetPath);
+          DisplayObject::loadTexture(currentSpriteSheet->spriteSheetPath);
       }
     }
 }
