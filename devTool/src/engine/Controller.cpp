@@ -32,6 +32,11 @@ Controller::~Controller() {
     joystick = NULL;
 };
 
+void Controller::setState(SDL_Event event) {
+
+	// TODO
+}
+
 SDL_Joystick* Controller::getJoystick() {
     return joystick;
 }

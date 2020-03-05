@@ -65,6 +65,7 @@ void Game::start(){
 		}
 
 		while(SDL_PollEvent(&event)) {
+			gameController->setState(event);
 			mouse->setState(event);
 			switch (event.type)
 			{
