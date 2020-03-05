@@ -5,10 +5,14 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #include "DisplayObjectContainer.h"
+#include "DisplayObject.h"
 #include "Mouse.h"
 #include "Controller.h"
 #include <vector>
 #include <set>
+#include <iostream>
+#include <string>
+#include <ctime>
 
 using namespace std;
 

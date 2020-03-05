@@ -1,11 +1,4 @@
-#include <iostream>
 #include "Game.h"
-#include <string>
-#include <ctime>
-#include "DisplayObject.h"
-#include "Mouse.h"
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 
 using namespace std;
 
