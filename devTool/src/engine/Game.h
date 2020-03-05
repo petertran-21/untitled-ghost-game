@@ -6,6 +6,7 @@
 #include <SDL2/SDL_ttf.h>
 #include "DisplayObjectContainer.h"
 #include "Mouse.h"
+#include "Controller.h"
 #include <vector>
 #include <set>
 
@@ -22,6 +23,7 @@ public:
 	int windowWidth, windowHeight;
 
 	Mouse* mouse;
+	Controller* gameController;
 	SDL_Window * window;
 	static SDL_Renderer* renderer;
 

@@ -23,6 +23,7 @@ Game::Game(int windowWidth, int windowHeight){
 	gridHeight = windowHeight / cellSize;
 
 	mouse = new Mouse();
+	gameController = new Controller();
 	initSDL();
 	TTF_Init();
 }
@@ -36,13 +37,14 @@ void Game::quitSDL(){
 	cout << "Quitting sdl" << endl;
 	SDL_DestroyRenderer(Game::renderer);
 	SDL_DestroyWindow(window);
+	SDL_JoystickClose(gameController->getJoystick);
 
 	IMG_Quit();
 	SDL_Quit();
 }
 
 void Game::initSDL(){
-	SDL_Init(SDL_INIT_VIDEO);
+	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK);
 	IMG_Init(IMG_INIT_PNG);
 
 	window = SDL_CreateWindow("myGame",
