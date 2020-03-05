@@ -15,7 +15,14 @@ void Scene::loadScene(string sceneFilePath){
     std::ifstream i(sceneFilePath);
     json j = json::parse(i);
 
+    DisplayObjectContainer* background = new DisplayObjectContainer("background", "");
+    DisplayObjectContainer* midground = new DisplayObjectContainer("midground", "");
+    DisplayObjectContainer* foreground = new DisplayObjectContainer("foreground", "");
 
+    this->addChild(background);
+    this->addChild(midground);
+    this->addChild(foreground);
+    
     for (auto sprite : j["sprites"]){
         // Get sprite type (static or animated?).
         bool isStatic = (sprite["isStatic"] == true);
@@ -43,13 +50,13 @@ void Scene::loadScene(string sceneFilePath){
         unit->rotation = sprite["rotation"];
         unit->layer = sprite["layer"];
         if(unit->layer=="background"){
-            Scene::background.push_back(unit);
+            background->addChild(unit);
         }
         if(unit->layer=="middleground"){
-            Scene::middleground.push_back(unit);
+            midground->addChild(unit);
         }
         if(unit->layer=="foreground"){
-            Scene::foreground.push_back(unit);
+            foreground->addChild(unit);
         }
         //DisplayObjectContainer::children.push_back(unit);
         //this->addChild(unit);
@@ -61,22 +68,5 @@ void Scene::update(set<SDL_Scancode> pressedKeys){
 }
 
 void Scene::draw(AffineTransform &at){
-//    DisplayObjectContainer::draw(at);
-
     DisplayObjectContainer::draw(at);
-    applyTransformations(at);
-    at.translate(pivot.x, pivot.y);
-    for (int i = 0; i < background.size(); i++) {
-        background[i]->draw(at);
-    }
-    for (int i = 0; i < middleground.size(); i++) {
-        middleground[i]->draw(at);
-    }
-    for (int i = 0; i < foreground.size(); i++) {
-        foreground[i]->draw(at);
-    }
-    at.translate(-pivot.x, -pivot.y);
-    reverseTransformations(at);
-
-
 }

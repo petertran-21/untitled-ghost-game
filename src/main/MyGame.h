@@ -37,6 +37,9 @@ private:
 	Scene* scene_2;
 
 	DisplayObjectContainer* main_character;
+	DisplayObjectContainer* background;
+	DisplayObjectContainer* midground;
+	DisplayObjectContainer* foreground;
 
 	bool using_scene_1;
 };

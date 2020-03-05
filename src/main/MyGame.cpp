@@ -11,13 +11,16 @@ MyGame::MyGame() : Game(1200, 800){
 	scene_1 = new Scene();
 
 	scene_1->loadScene("./resources/scene_1.json");
+	background = static_cast<DisplayObjectContainer*>(scene_1->getChild("background"));
+	midground = static_cast<DisplayObjectContainer*>(scene_1->getChild("midground"));
+	foreground = static_cast<DisplayObjectContainer*>(scene_1->getChild("foreground"));
+
 	main_character = new DisplayObjectContainer("main_character", "./resources/character/Idle_1.png");
 	main_character->layer="foreground";
 
 	this->addChild(camera);
 	camera->addChild(scene_1);
-	scene_1->foreground.push_back(main_character);
-//	scene_1->addChild(main_character);
+	foreground->addChild(main_character);
 
 	main_character->position.x = 600 - (main_character->width / 2);		// 1/2 screenwidth
 	main_character->position.y = 400 - (main_character->height / 2);	// 1/2 screenheight
@@ -41,34 +44,20 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 			case SDL_SCANCODE_LEFT:	// Left arrow key
 				camera->position.x += 5;
 				main_character->position.x -= 5;
-				for(DisplayObjectContainer* doc:scene_1->background){
-					doc->position.x-=4;
-				}
-				for(DisplayObjectContainer* doc:scene_1->middleground){
-					doc->position.x-=2;
-				}
+
+				background->position.x -= 4;
+				midground->position.x -= 2;
 				break;
 			case SDL_SCANCODE_RIGHT:	// Right arrow key
 				camera->position.x -= 5;
 				main_character->position.x += 5;
-				for(DisplayObjectContainer* doc:scene_1->background){
-					doc->position.x+=4;
-				}
-				for(DisplayObjectContainer* doc:scene_1->middleground){
-					doc->position.x+=2;
-				}
+				
+				background->position.x += 4;
+				midground->position.x += 2;
 				break;
 			case SDL_SCANCODE_UP:	// Up arrow key
-				camera->position.y += 5;
-				main_character->position.y -= 5;
-				// this->position.y -= 10;
-				// main_character->position.y -= 5;
 				break;
 			case SDL_SCANCODE_DOWN:	// Down arrow key
-					camera->position.y -= 5;
-					main_character->position.y += 5;
-				// this->position.y += 10;
-				// main_character->position.y += 5;
 				break;
 			// Scaling
 			case SDL_SCANCODE_Q:
@@ -80,30 +69,20 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 				// }
 				break;
 			case SDL_SCANCODE_W:
-				// camera->scaleX += 0.1;
-				// camera->scaleY += 0.1;
-				// this->scaleX += 0.1;
-				// this->scaleY += 0.1;
 				break;
 			// Pivot Movement
 			case SDL_SCANCODE_I:
-				// this->pivot.y-= 5;
 				break;
 			case SDL_SCANCODE_J:
-				// this->pivot.x-= 5;
 				break;
 			case SDL_SCANCODE_K:
-				// this->pivot.y+= 5;
 				break;
 			case SDL_SCANCODE_L:
-				// this->pivot.x+= 5;
 				break;
 			// Rotation
 			case SDL_SCANCODE_A:
-				// this->rotation++;
 				break;
 			case SDL_SCANCODE_S:
-				// this->rotation-=2;		// To future me: since at the start of update we're rotating++, we need -= to counteract more than normal.
 				break;
 			// Visibility
 			case SDL_SCANCODE_P:

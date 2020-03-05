@@ -16,11 +16,6 @@ public:
 	void loadScene(string sceneFilePath);
 	virtual void update(set<SDL_Scancode> pressedKeys);
 	virtual void draw(AffineTransform &at);
-	
-	vector<DisplayObjectContainer*> background;
-	vector<DisplayObjectContainer*> middleground;
-	vector<DisplayObjectContainer*> foreground;
-
 private:
 
 };
