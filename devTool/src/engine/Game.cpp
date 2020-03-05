@@ -37,7 +37,7 @@ void Game::quitSDL(){
 	cout << "Quitting sdl" << endl;
 	SDL_DestroyRenderer(Game::renderer);
 	SDL_DestroyWindow(window);
-	SDL_JoystickClose(gameController->getJoystick);
+	SDL_JoystickClose(gameController->getJoystick());
 
 	IMG_Quit();
 	SDL_Quit();
