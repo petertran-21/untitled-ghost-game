@@ -43,9 +43,7 @@ void Game::initSDL(){
 	window = SDL_CreateWindow("myGame",
 		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, this->windowWidth, this->windowHeight, 0);
 
-	SDL_Renderer * renderer = SDL_CreateRenderer(window, -1, 0);
-
-	Game::renderer = renderer;
+	renderer = SDL_CreateRenderer(window, -1, 0);
 }
 
 void Game::start(){
