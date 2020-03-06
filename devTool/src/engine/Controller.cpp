@@ -35,26 +35,44 @@ Controller::~Controller() {
 void Controller::setState(SDL_Event event) {
 	switch (event.type) {
 		case SDL_JOYAXISMOTION:
-			if (event.jaxis.which == 0) {// controller 0
-				if (event.jaxis.axis == 0) {// x-axis of left stick
-					if (event.jaxis.value < -JOYSTICK_DEAD_ZONE) { // left motion
+
+			// CHECK CONTROLLER 0 INPUT
+			if (event.jaxis.which == 0) {
+
+				// x-axis of left stick
+				if (event.jaxis.axis == 0) {
+
+					// left motion
+					if (event.jaxis.value < -JOYSTICK_DEAD_ZONE) {
 						currState.leftStickX = -1;
 					}
-					else if (event.jaxis.value > JOYSTICK_DEAD_ZONE) { // right motion
+
+					// right motion
+					else if (event.jaxis.value > JOYSTICK_DEAD_ZONE) { 
 						currState.leftStickX = 1;
 					}
-					else { // no motion
+
+					// no motion
+					else {
 						currState.leftStickX = 0;
 					}
 				}
-				if (event.jaxis.axis == 1) {// y-axis of left stick
-					if (event.jaxis.value < -JOYSTICK_DEAD_ZONE) { // down motion
+
+				// y-axis of left stick
+				if (event.jaxis.axis == 1) {
+
+					// down motion
+					if (event.jaxis.value < -JOYSTICK_DEAD_ZONE) {
 						currState.leftStickY = -1;
 					}
-					else if (event.jaxis.value > JOYSTICK_DEAD_ZONE) { // up motion
+
+					// up motion
+					else if (event.jaxis.value > JOYSTICK_DEAD_ZONE) {
 						currState.leftStickY = 1;
 					}
-					else { // no motion
+
+					// no motion
+					else {
 						currState.leftStickY = 0;
 					}
 				}
