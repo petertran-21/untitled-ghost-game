@@ -15,16 +15,22 @@ class Controller {
 
     public:
 
+        struct JoystickState {
+            int leftStickX = 0;
+        };
+
         Controller();
         ~Controller();
 
         void setState(SDL_Event event);
         SDL_Joystick* getJoystick();
+        Controller::JoystickState getJoystickState();
 
     private:
 
         SDL_Joystick* joystick = NULL;
         const int JOYSTICK_DEAD_ZONE = 5000;
+        JoystickState currState;
 };
 
 #endif

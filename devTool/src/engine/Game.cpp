@@ -16,7 +16,6 @@ Game::Game(int windowWidth, int windowHeight){
 	gridHeight = windowHeight / cellSize;
 
 	mouse = new Mouse();
-	gameController = new Controller();
 	initSDL();
 	TTF_Init();
 }
@@ -39,6 +38,9 @@ void Game::quitSDL(){
 void Game::initSDL(){
 	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK);
 	IMG_Init(IMG_INIT_PNG);
+
+	// Controller must be initialized after SDL_Init(SDL_INIT_JOYSTICK) is called
+	gameController = new Controller();
 
 	window = SDL_CreateWindow("myGame",
 		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, this->windowWidth, this->windowHeight, 0);

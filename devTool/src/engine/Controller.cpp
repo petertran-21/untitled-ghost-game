@@ -33,10 +33,30 @@ Controller::~Controller() {
 };
 
 void Controller::setState(SDL_Event event) {
-
-	// TODO
+	switch (event.type) {
+		case SDL_JOYAXISMOTION:
+			if (event.jaxis.which == 0) {// controller 0
+				if (event.jaxis.axis == 0) {// x-axis of left stick
+					if (event.jaxis.value < -JOYSTICK_DEAD_ZONE) { // left motion
+						currState.leftStickX = -1;
+						//printf("Stick moved left!\n");
+					}
+					else if (event.jaxis.value > JOYSTICK_DEAD_ZONE) { // right motion
+						currState.leftStickX = 1;
+						//printf("Stick moved right!\n");
+					}
+					else { // no motion
+						currState.leftStickX = 0;
+					}
+				}
+			}
+	}
 }
 
 SDL_Joystick* Controller::getJoystick() {
     return joystick;
+}
+
+Controller::JoystickState Controller::getJoystickState() {
+	return currState;
 }
