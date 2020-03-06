@@ -39,14 +39,23 @@ void Controller::setState(SDL_Event event) {
 				if (event.jaxis.axis == 0) {// x-axis of left stick
 					if (event.jaxis.value < -JOYSTICK_DEAD_ZONE) { // left motion
 						currState.leftStickX = -1;
-						//printf("Stick moved left!\n");
 					}
 					else if (event.jaxis.value > JOYSTICK_DEAD_ZONE) { // right motion
 						currState.leftStickX = 1;
-						//printf("Stick moved right!\n");
 					}
 					else { // no motion
 						currState.leftStickX = 0;
+					}
+				}
+				if (event.jaxis.axis == 1) {// y-axis of left stick
+					if (event.jaxis.value < -JOYSTICK_DEAD_ZONE) { // down motion
+						currState.leftStickY = -1;
+					}
+					else if (event.jaxis.value > JOYSTICK_DEAD_ZONE) { // up motion
+						currState.leftStickY = 1;
+					}
+					else { // no motion
+						currState.leftStickY = 0;
 					}
 				}
 			}

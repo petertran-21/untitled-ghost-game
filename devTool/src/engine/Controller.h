@@ -17,6 +17,7 @@ class Controller {
 
         struct JoystickState {
             int leftStickX = 0;
+            int leftStickY = 0;
         };
 
         Controller();
