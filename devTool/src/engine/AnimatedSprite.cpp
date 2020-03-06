@@ -107,8 +107,8 @@ AnimatedSprite* AnimatedSprite::copy(){
 	return copy;
 }
 
-void AnimatedSprite::update(set<SDL_Scancode> pressedKeys) {
-    Sprite::update(pressedKeys);
+void AnimatedSprite::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState) {
+    Sprite::update(pressedKeys, currState);
     if (playing) {
         frameCount++;
         if (frameCount % current->frameRate == 0) {

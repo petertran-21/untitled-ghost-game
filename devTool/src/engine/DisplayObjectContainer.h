@@ -4,6 +4,7 @@
 #include <vector>
 #include "DisplayObject.h"
 #include "AffineTransform.h"
+#include "Controller.h"
 // #include "Event.h"
 #include <string>
 #include <fstream>
@@ -30,7 +31,7 @@ public:
 	virtual DisplayObject* getChild(string id);
 	virtual DisplayObjectContainer* copy();
 
-	virtual void update(set<SDL_Scancode> pressedKeys);
+	virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 	virtual void draw(AffineTransform &at);
 
 	vector<DisplayObject*> children;

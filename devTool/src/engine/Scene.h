@@ -2,6 +2,7 @@
 #define SCENE_H
 
 #include "DisplayObjectContainer.h"
+#include "Controller.h"
 #include "Sprite.h"
 #include <string>
 #include <vector>
@@ -17,7 +18,7 @@ public:
 	void saveScene(string sceneFilePath);
 	static vector<DisplayObject*>* getAllObjects(DisplayObject*);
 
-	virtual void update(set<SDL_Scancode> pressedKeys);
+	virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 	virtual void draw(AffineTransform &at);
 
 

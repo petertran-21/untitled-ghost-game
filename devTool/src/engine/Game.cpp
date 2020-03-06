@@ -61,7 +61,7 @@ void Game::start(){
 		double duration = (( end - start ) / (double) CLOCKS_PER_SEC)*1000;
 		if(duration > ms_per_frame){
 			start = end;
-			this->update(pressedKeys);
+			this->update(pressedKeys, gameController->getJoystickState());
 			AffineTransform at;
 			this->draw(at);
 		}
@@ -85,9 +85,9 @@ void Game::start(){
 	}
 }
 
-void Game::update(set<SDL_Scancode> pressedKeys){
+void Game::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
 	frameCounter++;
-	DisplayObjectContainer::update(pressedKeys);
+	DisplayObjectContainer::update(pressedKeys, currState);
 }
 
 void Game::draw(AffineTransform &at){
