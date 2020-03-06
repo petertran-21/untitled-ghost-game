@@ -13,7 +13,7 @@ public:
 	Sprite(string id, string filepath);
 	Sprite(string id, int red, int green, int blue);
 
-	virtual void update(set<SDL_Scancode> pressedKeys);
+	virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 	virtual void draw(AffineTransform &at);
 
 private:

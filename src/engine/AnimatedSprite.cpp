@@ -78,6 +78,7 @@ void AnimatedSprite::addSpriteSheet(string spriteSheetPath, string xmlFilePath, 
     }
     this->spriteSheets.push_back(sheet);
 
+
 }
 
 Animation* AnimatedSprite::getAnimation(string animName) {
@@ -149,8 +150,8 @@ void AnimatedSprite::stop() {
     this->playingSheet = false;
 }
 
-void AnimatedSprite::update(set<SDL_Scancode> pressedKeys) {
-    Sprite::update(pressedKeys);
+void AnimatedSprite::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState) {
+    Sprite::update(pressedKeys, currState);
     if (playing) {
       frameCount++;
       if (frameCount % currentFrames->frameRate == 0) {

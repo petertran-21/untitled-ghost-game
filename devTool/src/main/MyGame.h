@@ -41,6 +41,7 @@ private:
 	Camera* camera;
 	bool duplicatedLastFrame = true;
 	bool noSpritesSelected = true;
+	
 
 };
 

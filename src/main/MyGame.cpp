@@ -4,6 +4,7 @@
 #include "Sprite.h"
 #include "MyGame.h"
 
+
 using namespace std;
 
 MyGame::MyGame() : Game(1200, 1000) {
@@ -14,13 +15,12 @@ MyGame::MyGame() : Game(1200, 1000) {
 
 	//---------- SpriteSheet Demo
 	character = new AnimatedSprite("character");
+	
 	character->addSpriteSheet("./resources/character/character_idle.png", "./resources/character/character_animations.xml", "idle", 16, 2, true);
 	character->addSpriteSheet("./resources/character/character_walk.png", "./resources/character/character_animations2.xml", "walk", 16, 2, true);
 	allSprites->addChild(character);
 
-	character->play("walk");
-
-
+	character->play("idle");
 	//----------
 
 }
@@ -30,7 +30,9 @@ MyGame::~MyGame(){
 }
 
 
-void MyGame::update(set<SDL_Scancode> pressedKeys){
+void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
+	int origPosX = character->position.x;
+
 	if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {
 		character->position.x += 1;
 	}
@@ -62,8 +64,34 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 
 	}
 
+	// CONTROLLER SUPPORT
 
-	Game::update(pressedKeys);
+	// movement
+	character->position.x += currState.leftStickX;
+			character->position.y += currState.leftStickY;
+
+			// increase scale
+	character->scaleX += currState.buttonA;
+	character->scaleY += currState.buttonA;
+
+			// decrease scale
+	character->scaleX -= currState.buttonB;
+	character->scaleY -= currState.buttonB;
+
+	if (character->position.x != origPosX){
+		if (!walking){
+			character->play("walk");
+			walking = true;
+		}
+	} else {
+		if (walking){
+			character->play("idle");
+			walking = false;
+		}
+	}
+
+
+	Game::update(pressedKeys, currState);
 }
 
 void MyGame::draw(AffineTransform &at){

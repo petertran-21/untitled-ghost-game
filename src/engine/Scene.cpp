@@ -44,8 +44,8 @@ void Scene::loadScene(string sceneFilePath){
     }
 }
 
-void Scene::update(set<SDL_Scancode> pressedKeys){
-    DisplayObjectContainer::update(pressedKeys);
+void Scene::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
+    DisplayObjectContainer::update(pressedKeys, currState);
 }
 
 void Scene::draw(AffineTransform &at){
