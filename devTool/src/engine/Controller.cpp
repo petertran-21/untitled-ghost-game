@@ -77,6 +77,46 @@ void Controller::setState(SDL_Event event) {
 					}
 				}
 			}
+
+			break;
+
+		case SDL_JOYBUTTONDOWN:
+
+			// CHECK CONTROLLER 0 INPUT
+			if (event.jbutton.which == 0) {
+
+				// "A" button pressed
+				if (event.jbutton.button == 0) {
+					currState.buttonA = event.jbutton.state;
+				}
+
+				// "B" button pressed
+				if (event.jbutton.button == 1) {
+					currState.buttonB = event.jbutton.state;
+				}
+			}
+
+			break;
+
+		case SDL_JOYBUTTONUP:
+
+			// CHECK CONTROLLER 0 INPUT
+			if (event.jbutton.which == 0) {
+
+				// "A" button released
+				if (event.jbutton.button == 0) {
+					currState.buttonA = event.jbutton.state;
+				}
+
+				// "B" button released
+				if (event.jbutton.button == 1) {
+					currState.buttonB = event.jbutton.state;
+				}
+			}
+
+			break;
+
+
 	}
 }
 

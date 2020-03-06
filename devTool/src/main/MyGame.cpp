@@ -198,9 +198,20 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 				}
 			}
 
-			// Add Controller Support
+			// CONTROLLER SUPPORT
+
+			// movement
 			character->position.x += Game::cellSize * currState.leftStickX;
 			character->position.y += Game::cellSize * currState.leftStickY;
+
+			// increase scale
+			character->scaleX += currState.buttonA;
+			character->scaleY += currState.buttonA;
+
+			// decrease scale
+			character->scaleX -= currState.buttonB;
+			character->scaleY -= currState.buttonB;
+			
 		}
 
 	}
