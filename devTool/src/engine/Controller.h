@@ -29,7 +29,7 @@ class Controller {
     private:
 
         SDL_Joystick* joystick = NULL;
-        const int JOYSTICK_DEAD_ZONE = 5000;
+        const int JOYSTICK_DEAD_ZONE = 8000;
         JoystickState currState;
 };
 

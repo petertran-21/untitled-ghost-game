@@ -197,6 +197,9 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 					cin >> character->id;
 				}
 			}
+
+			// Add Controller Support
+			character->position.x += Game::cellSize * currState.leftStickX;
 		}
 
 	}
