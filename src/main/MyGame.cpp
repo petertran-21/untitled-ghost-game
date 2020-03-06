@@ -64,19 +64,23 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 
 	}
 
-	// CONTROLLER SUPPORT
+	/*
+ 	 * GAME CONTROLLER STUFF
+	 */ 
 
 	// movement
-	character->position.x += currState.leftStickX;
-			character->position.y += currState.leftStickY;
+	character->position.x += currState.leftStickX * 5;
+	character->position.y += currState.leftStickY * 5;
 
-			// increase scale
-	character->scaleX += currState.buttonA;
-	character->scaleY += currState.buttonA;
+	// increase scale
+	// integer division truncates, so convert to float
+	character->scaleX += currState.buttonA / 10.0;
+	character->scaleY += currState.buttonA / 10.0;
 
-			// decrease scale
-	character->scaleX -= currState.buttonB;
-	character->scaleY -= currState.buttonB;
+	// decrease scale
+	// integer division truncates, so convert to float
+	character->scaleX -= currState.buttonB / 10.0;
+	character->scaleY -= currState.buttonB / 10.0;
 
 	if (character->position.x != origPosX){
 		if (!walking){

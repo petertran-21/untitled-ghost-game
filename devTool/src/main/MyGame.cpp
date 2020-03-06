@@ -205,12 +205,14 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 			character->position.y += Game::cellSize * currState.leftStickY;
 
 			// increase scale
-			character->scaleX += currState.buttonA;
-			character->scaleY += currState.buttonA;
+			// integer division truncates, so convert to float
+			character->scaleX += currState.buttonA / 10.0;
+			character->scaleY += currState.buttonA / 10.0;
 
 			// decrease scale
-			character->scaleX -= currState.buttonB;
-			character->scaleY -= currState.buttonB;
+			// integer division truncates, so convert to float
+			character->scaleX -= currState.buttonB / 10.0;
+			character->scaleY -= currState.buttonB / 10.0;
 			
 		}
 
