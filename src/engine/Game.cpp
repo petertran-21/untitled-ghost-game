@@ -37,7 +37,7 @@ void Game::quitSDL(){
 }
 
 void Game::initSDL(){
-	SDL_Init(SDL_INIT_VIDEO);
+	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK);
 	IMG_Init(IMG_INIT_PNG);
 
 	// Controller must be initialized after SDL_Init(SDL_INIT_JOYSTICK) is called
