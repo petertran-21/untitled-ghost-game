@@ -31,6 +31,9 @@
 *.out
 *.app
 
+# macOS files
+.DS_STORE
+
 # other folders
 bin/
 demos/
