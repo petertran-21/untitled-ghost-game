@@ -15,7 +15,7 @@ public:
 	/* Load scene from a file */
 	void loadScene(string sceneFilePath);
 
-	virtual void update(set<SDL_Scancode> pressedKeys);
+	virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 	virtual void draw(AffineTransform &at);
 
 

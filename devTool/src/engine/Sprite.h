@@ -2,6 +2,7 @@
 #define SPRITE_H
 
 #include "DisplayObjectContainer.h"
+#include "Controller.h"
 
 using namespace std;
 
@@ -14,7 +15,7 @@ public:
 	Sprite(string id, int red, int green, int blue);
 	virtual Sprite* copy();
 
-	virtual void update(set<SDL_Scancode> pressedKeys);
+	virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 	virtual void draw(AffineTransform &at);
 
 private:

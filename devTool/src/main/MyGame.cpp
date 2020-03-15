@@ -52,7 +52,7 @@ MyGame::~MyGame(){
 }
 
 
-void MyGame::update(set<SDL_Scancode> pressedKeys){
+void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
 	for(DisplayObject * character : allSprites->children) {
 	// X, Y is location of start, X2, Y2 is location of current
 		if (Game::mouse->leftClick) {
@@ -197,6 +197,23 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 					cin >> character->id;
 				}
 			}
+
+			// CONTROLLER SUPPORT
+
+			// movement
+			character->position.x += Game::cellSize * currState.leftStickX;
+			character->position.y += Game::cellSize * currState.leftStickY;
+
+			// increase scale
+			// integer division truncates, so convert to float
+			character->scaleX += currState.buttonA / 10.0;
+			character->scaleY += currState.buttonA / 10.0;
+
+			// decrease scale
+			// integer division truncates, so convert to float
+			character->scaleX -= currState.buttonB / 10.0;
+			character->scaleY -= currState.buttonB / 10.0;
+			
 		}
 
 	}
@@ -253,7 +270,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 	}
 
 	mouseClick->checkCondition();
-	Game::update(pressedKeys);
+	Game::update(pressedKeys, currState);
 }
 
 void MyGame::draw(AffineTransform &at){

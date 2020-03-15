@@ -7,6 +7,7 @@
 #include "Game.h"
 #include "Sprite.h"
 #include "AnimatedSprite.h"
+#include "Controller.h"
 #include "Scene.h"
 #include "EventDispatcher.h"
 #include "ClickManager.h"
@@ -23,7 +24,7 @@ public:
 	MyGame();
 	virtual ~MyGame();
 
-	virtual void update(set<SDL_Scancode> pressedKeys);
+	virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 	virtual void draw(AffineTransform &at);
 
 private:
@@ -40,6 +41,7 @@ private:
 	Camera* camera;
 	bool duplicatedLastFrame = true;
 	bool noSpritesSelected = true;
+	
 
 };
 

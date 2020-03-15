@@ -1,0 +1,18 @@
+<walk name="walk_animation">
+  <layer0 x="0" y="0" width="416" height="454" />
+  <layer1 x="416" y="0" width="416" height="454" />
+  <layer2 x="832" y="0" width="416" height="454" />
+  <layer3 x="1248" y="0" width="416" height="454" />
+  <layer4 x="0" y="454" width="416" height="454" />
+  <layer5 x="416" y="454" width="416" height="454" />
+  <layer6 x="832" y="454" width="416" height="454" />
+  <layer7 x="1248" y="454" width="416" height="454" />
+  <layer8 x="0" y="908" width="416" height="454" />
+  <layer9 x="416" y="908" width="416" height="454" />
+  <layer10 x="832" y="908" width="416" height="454" />
+  <layer11 x="1248" y="908" width="416" height="454" />
+  <layer12 x="0" y="1362" width="416" height="454" />
+  <layer13 x="416" y="1362" width="416" height="454" />
+  <layer14 x="832" y="1362" width="416" height="454" />
+  <layer15 x="1248" y="1362" width="416" height="454" />
+</walk>

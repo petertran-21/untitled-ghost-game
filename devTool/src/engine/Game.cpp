@@ -1,11 +1,4 @@
-#include <iostream>
 #include "Game.h"
-#include <string>
-#include <ctime>
-#include "DisplayObject.h"
-#include "Mouse.h"
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 
 using namespace std;
 
@@ -36,21 +29,23 @@ void Game::quitSDL(){
 	cout << "Quitting sdl" << endl;
 	SDL_DestroyRenderer(Game::renderer);
 	SDL_DestroyWindow(window);
+	SDL_JoystickClose(gameController->getJoystick());
 
 	IMG_Quit();
 	SDL_Quit();
 }
 
 void Game::initSDL(){
-	SDL_Init(SDL_INIT_VIDEO);
+	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK);
 	IMG_Init(IMG_INIT_PNG);
+
+	// Controller must be initialized after SDL_Init(SDL_INIT_JOYSTICK) is called
+	gameController = new Controller();
 
 	window = SDL_CreateWindow("myGame",
 		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, this->windowWidth, this->windowHeight, 0);
 
-	SDL_Renderer * renderer = SDL_CreateRenderer(window, -1, 0);
-
-	Game::renderer = renderer;
+	renderer = SDL_CreateRenderer(window, -1, 0);
 }
 
 void Game::start(){
@@ -66,12 +61,13 @@ void Game::start(){
 		double duration = (( end - start ) / (double) CLOCKS_PER_SEC)*1000;
 		if(duration > ms_per_frame){
 			start = end;
-			this->update(pressedKeys);
+			this->update(pressedKeys, gameController->getJoystickState());
 			AffineTransform at;
 			this->draw(at);
 		}
 
 		while(SDL_PollEvent(&event)) {
+			gameController->setState(event);
 			mouse->setState(event);
 			switch (event.type)
 			{
@@ -89,9 +85,9 @@ void Game::start(){
 	}
 }
 
-void Game::update(set<SDL_Scancode> pressedKeys){
+void Game::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
 	frameCounter++;
-	DisplayObjectContainer::update(pressedKeys);
+	DisplayObjectContainer::update(pressedKeys, currState);
 }
 
 void Game::draw(AffineTransform &at){

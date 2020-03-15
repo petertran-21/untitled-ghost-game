@@ -1,8 +1,9 @@
 #include "AnimatedSprite.h"
 #include "Game.h"
 #include <string>
+#include <iostream>
 
-using namespace std;
+using namespace rapidxml;
 
 AnimatedSprite::AnimatedSprite() : Sprite() {
     this->type = "AnimatedSprite";
@@ -11,6 +12,10 @@ AnimatedSprite::AnimatedSprite() : Sprite() {
 AnimatedSprite::AnimatedSprite(string id) : Sprite(id, 0, 0, 0) {
     this->type = "AnimatedSprite";
 }
+
+// AnimatedSprite::AnimatedSprite(string id, string spriteSheetPath, string xmlPath) : Sprite(id, spriteSheetPath) {
+//   this->type = "AnimatedSprite";
+// }
 
 AnimatedSprite::~AnimatedSprite() {
     for (Animation* an : animations) {
@@ -42,58 +47,145 @@ void AnimatedSprite::addAnimation(string basepath, string animName, int numFrame
     animations.push_back(anim);
 }
 
+void AnimatedSprite::addSpriteSheet(string spriteSheetPath, string xmlFilePath, string animName, int numLayers, int frameRate, bool loop) {
+    SpriteSheet* sheet = new SpriteSheet();
+    sheet->animName = animName;
+    sheet->spriteSheetPath = spriteSheetPath;
+    sheet->numLayers = numLayers;
+    sheet->frameRate = frameRate;
+    sheet->loop = loop;
+    sheet->curLayer = 0;
+    sheet->layers = new Layer*[numLayers];
+
+    file<> xml((xmlFilePath).c_str());
+    xml_document<> doc;
+    doc.parse<parse_full>(xml.data());
+    xml_node<>* rootNode = doc.first_node();
+
+    int i = 0;
+    for (xml_node<> * layerNode = rootNode->first_node(); layerNode; layerNode = layerNode->next_sibling()) {
+      Layer* l = new Layer();
+      xml_attribute<> *attr = layerNode->first_attribute();
+      l->x = atoi(attr->value());
+      attr = attr->next_attribute();
+      l->y = atoi(attr->value());
+      attr = attr->next_attribute();
+      l->width = atoi(attr->value());
+      attr = attr->next_attribute();
+      l->height = atoi(attr->value());
+      sheet->layers[i] = l;
+      i++;
+    }
+    this->spriteSheets.push_back(sheet);
+
+
+}
+
 Animation* AnimatedSprite::getAnimation(string animName) {
-    for (int i = 0; i < animations.size(); i++) {
-        if (animations[i]->animName == animName) {
-            return animations[i];
-        }
+    if(!animations.empty()) {
+      for (int i = 0; i < animations.size(); i++) {
+          if (animations[i]->animName == animName) {
+              return animations[i];
+          }
+      }
+    }
+    return NULL;
+}
+
+SpriteSheet* AnimatedSprite::getSpriteSheet(string animName) {
+    if (!spriteSheets.empty()) {
+      for (int i = 0; i < spriteSheets.size(); i++) {
+          if (spriteSheets[i]->animName == animName) {
+              return spriteSheets[i];
+          }
+      }
     }
     return NULL;
 }
 
 void AnimatedSprite::play(string animName) {
-    Animation* anim = getAnimation(animName);
-    if (anim != NULL) {
-        this->current = anim;
-        this->current->curFrame = 0;
-        frameCount = 0;
-        playing = true;
+    if(!animations.empty()) {
+      Animation* anim = getAnimation(animName);
+      if (anim != NULL) {
+          this->currentFrames = anim;
+          this->currentFrames->curFrame = 0;
+          frameCount = 0;
+          playing = true;
+          playingSheet = false;
+      }
+    } else if (!spriteSheets.empty()) {
+      SpriteSheet* anim = getSpriteSheet(animName);
+      if (anim != NULL) {
+          this->currentSpriteSheet = anim;
+          this->currentSpriteSheet->curLayer = 0;
+          frameCount = 0;
+          playingSheet = true;
+          playing = false;
+
+          DisplayObject::loadTexture(currentSpriteSheet->spriteSheetPath);
+      }
     }
 }
 
 void AnimatedSprite::replay() {
-    if (this->current != NULL) {
-        current->curFrame = 0;
-        frameCount = 0;
-        playing = true;
+    if(!animations.empty()) {
+      if (this->currentFrames != NULL) {
+          currentFrames->curFrame = 0;
+          frameCount = 0;
+          playing = true;
+          playingSheet = false;
+      }
+    } else if (!spriteSheets.empty()) {
+      if (this->currentSpriteSheet != NULL) {
+
+          frameCount = 0;
+          playingSheet = true;
+          playing = false;
+      }
     }
 }
 
 void AnimatedSprite::stop() {
     this->playing = false;
+    this->playingSheet = false;
 }
 
-void AnimatedSprite::update(set<SDL_Scancode> pressedKeys) {
-    Sprite::update(pressedKeys);
+void AnimatedSprite::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState) {
+    Sprite::update(pressedKeys, currState);
     if (playing) {
-        frameCount++;
-        if (frameCount % current->frameRate == 0) {
-            // increment local frame counter
-            current->curFrame++;
-            // check for array out of bounds
-            if (current->curFrame == current->numFrames) {
-                // reset the animation
-                current->curFrame = 0;
-                // check for looping
-                if (!current->loop) {
-                    stop();
-                }
-            }
-            DisplayObject::setTexture(current->frames[current->curFrame]->texture);
-        }
-
+      frameCount++;
+      if (frameCount % currentFrames->frameRate == 0) {
+          // increment local frame counter
+          currentFrames->curFrame++;
+          // check for array out of bounds
+          if (currentFrames->curFrame == currentFrames->numFrames) {
+              // reset the animation
+              currentFrames->curFrame = 0;
+              // check for looping
+              if (!currentFrames->loop) {
+                  stop();
+              }
+          }
+          DisplayObject::setTexture(currentFrames->frames[currentFrames->curFrame]->texture);
+      }
+    } else if (playingSheet) {
+      frameCount++;
+      if (frameCount % currentSpriteSheet->frameRate == 0) {
+          // increment local frame counter
+          currentSpriteSheet->curLayer++;
+          // check for array out of bounds
+          if (currentSpriteSheet->curLayer == currentSpriteSheet->numLayers) {
+              // reset the animation
+              currentSpriteSheet->curLayer = 0;
+              // check for looping
+              if (!currentSpriteSheet->loop) {
+                  stop();
+              }
+          }
+          DisplayObject::setSourceRect(currentSpriteSheet->layers[currentSpriteSheet->curLayer]->x,currentSpriteSheet->layers[currentSpriteSheet->curLayer]->y, currentSpriteSheet->layers[currentSpriteSheet->curLayer]->width, currentSpriteSheet->layers[currentSpriteSheet->curLayer]->height);
+      }
     }
-    
+
 }
 
 void AnimatedSprite::draw(AffineTransform &at) {

@@ -2,6 +2,7 @@
 #define ANIMATEDSPRITE_H
 
 #include "Sprite.h"
+#include "Controller.h"
 #include <vector>
 #include <string>
 #include <SDL2/SDL.h>
@@ -41,7 +42,7 @@ public:
 
 	virtual AnimatedSprite* copy();
 
-	virtual void update(set<SDL_Scancode> pressedKeys);
+	virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 	virtual void draw(AffineTransform &at);
 
 	bool playing = false;
