@@ -206,14 +206,13 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 
 			// increase scale
 			// integer division truncates, so convert to float
-			const int scaleMultiplier = 10;
-			character->scaleX += currState.buttonA / scaleMultiplier;
-			character->scaleY += currState.buttonA / scaleMultiplier;
+			character->scaleX += currState.buttonA / 10.0;
+			character->scaleY += currState.buttonA / 10.0;
 
 			// decrease scale
 			// integer division truncates, so convert to float
-			character->scaleX -= currState.buttonB / scaleMultiplier;
-			character->scaleY -= currState.buttonB / scaleMultiplier;
+			character->scaleX -= currState.buttonB / 10.0;
+			character->scaleY -= currState.buttonB / 10.0;
 			
 		}
 
