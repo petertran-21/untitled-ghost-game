@@ -69,18 +69,20 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 	 */ 
 
 	// movement
-	character->position.x += currState.leftStickX * 5;
-	character->position.y += currState.leftStickY * 5;
+	const int speedMultiplier = 5;
+	character->position.x += currState.leftStickX * speedMultiplier;
+	character->position.y += currState.leftStickY * speedMultiplier;
 
 	// increase scale
 	// integer division truncates, so convert to float
-	character->scaleX += currState.buttonA / 10.0;
-	character->scaleY += currState.buttonA / 10.0;
+	const int scaleMultiplier = 10;
+	character->scaleX += currState.buttonA / scaleMultiplier;
+	character->scaleY += currState.buttonA / scaleMultiplier;
 
 	// decrease scale
 	// integer division truncates, so convert to float
-	character->scaleX -= currState.buttonB / 10.0;
-	character->scaleY -= currState.buttonB / 10.0;
+	character->scaleX -= currState.buttonB / scaleMultiplier;
+	character->scaleY -= currState.buttonB / scaleMultiplier;
 
 	if (character->position.x != origPosX){
 		if (!walking){
