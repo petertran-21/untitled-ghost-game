@@ -15,25 +15,8 @@ MyGame::MyGame() : Game(1200, 700) {
 	camera = new Camera();
 	this->addChild(camera);
 	allSprites = new Scene();
+	camera->addChild(Game::dispGrid);
 	camera->addChild(allSprites);
-
-	// character = new AnimatedSprite("character");
-	// character->addAnimation("./resources/character/", "Idle", 16, 3, true);
-	//
-	// character->play("Idle");
-	//
-	// character->width = character->height = 100 - (100 % Game::cellSize);
-	// character->position.x = character->position.y = 0;
-	// allSprites->addChild(character);
-	//
-	// character1 = new AnimatedSprite("character1");
-	// character1->addAnimation("./resources/character/", "Idle", 16, 3, true);
-	//
-	// character1->play("Idle");
-	//
-	// character1->width = character1->height = 100 - (100 % Game::cellSize);
-	// character1->position.x = character1->position.y = Game::cellSize;
-	// allSprites->addChild(character1);
 
 	templateBar = new TemplateBar("templateBar", 64, 224, 208);
 
@@ -62,43 +45,43 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 				character->selected = true;
 				character->isBeingDragged = true;
 				this->noSpritesSelected = false;
-			} // else if (!(Game::mouse->selectBoxX2 == Game::mouse->selectBoxX) && !(Game::mouse->selectBoxY2 == Game::mouse->selectBoxY)) {
-			// 	int topRX, topRY,botLX,botLY;
-			// 	topRX = topRY = botLX = botLY = -1;
-			// 	if(Game::mouse->selectBoxX < Game::mouse->selectBoxX2 && Game::mouse->selectBoxY < Game::mouse->selectBoxY2) { // is the current mouse location the topR of the rect ?
-			// 		// start is top left, current is bottom right
-			// 		topRX = Game::mouse->selectBoxX2;
-			// 		topRY = Game::mouse->selectBoxY;
-			// 		botLX = Game::mouse->selectBoxX;
-			// 		botLY = Game::mouse->selectBoxY2;
-			// 	} else if(Game::mouse->selectBoxX > Game::mouse->selectBoxX2 && Game::mouse->selectBoxY < Game::mouse->selectBoxY2) { // is the current mouse location the topR of the rect ?
-			// 		// start is top right, current is bottom left
-			// 		topRX = Game::mouse->selectBoxX;
-			// 		topRY = Game::mouse->selectBoxY;
-			// 		botLX = Game::mouse->selectBoxX2;
-			// 		botLY = Game::mouse->selectBoxY2;
-			// 	} else if(Game::mouse->selectBoxX < Game::mouse->selectBoxX2 && Game::mouse->selectBoxY > Game::mouse->selectBoxY2) { // is the current mouse location the topR of the rect ?
-			// 		// start is bottom left, , current is top right
-			// 		topRX = Game::mouse->selectBoxX2;
-			// 		topRY = Game::mouse->selectBoxY2;
-			// 		botLX = Game::mouse->selectBoxX;
-			// 		botLY = Game::mouse->selectBoxY;
-			// 	} else if(Game::mouse->selectBoxX > Game::mouse->selectBoxX2 && Game::mouse->selectBoxY > Game::mouse->selectBoxY2) { // is the current mouse location the topR of the rect ?
-			// 		// start is bottom right, , current is top left
-			// 		topRX = Game::mouse->selectBoxX;
-			// 		topRY = Game::mouse->selectBoxY2;
-			// 		botLX = Game::mouse->selectBoxX2;
-			// 		botLY = Game::mouse->selectBoxY;
-			// 	}
-			//
-			// 	if(character->position.x + camera->position.x < topRX &&
-			// 		 botLX < character->position.x + character->width  + camera->position.x &&
-			// 		 character->position.y + character->height + camera->position.y > topRY &&
-			// 		 botLY > character->position.y + camera->position.y) {
-			// 					character->selected = true;
-			// 					this->noSpritesSelected = false;
-			// 	}
-			//}
+			} else if (!(Game::mouse->selectBoxX2 == Game::mouse->selectBoxX) && !(Game::mouse->selectBoxY2 == Game::mouse->selectBoxY)) {
+			 		int topRX, topRY,botLX,botLY;
+			 		topRX = topRY = botLX = botLY = -1;
+			 		if(Game::mouse->selectBoxX < Game::mouse->selectBoxX2 && Game::mouse->selectBoxY < Game::mouse->selectBoxY2) { // is the current mouse location the topR of the rect ?
+			 			// start is top left, current is bottom right
+			 			topRX = Game::mouse->selectBoxX2;
+			 			topRY = Game::mouse->selectBoxY;
+			 			botLX = Game::mouse->selectBoxX;
+			 			botLY = Game::mouse->selectBoxY2;
+			 		} else if(Game::mouse->selectBoxX > Game::mouse->selectBoxX2 && Game::mouse->selectBoxY < Game::mouse->selectBoxY2) { // is the current mouse location the topR of the rect ?
+			 			// start is top right, current is bottom left
+			 			topRX = Game::mouse->selectBoxX;
+			 			topRY = Game::mouse->selectBoxY;
+			 			botLX = Game::mouse->selectBoxX2;
+			 			botLY = Game::mouse->selectBoxY2;
+			 		} else if(Game::mouse->selectBoxX < Game::mouse->selectBoxX2 && Game::mouse->selectBoxY > Game::mouse->selectBoxY2) { // is the current mouse location the topR of the rect ?
+			 			// start is bottom left, , current is top right
+			 			topRX = Game::mouse->selectBoxX2;
+			 			topRY = Game::mouse->selectBoxY2;
+		 				botLX = Game::mouse->selectBoxX;
+			 			botLY = Game::mouse->selectBoxY;
+			 		} else if(Game::mouse->selectBoxX > Game::mouse->selectBoxX2 && Game::mouse->selectBoxY > Game::mouse->selectBoxY2) { // is the current mouse location the topR of the rect ?
+			 			// start is bottom right, , current is top left
+			 			topRX = Game::mouse->selectBoxX;
+			 			topRY = Game::mouse->selectBoxY2;
+			 			botLX = Game::mouse->selectBoxX2;
+			 			botLY = Game::mouse->selectBoxY;
+			 		}
+
+			 		if(character->position.x + camera->position.x < topRX &&
+			 		 	botLX < character->position.x + character->width  + camera->position.x &&
+			 		 	character->position.y + character->height + camera->position.y > topRY &&
+			 		 	botLY > character->position.y + camera->position.y) {
+			 						character->selected = true;
+			 						this->noSpritesSelected = false;
+			 			}
+					}
 			else {
 					character->selected = false;
 			}
@@ -113,40 +96,26 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 		} else {
 			Game::mouse->isDraggingObject = false;
 			character->isBeingDragged = false;
-			character->position.x = character->position.x - (character->position.x % Game::cellSize);
-			character->position.y = character->position.y - (character->position.y % Game::cellSize);
+			character->position.x = character->position.x - (character->position.x % Grid::cellSize);
+			character->position.y = character->position.y - (character->position.y % Grid::cellSize);
 		}
 
 
 		if (character->selected) {
-			// if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {
-			// 	character->position.x += Game::cellSize;
-			// }
-			// if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end()) {
-			// 	character->position.x -= Game::cellSize;
-			// }
-			// if (pressedKeys.find(SDL_SCANCODE_DOWN) != pressedKeys.end()) {
-			// 	character->position.y += Game::cellSize;
-			// }
-			// if (pressedKeys.find(SDL_SCANCODE_UP) != pressedKeys.end()) {
-			// 	character->position.y -= Game::cellSize;
-			// }
 			if (pressedKeys.find(SDL_SCANCODE_Q) != pressedKeys.end()) {
-				character->width = ceil(1.1*character->width/Game::cellSize) * Game::cellSize;
-				character->height =  ceil(1.1*character->height/Game::cellSize) * Game::cellSize;
+				character->width = ceil(1.1*character->width/Grid::cellSize) * Grid::cellSize;
+				character->height =  ceil(1.1*character->height/Grid::cellSize) * Grid::cellSize;
 
 			}
 			if (pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end()) {
-				if (floor((character->width/1.1)/Game::cellSize) == 0 || floor((character->height/1.1)/Game::cellSize) == 0) {
-					character->width = 1 * Game::cellSize;
-					character->height = 1 * Game::cellSize;
+				if (floor((character->width/1.1)/Grid::cellSize) == 0 || floor((character->height/1.1)/Grid::cellSize) == 0) {
+					character->width = 1 * Grid::cellSize;
+					character->height = 1 * Grid::cellSize;
 				} else {
-					character->width = floor((character->width/1.1)/Game::cellSize) * Game::cellSize;
-					character->height = floor((character->height/1.1)/Game::cellSize) * Game::cellSize;
+					character->width = floor((character->width/1.1)/Grid::cellSize) * Grid::cellSize;
+					character->height = floor((character->height/1.1)/Grid::cellSize) * Grid::cellSize;
 				}
-			} //else {
-			// 	this->noSpritesSelected = true;
-			// }
+			}
 
 			if (pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end()) {
 				// handle copy paste
@@ -155,13 +124,13 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 					if (character->type == "Sprite"){
 						Sprite* copy = dynamic_cast<Sprite*>(character)->copy();
 						allSprites->addChild(copy);
-						copy->position.x += 5 * Game::cellSize;
+						copy->position.x += 5 * Grid::cellSize;
 						copy->selected = false;
 					}
 					if (character->type == "AnimatedSprite"){
 						AnimatedSprite* copy = dynamic_cast<AnimatedSprite*>(character)->copy();
 						allSprites->addChild(copy);
-						copy->position.x += 5 * Game::cellSize;
+						copy->position.x += 5 * Grid::cellSize;
 						copy->selected = false;
 					}
 				}
@@ -197,23 +166,26 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 					cin >> character->id;
 				}
 			}
-		}
+		} else {
+		 		this->noSpritesSelected = true;
+		 }
 
 	}
 
 
 	if(noSpritesSelected) {
 		if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {
-			camera->position.x += Game::cellSize;
+			camera->position.x -= Grid::cellSize;
+			Game::dispGrid->position.x += 1;
 		}
 		if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end()) {
-			camera->position.x -= Game::cellSize;
+			camera->position.x += Grid::cellSize;
 		}
 		if (pressedKeys.find(SDL_SCANCODE_DOWN) != pressedKeys.end()) {
-			camera->position.y += Game::cellSize;
+			camera->position.y -= Grid::cellSize;
 		}
 		if (pressedKeys.find(SDL_SCANCODE_UP) != pressedKeys.end()) {
-			camera->position.y -= Game::cellSize;
+			camera->position.y += Grid::cellSize;
 		}
 	}
 
@@ -242,13 +214,13 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 
 	if (pressedKeys.find(SDL_SCANCODE_N) != pressedKeys.end()){
 		if (templateBar->position.x < Game::windowWidth){
-			templateBar->position.x += Game::cellSize;
+			templateBar->position.x += Grid::cellSize;
 		}
 	}
 
 	if (pressedKeys.find(SDL_SCANCODE_M) != pressedKeys.end()){
 		if (templateBar->position.x + templateBar->width > 0){
-			templateBar->position.x -= Game::cellSize;
+			templateBar->position.x -= Grid::cellSize;
 		}
 	}
 

@@ -6,11 +6,13 @@
 #include <SDL2/SDL_ttf.h>
 #include "DisplayObjectContainer.h"
 #include "Mouse.h"
+#include "Grid.h"
 #include <vector>
 #include <set>
 
 using namespace std;
 
+class Grid;
 class Game : public DisplayObjectContainer {
 
 public:
@@ -22,6 +24,7 @@ public:
 	int windowWidth, windowHeight;
 
 	Mouse* mouse;
+	Grid* dispGrid;
 	SDL_Window * window;
 	static SDL_Renderer* renderer;
 
@@ -36,9 +39,9 @@ public:
 	virtual void draw(AffineTransform &at);
 
 	int scale = 1;
-	int gridWidth;
-	int gridHeight;
-	static int cellSize;
+	// int gridWidth;
+	// int gridHeight;
+	// static int cellSize;
 
 private:
 

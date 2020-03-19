@@ -12,22 +12,24 @@ using namespace std;
 SDL_Renderer* Game::renderer;
 Game* Game::instance;
 unsigned int Game::frameCounter = 0;
-int Game::cellSize = 20;
+//int Game::cellSize = 20;
 
 Game::Game(int windowWidth, int windowHeight){
 	Game::instance = this;
 
 	this->windowWidth = windowWidth;
 	this->windowHeight = windowHeight;
-	gridWidth = windowWidth / cellSize;
-	gridHeight = windowHeight / cellSize;
+	// gridWidth = (windowWidth / cellSize) * 2;
+	// gridHeight = (windowHeight / cellSize) * 2;
 
+	dispGrid = new Grid(windowWidth, windowHeight);
 	mouse = new Mouse();
 	initSDL();
 	TTF_Init();
 }
 
 Game::~Game(){
+	delete dispGrid;
 	delete mouse;
 	quitSDL();
 }
@@ -95,16 +97,7 @@ void Game::update(set<SDL_Scancode> pressedKeys){
 }
 
 void Game::draw(AffineTransform &at){
-	SDL_SetRenderDrawColor(Game::renderer, 120, 120, 120, 1);
-  SDL_RenderClear(Game::renderer);
-
-  SDL_SetRenderDrawColor(Game::renderer, 200, 200, 200, 1);
-  for (int x = 0; x < 1 + Game::gridWidth * Game::cellSize; x += Game::cellSize) {
-      SDL_RenderDrawLine(Game::renderer, x, 0, x, this->windowHeight);
-  }
-	for (int y = 0; y < 1 + Game::gridHeight * Game::cellSize; y += Game::cellSize) {
-      SDL_RenderDrawLine(Game::renderer, 0, y, this->windowWidth, y);
-  }
+	dispGrid->draw(at);
 	DisplayObjectContainer::draw(at);
 	mouse->drawSelectBox(Game::renderer);
 	SDL_RenderPresent(Game::renderer);

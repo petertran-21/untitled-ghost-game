@@ -13,6 +13,7 @@
 #include "MouseClickEvent.h"
 #include "Camera.h"
 #include "TemplateBar.h"
+#include "Grid.h"
 
 
 using namespace std;
@@ -28,8 +29,10 @@ public:
 
 private:
 
+	vector<DisplayObject*> selectedImages;
 	AnimatedSprite* character;
 	AnimatedSprite* character1;
+	Grid* dispGrid;
 	Scene* allSprites;
 	TemplateBar* templateBar;
 
