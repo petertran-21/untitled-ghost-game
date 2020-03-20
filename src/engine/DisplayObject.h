@@ -52,6 +52,9 @@ public:
 	int alpha = 255;
 	bool facingRight = true;
 
+	void drawHitbox();
+	void getHitbox(AffineTransform &at);
+
 
 private:
 	double distance(SDL_Point &p1, SDL_Point &p2);
