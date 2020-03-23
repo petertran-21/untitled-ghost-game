@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstdlib>
-#include "Player.h"
+#include "Ghost.h"
 #include "AnimatedSprite.h"
 #include "Sprite.h"
 #include "Controls.h"
