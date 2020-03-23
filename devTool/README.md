@@ -33,7 +33,7 @@ To place a new object, click on the desired object from the turquoise template b
 
 To see all objects in the template bar, press M to scroll right and press N to scroll left.
 
-### Dupicating Objects
+### Duplicating Objects
 
 To duplicate an object already in the scenem select the object to be duplicated and then press D. A new copy of the object will appear to the right of the original object.
 
