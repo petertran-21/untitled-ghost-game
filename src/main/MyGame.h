@@ -7,6 +7,7 @@
 #include "Game.h"
 #include "AnimatedSprite.h"
 #include "EventDispatcher.h"
+#include "Layer.h"
 #include "QuestManager.h"
 #include "PickedUpEvent.h"
 #include "Scene.h"
@@ -36,10 +37,10 @@ private:
 	Scene* scene_1;
 	Scene* scene_2;
 
-	DisplayObjectContainer* main_character;
-	DisplayObjectContainer* background;
-	DisplayObjectContainer* midground;
-	DisplayObjectContainer* foreground;
+	AnimatedSprite* main_character;
+	Layer* background;
+	Layer* midground;
+	Layer* foreground;
 
 	bool using_scene_1;
 };

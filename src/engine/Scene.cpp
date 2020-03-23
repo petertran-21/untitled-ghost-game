@@ -1,5 +1,6 @@
 #include "Scene.h"
 #include "AnimatedSprite.h"
+#include "Layer.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <string>
@@ -15,9 +16,9 @@ void Scene::loadScene(string sceneFilePath){
     std::ifstream i(sceneFilePath);
     json j = json::parse(i);
 
-    DisplayObjectContainer* background = new DisplayObjectContainer("background", "");
-    DisplayObjectContainer* midground = new DisplayObjectContainer("midground", "");
-    DisplayObjectContainer* foreground = new DisplayObjectContainer("foreground", "");
+    Layer* background = new Layer("background", "");
+    Layer* midground = new Layer("midground", "");
+    Layer* foreground = new Layer("foreground", "");
 
     this->addChild(background);
     this->addChild(midground);

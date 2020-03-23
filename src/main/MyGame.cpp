@@ -11,11 +11,17 @@ MyGame::MyGame() : Game(1200, 800){
 	scene_1 = new Scene();
 
 	scene_1->loadScene("./resources/scene_1.json");
-	background = static_cast<DisplayObjectContainer*>(scene_1->getChild("background"));
-	midground = static_cast<DisplayObjectContainer*>(scene_1->getChild("midground"));
-	foreground = static_cast<DisplayObjectContainer*>(scene_1->getChild("foreground"));
+	background = static_cast<Layer*>(scene_1->getChild("background"));
+	midground = static_cast<Layer*>(scene_1->getChild("midground"));
+	foreground = static_cast<Layer*>(scene_1->getChild("foreground"));
 
-	main_character = new DisplayObjectContainer("main_character", "./resources/character/Idle_1.png");
+	foreground->speedRate=5.0;
+	background->speedRate=4.0;
+	midground->speedRate=2.0;
+
+	main_character = new AnimatedSprite("Run");
+	main_character->addAnimation("./resources/character/","Run",20,1,true);
+	main_character->play("Run");
 	main_character->layer="foreground";
 
 	this->addChild(camera);
@@ -41,19 +47,20 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 	for (std::set<SDL_Scancode>::iterator it = pressedKeys.begin(); it != pressedKeys.end(); ++it){
 		switch(*it){
 			// Translation
+			// While I could "multiply" the speedRates into the current movement of every layer, they all start at 1.0 so I don't bother multiplying by 1.0
 			case SDL_SCANCODE_LEFT:	// Left arrow key
-				camera->position.x += 5;
-				main_character->position.x -= 5;
+				camera->position.x += foreground->speedRate;
+				main_character->position.x -= foreground->speedRate;
 
-				background->position.x -= 4;
-				midground->position.x -= 2;
+				background->position.x -= background->speedRate;
+				midground->position.x -= midground->speedRate;
 				break;
 			case SDL_SCANCODE_RIGHT:	// Right arrow key
-				camera->position.x -= 5;
-				main_character->position.x += 5;
+				camera->position.x -= foreground->speedRate;
+				main_character->position.x += foreground->speedRate;
 				
-				background->position.x += 4;
-				midground->position.x += 2;
+				background->position.x += background->speedRate;
+				midground->position.x += midground->speedRate;
 				break;
 			case SDL_SCANCODE_UP:	// Up arrow key
 				break;
