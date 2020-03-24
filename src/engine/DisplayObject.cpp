@@ -71,6 +71,9 @@ void DisplayObject::update(set<SDL_Scancode> pressedKeys){
 }
 
 void DisplayObject::draw(AffineTransform &at){
+	if(this->drawBox){
+		this->createHitbox();
+	}
 	applyTransformations(at);
 
 	if(curTexture != NULL && visible) {
@@ -136,6 +139,11 @@ double DisplayObject::calculateRotation(SDL_Point &origin, SDL_Point &p) {
 }
 
 void DisplayObject::drawHitbox(){
+	drawBox = true;
+
+}
+
+void DisplayObject::createHitbox(){
 	SDL_Point upperLeft = {0, 0};
 	SDL_Point upperRight = {this->width, 0};
 	SDL_Point lowerRight = {this->width, this->height};
@@ -163,12 +171,12 @@ vector<SDL_Point> DisplayObject::getHitbox(SDL_Point upperLeft, SDL_Point upperR
 }
 
 AffineTransform* DisplayObject::getGlobalTransform(AffineTransform* at){
-	
+
 	if (this->parent != NULL){
 		at = this->parent->getGlobalTransform(at);
 		at->translate(this->parent->pivot.x, this->parent->pivot.y);
 	}
-	
+
 	this->applyTransformations(*at);
 
 	return at;

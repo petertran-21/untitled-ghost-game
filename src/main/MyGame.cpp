@@ -17,7 +17,7 @@ MyGame::MyGame() : Game(1200, 1000) {
 	character->addSpriteSheet("./resources/character/character_idle.png", "./resources/character/character_animations.xml", "idle", 16, 2, true);
 	character->addSpriteSheet("./resources/character/character_walk.png", "./resources/character/character_animations2.xml", "walk", 16, 2, true);
 	allSprites->addChild(character);
-
+	character->drawHitbox();
 	character->play("walk");
 
 
@@ -68,5 +68,5 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 
 void MyGame::draw(AffineTransform &at){
 	Game::draw(at);
-	character->drawHitbox();
+
 }

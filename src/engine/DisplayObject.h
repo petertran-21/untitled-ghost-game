@@ -51,8 +51,10 @@ public:
 	double rotation = 0.0; // in radians
 	int alpha = 255;
 	bool facingRight = true;
+	bool drawBox = false;
 
 	void drawHitbox();
+	void createHitbox();
 	vector<SDL_Point> getHitbox(SDL_Point upperLeft, SDL_Point upperRight, SDL_Point lowerLeft);
 	AffineTransform* getGlobalTransform(AffineTransform* at);
 
