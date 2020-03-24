@@ -136,9 +136,40 @@ double DisplayObject::calculateRotation(SDL_Point &origin, SDL_Point &p) {
 }
 
 void DisplayObject::drawHitbox(){
+	SDL_Point upperLeft = {0, 0};
+	SDL_Point upperRight = {this->width, 0};
+	SDL_Point lowerRight = {this->width, this->height};
+	SDL_Point corner = {0, 0};
+
+	vector<SDL_Point> hitBoxPoints = this->getHitbox(upperLeft, upperRight, lowerRight);
+	DisplayObject* hitBox = new DisplayObject(this->id + "HitBox", 200,155,255);
+
+	int w = (int)distance(hitBoxPoints.at(0), hitBoxPoints.at(1));
+	int h = (int)distance(hitBoxPoints.at(1), hitBoxPoints.at(2));
+	SDL_Rect rect = { hitBoxPoints.at(0).x, hitBoxPoints.at(0).y, w, h};
+	SDL_RenderCopyEx(Game::renderer, hitBox->curTexture, NULL, &rect, calculateRotation(hitBoxPoints.at(0), hitBoxPoints.at(1)), &corner, SDL_FLIP_NONE);
+}
+
+vector<SDL_Point> DisplayObject::getHitbox(SDL_Point upperLeft, SDL_Point upperRight, SDL_Point lowerRight){
+	AffineTransform* at = new AffineTransform();
+	at = this->getGlobalTransform(at);
+	vector<SDL_Point> points = vector<SDL_Point>();
+	points.push_back(at->transformPoint(upperLeft.x, upperLeft.y));
+	points.push_back(at->transformPoint(upperRight.x, upperRight.y));
+	points.push_back(at->transformPoint(lowerRight.x, lowerRight.y));
+
+	return points;
 
 }
 
-void DisplayObject::getHitbox(AffineTransform &at){
+AffineTransform* DisplayObject::getGlobalTransform(AffineTransform* at){
 	
+	if (this->parent != NULL){
+		at = this->parent->getGlobalTransform(at);
+		at->translate(this->parent->pivot.x, this->parent->pivot.y);
+	}
+	
+	this->applyTransformations(*at);
+
+	return at;
 }

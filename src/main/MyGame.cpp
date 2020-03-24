@@ -68,4 +68,5 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 
 void MyGame::draw(AffineTransform &at){
 	Game::draw(at);
+	character->drawHitbox();
 }

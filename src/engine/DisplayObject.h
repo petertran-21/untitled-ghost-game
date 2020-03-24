@@ -53,7 +53,8 @@ public:
 	bool facingRight = true;
 
 	void drawHitbox();
-	void getHitbox(AffineTransform &at);
+	vector<SDL_Point> getHitbox(SDL_Point upperLeft, SDL_Point upperRight, SDL_Point lowerLeft);
+	AffineTransform* getGlobalTransform(AffineTransform* at);
 
 
 private:
