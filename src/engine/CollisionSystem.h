@@ -1,4 +1,8 @@
+#ifndef COLLISIONSYSTEM_H
+#define COLLISIONSYSTEM_H
+
 #include "Event.h"
+#include "DisplayObject.h"
 
 using namespace std;
 

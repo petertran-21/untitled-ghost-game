@@ -1,7 +1,7 @@
 #include "CollisionSystem.h"
 
 CollisionSystem::CollisionSystem(){
-  this->type = "CollisionSystem";
+  // this->type = "CollisionSystem";
 }
 
 CollisionSystem::~CollisionSystem(){
@@ -11,7 +11,7 @@ CollisionSystem::~CollisionSystem(){
 //checks collisions between pairs of DOs where the corresponding types have been requested
 //to be checked (via a single call to watchForCollisions) below.
 void CollisionSystem::update(){
-  watchForCollisions("player", "platform");
+  // watchForCollisions("player", "platform");
   // watchForCollisions("player", "enemy");
 }
 
@@ -25,8 +25,8 @@ void CollisionSystem::handleEvent(Event* e){
 //of DOs of a given type (e.g., player vs platform). The system will begin to check all player objects
 //against all platform objects that are in the current scene.
 void CollisionSystem::watchForCollisions(string type1, string type2){
-  DisplayObject* first = this->getChild(type1);
-  DisplayObject* second = this->getChild(type2);
+  // DisplayObject* first = this->getChild(type1);
+  // DisplayObject* second = this->getChild(type2);
 
   // if (collidesWith(first, second)) {
   //    resolveCollision(first, second, firstDistanceMovedX, firstDistanceMovedY, secondDistanceMovedX, secondDistanceMovedY);
