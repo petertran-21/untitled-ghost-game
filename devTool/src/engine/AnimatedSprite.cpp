@@ -131,7 +131,8 @@ void AnimatedSprite::update( set<SDL_Scancode> pressedKeys, Controller::Joystick
             /**
              * IMPORTANT
              * 
-             * This is where at run-time the correct renderer is supplied to AnimatedSprites
+             * This is where at run-time the correct renderer is 
+	         * supplied to AnimatedSprites so they can initalize properly
              */
             SDL_Surface* currFrameSurface = current->frames[current->curFrame]->image;
             SDL_Texture* currFrameTexture = current->frames[current->curFrame]->texture;

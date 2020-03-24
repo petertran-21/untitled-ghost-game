@@ -42,16 +42,11 @@ DisplayObject::~DisplayObject(){
 
 void DisplayObject::loadTexture(string filepath){
 	image = IMG_Load(filepath.c_str());
-	texture = SDL_CreateTextureFromSurface(Game::renderer, image);
-	setTexture(texture);
 }
 
 void DisplayObject::loadRGBTexture(int red, int green, int blue){
 	image = SDL_CreateRGBSurface(0, 100, 100, 32, 0, 0, 0, 0x000000ff);
 	SDL_FillRect(image, NULL, SDL_MapRGB(image->format, red, green, blue));
-	texture = SDL_CreateTextureFromSurface(Game::renderer, image);
-	SDL_SetTextureBlendMode( texture, SDL_BLENDMODE_BLEND );
-	setTexture(texture);
 }
 
 void DisplayObject::setTexture(SDL_Texture* t){
@@ -65,6 +60,23 @@ void DisplayObject::update( set<SDL_Scancode> pressedKeys, Controller::JoystickS
 void DisplayObject::draw( AffineTransform &at, SDL_Renderer* renderer )
 {
 	applyTransformations(at);
+
+	/**
+	 * IMPORTANT
+	 * 
+	 * This is where at run-time the correct renderer is 
+	 * supplied to DisplayObjects so they can initalize properly
+	 */
+	if( curTexture == NULL )
+	{
+		texture = SDL_CreateTextureFromSurface( renderer, image );
+		setTexture( texture );
+
+		if( isRGB )
+		{
+			SDL_SetTextureBlendMode( texture, SDL_BLENDMODE_BLEND );
+		}
+	}
 
 	if(curTexture != NULL && visible) {
 		SDL_Point origin = at.transformPoint(0, 0);
@@ -86,11 +98,11 @@ void DisplayObject::draw( AffineTransform &at, SDL_Renderer* renderer )
 
 		if (selected) {
 			DisplayObject* selectBox = new DisplayObject("selectBox",200,155,255);
-	    SDL_RenderCopyEx(Game::renderer, selectBox->curTexture, NULL, &dstrect, calculateRotation(origin, upperRight), &corner, flip);
+	    	SDL_RenderCopyEx(renderer, selectBox->curTexture, NULL, &dstrect, calculateRotation(origin, upperRight), &corner, flip);
 		}
 
 		SDL_SetTextureAlphaMod(curTexture, alpha);
-		SDL_RenderCopyEx(Game::renderer, curTexture, NULL, &dstrect, calculateRotation(origin, upperRight), &corner, flip);
+		SDL_RenderCopyEx(renderer, curTexture, NULL, &dstrect, calculateRotation(origin, upperRight), &corner, flip);
 	}
 
 	reverseTransformations(at);
