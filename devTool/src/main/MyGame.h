@@ -29,16 +29,21 @@ public:
 
 private:
 
-	AnimatedSprite* character;
-	AnimatedSprite* character1;
+	//Main screen
+	Camera* main;
 	Scene* allSprites;
+
+	AnimatedSprite* character;
 	TemplateBar* templateBar;
+
+	//Editor screen
+	Camera* editor;
+	Scene* allComponents;
 
 	EventDispatcher* mouseDisp;
 	MouseClickEvent* mouseClick;
 	ClickManager* clickManager;
 
-	Camera* camera;
 	bool duplicatedLastFrame = true;
 	bool noSpritesSelected = true;
 	

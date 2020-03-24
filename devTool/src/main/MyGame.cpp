@@ -10,35 +10,28 @@ using namespace std;
 using json = nlohmann::json;
 
 MyGame::MyGame() : Game(1200, 700) {
+	//Root node
 	instance = this;
 
-	camera = new Camera();
-	this->addChild(camera);
+	//Initalize main
+	main = new Camera();
 	allSprites = new Scene();
-	camera->addChild(allSprites);
-
-	// character = new AnimatedSprite("character");
-	// character->addAnimation("./resources/character/", "Idle", 16, 3, true);
-	//
-	// character->play("Idle");
-	//
-	// character->width = character->height = 100 - (100 % Game::cellSize);
-	// character->position.x = character->position.y = 0;
-	// allSprites->addChild(character);
-	//
-	// character1 = new AnimatedSprite("character1");
-	// character1->addAnimation("./resources/character/", "Idle", 16, 3, true);
-	//
-	// character1->play("Idle");
-	//
-	// character1->width = character1->height = 100 - (100 % Game::cellSize);
-	// character1->position.x = character1->position.y = Game::cellSize;
-	// allSprites->addChild(character1);
-
 	templateBar = new TemplateBar("templateBar", 64, 224, 208);
 
-	instance->addChild(templateBar);
-	templateBar->loadTemplateBar();
+	//Initalize editor
+	editor = new Camera();
+	allComponents = new Scene();
+
+	//Build main tree
+	main->addChild( allSprites );
+	instance->addChild( main );
+
+	//Build editor tree
+	editor->addChild( allComponents );
+	instance->addChild( editor );
+
+	// instance->addChild(templateBar);
+	// templateBar->loadTemplateBar();
 
 	mouseDisp = new EventDispatcher();
 	mouseClick = new MouseClickEvent(mouseDisp, templateBar, Game::mouse, allSprites);
@@ -47,8 +40,21 @@ MyGame::MyGame() : Game(1200, 700) {
 
 }
 
-MyGame::~MyGame(){
-	delete camera;
+MyGame::~MyGame()
+{
+	//Main screen
+	delete main;
+	delete allSprites;
+	delete templateBar;
+
+	//Editor screen
+	delete editor;
+	delete allComponents;
+
+	//Observers
+	delete mouseDisp;
+	delete mouseClick;
+	delete clickManager;
 }
 
 
@@ -57,8 +63,8 @@ void MyGame::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState cu
 	for(DisplayObject * character : allSprites->children) {
 	// X, Y is location of start, X2, Y2 is location of current
 		if (Game::mouse->leftClick) {
-			if(character->position.x + camera->position.x < Game::mouse->selectBoxX && Game::mouse->selectBoxX < character->position.x + character->width + camera->position.x
-			&& character->position.y + camera->position.y < Game::mouse->selectBoxY && Game::mouse->selectBoxY < character->position.y + character->height + camera->position.y
+			if(character->position.x + main->position.x < Game::mouse->selectBoxX && Game::mouse->selectBoxX < character->position.x + character->width + main->position.x
+			&& character->position.y + main->position.y < Game::mouse->selectBoxY && Game::mouse->selectBoxY < character->position.y + character->height + main->position.y
 			&& Game::mouse->selectBoxX2 == Game::mouse->selectBoxX && Game::mouse->selectBoxY2 == Game::mouse->selectBoxY) {
 				character->selected = true;
 				character->isBeingDragged = true;
@@ -107,8 +113,8 @@ void MyGame::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState cu
 			if(character->isBeingDragged) {
 				Game::mouse->isDraggingObject = true;
 				character->selected = true;
-				character->position.x = (Game::mouse->curCoords.x - camera->position.x) - character->width/2;
-				character->position.y = (Game::mouse->curCoords.y - camera->position.y) - character->height/2;
+				character->position.x = (Game::mouse->curCoords.x - main->position.x) - character->width/2;
+				character->position.y = (Game::mouse->curCoords.y - main->position.y) - character->height/2;
 			}
 
 		} else {
@@ -222,16 +228,16 @@ void MyGame::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState cu
 
 	if(noSpritesSelected) {
 		if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {
-			camera->position.x += Game::cellSize;
+			main->position.x += Game::cellSize;
 		}
 		if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end()) {
-			camera->position.x -= Game::cellSize;
+			main->position.x -= Game::cellSize;
 		}
 		if (pressedKeys.find(SDL_SCANCODE_DOWN) != pressedKeys.end()) {
-			camera->position.y += Game::cellSize;
+			main->position.y += Game::cellSize;
 		}
 		if (pressedKeys.find(SDL_SCANCODE_UP) != pressedKeys.end()) {
-			camera->position.y -= Game::cellSize;
+			main->position.y -= Game::cellSize;
 		}
 	}
 
