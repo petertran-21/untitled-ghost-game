@@ -102,20 +102,21 @@ DisplayObjectContainer* DisplayObjectContainer::copy(){
 	return copy;
 }
 
-void DisplayObjectContainer::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState) {
-    DisplayObject::update(pressedKeys, currState);
+void DisplayObjectContainer::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, SDL_Renderer* renderer ) 
+{
+    DisplayObject::update( pressedKeys, currState, renderer );
     for (int i = 0; i < children.size(); i++) {
-        children[i]->update(pressedKeys, currState);
+        children[i]->update( pressedKeys, currState, renderer );
     }
 }
 
-void DisplayObjectContainer::draw(AffineTransform &at) {
-    DisplayObject::draw(at);
+void DisplayObjectContainer::draw( AffineTransform &at, SDL_Renderer* renderer ) {
+    DisplayObject::draw( at, renderer );
     applyTransformations(at);
     // undo the parent's pivot
     at.translate(pivot.x, pivot.y);
     for (int i = 0; i < children.size(); i++) {
-        children[i]->draw(at);
+        children[i]->draw( at, renderer );
     }
     // redo the parent's pivot
     at.translate(-pivot.x, -pivot.y);

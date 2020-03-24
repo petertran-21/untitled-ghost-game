@@ -8,6 +8,7 @@
 #include "DisplayObject.h"
 #include "Mouse.h"
 #include "Controller.h"
+#include "Camera.h"
 #include <vector>
 #include <set>
 #include <iostream>
@@ -38,8 +39,8 @@ public:
 	virtual ~Game();
 	void start();
 
-	virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
-	virtual void draw(AffineTransform &at);
+	virtual void update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, SDL_Renderer* renderer );
+	virtual void draw( AffineTransform &at, SDL_Renderer* renderer );
 
 	int scale = 1;
 	int gridWidth;
@@ -47,6 +48,12 @@ public:
 	static int cellSize;
 
 private:
+
+	//Total windows
+	static const int TOTAL_WINDOWS = 2;
+
+	//Our custom windows
+	Camera cameras[ TOTAL_WINDOWS ];
 
 	void initSDL();
 	void quitSDL();

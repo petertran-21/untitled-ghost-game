@@ -52,7 +52,8 @@ MyGame::~MyGame(){
 }
 
 
-void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
+void MyGame::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, SDL_Renderer* renderer )
+{
 	for(DisplayObject * character : allSprites->children) {
 	// X, Y is location of start, X2, Y2 is location of current
 		if (Game::mouse->leftClick) {
@@ -270,9 +271,10 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 	}
 
 	mouseClick->checkCondition();
-	Game::update(pressedKeys, currState);
+	Game::update( pressedKeys, currState, renderer );
 }
 
-void MyGame::draw(AffineTransform &at){
-	Game::draw(at);
+void MyGame::draw( AffineTransform &at, SDL_Renderer* renderer )
+{
+	Game::draw( at, renderer );
 }

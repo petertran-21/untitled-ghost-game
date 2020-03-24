@@ -107,8 +107,9 @@ AnimatedSprite* AnimatedSprite::copy(){
 	return copy;
 }
 
-void AnimatedSprite::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState) {
-    Sprite::update(pressedKeys, currState);
+void AnimatedSprite::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, SDL_Renderer* renderer ) 
+{
+    Sprite::update( pressedKeys, currState, renderer );
     if (playing) {
         frameCount++;
         if (frameCount % current->frameRate == 0) {
@@ -130,6 +131,7 @@ void AnimatedSprite::update(set<SDL_Scancode> pressedKeys, Controller::JoystickS
 
 }
 
-void AnimatedSprite::draw(AffineTransform &at) {
-    Sprite::draw(at);
+void AnimatedSprite::draw( AffineTransform &at, SDL_Renderer* renderer ) 
+{
+    Sprite::draw( at, renderer );
 }

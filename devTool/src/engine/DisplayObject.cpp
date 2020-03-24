@@ -58,11 +58,12 @@ void DisplayObject::setTexture(SDL_Texture* t){
 	this->curTexture = t;
 }
 
-void DisplayObject::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
+void DisplayObject::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, SDL_Renderer* renderer ){
 
 }
 
-void DisplayObject::draw(AffineTransform &at){
+void DisplayObject::draw( AffineTransform &at, SDL_Renderer* renderer )
+{
 	applyTransformations(at);
 
 	if(curTexture != NULL && visible) {

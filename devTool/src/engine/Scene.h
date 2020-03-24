@@ -18,8 +18,8 @@ public:
 	void saveScene(string sceneFilePath);
 	static vector<DisplayObject*>* getAllObjects(DisplayObject*);
 
-	virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
-	virtual void draw(AffineTransform &at);
+	virtual void update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, SDL_Renderer* renderer );
+	virtual void draw( AffineTransform &at, SDL_Renderer* renderer );
 
 
 private:

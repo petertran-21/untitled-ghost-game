@@ -61,9 +61,28 @@ void Game::start(){
 		double duration = (( end - start ) / (double) CLOCKS_PER_SEC)*1000;
 		if(duration > ms_per_frame){
 			start = end;
-			this->update(pressedKeys, gameController->getJoystickState());
+			
+			//Get camerasd
+			Camera main = cameras[ 0 ];
+			Camera editor = cameras[ 1 ];
+ 
+			//Get renderers
+			SDL_Renderer* mainRenderer = main.getRenderer();
+			SDL_Renderer* editorRenderer = editor.getRenderer();
+
+			//Distribute important data
+			main.update( pressedKeys, gameController->getJoystickState(), mainRenderer );
+			editor.update( pressedKeys, gameController->getJoystickState(), editorRenderer );
+
+			//Create transformation matrix
 			AffineTransform at;
-			this->draw(at);
+
+			//Draw screens
+			main.draw( at, mainRenderer );
+			editor.draw( at, editorRenderer );
+
+			//Update frame counter
+			frameCounter++;
 		}
 
 		while(SDL_PollEvent(&event)) {
@@ -85,12 +104,13 @@ void Game::start(){
 	}
 }
 
-void Game::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
-	frameCounter++;
-	DisplayObjectContainer::update(pressedKeys, currState);
+void Game::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, SDL_Renderer* renderer )
+{
+	DisplayObjectContainer::update( pressedKeys, currState, renderer );
 }
 
-void Game::draw(AffineTransform &at){
+void Game::draw( AffineTransform &at, SDL_Renderer* renderer )
+{
 	SDL_SetRenderDrawColor(Game::renderer, 120, 120, 120, 1);
   SDL_RenderClear(Game::renderer);
 
@@ -101,7 +121,7 @@ void Game::draw(AffineTransform &at){
 	for (int y = 0; y < 1 + Game::gridHeight * Game::cellSize; y += Game::cellSize) {
       SDL_RenderDrawLine(Game::renderer, 0, y, this->windowWidth, y);
   }
-	DisplayObjectContainer::draw(at);
+	DisplayObjectContainer::draw( at, renderer );
 	mouse->drawSelectBox(Game::renderer);
 	SDL_RenderPresent(Game::renderer);
 

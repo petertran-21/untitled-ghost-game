@@ -1,11 +1,285 @@
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 #include "Camera.h"
-#include <algorithm>
-#include <string>
 
-using namespace std;
+/**
+ * Author: Bradley Knaysi
+ * File: Camera.h
+ * Created: March 20th, 2020
+ * 
+ * Source Code copyrighted by Lazy Foo' Productions (2004-2020)
+ * I made expanded on their website's tutorial code
+ */
 
-Camera::Camera(){}
+Camera::Camera() : DisplayObjectContainer()
+{
+    //Initialize window and renderer
+    window = NULL;
+    renderer = NULL;
 
-Camera::~Camera(){}
+    //Initialize focusing
+    mouseFocus = false;
+    keyboardFocus = false;
+    shown = false;
+    windowID = -1;
+
+    //Intialize window size
+    width = 0;
+    height = 0;
+    grid = false;
+}
+
+Camera::~Camera()
+{
+    free();
+}
+
+bool Camera::init()
+{
+    //Create window
+    window = SDL_CreateWindow( "Untilted Ghost Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE );
+    if ( window != NULL ) 
+    {
+        mouseFocus = true;
+        keyboardFocus = true;
+        width = SCREEN_WIDTH;
+        height = SCREEN_WIDTH;
+
+        //Create renderer for window
+        renderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC );
+        if ( renderer == NULL )
+        {
+            printf( "Renderer could not be created! SDL Error: %s\n", SDL_GetError() );
+            SDL_DestroyWindow( window );
+            window = NULL;
+        }
+        else
+        {
+            //Initialize renderer color
+            SDL_SetRenderDrawColor( renderer, 0xFF, 0xFF, 0xFF, 0xFF );
+
+            //Grab window identifier
+            windowID = SDL_GetWindowID( window );
+
+            //Flag as opened
+            shown = true;
+        }
+    }
+    else
+    {
+        printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
+    }
+
+    bool status = (window != NULL && renderer != NULL);
+    return status;
+    
+}
+
+void Camera::handleEvent( SDL_Event& e )
+{
+    //If an event was detected for this window
+    if( e.type == SDL_WINDOWEVENT && e.window.windowID == windowID )
+    {
+        //Caption update flag
+        bool debuggerFlag = false;
+
+        switch( e.window.event )
+        {
+            //Window appeared
+            case SDL_WINDOWEVENT_SHOWN:
+			    shown = true;
+			    break;
+
+            //Window disappeared
+			case SDL_WINDOWEVENT_HIDDEN:
+			    shown = false;
+			    break;
+
+            //Get new dimensions and repaint
+			case SDL_WINDOWEVENT_SIZE_CHANGED:
+                width = e.window.data1;
+                height = e.window.data2;
+                SDL_RenderPresent( renderer );
+                break;
+
+            //Repaint on expose
+			case SDL_WINDOWEVENT_EXPOSED:
+                SDL_RenderPresent( renderer );
+                break;
+
+            //Mouse enter
+			case SDL_WINDOWEVENT_ENTER:
+                mouseFocus = true;
+                debuggerFlag = true;
+                break;
+
+            //Mouse exit
+			case SDL_WINDOWEVENT_LEAVE:
+                mouseFocus = false;
+                debuggerFlag = true;
+                break;
+
+            //Keyboard focus gained
+			case SDL_WINDOWEVENT_FOCUS_GAINED:
+                keyboardFocus = true;
+                debuggerFlag = true;
+                break;
+
+            //Keyboard focus lost
+			case SDL_WINDOWEVENT_FOCUS_LOST:
+                keyboardFocus = false;
+                debuggerFlag = true;
+                break;
+
+            //Window minimized
+			case SDL_WINDOWEVENT_MINIMIZED:
+                minimized = true;
+                break;
+
+            //Window maxized
+			case SDL_WINDOWEVENT_MAXIMIZED:
+                minimized = false;
+                break;
+
+            //Window restored
+			case SDL_WINDOWEVENT_RESTORED:
+                minimized = false;
+                break;
+
+            //Hide on close
+			case SDL_WINDOWEVENT_CLOSE:
+                SDL_HideWindow( window );
+                break;
+        }
+
+        //Update window caption with new data
+        if( debuggerFlag )
+        {
+            stringstream caption;
+			caption << "Camera - ID: " << windowID << " MouseFocus:" << ( ( mouseFocus ) ? "On" : "Off" ) << " KeyboardFocus:" << ( ( keyboardFocus ) ? "On" : "Off" );
+            SDL_SetWindowTitle( window, caption.str().c_str() );
+
+        }
+    }
+}
+
+void Camera::focus()
+{
+    //Restore window if needed
+    if( !shown )
+    {
+        SDL_ShowWindow( window );
+    }
+
+    //Move window forward
+    SDL_RaiseWindow( window );
+}
+
+void Camera::render()
+{
+    if( !minimized )
+    {
+        //Clear screen
+        SDL_SetRenderDrawColor( renderer, 0xFF, 0xFF, 0xFF, 0xFF );
+        SDL_RenderClear( renderer );
+
+        //Add Grid
+        if( grid )
+        {
+            drawGrid();
+        }
+
+        //Draw everything else
+        //DisplayObjectContainer::draw(at);
+
+        //Update screen
+        SDL_RenderPresent( renderer );
+    }
+}
+
+void Camera::free()
+{
+    if( window != NULL )
+    {
+        SDL_DestroyWindow( window );
+    }
+    if( renderer != NULL )
+    {
+        SDL_DestroyRenderer( renderer );
+    }
+
+    mouseFocus = false;
+    keyboardFocus = false;
+    width = 0;
+    height = 0;
+}
+
+void Camera::drawGrid()
+{
+    int numVertical = 1 + (width * GRID_CELL_SIZE);
+    int numHorizontal = 1 + (height * GRID_CELL_SIZE);
+    int c;
+    int r;
+
+    for (c = 0; c < numVertical; c += GRID_CELL_SIZE) 
+    {
+    SDL_RenderDrawLine(renderer, c, 0, c, height);
+    }
+    for (r = 0; r < numHorizontal; r += GRID_CELL_SIZE) 
+    {
+    SDL_RenderDrawLine(renderer, 0, r, width, r);
+    }
+}
+
+void Camera::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, SDL_Renderer* renderer )
+{
+	DisplayObjectContainer::update( pressedKeys, currState, renderer );
+}
+
+void Camera::draw( AffineTransform &at, SDL_Renderer* renderer )
+{
+	DisplayObjectContainer::draw( at, renderer );
+}
+
+SDL_Renderer* Camera::getRenderer()
+{
+    return renderer;
+}
+
+void Camera::addGrid()
+{
+    grid = true;
+}
+
+int Camera::getWidth()
+{
+    return width;
+}
+
+int Camera::getHeight()
+{
+    return height;
+}
+
+int Camera::getGridCellSize()
+{
+    return GRID_CELL_SIZE;
+}
+
+bool Camera::hasMouseFocus()
+{
+    return mouseFocus;
+}
+
+bool Camera::hasKeyboardFocus()
+{
+    return keyboardFocus;
+}
+
+bool Camera::isMinimized()
+{
+    return minimized;
+}
+
+bool Camera::isShown()
+{
+    return shown;
+}
