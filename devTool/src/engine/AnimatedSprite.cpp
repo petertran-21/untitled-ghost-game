@@ -36,7 +36,10 @@ void AnimatedSprite::addAnimation(string basepath, string animName, int numFrame
         Frame* f = new Frame();
         string path = basepath + animName + "_" + to_string(i+1) + ".png";
         f->image = IMG_Load(path.c_str());
-        f->texture = SDL_CreateTextureFromSurface(Game::renderer, f->image);
+
+        //KEEP NULL, set in AnimatedSprite::update() when needed
+        f->texture = NULL;
+
         anim->frames[i] = f;
     }
     animations.push_back(anim);
@@ -124,7 +127,19 @@ void AnimatedSprite::update( set<SDL_Scancode> pressedKeys, Controller::Joystick
                     stop();
                 }
             }
-            DisplayObject::setTexture(current->frames[current->curFrame]->texture);
+
+            /**
+             * IMPORTANT
+             * 
+             * This is where at run-time the correct renderer is supplied to AnimatedSprites
+             */
+            SDL_Surface* currFrameSurface = current->frames[current->curFrame]->image;
+            SDL_Texture* currFrameTexture = current->frames[current->curFrame]->texture;
+            if( currFrameTexture == NULL )
+            {
+                currFrameTexture = SDL_CreateTextureFromSurface( renderer, currFrameSurface );
+            }
+            DisplayObject::setTexture(currFrameTexture);
         }
 
     }
