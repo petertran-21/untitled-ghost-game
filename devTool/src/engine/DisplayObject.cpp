@@ -144,10 +144,4 @@ double DisplayObject::calculateRotation(SDL_Point &origin, SDL_Point &p) {
 	return (atan2(y, x) * 180 / PI);
 }
 
-void DisplayObject::drawHitbox(){
 
-}
-
-void DisplayObject::getHitbox(AffineTransform &at){
-	
-}
