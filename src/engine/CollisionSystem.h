@@ -38,6 +38,11 @@ public:
 	int calculateOrientation(SDL_Point p1, SDL_Point p2, SDL_Point p3, SDL_Point p4);
 	bool isLocatedInRect(SDL_Point hb1_point, vector<SDL_Point> hb2);
 
+	float slope(SDL_Point p1, SDL_Point p2);
+	double distance(SDL_Point p1, SDL_Point p2);
+	int calculateOrientation(SDL_Point p1, SDL_Point p2, SDL_Point p3, SDL_Point p4);
+	bool isLocatedInRect(SDL_Point hb1_point, vector<SDL_Point> hb2);
+
 	//Resolves the collision that occurred between d and other
 	//xDelta1 and yDelta1 are the amount d moved before causing the collision.
 	//xDelta2 and yDelta2 are the amount other moved before causing the collision.

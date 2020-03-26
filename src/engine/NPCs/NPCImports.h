@@ -1,0 +1,7 @@
+#include "MainNPC.h"
+#include "NPCArcher.h"
+#include "NPCExcavator.h"
+#include "NPCOperator.h"
+#include "NPCCollector.h"
+#include "NPCLumberjack.h"
+#include "NPCPyromancer.h"

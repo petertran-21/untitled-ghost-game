@@ -149,7 +149,7 @@ void AnimatedSprite::stop() {
     this->playingSheet = false;
 }
 
-void AnimatedSprite::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState) {
+void AnimatedSprite::update(set<SDL_Scancode> pressedKeys,  Controller::JoystickState currState) {
     Sprite::update(pressedKeys, currState);
     if (playing) {
       frameCount++;

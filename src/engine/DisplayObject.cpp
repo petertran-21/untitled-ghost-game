@@ -141,6 +141,20 @@ double DisplayObject::calculateRotation(SDL_Point &origin, SDL_Point &p) {
 void DisplayObject::drawHitbox(){
 	drawBox = true;
 
+void DisplayObject::createHitbox(){
+	SDL_Point upperLeft = {0, 0};
+	SDL_Point upperRight = {this->width, 0};
+	SDL_Point lowerRight = {this->width, this->height};
+	SDL_Point lowerLeft = {0, this->height};
+	SDL_Point corner = {0, 0};
+
+	vector<SDL_Point> hitBoxPoints = this->translateHitbox(upperLeft, upperRight, lowerRight, lowerLeft);
+	DisplayObject* hitBox = new DisplayObject(this->id + "HitBox", 200,155,255);
+
+	int w = (int)distance(hitBoxPoints.at(0), hitBoxPoints.at(1));
+	int h = (int)distance(hitBoxPoints.at(1), hitBoxPoints.at(2));
+	SDL_Rect rect = { hitBoxPoints.at(0).x, hitBoxPoints.at(0).y, w, h};
+	SDL_RenderCopyEx(Game::renderer, hitBox->curTexture, NULL, &rect, calculateRotation(hitBoxPoints.at(0), hitBoxPoints.at(1)), &corner, SDL_FLIP_NONE);
 }
 
 void DisplayObject::createHitbox(){

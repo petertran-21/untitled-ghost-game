@@ -1,5 +1,5 @@
 #include <iostream>
 #include <cstdlib>
-#include "MainNPC.h"
+#include "Enemy.h"
 
 using namespace std;
