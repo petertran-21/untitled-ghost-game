@@ -6,8 +6,6 @@
 #include "Sprite.h"
 #include "EventListener.h"
 #include "DisplayObject.h"
-#include "DOAddedEvent.h"
-#include "DORemovedEvent.h"
 
 #include <iostream>
 
@@ -38,6 +36,7 @@ public:
 	bool collidesWith(DisplayObject* obj1, DisplayObject* obj2);
 
 	float slope(SDL_Point p1, SDL_Point p2);
+	double distance(SDL_Point p1, SDL_Point p2);
 	int calculateOrientation(SDL_Point p1, SDL_Point p2, SDL_Point p3, SDL_Point p4);
 	bool isLocatedInRect(SDL_Point hb1_point, vector<SDL_Point> hb2);
 

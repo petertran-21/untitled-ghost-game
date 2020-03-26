@@ -13,11 +13,13 @@ using namespace std;
 class DOAddedEvent : public Event {
 public:
   DOAddedEvent();
-  DOAddedEvent(EventDispatcher* source, DisplayObject* displayTree);
+  DOAddedEvent(EventDispatcher* source, DisplayObject* displayTree, int DTNumChildren, DisplayObject* recentlyAdded);
   ~DOAddedEvent();
   void checkCondition();
 
+  int DTNumChildren;
   DisplayObject* displayTree;
+  DisplayObject* recentlyAdded;
 
   const static string DO_ADDED;
 

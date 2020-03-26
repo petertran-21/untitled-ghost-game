@@ -12,21 +12,18 @@ MyGame::MyGame() : Game(1200, 1000) {
 	allSprites = new DisplayObjectContainer();
 	instance->addChild(allSprites);
 
-	//---------- SpriteSheet Demo
 	character = new AnimatedSprite("character");
 	character->addSpriteSheet("./resources/character/character_idle.png", "./resources/character/character_animations.xml", "idle", 16, 2, true);
 	character->addSpriteSheet("./resources/character/character_walk.png", "./resources/character/character_animations2.xml", "walk", 16, 2, true);
 	allSprites->addChild(character);
 	character->drawHitbox();
-	character->play("walk");
+	character->play("idle");
 
 	crocodile = new Sprite("crocodile", "./resources/enemies/crocodile.png");
 	allSprites->addChild(crocodile);
 	crocodile->drawHitbox();
 	crocodile->position.x = 300;
 
-
-	//----------
 
 }
 
@@ -35,7 +32,9 @@ MyGame::~MyGame(){
 }
 
 
-void MyGame::update(set<SDL_Scancode> pressedKeys){
+void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
+	int origPosX = character->position.x;
+
 	if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {
 		character->position.x += 1;
 	}
@@ -68,8 +67,37 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 
 	}
 
+	/*
+ 	 * GAME CONTROLLER STUFF
+	 */
 
-	Game::update(pressedKeys);
+	// movement
+	character->position.x += currState.leftStickX * 5;
+	character->position.y += currState.leftStickY * 5;
+
+	// increase scale
+	// integer division truncates, so convert to float
+	character->scaleX += currState.buttonA / 10.0;
+	character->scaleY += currState.buttonA / 10.0;
+
+	// decrease scale
+	// integer division truncates, so convert to float
+	character->scaleX -= currState.buttonB / 10.0;
+	character->scaleY -= currState.buttonB / 10.0;
+
+	if (character->position.x != origPosX){
+		if (!walking){
+			character->play("walk");
+			walking = true;
+		}
+	} else {
+		if (walking){
+			character->play("idle");
+			walking = false;
+		}
+	}
+
+	Game::update(pressedKeys, currState);
 }
 
 void MyGame::draw(AffineTransform &at){

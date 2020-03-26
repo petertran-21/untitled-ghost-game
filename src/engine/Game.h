@@ -8,6 +8,7 @@
 #include "EventDispatcher.h"
 #include "PickedUpEvent.h"
 #include "QuestManager.h"
+#include "Controller.h"
 #include <vector>
 #include <set>
 
@@ -33,7 +34,7 @@ public:
 	virtual ~Game();
 	void start();
 
-	virtual void update(set<SDL_Scancode> pressedKeys);
+	virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 	virtual void draw(AffineTransform &at);
 
 private:

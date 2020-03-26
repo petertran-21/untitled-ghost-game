@@ -10,6 +10,8 @@
 #include "EventDispatcher.h"
 #include "QuestManager.h"
 #include "PickedUpEvent.h"
+#include "CollisionSystem.h"
+#include "Controller.h"
 
 
 using namespace std;
@@ -20,7 +22,7 @@ public:
 	MyGame();
 	virtual ~MyGame();
 
-	virtual void update(set<SDL_Scancode> pressedKeys);
+	virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 	virtual void draw(AffineTransform &at);
 
 private:
@@ -29,6 +31,11 @@ private:
 
 	AnimatedSprite* character;
 	Sprite* crocodile;
+
+	CollisionSystem* collisionSystem;
+	EventDispatcher* controllerDisp;
+
+	bool walking = false;
 
 };
 

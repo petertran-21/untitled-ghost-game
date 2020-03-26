@@ -31,6 +31,7 @@ void Game::quitSDL(){
 	cout << "Quitting sdl" << endl;
 	SDL_DestroyRenderer(Game::renderer);
 	SDL_DestroyWindow(window);
+	SDL_JoystickClose(gameController->getJoystick());
 
 	IMG_Quit();
 	SDL_Quit();
@@ -39,6 +40,9 @@ void Game::quitSDL(){
 void Game::initSDL(){
 	SDL_Init(SDL_INIT_VIDEO);
 	IMG_Init(IMG_INIT_PNG);
+
+	// Controller must be initialized after SDL_Init(SDL_INIT_JOYSTICK) is called
+	gameController = new Controller();
 
 	window = SDL_CreateWindow("myGame",
 		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, this->windowWidth, this->windowHeight, 0);
@@ -67,6 +71,7 @@ void Game::start(){
 		}
 
 		SDL_PollEvent(&event);
+		gameController->setState(event);
 		switch (event.type)
 		{
 			case SDL_QUIT:
@@ -82,7 +87,7 @@ void Game::start(){
 	}
 }
 
-void Game::update(set<SDL_Scancode> pressedKeys){
+void Game::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
 	frameCounter++;
 	DisplayObjectContainer::update(pressedKeys);
 }
