@@ -20,7 +20,6 @@ void CollisionSystem::update(){
 void CollisionSystem::handleEvent(Event* e){
   if (e->getType() == DOAddedEvent::DO_ADDED) {
     DOAddedEvent* event = (DOAddedEvent*) e;
-    inView.push_back()
     std::cout << "DO added to the game." << std::endl;
   }
   if (e->getType() == DORemovedEvent::DO_REMOVED) {
