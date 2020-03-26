@@ -14,12 +14,12 @@ MyGame::MyGame() : Game(1200, 700) {
 	instance = this;
 
 	//Initalize main
-	main = new Camera();
+	main = cameras[ 0 ];
 	allSprites = new Scene();
 	templateBar = new TemplateBar("templateBar", 64, 224, 208);
 
 	//Initalize editor
-	editor = new Camera();
+	editor = cameras[ 1 ];
 	allComponents = new Scene();
 
 	//Build main tree
@@ -43,12 +43,10 @@ MyGame::MyGame() : Game(1200, 700) {
 MyGame::~MyGame()
 {
 	//Main screen
-	delete main;
 	delete allSprites;
 	delete templateBar;
 
 	//Editor screen
-	delete editor;
 	delete allComponents;
 
 	//Observers

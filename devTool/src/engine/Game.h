@@ -48,13 +48,13 @@ public:
 	int gridHeight;
 	static int cellSize;
 
-private:
-
 	//Total windows
 	static const int TOTAL_WINDOWS = 2;
 
 	//Our custom windows
-	Camera cameras[ TOTAL_WINDOWS ];
+	Camera* cameras[ TOTAL_WINDOWS ];
+
+private:
 
 	//Handle events
 	void passEventToCameras( SDL_Event& event );

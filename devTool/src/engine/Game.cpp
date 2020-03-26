@@ -14,7 +14,6 @@ Game::Game(int windowWidth, int windowHeight){
 	gridWidth = windowWidth / cellSize;
 	gridHeight = windowHeight / cellSize;
 
-	mouse = new Mouse();
 	initSDL();
 
 	//Initalize the game
@@ -36,7 +35,7 @@ void Game::destroyCameras()
 {
 	for( int i = 0; i < TOTAL_WINDOWS; i++ )
 	{
-		cameras[ i ].free();
+		cameras[ i ]->free();
 	}
 }
 
@@ -47,14 +46,15 @@ void Game::init()
 	initCameras();
 
 	//Add Grid to main screen
-	cameras[ 0 ].addGrid();
+	cameras[ 0 ]->addGrid();
 }
 
 void Game::initCameras()
 {
 	for( int i = 0; i < TOTAL_WINDOWS; i++ )
 	{
-		cameras[ i ].init();
+		cameras[ i ] = new Camera();
+		cameras[ i ]->init();
 	}
 }
 
@@ -86,23 +86,23 @@ void Game::start(){
 			start = end;
 			
 			//Get camerasd
-			Camera main = cameras[ 0 ];
-			Camera editor = cameras[ 1 ];
+			Camera* main = cameras[ 0 ];
+			Camera* editor = cameras[ 1 ];
  
 			//Get renderers
-			SDL_Renderer* mainRenderer = main.getRenderer();
-			SDL_Renderer* editorRenderer = editor.getRenderer();
+			SDL_Renderer* mainRenderer = main->getRenderer();
+			SDL_Renderer* editorRenderer = editor->getRenderer();
 
 			//Distribute important data
-			main.update( pressedKeys, gameController->getJoystickState(), mainRenderer );
-			editor.update( pressedKeys, gameController->getJoystickState(), editorRenderer );
+			main->update( pressedKeys, gameController->getJoystickState(), mainRenderer );
+			editor->update( pressedKeys, gameController->getJoystickState(), editorRenderer );
 
 			//Create transformation matrix
 			AffineTransform at;
 
 			//Draw screens
-			main.draw( at, mainRenderer );
-			editor.draw( at, editorRenderer );
+			main->draw( at, mainRenderer );
+			editor->draw( at, editorRenderer );
 
 			//Update frame counter
 			frameCounter++;
@@ -144,7 +144,7 @@ bool Game::areAllCamerasClosed()
 	bool allWindowsClosed = true;
 	for( int i = 0; i < TOTAL_WINDOWS; i++ )
 	{
-		if( cameras[ i ].isShown() )
+		if( cameras[ i ]->isShown() )
 		{
 			allWindowsClosed = false;
 			break;
@@ -157,7 +157,7 @@ void Game::updateCameras()
 {
 	for( int i = 0; i < TOTAL_WINDOWS; i++ )
 	{
-		cameras[ i ].render();
+		cameras[ i ]->render();
 	}
 }
 
@@ -166,10 +166,10 @@ void Game::handleWindowChange( SDL_Keycode windowCode )
 	switch( windowCode )
 	{
 		case SDLK_1:
-			cameras[ 0 ].focus();
+			cameras[ 0 ]->focus();
 			break;
 		case SDLK_2:
-			cameras[ 1 ].focus();
+			cameras[ 1 ]->focus();
 			break;
 	}
 }
@@ -178,7 +178,7 @@ void Game::passEventToCameras( SDL_Event& event )
 {
 	for( int i = 0; i < TOTAL_WINDOWS; i++ )
 	{
-		cameras[ i ].handleEvent( event );
+		cameras[ i ]->handleEvent( event );
 	}
 }
 
