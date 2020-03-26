@@ -9,6 +9,7 @@ using namespace std;
 MyGame::MyGame() : Game(1200, 800){
 	camera = new Camera();
 	scene_1 = new Scene();
+	tweenHandler = new TweenJuggler();
 
 	scene_1->loadScene("./resources/scene_1.json");
 	background = static_cast<Layer*>(scene_1->getChild("background"));
@@ -19,6 +20,7 @@ MyGame::MyGame() : Game(1200, 800){
 	background->speedRate=4.0;
 	midground->speedRate=2.0;
 
+	//main_character = new DisplayObjectContainer("main_character", "./resources/character/Idle_1.png");
 	main_character = new AnimatedSprite("Run");
 	main_character->addAnimation("./resources/character/","Run",20,1,true);
 	main_character->play("Run");
@@ -31,6 +33,10 @@ MyGame::MyGame() : Game(1200, 800){
 	main_character->position.x = 600 - (main_character->width / 2);		// 1/2 screenwidth
 	main_character->position.y = 400 - (main_character->height / 2);	// 1/2 screenheight
 
+	characterFadeIn = new Tween(main_character, TweenTransitions(TweenTransitionTypes::LINEAR)); //currently frames, needs to be millis
+	characterFadeIn->animate(TweenableParams::ALPHA, 0, 255, 15.0);
+	characterFadeIn->animate(TweenableParams::Y, main_character->position.y - 50, main_character->position.y, 15.0);
+	tweenHandler->add(characterFadeIn);
 }
 
 MyGame::~MyGame(){
@@ -39,28 +45,23 @@ MyGame::~MyGame(){
 }
 
 void MyGame::update(set<SDL_Scancode> pressedKeys){
-	// std::cout << "Camera: " << camera->position.x << " " << camera->position.y << " | ";
-	// std::cout << "Sun Sprite: " << scene_1->getChild("test_sun")->position.x << " " << scene_1->getChild("test_sun")->position.y << " | ";
-	// std::cout << "Character: " << main_character->position.x << " " << main_character->position.y << " | ";
-	// std::cout << "Scene Pivot: " << scene_1->pivot.x << " " << scene_1->pivot.y << std::endl;
-
+	tweenHandler->nextFrame();
 	for (std::set<SDL_Scancode>::iterator it = pressedKeys.begin(); it != pressedKeys.end(); ++it){
 		switch(*it){
 			// Translation
-			// While I could "multiply" the speedRates into the current movement of every layer, they all start at 1.0 so I don't bother multiplying by 1.0
 			case SDL_SCANCODE_LEFT:	// Left arrow key
-				camera->position.x += foreground->speedRate;
-				main_character->position.x -= foreground->speedRate;
-
 				background->position.x -= background->speedRate;
 				midground->position.x -= midground->speedRate;
+
+				camera->position.x += foreground->speedRate;
+				main_character->position.x -= foreground->speedRate;
 				break;
 			case SDL_SCANCODE_RIGHT:	// Right arrow key
-				camera->position.x -= foreground->speedRate;
-				main_character->position.x += foreground->speedRate;
-				
 				background->position.x += background->speedRate;
 				midground->position.x += midground->speedRate;
+				
+				camera->position.x -= foreground->speedRate;
+				main_character->position.x += foreground->speedRate;
 				break;
 			case SDL_SCANCODE_UP:	// Up arrow key
 				break;

@@ -7,12 +7,14 @@
 #include "Game.h"
 #include "AnimatedSprite.h"
 #include "EventDispatcher.h"
-#include "Layer.h"
 #include "QuestManager.h"
 #include "PickedUpEvent.h"
 #include "Scene.h"
 #include "Sound.h"
 #include "Camera.h"
+#include "Tween.h"
+#include "Layer.h"
+#include "TweenJuggler.h"
 
 using namespace std;
 
@@ -41,6 +43,9 @@ private:
 	Layer* background;
 	Layer* midground;
 	Layer* foreground;
+
+	TweenJuggler* tweenHandler;
+	Tween* characterFadeIn;
 
 	bool using_scene_1;
 };
