@@ -27,22 +27,9 @@ public:
 
 private:
 
-	AnimatedSprite* sun;
-	Sprite* planet1;
-	Sprite* planet2;
-	Sprite* moon1_1;
-
 	Camera* camera;
-	Sound* sound_manager;
 	Scene* scene_1;
-	Scene* scene_2;
 
-	AnimatedSprite* main_character;
-	Layer* background;
-	Layer* midground;
-	Layer* foreground;
-
-	bool using_scene_1;
 };
 
 #endif

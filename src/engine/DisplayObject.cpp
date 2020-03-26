@@ -7,8 +7,11 @@
 #include <iostream>
 #include <algorithm>
 #include <cmath>
+#include "./rapidxml-1.13/rapidxml.hpp"
 
 #define PI 3.14159265
+
+using namespace rapidxml;
 
 DisplayObject::DisplayObject(){
 	image = NULL;
@@ -58,6 +61,11 @@ void DisplayObject::setTexture(SDL_Texture* t){
 	this->curTexture = t;
 }
 
+void DisplayObject::setSourceRect(int x, int y, int width, int height) {
+	srcrect = {x, y, width, height};
+	sourceIsSet = true;
+}
+
 void DisplayObject::update(set<SDL_Scancode> pressedKeys){
 
 }
@@ -74,7 +82,7 @@ void DisplayObject::draw(AffineTransform &at){
 		int w = (int)distance(origin, upperRight);
 		int h = (int)distance(upperRight, lowerRight);
 
-		SDL_Rect dstrect = { origin.x, origin.y, w, h };
+		dstrect = { origin.x, origin.y, w, h };
 
 		SDL_RendererFlip flip;
 		if (facingRight) {
@@ -84,8 +92,12 @@ void DisplayObject::draw(AffineTransform &at){
 			flip = SDL_FLIP_HORIZONTAL;
 		}
 
-		SDL_SetTextureAlphaMod(curTexture, alpha);
-		SDL_RenderCopyEx(Game::renderer, curTexture, NULL, &dstrect, calculateRotation(origin, upperRight), &corner, flip);
+		if (sourceIsSet) {
+			SDL_RenderCopyEx(Game::renderer, curTexture, &srcrect, &dstrect, calculateRotation(origin, upperRight), &corner, flip);
+		} else {
+			SDL_RenderCopyEx(Game::renderer, curTexture, NULL, &dstrect, calculateRotation(origin, upperRight), &corner, flip);
+		}
+
 	}
 
 	reverseTransformations(at);
@@ -121,4 +133,12 @@ double DisplayObject::calculateRotation(SDL_Point &origin, SDL_Point &p) {
 	double y = p.y - origin.y;
 	double x = p.x - origin.x;
 	return (atan2(y, x) * 180 / PI);
+}
+
+void DisplayObject::drawHitbox(){
+
+}
+
+void DisplayObject::getHitbox(AffineTransform &at){
+	
 }
