@@ -2,7 +2,6 @@
 
 using namespace std;
 
-SDL_Renderer* Game::renderer;
 Game* Game::instance;
 unsigned int Game::frameCounter = 0;
 int Game::cellSize = 20;
@@ -17,18 +16,50 @@ Game::Game(int windowWidth, int windowHeight){
 
 	mouse = new Mouse();
 	initSDL();
+
+	//Initalize the game
+	init();
+
 	TTF_Init();
 }
 
 Game::~Game(){
 	delete mouse;
+	delete gameController;
+	pressedKeys.clear();
+	destroyCameras();
+
 	quitSDL();
+}
+
+void Game::destroyCameras()
+{
+	for( int i = 0; i < TOTAL_WINDOWS; i++ )
+	{
+		cameras[ i ].free();
+	}
+}
+
+void Game::init()
+{
+	mouse = new Mouse();
+	gameController = new Controller();
+	initCameras();
+
+	//Add Grid to main screen
+	cameras[ 0 ].addGrid();
+}
+
+void Game::initCameras()
+{
+	for( int i = 0; i < TOTAL_WINDOWS; i++ )
+	{
+		cameras[ i ].init();
+	}
 }
 
 void Game::quitSDL(){
 	cout << "Quitting sdl" << endl;
-	SDL_DestroyRenderer(Game::renderer);
-	SDL_DestroyWindow(window);
 	SDL_JoystickClose(gameController->getJoystick());
 
 	IMG_Quit();
@@ -38,14 +69,6 @@ void Game::quitSDL(){
 void Game::initSDL(){
 	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK);
 	IMG_Init(IMG_INIT_PNG);
-
-	// Controller must be initialized after SDL_Init(SDL_INIT_JOYSTICK) is called
-	gameController = new Controller();
-
-	window = SDL_CreateWindow("myGame",
-		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, this->windowWidth, this->windowHeight, 0);
-
-	renderer = SDL_CreateRenderer(window, -1, 0);
 }
 
 void Game::start(){
@@ -88,6 +111,7 @@ void Game::start(){
 		while(SDL_PollEvent(&event)) {
 			gameController->setState(event);
 			mouse->setState(event);
+			passEventToCameras(event);
 			switch (event.type)
 			{
 				case SDL_QUIT:
@@ -95,12 +119,66 @@ void Game::start(){
 					break;
 				case SDL_KEYDOWN:
 					pressedKeys.insert(event.key.keysym.scancode);
+					handleWindowChange(event.key.keysym.sym);
 					break;
 				case SDL_KEYUP:
 					pressedKeys.erase(event.key.keysym.scancode);
 					break;
 			}
 		}
+
+		//Re-render cameras
+		updateCameras();
+
+		//Check all windows
+		bool gameClosed = areAllCamerasClosed();
+		if( gameClosed )
+		{
+			quit = true;
+		}
+	}
+}
+
+bool Game::areAllCamerasClosed()
+{
+	bool allWindowsClosed = true;
+	for( int i = 0; i < TOTAL_WINDOWS; i++ )
+	{
+		if( cameras[ i ].isShown() )
+		{
+			allWindowsClosed = false;
+			break;
+		}
+	}
+	return allWindowsClosed;
+}
+
+void Game::updateCameras()
+{
+	for( int i = 0; i < TOTAL_WINDOWS; i++ )
+	{
+		cameras[ i ].render();
+	}
+}
+
+void Game::handleWindowChange( SDL_Keycode windowCode )
+{
+	switch( windowCode )
+	{
+		case SDLK_1:
+			cameras[ 0 ].focus();
+			break;
+		case SDLK_2:
+			cameras[ 1 ].focus();
+			break;
+	}
+}
+
+void Game::passEventToCameras( SDL_Event& event )
+{
+	for( int i = 0; i < TOTAL_WINDOWS; i++ )
+	{
+		cameras[ i ].handleEvent( event );
 	}
 }
 
@@ -111,18 +189,4 @@ void Game::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState curr
 
 void Game::draw( AffineTransform &at, SDL_Renderer* renderer )
 {
-	SDL_SetRenderDrawColor(Game::renderer, 120, 120, 120, 1);
-  SDL_RenderClear(Game::renderer);
-
-  SDL_SetRenderDrawColor(Game::renderer, 200, 200, 200, 1);
-  for (int x = 0; x < 1 + Game::gridWidth * Game::cellSize; x += Game::cellSize) {
-      SDL_RenderDrawLine(Game::renderer, x, 0, x, this->windowHeight);
-  }
-	for (int y = 0; y < 1 + Game::gridHeight * Game::cellSize; y += Game::cellSize) {
-      SDL_RenderDrawLine(Game::renderer, 0, y, this->windowWidth, y);
-  }
-	DisplayObjectContainer::draw( at, renderer );
-	mouse->drawSelectBox(Game::renderer);
-	SDL_RenderPresent(Game::renderer);
-
 }

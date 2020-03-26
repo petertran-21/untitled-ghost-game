@@ -54,7 +54,7 @@ bool Camera::init()
         else
         {
             //Initialize renderer color
-            SDL_SetRenderDrawColor( renderer, 0xFF, 0xFF, 0xFF, 0xFF );
+            SDL_SetRenderDrawColor( renderer, 120, 120, 120, 1 );
 
             //Grab window identifier
             windowID = SDL_GetWindowID( window );
@@ -178,7 +178,7 @@ void Camera::render()
     if( !minimized )
     {
         //Clear screen
-        SDL_SetRenderDrawColor( renderer, 0xFF, 0xFF, 0xFF, 0xFF );
+        SDL_SetRenderDrawColor( renderer, 120, 120, 120, 1 );
         SDL_RenderClear( renderer );
 
         //Add Grid
@@ -214,16 +214,17 @@ void Camera::free()
 
 void Camera::drawGrid()
 {
-    int numVertical = 1 + (width * GRID_CELL_SIZE);
-    int numHorizontal = 1 + (height * GRID_CELL_SIZE);
-    int c;
-    int r;
+    int numVertical = 1 + width;
+    int numHorizontal = 1 + height;
 
-    for (c = 0; c < numVertical; c += GRID_CELL_SIZE) 
+    //Change the draw color
+    SDL_SetRenderDrawColor(renderer, 200, 200, 200, 1);
+
+    for (int c = 0; c < numVertical; c += GRID_CELL_SIZE) 
     {
     SDL_RenderDrawLine(renderer, c, 0, c, height);
     }
-    for (r = 0; r < numHorizontal; r += GRID_CELL_SIZE) 
+    for (int r = 0; r < numHorizontal; r += GRID_CELL_SIZE) 
     {
     SDL_RenderDrawLine(renderer, 0, r, width, r);
     }

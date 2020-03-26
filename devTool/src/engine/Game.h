@@ -29,8 +29,6 @@ public:
 
 	Mouse* mouse;
 	Controller* gameController;
-	SDL_Window * window;
-	static SDL_Renderer* renderer;
 
 	//Global frame counter
 	static unsigned int frameCounter;
@@ -38,6 +36,9 @@ public:
 	Game(int windowWidth, int windowHeight);
 	virtual ~Game();
 	void start();
+
+	//Setup internals
+	void init();
 
 	virtual void update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, SDL_Renderer* renderer );
 	virtual void draw( AffineTransform &at, SDL_Renderer* renderer );
@@ -54,6 +55,16 @@ private:
 
 	//Our custom windows
 	Camera cameras[ TOTAL_WINDOWS ];
+
+	//Handle events
+	void passEventToCameras( SDL_Event& event );
+
+	//Cameras helpers
+	void initCameras();
+	void destroyCameras();
+	void updateCameras();
+	bool areAllCamerasClosed();
+	void handleWindowChange( SDL_Keycode windowCode );
 
 	void initSDL();
 	void quitSDL();
