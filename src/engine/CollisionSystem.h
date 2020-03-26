@@ -47,7 +47,7 @@ public:
 	void resolveCollision(DisplayObject* d, DisplayObject* other, int xDelta1, int yDelta1, int xDelta2, int yDelta2);
 
 private:
-
+	vector<DisplayObject*> inView;
 
 };
 

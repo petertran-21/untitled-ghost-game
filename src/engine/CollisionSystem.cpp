@@ -20,6 +20,7 @@ void CollisionSystem::update(){
 void CollisionSystem::handleEvent(Event* e){
   if (e->getType() == DOAddedEvent::DO_ADDED) {
     DOAddedEvent* event = (DOAddedEvent*) e;
+    inView.push_back()
     std::cout << "DO added to the game." << std::endl;
   }
   if (e->getType() == DORemovedEvent::DO_REMOVED) {
@@ -142,7 +143,7 @@ int CollisionSystem::calculateOrientation(SDL_Point p1, SDL_Point p2, SDL_Point 
 }
 
 bool CollisionSystem::isLocatedInRect(SDL_Point hb1_point, vector<SDL_Point> hb2) {
-  
+
   return false;
 }
 
