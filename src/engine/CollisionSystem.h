@@ -2,7 +2,14 @@
 #define COLLISIONSYSTEM_H
 
 #include "Event.h"
+#include "DisplayObjectContainer.h"
+#include "Sprite.h"
+#include "EventListener.h"
 #include "DisplayObject.h"
+#include "DOAddedEvent.h"
+#include "DORemovedEvent.h"
+
+#include <iostream>
 
 using namespace std;
 
@@ -29,6 +36,10 @@ public:
 	//returns true iff obj1 hitbox and obj2 hitbox overlap. Uses the following method from DO:
 	//	SDL_Point* DisplayObject::getGlobalHitbox();
 	bool collidesWith(DisplayObject* obj1, DisplayObject* obj2);
+
+	float slope(SDL_Point p1, SDL_Point p2);
+	int calculateOrientation(SDL_Point p1, SDL_Point p2, SDL_Point p3, SDL_Point p4);
+	bool isLocatedInRect(SDL_Point hb1_point, vector<SDL_Point> hb2);
 
 	//Resolves the collision that occurred between d and other
 	//xDelta1 and yDelta1 are the amount d moved before causing the collision.

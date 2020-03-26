@@ -28,6 +28,7 @@ private:
 	DisplayObjectContainer* allSprites;
 
 	AnimatedSprite* character;
+	Sprite* crocodile;
 
 };
 

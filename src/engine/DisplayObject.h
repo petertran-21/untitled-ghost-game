@@ -7,6 +7,7 @@
 #include "AffineTransform.h"
 #include <string>
 #include <fstream>
+#include <vector>
 
 using namespace std;
 
@@ -55,9 +56,9 @@ public:
 
 	void drawHitbox();
 	void createHitbox();
-	vector<SDL_Point> getHitbox(SDL_Point upperLeft, SDL_Point upperRight, SDL_Point lowerLeft);
+	vector<SDL_Point> translateHitbox(SDL_Point upperLeft, SDL_Point upperRight, SDL_Point lowerRight, SDL_Point lowerLeft);
+	vector<SDL_Point> getHitbox();
 	AffineTransform* getGlobalTransform(AffineTransform* at);
-
 
 private:
 	double distance(SDL_Point &p1, SDL_Point &p2);
@@ -70,6 +71,8 @@ private:
 	SDL_Texture* curTexture;
 
 	bool sourceIsSet = false;
+
+	vector<SDL_Point> hitbox;
 
 	SDL_Rect dstrect;
 	SDL_Rect srcrect;

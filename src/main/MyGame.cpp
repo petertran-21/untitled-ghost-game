@@ -20,6 +20,11 @@ MyGame::MyGame() : Game(1200, 1000) {
 	character->drawHitbox();
 	character->play("walk");
 
+	crocodile = new Sprite("crocodile", "./resources/enemies/crocodile.png");
+	allSprites->addChild(crocodile);
+	crocodile->drawHitbox();
+	crocodile->position.x = 300;
+
 
 	//----------
 
@@ -47,13 +52,14 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 		character->scaleY *= 1.1;
 	}
 	if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end()) {
-
+		character->scaleX /= 1.1;
+		character->scaleY /= 1.1;
 	}
 	if (pressedKeys.find(SDL_SCANCODE_Q) != pressedKeys.end()) {
 		character->rotation += 0.1;
 	}
 	if (pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end()) {
-
+		character->rotation -= 0.1;
 	}
 	if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end()) {
 

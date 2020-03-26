@@ -147,9 +147,10 @@ void DisplayObject::createHitbox(){
 	SDL_Point upperLeft = {0, 0};
 	SDL_Point upperRight = {this->width, 0};
 	SDL_Point lowerRight = {this->width, this->height};
+	SDL_Point lowerLeft = {0, this->height};
 	SDL_Point corner = {0, 0};
 
-	vector<SDL_Point> hitBoxPoints = this->getHitbox(upperLeft, upperRight, lowerRight);
+	vector<SDL_Point> hitBoxPoints = this->translateHitbox(upperLeft, upperRight, lowerRight, lowerLeft);
 	DisplayObject* hitBox = new DisplayObject(this->id + "HitBox", 200,155,255);
 
 	int w = (int)distance(hitBoxPoints.at(0), hitBoxPoints.at(1));
@@ -158,16 +159,22 @@ void DisplayObject::createHitbox(){
 	SDL_RenderCopyEx(Game::renderer, hitBox->curTexture, NULL, &rect, calculateRotation(hitBoxPoints.at(0), hitBoxPoints.at(1)), &corner, SDL_FLIP_NONE);
 }
 
-vector<SDL_Point> DisplayObject::getHitbox(SDL_Point upperLeft, SDL_Point upperRight, SDL_Point lowerRight){
+vector<SDL_Point> DisplayObject::translateHitbox(SDL_Point upperLeft, SDL_Point upperRight, SDL_Point lowerRight, SDL_Point lowerLeft){
 	AffineTransform* at = new AffineTransform();
 	at = this->getGlobalTransform(at);
 	vector<SDL_Point> points = vector<SDL_Point>();
-	points.push_back(at->transformPoint(upperLeft.x, upperLeft.y));
-	points.push_back(at->transformPoint(upperRight.x, upperRight.y));
-	points.push_back(at->transformPoint(lowerRight.x, lowerRight.y));
+	this->hitbox = vector<SDL_Point>();
+	this->hitbox.push_back(at->transformPoint(upperLeft.x, upperLeft.y));
+	this->hitbox.push_back(at->transformPoint(upperRight.x, upperRight.y));
+	this->hitbox.push_back(at->transformPoint(lowerRight.x, lowerRight.y));
+	this->hitbox.push_back(at->transformPoint(lowerLeft.x, lowerLeft.y));
 
-	return points;
+	return this->hitbox;
 
+}
+
+vector<SDL_Point> DisplayObject::getHitbox(){
+	return this->hitbox;
 }
 
 AffineTransform* DisplayObject::getGlobalTransform(AffineTransform* at){
