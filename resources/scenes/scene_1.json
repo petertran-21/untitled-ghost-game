@@ -1,0 +1,30 @@
+{
+    "sprites": [
+                {
+                "id": "testAnim",
+                "basePathFolder": "./resources/character/",
+                "posX": 120,
+                "posY": 120,
+                "pivotX": 0,
+                "pivotY": 0,
+                "rotation": 0.0,
+                "alpha": 255,
+                "isVisible": true,
+                "isStatic": false,
+                "parent": "",
+                "width": 200,
+                "height": 200,
+                "animationInfo": {
+                "playing": true,
+                "animations": [
+                               {
+                               "animId": "Run",
+                               "frameCount": 20,
+                               "frameRate": 3,
+                               "loop": true
+                               }
+                               ]
+                }
+                }
+                ]
+}

@@ -6,30 +6,31 @@
 
 using namespace std;
 
-MyGame::MyGame() : Game(1200, 800){
+MyGame::MyGame() : Game(1000, 1000){
 	camera = new Camera();
 	scene_1 = new Scene();
 
-	scene_1->loadScene("./resources/scene_1.json");
-	background = static_cast<Layer*>(scene_1->getChild("background"));
-	midground = static_cast<Layer*>(scene_1->getChild("midground"));
-	foreground = static_cast<Layer*>(scene_1->getChild("foreground"));
+	scene_1->loadScene("./resources/scenes/beachEntrance.json");
+	// background = static_cast<Layer*>(scene_1->getChild("background"));
+	// midground = static_cast<Layer*>(scene_1->getChild("midground"));
+	// foreground = static_cast<Layer*>(scene_1->getChild("foreground"));
 
-	foreground->speedRate=5.0;
-	background->speedRate=4.0;
-	midground->speedRate=2.0;
+	// foreground->speedRate=5.0;
+	// background->speedRate=4.0;
+	// midground->speedRate=2.0;
 
-	main_character = new AnimatedSprite("Run");
-	main_character->addAnimation("./resources/character/","Run",20,1,true);
-	main_character->play("Run");
-	main_character->layer="foreground";
+	// main_character = new AnimatedSprite("Run");
+	// main_character->addAnimation("./resources/character/","Run",20,1,true);
+	// main_character->play("Run");
+	// main_character->layer="foreground";
 
 	this->addChild(camera);
 	camera->addChild(scene_1);
-	foreground->addChild(main_character);
 
-	main_character->position.x = 600 - (main_character->width / 2);		// 1/2 screenwidth
-	main_character->position.y = 400 - (main_character->height / 2);	// 1/2 screenheight
+	// foreground->addChild(main_character);
+
+	// main_character->position.x = 600 - (main_character->width / 2);		// 1/2 screenwidth
+	// main_character->position.y = 400 - (main_character->height / 2);	// 1/2 screenheight
 
 }
 
@@ -49,18 +50,18 @@ void MyGame::update(set<SDL_Scancode> pressedKeys){
 			// Translation
 			// While I could "multiply" the speedRates into the current movement of every layer, they all start at 1.0 so I don't bother multiplying by 1.0
 			case SDL_SCANCODE_LEFT:	// Left arrow key
-				camera->position.x += foreground->speedRate;
-				main_character->position.x -= foreground->speedRate;
+				//camera->position.x += foreground->speedRate;
+				//main_character->position.x -= foreground->speedRate;
 
-				background->position.x -= background->speedRate;
-				midground->position.x -= midground->speedRate;
+				//background->position.x -= background->speedRate;
+				//midground->position.x -= midground->speedRate;
 				break;
 			case SDL_SCANCODE_RIGHT:	// Right arrow key
-				camera->position.x -= foreground->speedRate;
-				main_character->position.x += foreground->speedRate;
+				//camera->position.x -= foreground->speedRate;
+				//main_character->position.x += foreground->speedRate;
 				
-				background->position.x += background->speedRate;
-				midground->position.x += midground->speedRate;
+				//background->position.x += background->speedRate;
+				//midground->position.x += midground->speedRate;
 				break;
 			case SDL_SCANCODE_UP:	// Up arrow key
 				break;
