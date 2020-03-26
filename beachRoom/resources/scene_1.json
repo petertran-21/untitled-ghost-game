@@ -1,0 +1,36 @@
+{
+    "sprites": [
+        {
+            "id": "background",
+            "basePathFolder": "./resources/parallaxTesting/",
+            "posX": 0,
+            "posY": 0,
+            "width": 1324,
+            "height": 699,
+            "pivotX": 0,
+            "pivotY": 0,
+            "rotation": 0.0,
+            "alpha": 255,
+            "isVisible": true,
+            "isStatic": true,
+            "isStaticBaseFile": "background.png",
+            "layer":"background"
+        },
+        {
+            "id": "middleground",
+            "basePathFolder": "./resources/parallaxTesting/",
+            "posX": 200,
+            "posY": 100,
+            "width": 470,
+            "height": 500,
+            "pivotX": 0,
+            "pivotY": 0,
+            "rotation": 0.0,
+            "alpha": 255,
+            "isVisible": true,
+            "isStatic": true,
+            "isStaticBaseFile": "midground_tree.png",
+            "layer":"middleground"
+        }     
+    ]
+}
