@@ -22,13 +22,13 @@ void CollisionSystem::update(){
 void CollisionSystem::handleEvent(Event* e){
   if (e->getType() == DOAddedEvent::DO_ADDED) {
     DOAddedEvent* event = (DOAddedEvent*) e;
-    inView.push_back(e->recentlyAdded);
+    inView.push_back(event->recentlyAdded);
     std::cout << "DO added to the game." << std::endl;
   }
   if (e->getType() == DORemovedEvent::DO_REMOVED) {
     DORemovedEvent* event = (DORemovedEvent*) e;
     for (int i = 0; i < inView.size(); i++) {
-        if (inView[i] == e->recentlyRemoved) {
+        if (inView[i] == event->recentlyRemoved) {
             inView.erase(inView.begin() + i);
         }
     }
@@ -152,10 +152,10 @@ int CollisionSystem::calculateOrientation(SDL_Point p1, SDL_Point p2, SDL_Point 
 bool CollisionSystem::isLocatedInRect(SDL_Point hb1_point, vector<SDL_Point> hb2) {
   // area = 1/2[x1(y2-y3) + x2(y3-y1) + x3(y1-y2)]
   float rectArea = distance(hb2.at(0), hb2.at(1)) * distance(hb2.at(1), hb2.at(2));
-  float area1 = 1/2(hb1_point.x * (hb2.at(0).y - hb2.at(1).y) + hb1_point.x * (hb2.at(1).y - hb1_point.y) + hb1_point.x * (hb1_point.y - hb2.at(0).y));
-  float area2 = 1/2(hb1_point.x * (hb2.at(1).y - hb2.at(2).y) + hb1_point.x * (hb2.at(2).y - hb1_point.y) + hb1_point.x * (hb1_point.y - hb2.at(1).y));
-  float area3 = 1/2(hb1_point.x * (hb2.at(2).y - hb2.at(3).y) + hb1_point.x * (hb2.at(3).y - hb1_point.y) + hb1_point.x * (hb1_point.y - hb2.at(2).y));
-  float area4 = 1/2(hb1_point.x * (hb2.at(3).y - hb2.at(0).y) + hb1_point.x * (hb2.at(0).y - hb1_point.y) + hb1_point.x * (hb1_point.y - hb2.at(3).y));
+  float area1 = 1/2 * (hb1_point.x * (hb2.at(0).y - hb2.at(1).y) + hb1_point.x * (hb2.at(1).y - hb1_point.y) + hb1_point.x * (hb1_point.y - hb2.at(0).y));
+  float area2 = 1/2 * (hb1_point.x * (hb2.at(1).y - hb2.at(2).y) + hb1_point.x * (hb2.at(2).y - hb1_point.y) + hb1_point.x * (hb1_point.y - hb2.at(1).y));
+  float area3 = 1/2 * (hb1_point.x * (hb2.at(2).y - hb2.at(3).y) + hb1_point.x * (hb2.at(3).y - hb1_point.y) + hb1_point.x * (hb1_point.y - hb2.at(2).y));
+  float area4 = 1/2 * (hb1_point.x * (hb2.at(3).y - hb2.at(0).y) + hb1_point.x * (hb2.at(0).y - hb1_point.y) + hb1_point.x * (hb1_point.y - hb2.at(3).y));
   if (area1 + area2 + area3 + area4 == rectArea) {
     return true;
   }

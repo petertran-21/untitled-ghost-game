@@ -5,6 +5,7 @@
 #include <SDL2/SDL_image.h>
 #include <set>
 #include "AffineTransform.h"
+#include "Controller.h"
 #include <string>
 #include <fstream>
 #include <vector>
@@ -28,7 +29,7 @@ public:
 	DisplayObject(string id, int red, int green, int blue);
 	virtual ~DisplayObject();
 
-	virtual void update(set<SDL_Scancode> pressedKeys);
+	virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 	virtual void draw(AffineTransform &at);
 
 	void loadTexture(string filepath);

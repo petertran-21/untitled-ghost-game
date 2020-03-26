@@ -82,10 +82,10 @@ DisplayObject* DisplayObjectContainer::getChild(string id) {
     return NULL;
 }
 
-void DisplayObjectContainer::update(set<SDL_Scancode> pressedKeys) {
-    DisplayObject::update(pressedKeys);
+void DisplayObjectContainer::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState) {
+    DisplayObject::update(pressedKeys,currState);
     for (int i = 0; i < children.size(); i++) {
-        children[i]->update(pressedKeys);
+        children[i]->update(pressedKeys,currState);
     }
 }
 

@@ -12,7 +12,7 @@ DOAddedEvent::DOAddedEvent() : Event() {
   this->recentlyAdded = NULL;
 }
 
-DOAddedEvent::DOAddedEvent(EventDispatcher* source, DisplayObject* displayTree, int DTNumChildren, DisplayObject* recentlyAdded) : Event(DOAddedEvent::DO_ADDED, source) {
+DOAddedEvent::DOAddedEvent(EventDispatcher* source, DisplayObjectContainer* displayTree, int DTNumChildren, DisplayObject* recentlyAdded) : Event(DOAddedEvent::DO_ADDED, source) {
   this->displayTree = displayTree;
   this->DTNumChildren = displayTree->children.size();
   this->recentlyAdded = recentlyAdded;

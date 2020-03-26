@@ -66,7 +66,7 @@ void DisplayObject::setSourceRect(int x, int y, int width, int height) {
 	sourceIsSet = true;
 }
 
-void DisplayObject::update(set<SDL_Scancode> pressedKeys){
+void DisplayObject::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
 
 }
 

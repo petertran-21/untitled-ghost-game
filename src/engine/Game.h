@@ -8,9 +8,9 @@
 #include "EventDispatcher.h"
 #include "PickedUpEvent.h"
 #include "QuestManager.h"
-#include "Controller.h"
 #include <vector>
 #include <set>
+#include "Controller.h"
 
 using namespace std;
 
@@ -25,6 +25,7 @@ public:
 	int windowWidth, windowHeight;
 
 	SDL_Window * window;
+	Controller* gameController;
 	static SDL_Renderer* renderer;
 
 	//Global frame counter

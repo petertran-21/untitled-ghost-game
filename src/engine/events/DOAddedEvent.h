@@ -6,6 +6,7 @@
 #include <string>
 
 #include "EventDispatcher.h"
+#include "DisplayObjectContainer.h"
 #include "DisplayObject.h"
 
 using namespace std;
@@ -13,12 +14,12 @@ using namespace std;
 class DOAddedEvent : public Event {
 public:
   DOAddedEvent();
-  DOAddedEvent(EventDispatcher* source, DisplayObject* displayTree, int DTNumChildren, DisplayObject* recentlyAdded);
+  DOAddedEvent(EventDispatcher* source, DisplayObjectContainer* displayTree, int DTNumChildren, DisplayObject* recentlyAdded);
   ~DOAddedEvent();
   void checkCondition();
 
   int DTNumChildren;
-  DisplayObject* displayTree;
+  DisplayObjectContainer* displayTree;
   DisplayObject* recentlyAdded;
 
   const static string DO_ADDED;

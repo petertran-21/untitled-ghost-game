@@ -12,7 +12,7 @@ DORemovedEvent::DORemovedEvent() : Event() {
   this->recentlyRemoved = NULL;
 }
 
-DORemovedEvent::DORemovedEvent(EventDispatcher* source, DisplayObject* displayTree, int DTNumChildren, DisplayObject* recentlyRemoved) : Event(DORemovedEvent::DO_REMOVED, source) {
+DORemovedEvent::DORemovedEvent(EventDispatcher* source, DisplayObjectContainer* displayTree, int DTNumChildren, DisplayObject* recentlyRemoved) : Event(DORemovedEvent::DO_REMOVED, source) {
   this->displayTree = displayTree;
   this->DTNumChildren = displayTree->children.size();
   this->recentlyRemoved = recentlyRemoved;
