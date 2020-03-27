@@ -20,7 +20,7 @@ MyGame::MyGame() : Game(1200, 1000) {
 	DORemoved = new DORemovedEvent(displayTreeDisp, container);
 	displayTreeDisp->addEventListener(collisionSystem, DOAddedEvent::DO_ADDED);
 	displayTreeDisp->addEventListener(collisionSystem, DORemovedEvent::DO_REMOVED);
-	
+
 
 	character = new AnimatedSprite("character");
 	character->addSpriteSheet("./resources/character/character_idle.png", "./resources/character/character_animations.xml", "idle", 16, 2, true);
@@ -77,7 +77,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 	if (pressedKeys.find(SDL_SCANCODE_C) != pressedKeys.end()) {
 		character->rotation -= 0.1;
 	}
-	
+
 	if (pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end()) {
 		container->position.x += 1;
 	}
@@ -161,7 +161,10 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 			walking = false;
 		}
 	}
-
+	std::cout << character->getHitbox()[0].x << ", " << character->getHitbox()[0].y << std::endl;
+	std::cout << character->getHitbox()[1].x << ", " << character->getHitbox()[1].y << std::endl;
+	std::cout << character->getHitbox()[2].x << ", " << character->getHitbox()[2].y << std::endl;
+	std::cout << character->getHitbox()[3].x << ", " << character->getHitbox()[3].y << std::endl;
 	//DOAdded->checkCondition();
 	//DORemoved->checkCondition();
 	collisionSystem->update();
