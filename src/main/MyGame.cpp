@@ -161,10 +161,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 			walking = false;
 		}
 	}
-	std::cout << character->getHitbox()[0].x << ", " << character->getHitbox()[0].y << std::endl;
-	std::cout << character->getHitbox()[1].x << ", " << character->getHitbox()[1].y << std::endl;
-	std::cout << character->getHitbox()[2].x << ", " << character->getHitbox()[2].y << std::endl;
-	std::cout << character->getHitbox()[3].x << ", " << character->getHitbox()[3].y << std::endl;
+	
 	//DOAdded->checkCondition();
 	//DORemoved->checkCondition();
 	collisionSystem->update();
