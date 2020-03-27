@@ -32,7 +32,6 @@ public:
 	//returns true iff obj1 hitbox and obj2 hitbox overlap. Uses the following method from DO:
 	//	SDL_Point* DisplayObject::getGlobalHitbox();
 	bool collidesWith(DisplayObject* obj1, DisplayObject* obj2);
-
 	float slope(SDL_Point p1, SDL_Point p2);
 	double distance(SDL_Point p1, SDL_Point p2);
 	int calculateOrientation(SDL_Point p1, SDL_Point p2, SDL_Point p3, SDL_Point p4);
