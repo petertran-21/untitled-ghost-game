@@ -6,21 +6,23 @@
 #include <string>
 
 #include "EventDispatcher.h"
+#include "Event.h"
 #include "DisplayObjectContainer.h"
-#include "DisplayObject.h"
 
 using namespace std;
 
 class DORemovedEvent : public Event {
 public:
   DORemovedEvent();
-  DORemovedEvent(EventDispatcher* source, DisplayObjectContainer* displayTree, int DTNumChildren, DisplayObject* recentlyRemoved);
+  DORemovedEvent(EventDispatcher* source, DisplayObjectContainer* displayTree);
   ~DORemovedEvent();
   void checkCondition();
 
+  void removeChildCalled(DisplayObject* childRemoved);
+
   int DTNumChildren;
   DisplayObjectContainer* displayTree;
-  DisplayObject* recentlyRemoved;
+  DisplayObject* recentlyRemoved = NULL;
 
   const static string DO_REMOVED;
 

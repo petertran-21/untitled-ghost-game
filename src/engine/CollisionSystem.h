@@ -3,9 +3,7 @@
 
 #include "Event.h"
 #include "DisplayObjectContainer.h"
-#include "Sprite.h"
 #include "EventListener.h"
-#include "DisplayObject.h"
 
 #include <iostream>
 

@@ -29,7 +29,8 @@ void CollisionSystem::handleEvent(Event* e){
     DORemovedEvent* event = (DORemovedEvent*) e;
     for (int i = 0; i < inView.size(); i++) {
         if (inView[i] == event->recentlyRemoved) {
-            inView.erase(inView.begin() + i);
+          delete inView[i];
+          inView.erase(inView.begin() + i);
         }
     }
     std::cout << "DO removed from the game." << std::endl;
@@ -40,7 +41,11 @@ void CollisionSystem::handleEvent(Event* e){
 //of DOs of a given type (e.g., player vs platform). The system will begin to check all player objects
 //against all platform objects that are in the current scene.
 void CollisionSystem::watchForCollisions(string type1, string type2){
-
+  for(int i = 1; i < inView.size(); i++) {
+    for(int j = 0; j < inView.size() - 1; j++) {
+      if (inView[i]->type )
+    }
+  }
 }
 
 //returns true iff obj1 hitbox and obj2 hitbox overlap. Uses the following method from DO:

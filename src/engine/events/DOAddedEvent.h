@@ -6,21 +6,23 @@
 #include <string>
 
 #include "EventDispatcher.h"
+#include "Event.h"
 #include "DisplayObjectContainer.h"
-#include "DisplayObject.h"
 
 using namespace std;
 
 class DOAddedEvent : public Event {
 public:
   DOAddedEvent();
-  DOAddedEvent(EventDispatcher* source, DisplayObjectContainer* displayTree, int DTNumChildren, DisplayObject* recentlyAdded);
+  DOAddedEvent(EventDispatcher* source, DisplayObjectContainer* displayTree);
   ~DOAddedEvent();
   void checkCondition();
 
+  void addChildCalled(DisplayObject* childAdded);
+
   int DTNumChildren;
   DisplayObjectContainer* displayTree;
-  DisplayObject* recentlyAdded;
+  DisplayObject* recentlyAdded = NULL;
 
   const static string DO_ADDED;
 

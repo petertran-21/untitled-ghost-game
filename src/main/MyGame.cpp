@@ -1,7 +1,6 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
-#include "Sprite.h"
 #include "MyGame.h"
 
 using namespace std;
@@ -24,6 +23,12 @@ MyGame::MyGame() : Game(1200, 1000) {
 	crocodile->drawHitbox();
 	crocodile->position.x = 300;
 
+	collisionSystem = new CollisionSystem();
+	displayTreeDisp = new EventDispatcher();
+	DOAdded = new DOAddedEvent(displayTreeDisp, allSprites);
+	DORemoved = new DORemovedEvent(displayTreeDisp, allSprites);
+	displayTreeDisp->addEventListener(collisionSystem, DOAddedEvent::DO_ADDED);
+	displayTreeDisp->addEventListener(collisionSystem, DORemovedEvent::DO_REMOVED);
 
 }
 
@@ -97,6 +102,8 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 		}
 	}
 
+	DOAdded->checkCondition();
+	DORemoved->checkCondition();
 	Game::update(pressedKeys, currState);
 }
 

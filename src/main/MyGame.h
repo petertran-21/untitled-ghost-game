@@ -5,11 +5,10 @@
 #include <SDL2/SDL_image.h>
 #include <iostream>
 #include "Game.h"
-#include "Sprite.h"
 #include "AnimatedSprite.h"
 #include "EventDispatcher.h"
-#include "QuestManager.h"
-#include "PickedUpEvent.h"
+#include "DOAddedEvent.h"
+#include "DORemovedEvent.h"
 #include "CollisionSystem.h"
 #include "Controller.h"
 
@@ -32,8 +31,12 @@ private:
 	AnimatedSprite* character;
 	Sprite* crocodile;
 
-	CollisionSystem* collisionSystem;
 	EventDispatcher* controllerDisp;
+
+	EventDispatcher* displayTreeDisp;
+	CollisionSystem* collisionSystem;
+	DOAddedEvent* DOAdded;
+	DORemovedEvent* DORemoved;
 
 	bool walking = false;
 
