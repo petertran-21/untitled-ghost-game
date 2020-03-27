@@ -48,6 +48,14 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
         if (inView[j]->id == type2) {
           if(collidesWith(inView[i], inView[j])){
             resolveCollision(inView[i], inView[j], 0, 0, 0, 0);
+            } else {
+              //Save deltas
+              vector<SDL_Point> iHitbox = inView[i]->getHitbox();
+              vector<SDL_Point> jHitbox = inView[j]->getHitbox();
+              inView[i]->lastNonCollidedPos.x = iHitbox[0].x;
+              inView[i]->lastNonCollidedPos.y = iHitbox[0].y;
+              inView[j]->lastNonCollidedPos.x = jHitbox[0].x;
+              inView[j]->lastNonCollidedPos.x = jHitbox[0].x;
             }
           }
         }
@@ -375,4 +383,6 @@ double CollisionSystem::distance(SDL_Point p1, SDL_Point p2) {
 //xDelta2 and yDelta2 are the amount other moved before causing the collision.
 void CollisionSystem::resolveCollision(DisplayObject* d, DisplayObject* other, int xDelta1, int yDelta1, int xDelta2, int yDelta2) {
   std::cout << "Collision" << std::endl;
+  d->position = d->lastNonCollidedPos;
+  other->position = other->lastNonCollidedPos;
 }
