@@ -114,7 +114,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 	if (pressedKeys.find(SDL_SCANCODE_K) != pressedKeys.end()) {
 		crocodile->position.y += 1;
 	}
-	if (pressedKeys.find(SDL_SCANCODE_L) != pressedKeys.end()) {
+	if (pressedKeys.find(SDL_SCANCODE_I) != pressedKeys.end()) {
 		crocodile->position.y -= 1;
 	}
 	if (pressedKeys.find(SDL_SCANCODE_N) != pressedKeys.end()) {
