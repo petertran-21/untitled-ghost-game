@@ -30,6 +30,7 @@ private:
 
 	AnimatedSprite* character;
 	Sprite* crocodile;
+	DisplayObjectContainer* container;
 
 	EventDispatcher* controllerDisp;
 

@@ -168,7 +168,6 @@ vector<SDL_Point> DisplayObject::translateHitbox(SDL_Point upperLeft, SDL_Point 
 	this->hitbox.push_back(at->transformPoint(upperRight.x, upperRight.y));
 	this->hitbox.push_back(at->transformPoint(lowerRight.x, lowerRight.y));
 	this->hitbox.push_back(at->transformPoint(lowerLeft.x, lowerLeft.y));
-
 	return this->hitbox;
 
 }

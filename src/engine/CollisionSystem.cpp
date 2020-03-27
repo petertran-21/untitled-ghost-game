@@ -13,7 +13,7 @@ CollisionSystem::~CollisionSystem(){
 //checks collisions between pairs of DOs where the corresponding types have been requested
 //to be checked (via a single call to watchForCollisions) below.
 void CollisionSystem::update(){
-  // watchForCollisions("player", "wall");
+  watchForCollisions("character", "crocodile");
   // watchForCollisions("player", "enemy");
 }
 
@@ -41,12 +41,19 @@ void CollisionSystem::handleEvent(Event* e){
 //of DOs of a given type (e.g., player vs platform). The system will begin to check all player objects
 //against all platform objects that are in the current scene.
 void CollisionSystem::watchForCollisions(string type1, string type2){
-  for(int i = 1; i < inView.size(); i++) {
-    for(int j = 0; j < inView.size() - 1; j++) {
-      if (inView[i]->type )
+  for(int i = 0; i < inView.size(); i++) {
+    if (inView[i]->id == type1){
+      for(int j = 0; j < inView.size(); j++) {
+        //cout << j << endl;
+        if (inView[j]->id == type2) {
+          if(collidesWith(inView[i], inView[j])){
+            resolveCollision(inView[i], inView[j], 0, 0, 0, 0);
+            }
+          }
+        }
+      }
     }
   }
-}
 
 //returns true iff obj1 hitbox and obj2 hitbox overlap. Uses the following method from DO:
 //	SDL_Point* DisplayObject::getGlobalHitbox();
@@ -70,7 +77,7 @@ bool CollisionSystem::collidesWith(DisplayObject* obj1, DisplayObject* obj2) {
       max1 = hitbox1.at(k).x;
     }
   }
-
+  
   int min2 = 0;
   int max2 = 0;
   for(int k = 1; k < 4; k++) {
@@ -86,11 +93,12 @@ bool CollisionSystem::collidesWith(DisplayObject* obj1, DisplayObject* obj2) {
       max2 = hitbox2.at(k).x;
     }
   }
-
+  
   // if the two hitboxes have overlapping x ranges, check for overlap
   if ((min1 <= min2 && min2 <= max1) || // first on left, second on right
       (min2 <= min1 && min1 <= max2)) { // first on right, second on left
     // for each edge for hitbox1 and each edge in hitbox2
+    
     for(int i = 1; i < 4; i++) {
       for(int j = 1; j < 4; j++) {
         // 3 - intersection: general rule is met
@@ -98,12 +106,14 @@ bool CollisionSystem::collidesWith(DisplayObject* obj1, DisplayObject* obj2) {
            calculateOrientation(hitbox2.at(i-1),hitbox2.at(i),hitbox1.at(j-1),hitbox1.at(j)) == 3) {
           return true;
         }
+        
         // 0 - colinear lines: special case is met
         else if(calculateOrientation(hitbox1.at(i-1),hitbox1.at(i),hitbox2.at(j-1),hitbox2.at(j)) == 0) {
           return true;
         }
       }
     }
+    
     // check if a corner of hb1 is in hb2
     if (isLocatedInRect(hitbox1.at(0), hitbox2) ||
         isLocatedInRect(hitbox1.at(1), hitbox2) ||
@@ -125,7 +135,10 @@ bool CollisionSystem::collidesWith(DisplayObject* obj1, DisplayObject* obj2) {
 }
 
 float CollisionSystem::slope(SDL_Point p1, SDL_Point p2) {
-  float slope = (p2.y - p1.y) / (p2.x - p1.x);
+  float slope = 0.0;
+  if (p2.x - p1.x != 0){
+    slope = (p2.y - p1.y) / (p2.x - p1.x);
+  }
   return slope;
 }
 

@@ -25,6 +25,7 @@ void DOAddedEvent::checkCondition(){
   if (this->DTNumChildren < displayTree->children.size()) {
     this->getSource()->dispatchEvent(this);
     this->DTNumChildren = displayTree->children.size();
+    //cout << "Add Event" << endl;
   }
 }
 
