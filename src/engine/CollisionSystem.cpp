@@ -48,12 +48,12 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
       for(int j = 0; j < inView.size(); j++) {
         //cout << j << endl;
         if (inView[j]->id == type2) {
-          if(collidesWith(inView[i], inView[j])){
-            resolveCollision(inView[i], inView[j],
+            resolveCollision(inView[i], inView[j], 
             inView[i]->position.x - inView[i]->lastNonCollidedPos.x,
             inView[i]->position.y - inView[i]->lastNonCollidedPos.y,
             inView[j]->position.x - inView[j]->lastNonCollidedPos.x,
             inView[j]->position.y - inView[j]->lastNonCollidedPos.y);
+          if(collidesWith(inView[i], inView[j])){
             } else {
               //Save deltas
               vector<SDL_Point> iHitbox = inView[i]->getHitbox();
@@ -399,6 +399,51 @@ double CollisionSystem::distance(SDL_Point p1, SDL_Point p2) {
 //xDelta2 and yDelta2 are the amount other moved before causing the collision.
 void CollisionSystem::resolveCollision(DisplayObject* d, DisplayObject* other, int xDelta1, int yDelta1, int xDelta2, int yDelta2) {
   std::cout << "Collision" << std::endl;
-  d->position = d->lastNonCollidedPos;
-  other->position = other->lastNonCollidedPos;
+  //d->position = d->lastNonCollidedPos;
+  //other->position = other->lastNonCollidedPos;
+
+  // For now just do 5 iterations to get closer -- Should this be recursive? ¯\_(ツ)_/¯
+  int i = 0;
+  bool lastIterartionCollided = true;
+  while(i < 5){
+
+    if (collidesWith(d, other)){
+      // Move further away
+      if (!lastIterartionCollided){
+        xDelta1 = -xDelta1;
+        yDelta1 = - yDelta1;
+
+        xDelta2 = -xDelta2;
+        yDelta2 = -yDelta2;
+      }
+      lastIterartionCollided = true;
+    } else {
+      // Move closer
+      if (lastIterartionCollided){
+        xDelta1 = -xDelta1;
+        yDelta1 = - yDelta1;
+
+        xDelta2 = -xDelta2;
+        yDelta2 = -yDelta2;
+      }
+      lastIterartionCollided = false;
+    }
+
+    // Find midpoints
+    d->position.x = (d->position.x + (d->position.x - xDelta1))/2;
+    d->position.y = (d->position.y + (d->position.y - yDelta1))/2;
+
+    other->position.x = (other->position.x + (other->position.x - xDelta2))/2;
+    other->position.y = (other->position.y + (other->position.y - yDelta2))/2;
+    cout << other->position.x << endl;
+    // Shorten move distance
+    xDelta1 = xDelta1/2;
+    yDelta1 = yDelta1/2;
+
+    xDelta2 = xDelta2/2;
+    yDelta2 = yDelta2/2;
+    i++;
+  }
+
+
 }
