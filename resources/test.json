@@ -1,0 +1,46 @@
+{
+    "sprites": [
+        {
+            "id": "object_A",
+            "basePathFolder": "./resources/object_A",
+            "posX": 0,
+            "posY": 0,
+            "pivotX": 0,
+            "pivotY": 0,
+            "rotation": 0.0,
+            "alpha": 255,
+            "isVisible": true,
+            "isStatic": false,
+            "parent": [],
+            "animationInfo": {
+                "playing": true,
+                "animations": [
+                    {
+                        "animId": "Idle",
+                        "frameCount": 40
+                    },
+                    {
+                        "animId": "Walking",
+                        "frameCount": 40
+                    }
+                ]
+            }
+        },
+        {
+            "id": "object_B",
+            "basePathFolder": "./resources/object_B",
+            "posX": 0,
+            "posY": 0,
+            "pivotX": 0,
+            "pivotY": 0,
+            "rotation": 0.0,
+            "alpha": 255,
+            "isVisible": true,
+            "isStatic": true,
+            "isStaticBaseFile": "/filename",
+            "parent": [
+                "object_A"
+            ]
+        }
+    ]
+}

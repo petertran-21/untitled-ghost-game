@@ -31,5 +31,8 @@
 *.out
 *.app
 
-# bin
+# other folders
 bin/
+demos/
+.DS_Store
+.vscode/

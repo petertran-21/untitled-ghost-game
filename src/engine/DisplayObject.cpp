@@ -1,4 +1,5 @@
 #include "DisplayObject.h"
+#include "AffineTransform.h"
 #include <string>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -6,8 +7,11 @@
 #include <iostream>
 #include <algorithm>
 #include <cmath>
+#include "./rapidxml-1.13/rapidxml.hpp"
 
 #define PI 3.14159265
+
+using namespace rapidxml;
 
 DisplayObject::DisplayObject(){
 	image = NULL;
@@ -36,7 +40,7 @@ DisplayObject::DisplayObject(string id, int red, int green, int blue){
 DisplayObject::~DisplayObject(){
 	//TODO: Get this freeing working
 	if(image != NULL) SDL_FreeSurface(image);
-	if(texture != NULL) SDL_DestroyTexture(texture);	
+	if(texture != NULL) SDL_DestroyTexture(texture);
 }
 
 void DisplayObject::loadTexture(string filepath){
@@ -57,13 +61,21 @@ void DisplayObject::setTexture(SDL_Texture* t){
 	this->curTexture = t;
 }
 
-void DisplayObject::update(set<SDL_Scancode> pressedKeys){
-	
+void DisplayObject::setSourceRect(int x, int y, int width, int height) {
+	srcrect = {x, y, width, height};
+	sourceIsSet = true;
+}
+
+void DisplayObject::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
+
 }
 
 void DisplayObject::draw(AffineTransform &at){
+	if(this->drawBox){
+		this->createHitbox();
+	}
 	applyTransformations(at);
-	
+
 	if(curTexture != NULL && visible) {
 		SDL_Point origin = at.transformPoint(0, 0);
 		SDL_Point upperRight = at.transformPoint(width, 0);
@@ -73,7 +85,7 @@ void DisplayObject::draw(AffineTransform &at){
 		int w = (int)distance(origin, upperRight);
 		int h = (int)distance(upperRight, lowerRight);
 
-		SDL_Rect dstrect = { origin.x, origin.y, w, h };
+		dstrect = { origin.x, origin.y, w, h };
 
 		SDL_RendererFlip flip;
 		if (facingRight) {
@@ -82,9 +94,13 @@ void DisplayObject::draw(AffineTransform &at){
 		else {
 			flip = SDL_FLIP_HORIZONTAL;
 		}
-		
-		SDL_SetTextureAlphaMod(curTexture, alpha);
-		SDL_RenderCopyEx(Game::renderer, curTexture, NULL, &dstrect, calculateRotation(origin, upperRight), &corner, flip);	
+
+		if (sourceIsSet) {
+			SDL_RenderCopyEx(Game::renderer, curTexture, &srcrect, &dstrect, calculateRotation(origin, upperRight), &corner, flip);
+		} else {
+			SDL_RenderCopyEx(Game::renderer, curTexture, NULL, &dstrect, calculateRotation(origin, upperRight), &corner, flip);
+		}
+
 	}
 
 	reverseTransformations(at);
@@ -120,4 +136,54 @@ double DisplayObject::calculateRotation(SDL_Point &origin, SDL_Point &p) {
 	double y = p.y - origin.y;
 	double x = p.x - origin.x;
 	return (atan2(y, x) * 180 / PI);
+}
+
+void DisplayObject::drawHitbox(){
+	drawBox = true;
+
+}
+
+void DisplayObject::createHitbox(){
+	SDL_Point upperLeft = {0, 0};
+	SDL_Point upperRight = {this->width, 0};
+	SDL_Point lowerRight = {this->width, this->height};
+	SDL_Point lowerLeft = {0, this->height};
+	SDL_Point corner = {0, 0};
+
+	vector<SDL_Point> hitBoxPoints = this->translateHitbox(upperLeft, upperRight, lowerRight, lowerLeft);
+	DisplayObject* hitBox = new DisplayObject(this->id + "HitBox", 200,155,255);
+
+	int w = (int)distance(hitBoxPoints.at(0), hitBoxPoints.at(1));
+	int h = (int)distance(hitBoxPoints.at(1), hitBoxPoints.at(2));
+	SDL_Rect rect = { hitBoxPoints.at(0).x, hitBoxPoints.at(0).y, w, h};
+	SDL_RenderCopyEx(Game::renderer, hitBox->curTexture, NULL, &rect, calculateRotation(hitBoxPoints.at(0), hitBoxPoints.at(1)), &corner, SDL_FLIP_NONE);
+}
+
+vector<SDL_Point> DisplayObject::translateHitbox(SDL_Point upperLeft, SDL_Point upperRight, SDL_Point lowerRight, SDL_Point lowerLeft){
+	AffineTransform* at = new AffineTransform();
+	at = this->getGlobalTransform(at);
+	vector<SDL_Point> points = vector<SDL_Point>();
+	this->hitbox = vector<SDL_Point>();
+	this->hitbox.push_back(at->transformPoint(upperLeft.x, upperLeft.y));
+	this->hitbox.push_back(at->transformPoint(upperRight.x, upperRight.y));
+	this->hitbox.push_back(at->transformPoint(lowerRight.x, lowerRight.y));
+	this->hitbox.push_back(at->transformPoint(lowerLeft.x, lowerLeft.y));
+	return this->hitbox;
+
+}
+
+vector<SDL_Point> DisplayObject::getHitbox(){
+	return this->hitbox;
+}
+
+AffineTransform* DisplayObject::getGlobalTransform(AffineTransform* at){
+
+	if (this->parent != NULL){
+		at = this->parent->getGlobalTransform(at);
+		at->translate(this->parent->pivot.x, this->parent->pivot.y);
+	}
+
+	this->applyTransformations(*at);
+
+	return at;
 }

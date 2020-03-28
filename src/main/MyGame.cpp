@@ -1,101 +1,176 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
-#include "Sprite.h"
 #include "MyGame.h"
 
 using namespace std;
 
-MyGame::MyGame() : Game(1200, 1000) {
-	instance = this;
-
+MyGame::MyGame() : Game(1200, 800){
+	camera = new Camera();
+	
 	allSprites = new DisplayObjectContainer();
-	// move that point to the middle
-	allSprites->position = {600, 500};
 	instance->addChild(allSprites);
 
-	sun = new AnimatedSprite("sun");
-	sun->addAnimation("./resources/solarSystem/", "Sun", 4, 2, true);
-	sun->play("Sun");
-	// cout << sun->getWidth() << sun->getHeight();
-	sun->position = {0, 0};
-	sun->width = sun->height = 100;
-	sun->pivot = {50, 50};
-	allSprites->addChild(sun);
+	container = new DisplayObjectContainer();
+	allSprites->addChild(container);
 
-	p1container = new DisplayObjectContainer();
-	p2container = new DisplayObjectContainer();
-	sun->addChild(p1container);
-	sun->addChild(p2container);
+	collisionSystem = new CollisionSystem();
+	displayTreeDisp = new EventDispatcher();
+	DOAdded = new DOAddedEvent(displayTreeDisp, container);
+	DORemoved = new DORemovedEvent(displayTreeDisp, container);
+	displayTreeDisp->addEventListener(collisionSystem, DOAddedEvent::DO_ADDED);
+	displayTreeDisp->addEventListener(collisionSystem, DORemovedEvent::DO_REMOVED);
 
-	planet1 = new Sprite("planet1","./resources/solarSystem/Planet.png");
-	planet1->position = {200, 0};
-	planet1->width = planet1->height = 30;
-	planet1->pivot = {15, 15};
-	p1container->addChild(planet1);
 
-	planet2 = new Sprite("planet2","./resources/solarSystem/Planet.png");
-	planet2->position = {300, 0};
-	planet2->width = planet2->height = 30;
-	planet2->pivot = {15, 15};
-	p2container->addChild(planet2);
+	character = new AnimatedSprite("character");
+	character->addSpriteSheet("./resources/character/character_idle.png", "./resources/character/character_animations.xml", "idle", 16, 2, true);
+	character->addSpriteSheet("./resources/character/character_walk.png", "./resources/character/character_animations2.xml", "walk", 16, 2, true);
+	container->addChild(character);
+	character->drawHitbox();
+	character->play("idle");
+	DOAdded->addChildCalled(character);
+	DOAdded->checkCondition();
 
-	moon1_1 = new Sprite("moon1_1", "./resources/solarSystem/Moon.png");
-	moon1_1->position = {50, 0};
-	moon1_1->width = moon1_1->height = 15;
-	planet1->addChild(moon1_1);
+	crocodile = new Sprite("crocodile", "./resources/enemies/crocodile.png");
+	container->addChild(crocodile);
+	crocodile->drawHitbox();
+	crocodile->position.x = 300;
+	DOAdded->addChildCalled(crocodile);
+	DOAdded->checkCondition();
+
+	character->createHitbox();
+	crocodile->createHitbox();
+
 }
 
 MyGame::~MyGame(){
+
+	delete camera;
 }
 
 
-void MyGame::update(set<SDL_Scancode> pressedKeys){
+void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
+	int origPosX = character->position.x;
+
 	if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {
-		sun->position.x += 2;
+		character->position.x += 1;
 	}
 	if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end()) {
-		sun->position.x -= 2;
+		character->position.x -= 1;
 	}
 	if (pressedKeys.find(SDL_SCANCODE_DOWN) != pressedKeys.end()) {
-		sun->position.y += 2;
+		character->position.y += 1;
 	}
 	if (pressedKeys.find(SDL_SCANCODE_UP) != pressedKeys.end()) {
-		sun->position.y -= 2;
+		character->position.y -= 1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_V) != pressedKeys.end()) {
+		character->scaleX *= 1.1;
+		character->scaleY *= 1.1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_B) != pressedKeys.end()) {
+		character->scaleX /= 1.1;
+		character->scaleY /= 1.1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_X) != pressedKeys.end()) {
+		character->rotation += 0.1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_C) != pressedKeys.end()) {
+		character->rotation -= 0.1;
+	}
+
+	if (pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end()) {
+		container->position.x += 1;
 	}
 	if (pressedKeys.find(SDL_SCANCODE_A) != pressedKeys.end()) {
-		// sun->rotation += 0.01;
-		p1container->rotation += 0.05;
-		p2container->rotation += 0.03;
-		planet1->rotation += 0.1;
-		p1container->position.x = 100*sin(p1container->rotation);
-		p2container->position.x = 100*sin(p2container->rotation);
+		container->position.x -= 1;
 	}
 	if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end()) {
-		// sun->rotation -= 0.01;
-		p1container->rotation -= 0.05;
-		p2container->rotation -= 0.03;
-		planet1->rotation -= 0.1;
-		p1container->position.x = 100*sin(p1container->rotation);
-		p2container->position.x = 100*sin(p2container->rotation);
-	}
-	if (pressedKeys.find(SDL_SCANCODE_Q) != pressedKeys.end()) {
-		allSprites->scaleX *= 1.05;
-		allSprites->scaleY *= 1.05;
+		container->position.y += 1;
 	}
 	if (pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end()) {
-		allSprites->scaleX *= 1/1.05;
-		allSprites->scaleY *= 1/1.05;
+		container->position.y -= 1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_F) != pressedKeys.end()) {
+		container->scaleX *= 1.1;
+		container->scaleY *= 1.1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_G) != pressedKeys.end()) {
+		container->scaleX /= 1.1;
+		container->scaleY /= 1.1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_E) != pressedKeys.end()) {
+		container->rotation += 0.1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_R) != pressedKeys.end()) {
+		container->rotation -= 0.1;
+	}
+
+	if (pressedKeys.find(SDL_SCANCODE_L) != pressedKeys.end()) {
+		crocodile->position.x += 1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_J) != pressedKeys.end()) {
+		crocodile->position.x -= 1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_K) != pressedKeys.end()) {
+		crocodile->position.y += 1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_I) != pressedKeys.end()) {
+		crocodile->position.y -= 1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_N) != pressedKeys.end()) {
+		crocodile->scaleX *= 1.1;
+		crocodile->scaleY *= 1.1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_M) != pressedKeys.end()) {
+		crocodile->scaleX /= 1.1;
+		crocodile->scaleY /= 1.1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_O) != pressedKeys.end()) {
+		crocodile->rotation += 0.1;
 	}
 	if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end()) {
-		sun->play("Sun");
+		crocodile->rotation -= 0.1;
 	}
-	if (pressedKeys.find(SDL_SCANCODE_L) != pressedKeys.end()) {
-		sun->stop();
+
+	/*
+ 	 * GAME CONTROLLER STUFF
+	 */
+
+	// movement
+	character->position.x += currState.leftStickX * 5;
+	character->position.y += currState.leftStickY * 5;
+
+	// increase scale
+	// integer division truncates, so convert to float
+	character->scaleX += currState.buttonA / 10.0;
+	character->scaleY += currState.buttonA / 10.0;
+
+	// decrease scale
+	// integer division truncates, so convert to float
+	character->scaleX -= currState.buttonB / 10.0;
+	character->scaleY -= currState.buttonB / 10.0;
+
+	if (character->position.x != origPosX){
+		if (!walking){
+			character->play("walk");
+			walking = true;
+		}
+	} else {
+		if (walking){
+			character->play("idle");
+			walking = false;
+		}
 	}
-	Game::update(pressedKeys);
+	
+	//DOAdded->checkCondition();
+	//DORemoved->checkCondition();
+	collisionSystem->update();
+	Game::update(pressedKeys, currState);
 }
 
 void MyGame::draw(AffineTransform &at){
+	//SDL_RenderClear(Game::renderer);
 	Game::draw(at);
+
 }
