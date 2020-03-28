@@ -18,8 +18,9 @@ class Controller {
         struct JoystickState {
             int leftStickX = 0;
             int leftStickY = 0;
-            int buttonA = 0; // currently set to increase scale
-            int buttonB = 0; // currently set to decrease scale
+            int buttonA = 0; 
+            int buttonX = 0; 
+            int buttonY = 0;
         };
 
         Controller();

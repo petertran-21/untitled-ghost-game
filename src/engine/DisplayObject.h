@@ -7,10 +7,8 @@
 #include "AffineTransform.h"
 #include "Controller.h"
 #include <string>
-#include <vector>
 #include <fstream>
 #include <vector>
-
 
 enum directions {N, S, E, W};
 
@@ -68,13 +66,6 @@ public:
 	AffineTransform* getGlobalTransform(AffineTransform* at);
 	SDL_Point lastNonCollidedPos = {0, 0}; 
 
-	void drawHitbox();
-	void createHitbox();
-	vector<SDL_Point> translateHitbox(SDL_Point upperLeft, SDL_Point upperRight, SDL_Point lowerRight, SDL_Point lowerLeft);
-	vector<SDL_Point> getHitbox();
-	AffineTransform* getGlobalTransform(AffineTransform* at);
-	SDL_Point lastNonCollidedPos = {0, 0}; 
-
 private:
 	double distance(SDL_Point &p1, SDL_Point &p2);
 	double calculateRotation(SDL_Point &origin, SDL_Point &p);
@@ -85,8 +76,6 @@ private:
 	SDL_Texture* curTexture;
 
 	bool sourceIsSet = false;
-	
-	vector<SDL_Point> hitbox;
 
 	vector<SDL_Point> hitbox;
 

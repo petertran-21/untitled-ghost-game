@@ -34,10 +34,6 @@ public:
 	bool collidesWith(DisplayObject* obj1, DisplayObject* obj2);
 	// float slope(SDL_Point p1, SDL_Point p2);
 	float calculateArea(float a, float b, float c);
-	double distance(SDL_Point p1, SDL_Point p2);
-	int calculateOrientation(SDL_Point p1, SDL_Point p2, SDL_Point p3, SDL_Point p4);
-	bool isLocatedInRect(SDL_Point hb1_point, vector<SDL_Point> hb2);
-
 	float slope(SDL_Point p1, SDL_Point p2);
 	double distance(SDL_Point p1, SDL_Point p2);
 	int calculateOrientation(SDL_Point p1, SDL_Point p2, SDL_Point p3, SDL_Point p4);
