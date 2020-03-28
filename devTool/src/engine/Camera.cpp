@@ -29,7 +29,19 @@ Camera::Camera() : DisplayObjectContainer()
 
 Camera::~Camera()
 {
-    free();
+    if( window != NULL )
+    {
+        SDL_DestroyWindow( window );
+    }
+    if( renderer != NULL )
+    {
+        SDL_DestroyRenderer( renderer );
+    }
+
+    mouseFocus = false;
+    keyboardFocus = false;
+    width = 0;
+    height = 0;
 }
 
 bool Camera::init()
@@ -171,42 +183,6 @@ void Camera::focus()
 
     //Move window forward
     SDL_RaiseWindow( window );
-}
-
-void Camera::render()
-{
-    if( !minimized )
-    {
-        //Clear screen
-        SDL_SetRenderDrawColor( renderer, 120, 120, 120, 1 );
-        SDL_RenderClear( renderer );
-
-        //Add Grid
-        if( grid )
-        {
-            drawGrid();
-        }
-
-        //Update screen
-        //SDL_RenderPresent( renderer );
-    }
-}
-
-void Camera::free()
-{
-    if( window != NULL )
-    {
-        SDL_DestroyWindow( window );
-    }
-    if( renderer != NULL )
-    {
-        SDL_DestroyRenderer( renderer );
-    }
-
-    mouseFocus = false;
-    keyboardFocus = false;
-    width = 0;
-    height = 0;
 }
 
 void Camera::drawGrid()

@@ -14,11 +14,13 @@
 #include "MouseClickEvent.h"
 #include "Camera.h"
 #include "TemplateBar.h"
-
+#include "json.hpp"
 
 using namespace std;
+using json = nlohmann::json;
 
-class MyGame : public Game{
+class MyGame : public Game
+{
 
 public:
 	MyGame();
@@ -32,7 +34,6 @@ private:
 	//Main screen
 	Camera* main;
 	Scene* allSprites;
-
 	AnimatedSprite* character;
 	TemplateBar* templateBar;
 
@@ -40,6 +41,7 @@ private:
 	Camera* editor;
 	Scene* allComponents;
 
+	//Mouse Observers
 	EventDispatcher* mouseDisp;
 	MouseClickEvent* mouseClick;
 	ClickManager* clickManager;
@@ -47,7 +49,6 @@ private:
 	bool duplicatedLastFrame = true;
 	bool noSpritesSelected = true;
 	
-
 };
 
 #endif

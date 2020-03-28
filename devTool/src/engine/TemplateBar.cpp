@@ -1,31 +1,27 @@
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include "json.hpp"
 #include "TemplateBar.h"
 
-#include <string>
-
-using namespace std;
-using json = nlohmann::json;
-
 TemplateBar::TemplateBar() : DisplayObjectContainer() {
-  this->id = "templateBar";
+  	this->id = "templateBar";
 
-  this->alpha = 100;
-	this->width = 1500;
+	//Make background see-through
+  	this->alpha = 100;
+
+	//this->width = 640;
 	this->height = 200;
 	this->position.x = 0;
-	this->position.y = 500;
+	this->position.y = 400;
 }
 
-TemplateBar::TemplateBar(string id, int red, int green, int blue) : DisplayObjectContainer(id, red, green, blue) {
-  this->id = "templateBar";
+TemplateBar::TemplateBar(int red, int green, int blue) : DisplayObjectContainer(id, red, green, blue) {
+  	this->id = "templateBar";
 
-  this->alpha = 100;
-	this->width = 1500;
+	//Make background see-through
+  	this->alpha = 100;
+
+	//this->width = 640;
 	this->height = 200;
 	this->position.x = 0;
-	this->position.y = 500;
+	this->position.y = 400;
 }
 
 TemplateBar::~TemplateBar() {
@@ -77,4 +73,9 @@ void TemplateBar::loadTemplateBar() {
 	}
 
 	this->width = offset + 100;
+}
+
+void TemplateBar::fitToBottom( int windowWidth, int windowHeight )
+{
+	this->width = windowWidth - this->height;
 }

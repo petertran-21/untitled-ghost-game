@@ -33,12 +33,6 @@ class Camera : public DisplayObjectContainer {
         //Focuses on window
         void focus();
 
-        //Shows windows contents
-        void render();
-
-        //Decallocates internals
-        void free();
-
         //Adds grid
         void addGrid();
 

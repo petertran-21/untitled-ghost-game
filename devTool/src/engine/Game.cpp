@@ -1,42 +1,30 @@
 #include "Game.h"
 
-using namespace std;
-
+/**
+ * STATIC REFERENCES
+ */
 Game* Game::instance;
 unsigned int Game::frameCounter = 0;
-int Game::cellSize = 20;
 
-Game::Game(int windowWidth, int windowHeight){
+Game::Game(){
+
+	/* Singleton pattern */
 	Game::instance = this;
 
-	this->windowWidth = windowWidth;
-	this->windowHeight = windowHeight;
-	gridWidth = windowWidth / cellSize;
-	gridHeight = windowHeight / cellSize;
-
+	//Initalize SDL API
 	initSDL();
 
 	//Initalize the game
 	init();
 
+	//Initalize True-Tone-Font API
 	TTF_Init();
 }
 
-Game::~Game(){
-	delete mouse;
-	delete gameController;
-	pressedKeys.clear();
-	destroyCameras();
-
-	quitSDL();
-}
-
-void Game::destroyCameras()
+void Game::initSDL()
 {
-	for( int i = 0; i < TOTAL_WINDOWS; i++ )
-	{
-		cameras[ i ]->free();
-	}
+	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK);
+	IMG_Init(IMG_INIT_PNG);
 }
 
 void Game::init()
@@ -44,9 +32,6 @@ void Game::init()
 	mouse = new Mouse();
 	gameController = new Controller();
 	initCameras();
-
-	//Add Grid to main screen
-	cameras[ 0 ]->addGrid();
 }
 
 void Game::initCameras()
@@ -58,29 +43,41 @@ void Game::initCameras()
 	}
 }
 
-void Game::quitSDL(){
-	cout << "Quitting sdl" << endl;
-	SDL_JoystickClose(gameController->getJoystick());
+Game::~Game()
+{
+	delete mouse;
+	delete gameController;
+	pressedKeys.clear();
+	destroyCameras();
+	quitSDL();
+}
 
+void Game::destroyCameras()
+{
+	for( int i = 0; i < TOTAL_WINDOWS; i++ )
+	{
+		delete cameras[ i ];
+	}
+}
+
+void Game::quitSDL()
+{
+	cout << "Quitting SDL" << endl;
+	SDL_JoystickClose(gameController->getJoystick());
 	IMG_Quit();
 	SDL_Quit();
 }
 
-void Game::initSDL(){
-	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK);
-	IMG_Init(IMG_INIT_PNG);
-}
-
 void Game::start(){
 
-	int ms_per_frame = (1.0/(double)this->frames_per_sec)*1000;
-	std::clock_t start = std::clock();
+	int ms_per_frame = (1.0/(double)frames_per_sec)*1000;
+	clock_t start = clock();
 
 	bool quit = false;
 	SDL_Event event;
 
 	while(!quit){
-		std::clock_t end = std::clock();
+		clock_t end = clock();
 		double duration = (( end - start ) / (double) CLOCKS_PER_SEC)*1000;
 		if(duration > ms_per_frame){
 			start = end;
@@ -127,10 +124,7 @@ void Game::start(){
 			}
 		}
 
-		//Re-render cameras
-		//updateCameras(); // DO NOT USE ANYMORE... REMOVE ENTIRELY
-
-		//Check all windows
+		//Check window closure
 		bool gameClosed = areAllCamerasClosed();
 		if( gameClosed )
 		{
@@ -151,14 +145,6 @@ bool Game::areAllCamerasClosed()
 		}
 	}
 	return allWindowsClosed;
-}
-
-void Game::updateCameras()
-{
-	for( int i = 0; i < TOTAL_WINDOWS; i++ )
-	{
-		cameras[ i ]->render();
-	}
 }
 
 void Game::handleWindowChange( SDL_Keycode windowCode )

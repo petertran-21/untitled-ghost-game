@@ -21,55 +21,49 @@ class Game : public DisplayObjectContainer {
 
 public:
 
-	/* Singleton pattern */
+	Game();
+
+	/* 
+	 * SINGLETON DESIGN PATERN
+	 */
 	static Game* instance;
 
-	int frames_per_sec = 60;
-	int windowWidth, windowHeight;
-
-	Mouse* mouse;
-	Controller* gameController;
-
-	//Global frame counter
-	static unsigned int frameCounter;
-
-	Game(int windowWidth, int windowHeight);
-	virtual ~Game();
+	//Main game loop
 	void start();
 
-	//Setup internals
-	void init();
-
+	//Polymorphic methods
+	virtual ~Game();
 	virtual void update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, SDL_Renderer* renderer );
 	virtual void draw( AffineTransform &at, SDL_Renderer* renderer );
 
-	int scale = 1;
-	int gridWidth;
-	int gridHeight;
-	static int cellSize;
-
-	//Total windows
+	//Game windows
 	static const int TOTAL_WINDOWS = 2;
-
-	//Our custom windows
 	Camera* cameras[ TOTAL_WINDOWS ];
+
+	//Input Devices
+	Mouse* mouse;
+	Controller* gameController;
 
 private:
 
-	//Handle events
-	void passEventToCameras( SDL_Event& event );
-
-	//Cameras helpers
+	//Camera helpers methods
 	void initCameras();
 	void destroyCameras();
-	void updateCameras();
 	bool areAllCamerasClosed();
+	void passEventToCameras( SDL_Event& event );
 	void handleWindowChange( SDL_Keycode windowCode );
 
+	//Initalizer methods
+	void init();
 	void initSDL();
 	void quitSDL();
+
+	//Keyboard
 	set<SDL_Scancode> pressedKeys;
 
+	//IMPORTANT
+	static unsigned int frameCounter;
+	const int frames_per_sec = 60;
 
 };
 
