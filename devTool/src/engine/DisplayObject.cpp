@@ -13,7 +13,6 @@
 DisplayObject::DisplayObject(){
 	image = NULL;
 	texture = NULL;
-	curTexture = NULL;
 }
 
 DisplayObject::DisplayObject(string id, string filepath){
@@ -50,7 +49,7 @@ void DisplayObject::loadRGBTexture(int red, int green, int blue){
 }
 
 void DisplayObject::setTexture(SDL_Texture* t){
-	this->curTexture = t;
+	this->texture = t;
 }
 
 void DisplayObject::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, SDL_Renderer* renderer ){
@@ -67,10 +66,9 @@ void DisplayObject::draw( AffineTransform &at, SDL_Renderer* renderer )
 	 * This is where at run-time the correct renderer is 
 	 * supplied to DisplayObjects so they can initalize properly
 	 */
-	if( curTexture == NULL )
+	if( texture == NULL )
 	{
 		texture = SDL_CreateTextureFromSurface( renderer, image );
-		setTexture( texture );
 
 		if( isRGB )
 		{
@@ -78,7 +76,7 @@ void DisplayObject::draw( AffineTransform &at, SDL_Renderer* renderer )
 		}
 	}
 
-	if(curTexture != NULL && visible) {
+	if(texture != NULL && visible) {
 		SDL_Point origin = at.transformPoint(0, 0);
 		SDL_Point upperRight = at.transformPoint(width, 0);
 		SDL_Point lowerRight = at.transformPoint(width, height);
@@ -98,11 +96,11 @@ void DisplayObject::draw( AffineTransform &at, SDL_Renderer* renderer )
 
 		if (selected) {
 			DisplayObject* selectBox = new DisplayObject("selectBox",200,155,255);
-	    	SDL_RenderCopyEx(renderer, selectBox->curTexture, NULL, &dstrect, calculateRotation(origin, upperRight), &corner, flip);
+	    	SDL_RenderCopyEx(renderer, selectBox->texture, NULL, &dstrect, calculateRotation(origin, upperRight), &corner, flip);
 		}
 
-		SDL_SetTextureAlphaMod(curTexture, alpha);
-		SDL_RenderCopyEx(renderer, curTexture, NULL, &dstrect, calculateRotation(origin, upperRight), &corner, flip);
+		SDL_SetTextureAlphaMod(texture, alpha);
+		SDL_RenderCopyEx(renderer, texture, NULL, &dstrect, calculateRotation(origin, upperRight), &corner, flip);
 	}
 
 	reverseTransformations(at);

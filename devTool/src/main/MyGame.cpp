@@ -24,14 +24,21 @@ MyGame::MyGame() : Game(1200, 700) {
 
 	//Build main tree
 	main->addChild( allSprites );
+	main->addChild( templateBar );
+	templateBar->loadTemplateBar();
 	instance->addChild( main );
 
 	//Build editor tree
 	editor->addChild( allComponents );
 	instance->addChild( editor );
 
+	/**
+	 * BUG I FOUND
+	 * 
+	 * When you close the window with ID = 2 first and then ID = 1 it causes a seg fault 11
+	 */
+
 	// instance->addChild(templateBar);
-	// templateBar->loadTemplateBar();
 
 	mouseDisp = new EventDispatcher();
 	mouseClick = new MouseClickEvent(mouseDisp, templateBar, Game::mouse, allSprites);

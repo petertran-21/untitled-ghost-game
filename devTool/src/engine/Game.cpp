@@ -128,7 +128,7 @@ void Game::start(){
 		}
 
 		//Re-render cameras
-		updateCameras();
+		//updateCameras(); // DO NOT USE ANYMORE... REMOVE ENTIRELY
 
 		//Check all windows
 		bool gameClosed = areAllCamerasClosed();

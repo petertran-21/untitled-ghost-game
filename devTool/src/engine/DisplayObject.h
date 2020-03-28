@@ -61,9 +61,6 @@ private:
 
 	SDL_Texture* texture = NULL;
 	SDL_Surface* image = NULL;
-
-	/* Texture currently being drawn. Equal to texture for normal DO */
-	SDL_Texture* curTexture;
 };
 
 #endif

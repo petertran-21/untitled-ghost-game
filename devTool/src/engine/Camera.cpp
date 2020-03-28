@@ -146,7 +146,7 @@ void Camera::handleEvent( SDL_Event& e )
 
             //Hide on close
 			case SDL_WINDOWEVENT_CLOSE:
-                SDL_HideWindow( window );
+                SDL_HideWindow( window ); // might be causing "Segmentation fault: 11" error b/c calls destructor but a window is still open
                 break;
         }
 
@@ -187,11 +187,8 @@ void Camera::render()
             drawGrid();
         }
 
-        //Draw everything else
-        //DisplayObjectContainer::draw(at);
-
         //Update screen
-        SDL_RenderPresent( renderer );
+        //SDL_RenderPresent( renderer );
     }
 }
 
@@ -237,7 +234,21 @@ void Camera::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState cu
 
 void Camera::draw( AffineTransform &at, SDL_Renderer* renderer )
 {
+    //Clear screen
+    SDL_SetRenderDrawColor(renderer, 120, 120, 120, 1);
+    SDL_RenderClear(renderer);
+
+    //Adds grid
+    if( grid )
+    {
+        drawGrid();
+    }
+
+    //Draw children
 	DisplayObjectContainer::draw( at, renderer );
+
+    //Update screen
+    SDL_RenderPresent(renderer);
 }
 
 SDL_Renderer* Camera::getRenderer()
