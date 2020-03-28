@@ -16,7 +16,7 @@ EventDispatcher::~EventDispatcher() {
 }
 void EventDispatcher::addEventListener(EventListener* l, string eventType) {
   if (this->listeners->find(eventType) == this->listeners->end()) {
-    std::cout << "created new" << std::endl;
+    //std::cout << "created new" << std::endl;
     this->listeners->insert( {{ eventType, new vector<EventListener*>() }} );
   }
   (*listeners)[eventType]->push_back(l);

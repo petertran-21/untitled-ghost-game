@@ -1,123 +1,176 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
-#include <algorithm>
 #include "MyGame.h"
 
 using namespace std;
 
 MyGame::MyGame() : Game(1200, 800){
 	camera = new Camera();
-	scene_1 = new Scene();
-	tweenHandler = new TweenJuggler();
+	
+	allSprites = new DisplayObjectContainer();
+	instance->addChild(allSprites);
 
-	scene_1->loadScene("./resources/scene_1.json");
-	background = static_cast<Layer*>(scene_1->getChild("background"));
-	midground = static_cast<Layer*>(scene_1->getChild("midground"));
-	foreground = static_cast<Layer*>(scene_1->getChild("foreground"));
+	container = new DisplayObjectContainer();
+	allSprites->addChild(container);
 
-	foreground->speedRate=5.0;
-	background->speedRate=4.0;
-	midground->speedRate=2.0;
+	collisionSystem = new CollisionSystem();
+	displayTreeDisp = new EventDispatcher();
+	DOAdded = new DOAddedEvent(displayTreeDisp, container);
+	DORemoved = new DORemovedEvent(displayTreeDisp, container);
+	displayTreeDisp->addEventListener(collisionSystem, DOAddedEvent::DO_ADDED);
+	displayTreeDisp->addEventListener(collisionSystem, DORemovedEvent::DO_REMOVED);
 
-	//main_character = new DisplayObjectContainer("main_character", "./resources/character/Idle_1.png");
-	main_character = new AnimatedSprite("Run");
-	main_character->addAnimation("./resources/character/","Run",20,1,true);
-	main_character->play("Run");
-	main_character->layer="foreground";
 
-	this->addChild(camera);
-	camera->addChild(scene_1);
-	foreground->addChild(main_character);
+	character = new AnimatedSprite("character");
+	character->addSpriteSheet("./resources/character/character_idle.png", "./resources/character/character_animations.xml", "idle", 16, 2, true);
+	character->addSpriteSheet("./resources/character/character_walk.png", "./resources/character/character_animations2.xml", "walk", 16, 2, true);
+	container->addChild(character);
+	character->drawHitbox();
+	character->play("idle");
+	DOAdded->addChildCalled(character);
+	DOAdded->checkCondition();
 
-	main_character->position.x = 600 - (main_character->width / 2);		// 1/2 screenwidth
-	main_character->position.y = 400 - (main_character->height / 2);	// 1/2 screenheight
+	crocodile = new Sprite("crocodile", "./resources/enemies/crocodile.png");
+	container->addChild(crocodile);
+	crocodile->drawHitbox();
+	crocodile->position.x = 300;
+	DOAdded->addChildCalled(crocodile);
+	DOAdded->checkCondition();
 
-	characterFadeIn = new Tween(main_character, TweenTransitions(TweenTransitionTypes::LINEAR)); //currently frames, needs to be millis
-	characterFadeIn->animate(TweenableParams::ALPHA, 0, 255, 15.0);
-	characterFadeIn->animate(TweenableParams::Y, main_character->position.y - 50, main_character->position.y, 15.0);
-	tweenHandler->add(characterFadeIn);
+	character->createHitbox();
+	crocodile->createHitbox();
+
 }
 
 MyGame::~MyGame(){
-	delete scene_1;
+
 	delete camera;
 }
 
-void MyGame::update(set<SDL_Scancode> pressedKeys){
-	tweenHandler->nextFrame();
-	for (std::set<SDL_Scancode>::iterator it = pressedKeys.begin(); it != pressedKeys.end(); ++it){
-		switch(*it){
-			// Translation
-			case SDL_SCANCODE_LEFT:	// Left arrow key
-				background->position.x -= background->speedRate;
-				midground->position.x -= midground->speedRate;
 
-				camera->position.x += foreground->speedRate;
-				main_character->position.x -= foreground->speedRate;
-				break;
-			case SDL_SCANCODE_RIGHT:	// Right arrow key
-				background->position.x += background->speedRate;
-				midground->position.x += midground->speedRate;
-				
-				camera->position.x -= foreground->speedRate;
-				main_character->position.x += foreground->speedRate;
-				break;
-			case SDL_SCANCODE_UP:	// Up arrow key
-				break;
-			case SDL_SCANCODE_DOWN:	// Down arrow key
-				break;
-			// Scaling
-			case SDL_SCANCODE_Q:
-				// camera->scaleX -= 0.1;
-				// camera->scaleY -= 0.1;
-				// if (this->scaleX > 0.2 && this->scaleY > 0.2){	// max size 0.1
-				// 	this->scaleX -= 0.1;
-				// 	this->scaleY -= 0.1;
-				// }
-				break;
-			case SDL_SCANCODE_W:
-				break;
-			// Pivot Movement
-			case SDL_SCANCODE_I:
-				break;
-			case SDL_SCANCODE_J:
-				break;
-			case SDL_SCANCODE_K:
-				break;
-			case SDL_SCANCODE_L:
-				break;
-			// Rotation
-			case SDL_SCANCODE_A:
-				break;
-			case SDL_SCANCODE_S:
-				break;
-			// Visibility
-			case SDL_SCANCODE_P:
-				// if (using_scene_1){		// We were using Scene 1, so switch to Scene 2 now.
-				// 	this->addChild(scene_2);
-				// 	this->children.erase(std::remove(this->children.begin(), this->children.end(), scene_1), this->children.end());
-				// } else {
-				// 	this->addChild(scene_1);
-				// 	this->children.erase(std::remove(this->children.begin(), this->children.end(), scene_2), this->children.end());
-				// }
-				// using_scene_1 = !using_scene_1;
-				break;
-			// Transparency
-			case SDL_SCANCODE_Z:	// Fade in
-				if (alpha < 250) { alpha += 5; }
-				break;
-			case SDL_SCANCODE_X:	// Fade out
-				if (alpha > 5){ alpha -= 5; }
-				break;
-		}
+void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
+	int origPosX = character->position.x;
 
+	if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {
+		character->position.x += 1;
 	}
-	Game::update(pressedKeys);
+	if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end()) {
+		character->position.x -= 1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_DOWN) != pressedKeys.end()) {
+		character->position.y += 1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_UP) != pressedKeys.end()) {
+		character->position.y -= 1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_V) != pressedKeys.end()) {
+		character->scaleX *= 1.1;
+		character->scaleY *= 1.1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_B) != pressedKeys.end()) {
+		character->scaleX /= 1.1;
+		character->scaleY /= 1.1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_X) != pressedKeys.end()) {
+		character->rotation += 0.1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_C) != pressedKeys.end()) {
+		character->rotation -= 0.1;
+	}
+
+	if (pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end()) {
+		container->position.x += 1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_A) != pressedKeys.end()) {
+		container->position.x -= 1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end()) {
+		container->position.y += 1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end()) {
+		container->position.y -= 1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_F) != pressedKeys.end()) {
+		container->scaleX *= 1.1;
+		container->scaleY *= 1.1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_G) != pressedKeys.end()) {
+		container->scaleX /= 1.1;
+		container->scaleY /= 1.1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_E) != pressedKeys.end()) {
+		container->rotation += 0.1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_R) != pressedKeys.end()) {
+		container->rotation -= 0.1;
+	}
+
+	if (pressedKeys.find(SDL_SCANCODE_L) != pressedKeys.end()) {
+		crocodile->position.x += 1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_J) != pressedKeys.end()) {
+		crocodile->position.x -= 1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_K) != pressedKeys.end()) {
+		crocodile->position.y += 1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_I) != pressedKeys.end()) {
+		crocodile->position.y -= 1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_N) != pressedKeys.end()) {
+		crocodile->scaleX *= 1.1;
+		crocodile->scaleY *= 1.1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_M) != pressedKeys.end()) {
+		crocodile->scaleX /= 1.1;
+		crocodile->scaleY /= 1.1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_O) != pressedKeys.end()) {
+		crocodile->rotation += 0.1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end()) {
+		crocodile->rotation -= 0.1;
+	}
+
+	/*
+ 	 * GAME CONTROLLER STUFF
+	 */
+
+	// movement
+	character->position.x += currState.leftStickX * 5;
+	character->position.y += currState.leftStickY * 5;
+
+	// increase scale
+	// integer division truncates, so convert to float
+	character->scaleX += currState.buttonA / 10.0;
+	character->scaleY += currState.buttonA / 10.0;
+
+	// decrease scale
+	// integer division truncates, so convert to float
+	character->scaleX -= currState.buttonB / 10.0;
+	character->scaleY -= currState.buttonB / 10.0;
+
+	if (character->position.x != origPosX){
+		if (!walking){
+			character->play("walk");
+			walking = true;
+		}
+	} else {
+		if (walking){
+			character->play("idle");
+			walking = false;
+		}
+	}
+	
+	//DOAdded->checkCondition();
+	//DORemoved->checkCondition();
+	collisionSystem->update();
+	Game::update(pressedKeys, currState);
 }
 
 void MyGame::draw(AffineTransform &at){
 	//SDL_RenderClear(Game::renderer);
 	Game::draw(at);
-	//SDL_RenderPresent(Game::renderer);
+
 }

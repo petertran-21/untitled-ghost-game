@@ -7,6 +7,10 @@
 #include "Game.h"
 #include "AnimatedSprite.h"
 #include "EventDispatcher.h"
+#include "DOAddedEvent.h"
+#include "DORemovedEvent.h"
+#include "CollisionSystem.h"
+#include "Controller.h"
 #include "QuestManager.h"
 #include "PickedUpEvent.h"
 #include "Scene.h"
@@ -24,30 +28,27 @@ public:
 	MyGame();
 	virtual ~MyGame();
 
-	virtual void update(set<SDL_Scancode> pressedKeys);
+	virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 	virtual void draw(AffineTransform &at);
 
 private:
 
-	AnimatedSprite* sun;
-	Sprite* planet1;
-	Sprite* planet2;
-	Sprite* moon1_1;
+	DisplayObjectContainer* allSprites;
 
-	Camera* camera;
-	Sound* sound_manager;
-	Scene* scene_1;
-	Scene* scene_2;
+	Camera* camera;	
+	AnimatedSprite* character;
+	Sprite* crocodile;
+	DisplayObjectContainer* container;
 
-	AnimatedSprite* main_character;
-	Layer* background;
-	Layer* midground;
-	Layer* foreground;
+	EventDispatcher* controllerDisp;
 
-	TweenJuggler* tweenHandler;
-	Tween* characterFadeIn;
+	EventDispatcher* displayTreeDisp;
+	CollisionSystem* collisionSystem;
+	DOAddedEvent* DOAdded;
+	DORemovedEvent* DORemoved;
 
-	bool using_scene_1;
+	bool walking = false;
+
 };
 
 #endif

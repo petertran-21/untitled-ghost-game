@@ -5,11 +5,9 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #include "DisplayObjectContainer.h"
-#include "EventDispatcher.h"
-#include "PickedUpEvent.h"
-#include "QuestManager.h"
 #include <vector>
 #include <set>
+#include "Controller.h"
 
 using namespace std;
 
@@ -24,6 +22,7 @@ public:
 	int windowWidth, windowHeight;
 
 	SDL_Window * window;
+	Controller* gameController;
 	static SDL_Renderer* renderer;
 
 	//Global frame counter
@@ -33,7 +32,7 @@ public:
 	virtual ~Game();
 	void start();
 
-	virtual void update(set<SDL_Scancode> pressedKeys);
+	virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 	virtual void draw(AffineTransform &at);
 
 private:
