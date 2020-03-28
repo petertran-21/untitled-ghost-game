@@ -2,6 +2,8 @@
 #include "DOAddedEvent.h"
 #include "DORemovedEvent.h"
 
+#include <cmath>
+
 CollisionSystem::CollisionSystem(){
 
 }
@@ -47,7 +49,11 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
         //cout << j << endl;
         if (inView[j]->id == type2) {
           if(collidesWith(inView[i], inView[j])){
-            resolveCollision(inView[i], inView[j], 0, 0, 0, 0);
+            resolveCollision(inView[i], inView[j],
+            inView[i]->position.x - inView[i]->lastNonCollidedPos.x,
+            inView[i]->position.y - inView[i]->lastNonCollidedPos.y,
+            inView[j]->position.x - inView[j]->lastNonCollidedPos.x,
+            inView[j]->position.y - inView[j]->lastNonCollidedPos.y);
             } else {
               //Save deltas
               vector<SDL_Point> iHitbox = inView[i]->getHitbox();
@@ -55,7 +61,7 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
               inView[i]->lastNonCollidedPos.x = iHitbox[0].x;
               inView[i]->lastNonCollidedPos.y = iHitbox[0].y;
               inView[j]->lastNonCollidedPos.x = jHitbox[0].x;
-              inView[j]->lastNonCollidedPos.x = jHitbox[0].x;
+              inView[j]->lastNonCollidedPos.y = jHitbox[0].y;
             }
           }
         }
@@ -131,7 +137,7 @@ bool CollisionSystem::collidesWith(DisplayObject* obj1, DisplayObject* obj2) {
       (minY2 <= minY1 && minY1 <= maxY2))) {
 
     // for each edge for hitbox1 and each edge in hitbox2
-    if(calculateOrientation(hitbox1.at(0),hitbox1.at(1),hitbox2.at(0),hitbox2.at(1)) == 3 &&
+    if(calculateOrientation(hitbox1.at(0),hitbox1.at(1),hitbox2.at(1),hitbox2.at(0)) == 3 &&
        calculateOrientation(hitbox2.at(0),hitbox2.at(1),hitbox1.at(0),hitbox1.at(1)) == 3) {
          // std::cout << "general collision1" << std::endl;
       return true;
@@ -141,7 +147,7 @@ bool CollisionSystem::collidesWith(DisplayObject* obj1, DisplayObject* obj2) {
          // std::cout << "general collision2" << std::endl;
       return true;
     }
-    else if(calculateOrientation(hitbox1.at(0),hitbox1.at(1),hitbox2.at(2),hitbox2.at(3)) == 3 &&
+    else if(calculateOrientation(hitbox1.at(0),hitbox1.at(1),hitbox2.at(3),hitbox2.at(2)) == 3 &&
        calculateOrientation(hitbox2.at(2),hitbox2.at(3),hitbox1.at(0),hitbox1.at(1)) == 3) {
          // std::cout << "general collision3" << std::endl;
       return true;
@@ -152,7 +158,7 @@ bool CollisionSystem::collidesWith(DisplayObject* obj1, DisplayObject* obj2) {
       return true;
     }
     //
-    else if(calculateOrientation(hitbox1.at(1),hitbox1.at(2),hitbox2.at(0),hitbox2.at(1)) == 3 &&
+    else if(calculateOrientation(hitbox1.at(1),hitbox1.at(2),hitbox2.at(1),hitbox2.at(0)) == 3 &&
        calculateOrientation(hitbox2.at(0),hitbox2.at(1),hitbox1.at(1),hitbox1.at(2)) == 3) {
          // std::cout << "general collision5" << std::endl;
       return true;
@@ -162,7 +168,7 @@ bool CollisionSystem::collidesWith(DisplayObject* obj1, DisplayObject* obj2) {
          // std::cout << "general collision6" << std::endl;
       return true;
     }
-    else if(calculateOrientation(hitbox1.at(1),hitbox1.at(2),hitbox2.at(2),hitbox2.at(3)) == 3 &&
+    else if(calculateOrientation(hitbox1.at(1),hitbox1.at(2),hitbox2.at(3),hitbox2.at(2)) == 3 &&
        calculateOrientation(hitbox2.at(2),hitbox2.at(3),hitbox1.at(1),hitbox1.at(2)) == 3) {
          // std::cout << "general collision7" << std::endl;
       return true;
@@ -173,7 +179,7 @@ bool CollisionSystem::collidesWith(DisplayObject* obj1, DisplayObject* obj2) {
       return true;
     }
     //
-    else if(calculateOrientation(hitbox1.at(2),hitbox1.at(3),hitbox2.at(0),hitbox2.at(1)) == 3 &&
+    else if(calculateOrientation(hitbox1.at(2),hitbox1.at(3),hitbox2.at(1),hitbox2.at(0)) == 3 &&
        calculateOrientation(hitbox2.at(0),hitbox2.at(1),hitbox1.at(2),hitbox1.at(3)) == 3) {
          // std::cout << "general collision9" << std::endl;
       return true;
@@ -183,7 +189,7 @@ bool CollisionSystem::collidesWith(DisplayObject* obj1, DisplayObject* obj2) {
          // std::cout << "general collision10" << std::endl;
       return true;
     }
-    else if(calculateOrientation(hitbox1.at(2),hitbox1.at(3),hitbox2.at(2),hitbox2.at(3)) == 3 &&
+    else if(calculateOrientation(hitbox1.at(2),hitbox1.at(3),hitbox2.at(3),hitbox2.at(2)) == 3 &&
        calculateOrientation(hitbox2.at(2),hitbox2.at(3),hitbox1.at(2),hitbox1.at(3)) == 3) {
          // std::cout << "general collision11" << std::endl;
       return true;
@@ -194,7 +200,7 @@ bool CollisionSystem::collidesWith(DisplayObject* obj1, DisplayObject* obj2) {
       return true;
     }
     //
-    else if(calculateOrientation(hitbox1.at(3),hitbox1.at(0),hitbox2.at(0),hitbox2.at(1)) == 3 &&
+    else if(calculateOrientation(hitbox1.at(3),hitbox1.at(0),hitbox2.at(1),hitbox2.at(0)) == 3 &&
        calculateOrientation(hitbox2.at(0),hitbox2.at(1),hitbox1.at(3),hitbox1.at(0)) == 3) {
          // std::cout << "general collision13" << std::endl;
       return true;
@@ -204,7 +210,7 @@ bool CollisionSystem::collidesWith(DisplayObject* obj1, DisplayObject* obj2) {
          // std::cout << "general collision14" << std::endl;
       return true;
     }
-    else if(calculateOrientation(hitbox1.at(3),hitbox1.at(0),hitbox2.at(2),hitbox2.at(3)) == 3 &&
+    else if(calculateOrientation(hitbox1.at(3),hitbox1.at(0),hitbox2.at(3),hitbox2.at(2)) == 3 &&
        calculateOrientation(hitbox2.at(2),hitbox2.at(3),hitbox1.at(3),hitbox1.at(0)) == 3) {
          // std::cout << "general collision15" << std::endl;
       return true;
@@ -322,37 +328,41 @@ bool CollisionSystem::collidesWith(DisplayObject* obj1, DisplayObject* obj2) {
   return false;
 }
 
-float CollisionSystem::slope(SDL_Point p1, SDL_Point p2) {
-  float slope = 0.0;
-  if (p2.x - p1.x != 0){
-    slope = float(p2.y - p1.y) / float(p2.x - p1.x);
-  }
-  if (slope == -0) {
-    slope = 0.0;
-  }
-  return slope;
-}
+// float CollisionSystem::slope(SDL_Point p1, SDL_Point p2) {
+//   float slope = 0.0;
+//   if (p2.x - p1.x != 0){
+//     slope = float(p2.y - p1.y) / float(p2.x - p1.x);
+//   }
+//   if (slope == -0) {
+//     slope = 0.0;
+//   }
+//   return slope;
+// }
 
 int CollisionSystem::calculateOrientation(SDL_Point p1, SDL_Point p2, SDL_Point p3, SDL_Point p4) {
   // first point test
   int firstTurn = 0;
   int secondTurn = 0;
+  int val1 = (p2.y - p1.y) * (p3.x - p2.x) -
+              (p2.x - p1.x) * (p3.y - p2.y);
+  int val2 = (p2.y - p1.y) * (p4.x - p2.x) -
+              (p2.x - p1.x) * (p4.y - p2.y);
   // std::cout << "---" << std::endl;
-  // std::cout << "slope1" << slope(p1,p2) << " " << slope(p2,p3) << std::endl;
-  // std::cout << "slope2" << slope(p1,p2) << " " << slope(p2,p4) << std::endl;
-  if (slope(p1,p2) < slope(p2,p3)) {
+  // std::cout << "val1" << val1 << std::endl;
+  // std::cout << "val2" << val2 << std::endl;
+  if (val1 > 0) {
     // left turn detected, set to 1
     firstTurn = 1;
-  } else if (slope(p2,p3) < slope(p1,p2)) {
+  } else if (val1 < 0) {
     // right turn detected, set to 2
     firstTurn = 2;
   }
 
   // second point test
-  if (slope(p1,p2) < slope(p2,p4)) {
+  if (val2 > 0) {
     // left turn detected, set to 1
     secondTurn = 1;
-  } else if (slope(p2,p4) < slope(p1,p2)) {
+  } else if (val2 < 0) {
     // right turn detected, set to 2
     secondTurn = 2;
   }
@@ -364,14 +374,20 @@ int CollisionSystem::calculateOrientation(SDL_Point p1, SDL_Point p2, SDL_Point 
 bool CollisionSystem::isLocatedInRect(SDL_Point hb1_point, vector<SDL_Point> hb2) {
   // area = 1/2[x1(y2-y3) + x2(y3-y1) + x3(y1-y2)]
   float rectArea = float(distance(hb2.at(0), hb2.at(1)) * distance(hb2.at(1), hb2.at(2)));
-  float area1 = ((hb1_point.x * (hb2.at(0).y - hb2.at(1).y)) + (hb2.at(0).x * (hb2.at(1).y - hb1_point.y)) + (hb2.at(1).x * (hb1_point.y - hb2.at(0).y))) / 2;
-  float area2 = ((hb1_point.x * (hb2.at(1).y - hb2.at(2).y)) + (hb2.at(1).x * (hb2.at(2).y - hb1_point.y)) + (hb2.at(2).x * (hb1_point.y - hb2.at(1).y))) / 2;
-  float area3 = ((hb1_point.x * (hb2.at(2).y - hb2.at(3).y)) + (hb2.at(2).x * (hb2.at(3).y - hb1_point.y)) + (hb2.at(3).x * (hb1_point.y - hb2.at(2).y))) / 2;
-  float area4 = ((hb1_point.x * (hb2.at(3).y - hb2.at(0).y)) + (hb2.at(3).x * (hb2.at(0).y - hb1_point.y)) + (hb2.at(0).x * (hb1_point.y - hb2.at(3).y))) / 2;
+  float area1 = calculateArea(distance(hb1_point,hb2.at(0)), distance(hb1_point,hb2.at(1)), distance(hb2.at(0),hb2.at(1)));
+  float area2 = calculateArea(distance(hb1_point,hb2.at(1)), distance(hb1_point,hb2.at(2)), distance(hb2.at(1),hb2.at(2)));
+  float area3 = calculateArea(distance(hb1_point,hb2.at(2)), distance(hb1_point,hb2.at(3)), distance(hb2.at(2),hb2.at(3)));
+  float area4 = calculateArea(distance(hb1_point,hb2.at(3)), distance(hb1_point,hb2.at(0)), distance(hb2.at(3),hb2.at(0)));
   if (area1 + area2 + area3 + area4 == rectArea) {
     return true;
   }
   return false;
+}
+
+float CollisionSystem::calculateArea(float a, float b, float c) {
+  float p = (a+b+c)/2;
+  float ans = sqrt(p*(p-a)*(p-b)*(p-c));
+  return ans;
 }
 
 double CollisionSystem::distance(SDL_Point p1, SDL_Point p2) {
