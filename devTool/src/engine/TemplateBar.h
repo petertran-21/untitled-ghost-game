@@ -12,19 +12,15 @@ using json = nlohmann::json;
 
 class TemplateBar : public DisplayObjectContainer{
 
-public:
-	TemplateBar();
-  TemplateBar(int red, int green, int blue);
-	~TemplateBar();
+  public:
+    TemplateBar();
+    TemplateBar(int red, int green, int blue);
+    ~TemplateBar();
 
-  //Load characters
-  void loadTemplateBar();
+    //Load characters
+    void loadTemplateBar();
 
-  //Fit to camera
-  void fitToBottom( int windowHeight );
-
-private:
-
+  private:
 
 };
 
