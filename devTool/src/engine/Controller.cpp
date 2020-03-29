@@ -29,6 +29,8 @@ Controller::Controller() {
 };
 
 Controller::~Controller() {
+	SDL_JoystickClose( joystick );
+	cout << "Joystick closed!" << endl;
     joystick = NULL;
 };
 
@@ -118,10 +120,6 @@ void Controller::setState(SDL_Event event) {
 
 
 	}
-}
-
-SDL_Joystick* Controller::getJoystick() {
-    return joystick;
 }
 
 Controller::JoystickState Controller::getJoystickState() {

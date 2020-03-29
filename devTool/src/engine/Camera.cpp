@@ -50,6 +50,8 @@ Camera::~Camera()
         SDL_DestroyRenderer( renderer );
     }
 
+    window = NULL;
+    renderer = NULL;
     mouseFocus = false;
     keyboardFocus = false;
     width = 0;

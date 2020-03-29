@@ -56,7 +56,6 @@ void Game::destroyCameras()
 void Game::quitSDL()
 {
 	cout << "Quitting SDL" << endl;
-	SDL_JoystickClose(gameController->getJoystick());
 	IMG_Quit();
 	SDL_Quit();
 }
