@@ -31,8 +31,6 @@ public:
 
 	void start();
 	virtual ~Game();
-	virtual void update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, SDL_Renderer* renderer );
-	virtual void draw( AffineTransform &at, SDL_Renderer* renderer );
 
 	static const int TOTAL_WINDOWS = 2;
 	const int screenWidths[TOTAL_WINDOWS] = { 1000, 450 }; // { mainW, editorW, ... }

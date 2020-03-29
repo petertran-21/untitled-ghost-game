@@ -156,12 +156,3 @@ void Game::passEventToCameras( SDL_Event& event )
 		cameras[ i ]->handleEvent( event );
 	}
 }
-
-void Game::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, SDL_Renderer* renderer )
-{
-	DisplayObjectContainer::update( pressedKeys, currState, renderer );
-}
-
-void Game::draw( AffineTransform &at, SDL_Renderer* renderer )
-{
-}

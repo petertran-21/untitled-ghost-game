@@ -25,16 +25,12 @@ class MyGame : public Game
 public:
 	MyGame();
 	virtual ~MyGame();
-	
-	virtual void update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, SDL_Renderer* renderer );
-	virtual void draw( AffineTransform &at, SDL_Renderer* renderer );
 
 private:
 
 	//Main screen
 	Camera* main;
 	Scene* allSprites;
-	AnimatedSprite* character;
 	TemplateBar* templateBar;
 
 	//Editor screen

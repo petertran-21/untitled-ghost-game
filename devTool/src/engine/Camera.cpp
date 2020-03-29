@@ -217,6 +217,17 @@ void Camera::drawGrid()
 
 void Camera::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, SDL_Renderer* renderer )
 {
+    /**
+     * IMPORTANT
+     * 
+     * This is where you have access to everything on a 
+     * specific screen AND the latest keyboard and controller data.
+     */
+    for( DisplayObject* character : children )
+    {
+
+    }
+
 	DisplayObjectContainer::update( pressedKeys, currState, renderer );
 }
 

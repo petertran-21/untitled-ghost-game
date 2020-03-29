@@ -47,11 +47,3 @@ MyGame::~MyGame()
 	delete mouseClick;
 	delete clickManager;
 }
-
-void MyGame::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, SDL_Renderer* renderer )
-{
-}
-
-void MyGame::draw( AffineTransform &at, SDL_Renderer* renderer )
-{
-}
