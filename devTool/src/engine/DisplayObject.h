@@ -51,7 +51,7 @@ public:
 	DisplayObject(string id, int red, int green, int blue);
 	virtual ~DisplayObject();
 	
-	virtual void update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, SDL_Renderer* renderer );
+	virtual void update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, Mouse* mouse, SDL_Renderer* renderer );
 	virtual void draw( AffineTransform &at, SDL_Renderer* renderer );
 
 	void loadTexture(string filepath);

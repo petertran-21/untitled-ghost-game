@@ -56,7 +56,7 @@ class Camera : public DisplayObjectContainer {
 
         //Game maintaining
         //Very important for maintaining the run-time polymorphism that recursively distributes data to all nodes
-	    virtual void update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, SDL_Renderer* renderer );
+	    virtual void update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, Mouse* mouse, SDL_Renderer* renderer );
 	    virtual void draw( AffineTransform &at, SDL_Renderer* renderer );
 
     private:

@@ -97,11 +97,11 @@ DisplayObjectContainer* DisplayObjectContainer::copy(){
 	return copy;
 }
 
-void DisplayObjectContainer::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, SDL_Renderer* renderer ) 
+void DisplayObjectContainer::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, Mouse* mouse, SDL_Renderer* renderer ) 
 {
-    DisplayObject::update( pressedKeys, currState, renderer );
+    DisplayObject::update( pressedKeys, currState, mouse, renderer );
     for (int i = 0; i < children.size(); i++) {
-        children[i]->update( pressedKeys, currState, renderer );
+        children[i]->update( pressedKeys, currState, mouse, renderer );
     }
 }
 

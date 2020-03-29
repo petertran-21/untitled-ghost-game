@@ -74,7 +74,7 @@ void Game::start()
 		double duration = (( end - start ) / (double) CLOCKS_PER_SEC)*1000;
 		if(duration > ms_per_frame)
 		{
-			//limiting unnecessary update() and draw() calls
+			//timer system to limit unnecessary updating and drawing
 			start = end;
 			
 			Camera* main = cameras[ 0 ];
@@ -83,8 +83,8 @@ void Game::start()
 			SDL_Renderer* mainRenderer = main->getRenderer();
 			SDL_Renderer* editorRenderer = editor->getRenderer();
 
-			main->update( pressedKeys, gameController->getJoystickState(), mainRenderer );
-			editor->update( pressedKeys, gameController->getJoystickState(), editorRenderer );
+			main->update( pressedKeys, gameController->getJoystickState(), mouse, mainRenderer );
+			editor->update( pressedKeys, gameController->getJoystickState(), mouse, editorRenderer );
 
 			AffineTransform at;
 			main->draw( at, mainRenderer );

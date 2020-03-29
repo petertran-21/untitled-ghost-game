@@ -43,7 +43,7 @@ void DisplayObject::setTexture(SDL_Texture* t){
 	this->texture = t;
 }
 
-void DisplayObject::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, SDL_Renderer* renderer ){
+void DisplayObject::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, Mouse* mouse, SDL_Renderer* renderer ){
 
 }
 

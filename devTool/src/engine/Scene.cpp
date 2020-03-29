@@ -140,9 +140,9 @@ vector<DisplayObject*>* Scene::getAllObjects(DisplayObject* sprite){
     return objects;
 }
 
-void Scene::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, SDL_Renderer* renderer )
+void Scene::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, Mouse* mouse, SDL_Renderer* renderer )
 {
-    DisplayObjectContainer::update( pressedKeys, currState, renderer );
+    DisplayObjectContainer::update( pressedKeys, currState, mouse, renderer );
 }
 
 void Scene::draw( AffineTransform &at, SDL_Renderer* renderer )

@@ -215,7 +215,7 @@ void Camera::drawGrid()
     }
 }
 
-void Camera::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, SDL_Renderer* renderer )
+void Camera::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, Mouse* mouse, SDL_Renderer* renderer )
 {
     /**
      * IMPORTANT
@@ -223,12 +223,15 @@ void Camera::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState cu
      * This is where you have access to everything on a 
      * specific screen AND the latest keyboard and controller data.
      */
-    for( DisplayObject* character : children )
+    if( hasMouseFocus() )
     {
-
+        for( DisplayObject* character : children )
+        {
+            
+        }
     }
 
-	DisplayObjectContainer::update( pressedKeys, currState, renderer );
+	DisplayObjectContainer::update( pressedKeys, currState, mouse, renderer );
 }
 
 void Camera::draw( AffineTransform &at, SDL_Renderer* renderer )
