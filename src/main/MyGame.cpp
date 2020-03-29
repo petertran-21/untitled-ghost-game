@@ -48,6 +48,10 @@ MyGame::MyGame() : Game(1000, 1000){
 
 	player = new Ghost();
 	allSprites->addChild(player);
+	container->addChild(player);
+	player->drawHitbox();
+	DOAdded->addChildCalled(player);
+	DOAdded->checkCondition();
 	
 	npc = new NPCPyromancer();
 	npc->position.x += 300;
@@ -62,6 +66,7 @@ MyGame::MyGame() : Game(1000, 1000){
 	DOAdded->addChildCalled(npc2);
 	DOAdded->checkCondition();
 
+	player->createHitbox();
 	npc->createHitbox();
 	npc2->createHitbox();
 
@@ -69,7 +74,7 @@ MyGame::MyGame() : Game(1000, 1000){
 	// player->npc = npc;
 
 	//run following line to possess archer
-	player->npc = npc2;
+	//player->npc = npc2;
 	//-----------------------------------------
 
 

@@ -5,7 +5,7 @@
 using namespace std;
 
 NPCPyromancer::NPCPyromancer() : MainNPC(){
-    this->id = "pyro";
+    //this->id = "pyro";
     this->position.x = 100;
     this->position.y = 100;
 	this->addAnimation("./resources/npcs/", "npc_base", 2, 1, true);

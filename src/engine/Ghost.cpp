@@ -18,6 +18,8 @@ using namespace std;
 Ghost::Ghost() : AnimatedSprite("Ghost"){
 
 	this->type = "Ghost";
+
+	this->npc = NULL;
 	
 	this->position.x = 55;
 	this->position.y = 200;
@@ -162,6 +164,11 @@ void Ghost::state_possessing(set<SDL_Scancode> pressedKeys, Controller::Joystick
 		// if (colliding w/NPC) MainNPC* npc = npc we're colliding with;
 		// else return;
 
+		if (npc == NULL){
+			state_switch(ghost_states::Idle);
+			return;
+		}
+
 		isPossessing = true;
 		npc->is_possessed = true;
 	}
@@ -176,6 +183,7 @@ void Ghost::state_possessing(set<SDL_Scancode> pressedKeys, Controller::Joystick
 	//wait for NPC to eject player
 	if (npc->is_possessed == false){
 		isPossessing = false;
+		npc = NULL;
 		state_switch(ghost_states::Idle);
 	}
 

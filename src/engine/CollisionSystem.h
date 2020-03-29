@@ -5,6 +5,9 @@
 #include "DisplayObjectContainer.h"
 #include "EventListener.h"
 
+#include "Ghost.h"
+#include "MainNPC.h"
+
 #include <iostream>
 
 using namespace std;
@@ -43,6 +46,7 @@ public:
 	//xDelta1 and yDelta1 are the amount d moved before causing the collision.
 	//xDelta2 and yDelta2 are the amount other moved before causing the collision.
 	void resolveCollision(DisplayObject* d, DisplayObject* other, int xDelta1, int yDelta1, int xDelta2, int yDelta2);
+	void resolveCollision_Ghost_NPC(DisplayObject* ghost, DisplayObject* npc);
 
 private:
 	vector<DisplayObject*> inView;

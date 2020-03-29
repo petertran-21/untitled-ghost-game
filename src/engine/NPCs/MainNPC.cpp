@@ -5,7 +5,7 @@
 using namespace std;
 
 MainNPC::MainNPC() : AnimatedSprite("NPC"){
-    
+    this->type = "NPC";
 }
 
 void MainNPC::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){

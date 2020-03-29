@@ -27,7 +27,7 @@ public:
 	virtual void onCollision(DisplayObject* other);
 	void boo();
 
-	MainNPC* npc; //for testing purposes...
+	MainNPC* npc;
 
 	/* Health and such */
 	int health = 100;

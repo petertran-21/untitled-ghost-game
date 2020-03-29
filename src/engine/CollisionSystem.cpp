@@ -16,7 +16,7 @@ CollisionSystem::~CollisionSystem(){
 //to be checked (via a single call to watchForCollisions) below.
 void CollisionSystem::update(){
   watchForCollisions("pyro", "archer");
-  // watchForCollisions("player", "enemy");
+  watchForCollisions("Ghost", "NPC");
 }
 
 //This system watches the game's display tree and is notified whenever a display object is placed onto
@@ -49,11 +49,18 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
         //cout << j << endl;
         if (inView[j]->id == type2) {
           if(collidesWith(inView[i], inView[j])){
-            resolveCollision(inView[i], inView[j],
-            inView[i]->position.x - inView[i]->lastNonCollidedPos.x,
-            inView[i]->position.y - inView[i]->lastNonCollidedPos.y,
-            inView[j]->position.x - inView[j]->lastNonCollidedPos.x,
-            inView[j]->position.y - inView[j]->lastNonCollidedPos.y);
+
+            if (type1 == "Ghost" && type2 == "NPC"){
+              resolveCollision_Ghost_NPC(inView[i], inView[j]);
+            }
+            else{
+              resolveCollision(inView[i], inView[j],
+              inView[i]->position.x - inView[i]->lastNonCollidedPos.x,
+              inView[i]->position.y - inView[i]->lastNonCollidedPos.y,
+              inView[j]->position.x - inView[j]->lastNonCollidedPos.x,
+              inView[j]->position.y - inView[j]->lastNonCollidedPos.y);
+            }
+
             } else {
               //Save deltas
               vector<SDL_Point> iHitbox = inView[i]->getHitbox();
@@ -447,4 +454,11 @@ void CollisionSystem::resolveCollision(DisplayObject* d, DisplayObject* other, i
 
 
 
+}
+
+void CollisionSystem::resolveCollision_Ghost_NPC(DisplayObject* ghost, DisplayObject* npc) {
+  Ghost* g = dynamic_cast<Ghost*>(ghost);
+
+  g->npc = (MainNPC*)npc;
+  //ghost->npc = npc;
 }
