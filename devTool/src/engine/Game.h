@@ -35,6 +35,8 @@ public:
 	virtual void draw( AffineTransform &at, SDL_Renderer* renderer );
 
 	static const int TOTAL_WINDOWS = 2;
+	const int screenWidths[TOTAL_WINDOWS] = { 1000, 450 }; // { mainW, editorW, ... }
+	const int screenHeights[TOTAL_WINDOWS] = { 600, 500 }; // { mainH, editorH, ... }
 	Camera* cameras[ TOTAL_WINDOWS ];
 	Mouse* mouse;
 	Controller* gameController;

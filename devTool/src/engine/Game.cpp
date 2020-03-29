@@ -31,7 +31,7 @@ void Game::initCameras()
 {
 	for( int i = 0; i < TOTAL_WINDOWS; i++ )
 	{
-		cameras[ i ] = new Camera();
+		cameras[ i ] = new Camera( screenWidths[ i ], screenHeights[ i ] );
 		cameras[ i ]->init();
 	}
 }

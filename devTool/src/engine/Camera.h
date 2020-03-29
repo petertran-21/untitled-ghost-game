@@ -22,6 +22,7 @@ class Camera : public DisplayObjectContainer {
 
     public:
         Camera();
+        Camera(int width, int height);
         ~Camera();
 
         //Creates window
@@ -81,8 +82,6 @@ class Camera : public DisplayObjectContainer {
         bool shown;
 
         const int GRID_CELL_SIZE = 20;
-        const int SCREEN_WIDTH = 640;
-        const int SCREEN_HEIGHT = 480;
 
 };
 

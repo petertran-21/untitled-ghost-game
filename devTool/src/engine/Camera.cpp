@@ -11,20 +11,32 @@
 
 Camera::Camera() : DisplayObjectContainer()
 {
-    //Initialize window and renderer
     window = NULL;
     renderer = NULL;
+    windowID = -1;
+    
+    width = 640;
+    height = 480;
+    grid = false;
 
-    //Initialize focusing
     mouseFocus = false;
     keyboardFocus = false;
     shown = false;
-    windowID = -1;
+}
 
-    //Intialize window size
-    width = 0;
-    height = 0;
+Camera::Camera( int width, int height ) : DisplayObjectContainer()
+{
+    window = NULL;
+    renderer = NULL;
+    windowID = -1;
+    
+    this->width = width;
+    this->height = height;
     grid = false;
+
+    mouseFocus = false;
+    keyboardFocus = false;
+    shown = false;
 }
 
 Camera::~Camera()
@@ -47,13 +59,11 @@ Camera::~Camera()
 bool Camera::init()
 {
     //Create window
-    window = SDL_CreateWindow( "Untilted Ghost Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE );
+    window = SDL_CreateWindow( "Untilted Ghost Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE );
     if ( window != NULL ) 
     {
         mouseFocus = true;
         keyboardFocus = true;
-        width = SCREEN_WIDTH;
-        height = SCREEN_WIDTH;
 
         //Create renderer for window
         renderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC );
