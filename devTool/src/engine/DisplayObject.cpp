@@ -1,14 +1,4 @@
 #include "DisplayObject.h"
-#include <string>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include "Game.h"
-#include "Mouse.h"
-#include <iostream>
-#include <algorithm>
-#include <cmath>
-
-#define PI 3.14159265
 
 DisplayObject::DisplayObject(){
 	image = NULL;
@@ -30,13 +20,14 @@ DisplayObject::DisplayObject(string id, int red, int green, int blue){
 	this->blue = blue;
 	this->green = green;
 
-	this->loadRGBTexture(red, green, blue);
+	loadRGBTexture(red, green, blue);
 }
 
 DisplayObject::~DisplayObject(){
-	//TODO: Get this freeing working
-	if(image != NULL) SDL_FreeSurface(image);
-	if(texture != NULL) SDL_DestroyTexture(texture);
+	SDL_FreeSurface(image);
+	SDL_DestroyTexture(texture);
+	image = NULL;
+	texture = NULL;
 }
 
 void DisplayObject::loadTexture(string filepath){
@@ -63,8 +54,12 @@ void DisplayObject::draw( AffineTransform &at, SDL_Renderer* renderer )
 	/**
 	 * IMPORTANT
 	 * 
-	 * This is where at run-time the correct renderer is 
-	 * supplied to DisplayObjects so they can initalize properly
+	 * In order to create an SDL_Texture, you need its
+	 * renderer at instantiation. Because this is not known
+	 * until a DisplayObject is added to a specific window,
+	 * we initalize the texture at run-time when it is drawn to
+	 * its screen for the first time.
+	 * 
 	 */
 	if( texture == NULL )
 	{
@@ -102,7 +97,6 @@ void DisplayObject::draw( AffineTransform &at, SDL_Renderer* renderer )
 		SDL_SetTextureAlphaMod(texture, alpha);
 		SDL_RenderCopyEx(renderer, texture, NULL, &dstrect, calculateRotation(origin, upperRight), &corner, flip);
 	}
-
 	reverseTransformations(at);
 }
 
@@ -119,6 +113,8 @@ DisplayObject* DisplayObject::copy(){
 	copy->rotation = this->rotation;
 	copy->scaleX = this->scaleX;
 	copy->scaleY = this->scaleY;
+	copy->facingRight = this->facingRight;
+	copy->isRGB = this->isRGB;
 
 	return copy;
 }

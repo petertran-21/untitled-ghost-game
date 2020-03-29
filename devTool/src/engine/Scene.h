@@ -4,9 +4,18 @@
 #include "DisplayObjectContainer.h"
 #include "Controller.h"
 #include "Sprite.h"
+#include "AnimatedSprite.h"
 #include <string>
 #include <vector>
 #include <fstream>
+#include <iostream>
+#include "json.hpp"
+#include <iomanip>
+#include <unordered_map>
+
+using json = nlohmann::json;
+
+using namespace std;
 
 class Scene : public DisplayObjectContainer{
 

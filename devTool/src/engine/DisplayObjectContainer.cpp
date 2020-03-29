@@ -1,11 +1,4 @@
 #include "DisplayObjectContainer.h"
-#include "AffineTransform.h"
-#include <vector>
-#include <string>
-#include "Game.h"
-
-using namespace std;
-
 
 DisplayObjectContainer::DisplayObjectContainer() : DisplayObject() {
     this->type = "DisplayObjectContainer";
@@ -94,6 +87,8 @@ DisplayObjectContainer* DisplayObjectContainer::copy(){
 	copy->rotation = this->rotation;
 	copy->scaleX = this->scaleX;
 	copy->scaleY = this->scaleY;
+    copy->facingRight = this->facingRight;
+	copy->isRGB = this->isRGB;
 
     for (auto child : children){
         copy->addChild(child->copy());

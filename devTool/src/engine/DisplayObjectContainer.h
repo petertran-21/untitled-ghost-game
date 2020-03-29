@@ -1,11 +1,10 @@
 #ifndef DISPLAYOBJECTCONTAINER_H
 #define DISPLAYOBJECTCONTAINER_H
 
-#include <vector>
 #include "DisplayObject.h"
 #include "AffineTransform.h"
 #include "Controller.h"
-// #include "Event.h"
+#include <vector>
 #include <string>
 #include <fstream>
 
@@ -34,7 +33,9 @@ public:
 	virtual void update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, SDL_Renderer* renderer );
 	virtual void draw( AffineTransform &at, SDL_Renderer* renderer );
 
+	//Node's children
 	vector<DisplayObject*> children;
+
 private:
 
 

@@ -1,17 +1,9 @@
 #include "Scene.h"
-#include "AnimatedSprite.h"
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <string>
-#include <iostream>
-#include <fstream>
-#include "json.hpp"
-#include <iomanip>
-#include <unordered_map>
 
-using json = nlohmann::json;
-// Scene contstructor just calls parent DOC constructor
-Scene::Scene() : DisplayObjectContainer(){this->type = "Scene";}
+Scene::Scene() : DisplayObjectContainer()
+{
+    this->type = "Scene";
+}
 
 void Scene::loadScene(string sceneFilePath){
     std::ifstream i(sceneFilePath);
