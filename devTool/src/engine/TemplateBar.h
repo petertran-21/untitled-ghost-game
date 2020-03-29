@@ -21,7 +21,7 @@ public:
   void loadTemplateBar();
 
   //Fit to camera
-  void fitToBottom( int windowWidth, int windowHeight );
+  void fitToBottom( int windowHeight );
 
 private:
 

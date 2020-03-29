@@ -30,7 +30,6 @@ MyGame::MyGame() : Game()
 	//Perform various operations
 	main->addGrid();
 	templateBar->loadTemplateBar();
-	templateBar->fitToBottom( main->getWidth(), main->getHeight() );
 
 	//Initalize mouse observers
 	mouseDisp = new EventDispatcher();
