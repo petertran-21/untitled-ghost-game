@@ -37,7 +37,6 @@ MyGame::MyGame() : Game()
 	mouseClick = new MouseClickEvent(mouseDisp, templateBar, Game::mouse, allSprites);
 	clickManager = new ClickManager();
 	mouseDisp->addEventListener(clickManager, MouseClickEvent::TILE_SELECTED);
-
 }
 
 MyGame::~MyGame()

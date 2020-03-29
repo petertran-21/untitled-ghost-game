@@ -17,7 +17,8 @@
 
 using namespace std;
 
-class Game : public DisplayObjectContainer {
+class Game : public DisplayObjectContainer
+{
 
 public:
 
@@ -28,40 +29,32 @@ public:
 	 */
 	static Game* instance;
 
-	//Main game loop
 	void start();
-
-	//Polymorphic methods
 	virtual ~Game();
 	virtual void update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, SDL_Renderer* renderer );
 	virtual void draw( AffineTransform &at, SDL_Renderer* renderer );
 
-	//Game windows
 	static const int TOTAL_WINDOWS = 2;
 	Camera* cameras[ TOTAL_WINDOWS ];
-
-	//Input Devices
 	Mouse* mouse;
 	Controller* gameController;
 
 private:
 
-	//Camera helpers methods
+	void init();
+	void initSDL();
+	void quitSDL();
+
 	void initCameras();
 	void destroyCameras();
 	bool areAllCamerasClosed();
 	void passEventToCameras( SDL_Event& event );
 	void handleWindowChange( SDL_Keycode windowCode );
 
-	//Initalizer methods
-	void init();
-	void initSDL();
-	void quitSDL();
-
 	//Keyboard
 	set<SDL_Scancode> pressedKeys;
 
-	//IMPORTANT
+	//Global frame counter and frame rate
 	static unsigned int frameCounter;
 	const int frames_per_sec = 60;
 

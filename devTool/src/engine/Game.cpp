@@ -6,18 +6,11 @@
 Game* Game::instance;
 unsigned int Game::frameCounter = 0;
 
-Game::Game(){
-
-	/* Singleton pattern */
+Game::Game()
+{
 	Game::instance = this;
-
-	//Initalize SDL API
 	initSDL();
-
-	//Initalize the game
 	init();
-
-	//Initalize True-Tone-Font API
 	TTF_Init();
 }
 
@@ -68,44 +61,41 @@ void Game::quitSDL()
 	SDL_Quit();
 }
 
-void Game::start(){
-
+void Game::start()
+{
 	int ms_per_frame = (1.0/(double)frames_per_sec)*1000;
 	clock_t start = clock();
 
 	bool quit = false;
 	SDL_Event event;
 
-	while(!quit){
+	while(!quit)
+	{
 		clock_t end = clock();
 		double duration = (( end - start ) / (double) CLOCKS_PER_SEC)*1000;
-		if(duration > ms_per_frame){
+		if(duration > ms_per_frame)
+		{
+			//limiting unnecessary update() and draw() calls
 			start = end;
 			
-			//Get camerasd
 			Camera* main = cameras[ 0 ];
 			Camera* editor = cameras[ 1 ];
- 
-			//Get renderers
+
 			SDL_Renderer* mainRenderer = main->getRenderer();
 			SDL_Renderer* editorRenderer = editor->getRenderer();
 
-			//Distribute important data
 			main->update( pressedKeys, gameController->getJoystickState(), mainRenderer );
 			editor->update( pressedKeys, gameController->getJoystickState(), editorRenderer );
 
-			//Create transformation matrix
 			AffineTransform at;
-
-			//Draw screens
 			main->draw( at, mainRenderer );
 			editor->draw( at, editorRenderer );
 
-			//Update frame counter
 			frameCounter++;
 		}
 
-		while(SDL_PollEvent(&event)) {
+		while(SDL_PollEvent(&event)) 
+		{
 			gameController->setState(event);
 			mouse->setState(event);
 			passEventToCameras(event);
