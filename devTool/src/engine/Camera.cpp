@@ -235,8 +235,11 @@ void Camera::draw( AffineTransform &at, SDL_Renderer* renderer, Mouse* mouse )
     //Draw children
 	DisplayObjectContainer::draw( at, renderer, mouse );
 
-    //Draw mouse select box
-    mouse->drawSelectBox( renderer );
+    //Draw select box on current screen
+    if( mouseFocus )
+    {
+        mouse->drawSelectBox( renderer );
+    }
 
     //Update screen
     SDL_RenderPresent(renderer);
