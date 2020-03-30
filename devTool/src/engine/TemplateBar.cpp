@@ -73,20 +73,35 @@ void TemplateBar::loadTemplateBar() {
 
 void TemplateBar::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, Mouse* mouse, SDL_Renderer* renderer )
 {
+	fitToBottom();
+	slideLeft(pressedKeys);
+	slideRight(pressedKeys);
+	DisplayObjectContainer::update( pressedKeys, currState, mouse, renderer );
+}
+
+void TemplateBar::fitToBottom()
+{
+	position.y = parent->height - height;
+}
+
+void TemplateBar::slideLeft(set<SDL_Scancode> pressedKeys)
+{
 	if (pressedKeys.find(SDL_SCANCODE_N) != pressedKeys.end())
-    {
-		if ((this->position.x + this->parent->width) < this->parent->width)
-        {
-			this->position.x += Camera::getGridCellSize();
+	{
+		if ((position.x + parent->width) < parent->width)
+		{
+			position.x += Camera::getGridCellSize();
 		}
 	}
+}
 
+void TemplateBar::slideRight(set<SDL_Scancode> pressedKeys)
+{
 	if (pressedKeys.find(SDL_SCANCODE_M) != pressedKeys.end())
     {
-		if ((this->position.x + this->width) > this->parent->width)
+		if ((position.x + width) > parent->width)
         {
-			this->position.x -= Camera::getGridCellSize();
+			position.x -= Camera::getGridCellSize();
 		}
 	}
-	DisplayObjectContainer::update( pressedKeys, currState, mouse, renderer );
 }

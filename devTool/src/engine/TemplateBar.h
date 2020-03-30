@@ -18,12 +18,16 @@ class TemplateBar : public DisplayObjectContainer{
     TemplateBar(int red, int green, int blue);
     ~TemplateBar();
 
-    virtual void update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, Mouse* mouse, SDL_Renderer* renderer );
-
     //Load characters
     void loadTemplateBar();
 
+    virtual void update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, Mouse* mouse, SDL_Renderer* renderer );
+
   private:
+
+    void fitToBottom();
+    void slideLeft(set<SDL_Scancode> pressedKeys);
+    void slideRight(set<SDL_Scancode> pressedKeys);
 
 };
 
