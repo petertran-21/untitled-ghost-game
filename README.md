@@ -17,5 +17,9 @@ Untitled Ghost Game (lovingly shortened to UGG) is a 2D Exploratory Puzzle Game 
 
 ## Installation
 
-don't 
-^aw sad :-(
+If you receive the `fatal error: 'SDL2/SDL_mixer.h' file not found` message upon running `make`, you can fix it by running the following command-line command...
+
+- MacOS users
+    - `$ brew install sdl2_mixer`
+- Windows users
+    - pretty sure this issue only exists for MacOS
