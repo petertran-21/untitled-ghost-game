@@ -90,7 +90,9 @@ void DisplayObject::draw( AffineTransform &at, SDL_Renderer* renderer, Mouse* mo
 		}
 
 		if (selected) {
-			DisplayObject* selectBox = new DisplayObject("selectBox",200,155,255);
+			DisplayObject* selectBox = new DisplayObject("selectBox",200,155,255); //definetly a memory leak, should fix later
+			selectBox->texture = SDL_CreateTextureFromSurface( renderer, selectBox->image );
+			SDL_SetTextureBlendMode( selectBox->texture, SDL_BLENDMODE_BLEND );
 	    	SDL_RenderCopyEx(renderer, selectBox->texture, NULL, &dstrect, calculateRotation(origin, upperRight), &corner, flip);
 		}
 
