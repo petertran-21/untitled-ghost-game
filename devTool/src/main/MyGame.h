@@ -45,9 +45,6 @@ private:
 	EventDispatcher* mouseDisp;
 	MouseClickEvent* mouseClick;
 	ClickManager* clickManager;
-
-	bool duplicatedLastFrame = true;
-	bool noSpritesSelected = true;
 	
 };
 
