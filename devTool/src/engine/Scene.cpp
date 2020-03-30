@@ -324,7 +324,6 @@ void Scene::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
         if ( pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end() ) 
         {
             this->position.x -= Camera::getGridCellSize();
-            //Game::dispGrid->position.x += 1;
         }
         if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end()) {
             this->position.x += Camera::getGridCellSize();
@@ -352,6 +351,7 @@ void Scene::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
         }
     }
 
+    //Save Scene
     if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end())
     {
 		cout << "Save Scene: ";

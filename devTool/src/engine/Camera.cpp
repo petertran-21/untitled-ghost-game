@@ -170,7 +170,7 @@ void Camera::handleEvent( SDL_Event& e )
 
             //Hide on close
 			case SDL_WINDOWEVENT_CLOSE:
-                SDL_HideWindow( window ); // might be causing "Segmentation fault: 11" error b/c calls destructor but a window is still open
+                SDL_HideWindow( window );
                 break;
         }
 
