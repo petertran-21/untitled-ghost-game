@@ -5,6 +5,7 @@
 #include "Sprite.h"
 #include "AnimatedSprite.h"
 #include "json.hpp"
+#include "Camera.h"
 #include <string>
 
 using namespace std;
@@ -16,6 +17,8 @@ class TemplateBar : public DisplayObjectContainer{
     TemplateBar();
     TemplateBar(int red, int green, int blue);
     ~TemplateBar();
+
+    virtual void update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, Mouse* mouse, SDL_Renderer* renderer );
 
     //Load characters
     void loadTemplateBar();

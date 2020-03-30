@@ -70,3 +70,23 @@ void TemplateBar::loadTemplateBar() {
 
 	this->width = offset + 100;
 }
+
+void TemplateBar::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, Mouse* mouse, SDL_Renderer* renderer )
+{
+	if (pressedKeys.find(SDL_SCANCODE_N) != pressedKeys.end())
+    {
+		if ((this->position.x + this->parent->width) < this->parent->width)
+        {
+			this->position.x += Camera::getGridCellSize();
+		}
+	}
+
+	if (pressedKeys.find(SDL_SCANCODE_M) != pressedKeys.end())
+    {
+		if ((this->position.x + this->width) > this->parent->width)
+        {
+			this->position.x -= Camera::getGridCellSize();
+		}
+	}
+	DisplayObjectContainer::update( pressedKeys, currState, mouse, renderer );
+}
