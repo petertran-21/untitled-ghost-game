@@ -1,31 +1,23 @@
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include "json.hpp"
 #include "TemplateBar.h"
 
-#include <string>
-
-using namespace std;
-using json = nlohmann::json;
-
 TemplateBar::TemplateBar() : DisplayObjectContainer() {
-  this->id = "templateBar";
+  	this->id = "templateBar";
 
-  this->alpha = 100;
+	this->position.x = 0;
+	this->position.y = 400;
 	this->width = 1500;
 	this->height = 200;
-	this->position.x = 0;
-	this->position.y = 500;
+	this->alpha = 100;
 }
 
-TemplateBar::TemplateBar(string id, int red, int green, int blue) : DisplayObjectContainer(id, red, green, blue) {
-  this->id = "templateBar";
+TemplateBar::TemplateBar(int red, int green, int blue) : DisplayObjectContainer(id, red, green, blue) {
+  	this->id = "templateBar";
 
-  this->alpha = 100;
+	this->position.x = 0;
+	this->position.y = 400;
 	this->width = 1500;
 	this->height = 200;
-	this->position.x = 0;
-	this->position.y = 500;
+  	this->alpha = 100;
 }
 
 TemplateBar::~TemplateBar() {
@@ -77,4 +69,39 @@ void TemplateBar::loadTemplateBar() {
 	}
 
 	this->width = offset + 100;
+}
+
+void TemplateBar::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, Mouse* mouse, SDL_Renderer* renderer )
+{
+	fitToBottom();
+	slideLeft(pressedKeys);
+	slideRight(pressedKeys);
+	DisplayObjectContainer::update( pressedKeys, currState, mouse, renderer );
+}
+
+void TemplateBar::fitToBottom()
+{
+	position.y = parent->height - height;
+}
+
+void TemplateBar::slideLeft(set<SDL_Scancode> pressedKeys)
+{
+	if (pressedKeys.find(SDL_SCANCODE_N) != pressedKeys.end())
+	{
+		if ((position.x + parent->width) < parent->width)
+		{
+			position.x += Camera::getGridCellSize();
+		}
+	}
+}
+
+void TemplateBar::slideRight(set<SDL_Scancode> pressedKeys)
+{
+	if (pressedKeys.find(SDL_SCANCODE_M) != pressedKeys.end())
+    {
+		if ((position.x + width) > parent->width)
+        {
+			position.x -= Camera::getGridCellSize();
+		}
+	}
 }

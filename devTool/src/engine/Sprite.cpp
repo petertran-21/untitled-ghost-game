@@ -36,10 +36,10 @@ Sprite* Sprite::copy(){
 	return copy;
 }
 
-void Sprite::update(set<SDL_Scancode> pressedKeys) {
-    DisplayObjectContainer::update(pressedKeys);
+void Sprite::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, Mouse* mouse, SDL_Renderer* renderer ) {
+    DisplayObjectContainer::update( pressedKeys, currState, mouse, renderer );
 }
 
-void Sprite::draw(AffineTransform &at) {
-    DisplayObjectContainer::draw(at);
+void Sprite::draw( AffineTransform &at, SDL_Renderer* renderer, Mouse* mouse ) {
+    DisplayObjectContainer::draw( at, renderer, mouse );
 }

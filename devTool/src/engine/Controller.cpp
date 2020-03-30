@@ -29,6 +29,8 @@ Controller::Controller() {
 };
 
 Controller::~Controller() {
+	SDL_JoystickClose( joystick );
+	cout << "Joystick closed!" << endl;
     joystick = NULL;
 };
 
@@ -48,7 +50,7 @@ void Controller::setState(SDL_Event event) {
 					}
 
 					// right motion
-					else if (event.jaxis.value > JOYSTICK_DEAD_ZONE) {
+					else if (event.jaxis.value > JOYSTICK_DEAD_ZONE) { 
 						currState.leftStickX = 1;
 					}
 
@@ -118,10 +120,6 @@ void Controller::setState(SDL_Event event) {
 
 
 	}
-}
-
-SDL_Joystick* Controller::getJoystick() {
-    return joystick;
 }
 
 Controller::JoystickState Controller::getJoystickState() {

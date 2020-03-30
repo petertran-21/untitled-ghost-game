@@ -1,19 +1,8 @@
 #include "DisplayObject.h"
-#include <string>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include "Game.h"
-#include "Mouse.h"
-#include <iostream>
-#include <algorithm>
-#include <cmath>
-
-#define PI 3.14159265
 
 DisplayObject::DisplayObject(){
 	image = NULL;
 	texture = NULL;
-	curTexture = NULL;
 }
 
 DisplayObject::DisplayObject(string id, string filepath){
@@ -31,41 +20,58 @@ DisplayObject::DisplayObject(string id, int red, int green, int blue){
 	this->blue = blue;
 	this->green = green;
 
-	this->loadRGBTexture(red, green, blue);
+	loadRGBTexture(red, green, blue);
 }
 
 DisplayObject::~DisplayObject(){
-	//TODO: Get this freeing working
-	if(image != NULL) SDL_FreeSurface(image);
-	if(texture != NULL) SDL_DestroyTexture(texture);
+	SDL_FreeSurface(image);
+	SDL_DestroyTexture(texture);
+	image = NULL;
+	texture = NULL;
 }
 
 void DisplayObject::loadTexture(string filepath){
 	image = IMG_Load(filepath.c_str());
-	texture = SDL_CreateTextureFromSurface(Game::renderer, image);
-	setTexture(texture);
 }
 
 void DisplayObject::loadRGBTexture(int red, int green, int blue){
 	image = SDL_CreateRGBSurface(0, 100, 100, 32, 0, 0, 0, 0x000000ff);
 	SDL_FillRect(image, NULL, SDL_MapRGB(image->format, red, green, blue));
-	texture = SDL_CreateTextureFromSurface(Game::renderer, image);
-	SDL_SetTextureBlendMode( texture, SDL_BLENDMODE_BLEND );
-	setTexture(texture);
 }
 
 void DisplayObject::setTexture(SDL_Texture* t){
-	this->curTexture = t;
+	this->texture = t;
 }
 
-void DisplayObject::update(set<SDL_Scancode> pressedKeys){
+void DisplayObject::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, Mouse* mouse, SDL_Renderer* renderer ){
 
 }
 
-void DisplayObject::draw(AffineTransform &at){
+void DisplayObject::draw( AffineTransform &at, SDL_Renderer* renderer, Mouse* mouse )
+{
 	applyTransformations(at);
 
-	if(curTexture != NULL && visible) {
+	/**
+	 * IMPORTANT
+	 * 
+	 * In order to create an SDL_Texture, you need its
+	 * renderer at instantiation. Because this is not known
+	 * until a DisplayObject is added to a specific window,
+	 * we initalize the texture at run-time when it is drawn to
+	 * its screen for the first time.
+	 * 
+	 */
+	if( texture == NULL )
+	{
+		texture = SDL_CreateTextureFromSurface( renderer, image );
+
+		if( isRGB )
+		{
+			SDL_SetTextureBlendMode( texture, SDL_BLENDMODE_BLEND );
+		}
+	}
+
+	if(texture != NULL && visible) {
 		SDL_Point origin = at.transformPoint(0, 0);
 		SDL_Point upperRight = at.transformPoint(width, 0);
 		SDL_Point lowerRight = at.transformPoint(width, height);
@@ -84,14 +90,15 @@ void DisplayObject::draw(AffineTransform &at){
 		}
 
 		if (selected) {
-			DisplayObject* selectBox = new DisplayObject("selectBox",200,155,255);
-	    SDL_RenderCopyEx(Game::renderer, selectBox->curTexture, NULL, &dstrect, calculateRotation(origin, upperRight), &corner, flip);
+			DisplayObject* selectBox = new DisplayObject("selectBox",200,155,255); //definetly a memory leak, should fix later
+			selectBox->texture = SDL_CreateTextureFromSurface( renderer, selectBox->image );
+			SDL_SetTextureBlendMode( selectBox->texture, SDL_BLENDMODE_BLEND );
+	    	SDL_RenderCopyEx(renderer, selectBox->texture, NULL, &dstrect, calculateRotation(origin, upperRight), &corner, flip);
 		}
 
-		SDL_SetTextureAlphaMod(curTexture, alpha);
-		SDL_RenderCopyEx(Game::renderer, curTexture, NULL, &dstrect, calculateRotation(origin, upperRight), &corner, flip);
+		SDL_SetTextureAlphaMod(texture, alpha);
+		SDL_RenderCopyEx(renderer, texture, NULL, &dstrect, calculateRotation(origin, upperRight), &corner, flip);
 	}
-
 	reverseTransformations(at);
 }
 
@@ -108,6 +115,8 @@ DisplayObject* DisplayObject::copy(){
 	copy->rotation = this->rotation;
 	copy->scaleX = this->scaleX;
 	copy->scaleY = this->scaleY;
+	copy->facingRight = this->facingRight;
+	copy->isRGB = this->isRGB;
 
 	return copy;
 }
@@ -143,5 +152,3 @@ double DisplayObject::calculateRotation(SDL_Point &origin, SDL_Point &p) {
 	double x = p.x - origin.x;
 	return (atan2(y, x) * 180 / PI);
 }
-
-

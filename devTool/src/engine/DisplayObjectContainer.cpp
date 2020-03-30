@@ -1,11 +1,4 @@
 #include "DisplayObjectContainer.h"
-#include "AffineTransform.h"
-#include <vector>
-#include <string>
-#include "Game.h"
-
-using namespace std;
-
 
 DisplayObjectContainer::DisplayObjectContainer() : DisplayObject() {
     this->type = "DisplayObjectContainer";
@@ -94,6 +87,8 @@ DisplayObjectContainer* DisplayObjectContainer::copy(){
 	copy->rotation = this->rotation;
 	copy->scaleX = this->scaleX;
 	copy->scaleY = this->scaleY;
+    copy->facingRight = this->facingRight;
+	copy->isRGB = this->isRGB;
 
     for (auto child : children){
         copy->addChild(child->copy());
@@ -102,20 +97,21 @@ DisplayObjectContainer* DisplayObjectContainer::copy(){
 	return copy;
 }
 
-void DisplayObjectContainer::update(set<SDL_Scancode> pressedKeys) {
-    DisplayObject::update(pressedKeys);
+void DisplayObjectContainer::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, Mouse* mouse, SDL_Renderer* renderer ) 
+{
+    DisplayObject::update( pressedKeys, currState, mouse, renderer );
     for (int i = 0; i < children.size(); i++) {
-        children[i]->update(pressedKeys);
+        children[i]->update( pressedKeys, currState, mouse, renderer );
     }
 }
 
-void DisplayObjectContainer::draw(AffineTransform &at) {
-    DisplayObject::draw(at);
+void DisplayObjectContainer::draw( AffineTransform &at, SDL_Renderer* renderer, Mouse* mouse ) {
+    DisplayObject::draw( at, renderer, mouse );
     applyTransformations(at);
     // undo the parent's pivot
     at.translate(pivot.x, pivot.y);
     for (int i = 0; i < children.size(); i++) {
-        children[i]->draw(at);
+        children[i]->draw( at, renderer, mouse );
     }
     // redo the parent's pivot
     at.translate(-pivot.x, -pivot.y);

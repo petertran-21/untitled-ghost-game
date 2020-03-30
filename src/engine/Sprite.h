@@ -8,7 +8,6 @@ using namespace std;
 class Sprite : public DisplayObjectContainer{
 
 public:
-
 	Sprite();
 	Sprite(string id, string filepath);
 	Sprite(string id, int red, int green, int blue);

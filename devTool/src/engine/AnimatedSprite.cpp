@@ -36,7 +36,10 @@ void AnimatedSprite::addAnimation(string basepath, string animName, int numFrame
         Frame* f = new Frame();
         string path = basepath + animName + "_" + to_string(i+1) + ".png";
         f->image = IMG_Load(path.c_str());
-        f->texture = SDL_CreateTextureFromSurface(Game::renderer, f->image);
+
+        //KEEP NULL, set in AnimatedSprite::update() when needed
+        f->texture = NULL;
+
         anim->frames[i] = f;
     }
     animations.push_back(anim);
@@ -107,8 +110,9 @@ AnimatedSprite* AnimatedSprite::copy(){
 	return copy;
 }
 
-void AnimatedSprite::update(set<SDL_Scancode> pressedKeys) {
-    Sprite::update(pressedKeys);
+void AnimatedSprite::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, Mouse* mouse, SDL_Renderer* renderer ) 
+{
+    Sprite::update( pressedKeys, currState, mouse, renderer );
     if (playing) {
         frameCount++;
         if (frameCount % current->frameRate == 0) {
@@ -123,13 +127,27 @@ void AnimatedSprite::update(set<SDL_Scancode> pressedKeys) {
                     stop();
                 }
             }
-            DisplayObject::setTexture(current->frames[current->curFrame]->texture);
+
+            /**
+             * IMPORTANT
+             * 
+             * This is where at run-time the correct renderer is 
+	         * supplied to AnimatedSprites so they can initalize properly
+             */
+            SDL_Surface* currFrameSurface = current->frames[current->curFrame]->image;
+            SDL_Texture* currFrameTexture = current->frames[current->curFrame]->texture;
+            if( currFrameTexture == NULL )
+            {
+                currFrameTexture = SDL_CreateTextureFromSurface( renderer, currFrameSurface );
+            }
+            DisplayObject::setTexture(currFrameTexture);
         }
 
     }
 
 }
 
-void AnimatedSprite::draw(AffineTransform &at) {
-    Sprite::draw(at);
+void AnimatedSprite::draw( AffineTransform &at, SDL_Renderer* renderer, Mouse* mouse ) 
+{
+    Sprite::draw( at, renderer, mouse );
 }
