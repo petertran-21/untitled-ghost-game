@@ -232,6 +232,19 @@ void Scene::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
         //Did the above requirements satisfy selectionf
         if (character->selected) 
         {
+
+            //CONTROLLER movement
+            character->position.x = character->position.x + (currState.leftStickX * Camera::getGridCellSize());
+            character->position.y = character->position.y + (currState.leftStickY * Camera::getGridCellSize());
+
+            //CONTROLLER increasing scale
+            character->width = character->width + (currState.buttonA * Camera::getGridCellSize());
+            character->height = character->height + (currState.buttonA * Camera::getGridCellSize());
+
+            //CONTROLLER decreasing scale
+            character->width = character->width - (currState.buttonB * Camera::getGridCellSize());
+            character->height = character->height - (currState.buttonB * Camera::getGridCellSize());
+
 			if (pressedKeys.find(SDL_SCANCODE_Q) != pressedKeys.end()) 
             {
 				character->width = ceil(1.1*character->width/Camera::getGridCellSize()) * Camera::getGridCellSize();
