@@ -142,6 +142,11 @@ vector<DisplayObject*>* Scene::getAllObjects(DisplayObject* sprite){
 
 void Scene::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, Mouse* mouse, SDL_Renderer* renderer )
 {
+    for( DisplayObject* character : children )
+    {
+        //TODO
+    }
+
     DisplayObjectContainer::update( pressedKeys, currState, mouse, renderer );
 }
 

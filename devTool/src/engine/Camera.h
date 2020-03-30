@@ -6,6 +6,8 @@
 #include <string>
 #include <sstream>
 #include "DisplayObjectContainer.h"
+#include "AnimatedSprite.h"
+#include "Sprite.h"
 
 using namespace std;
 
@@ -40,7 +42,10 @@ class Camera : public DisplayObjectContainer {
         //Window dimensions
         int getWidth();
         int getHeight();
-        int getGridCellSize();
+        static int getGridCellSize()
+        {
+            return GRID_CELL_SIZE;
+        }
 
         /**
          * CRITICAL TO APPLICATION
@@ -71,6 +76,7 @@ class Camera : public DisplayObjectContainer {
         int height;
 
         //Window grid
+        static const int GRID_CELL_SIZE = 20;
         bool grid;
         void drawGrid();
 
@@ -79,9 +85,7 @@ class Camera : public DisplayObjectContainer {
         bool keyboardFocus;
         bool fullScreen;
         bool minimized;
-        bool shown;
-
-        const int GRID_CELL_SIZE = 20;
+        bool shown;      
 
 };
 

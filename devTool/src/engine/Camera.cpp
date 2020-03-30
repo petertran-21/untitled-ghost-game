@@ -217,20 +217,6 @@ void Camera::drawGrid()
 
 void Camera::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState, Mouse* mouse, SDL_Renderer* renderer )
 {
-    /**
-     * IMPORTANT
-     * 
-     * This is where you have access to everything on a 
-     * specific screen AND the latest keyboard and controller data.
-     */
-    if( hasMouseFocus() )
-    {
-        for( DisplayObject* character : children )
-        {
-            
-        }
-    }
-
 	DisplayObjectContainer::update( pressedKeys, currState, mouse, renderer );
 }
 
@@ -271,11 +257,6 @@ int Camera::getWidth()
 int Camera::getHeight()
 {
     return height;
-}
-
-int Camera::getGridCellSize()
-{
-    return GRID_CELL_SIZE;
 }
 
 bool Camera::hasMouseFocus()

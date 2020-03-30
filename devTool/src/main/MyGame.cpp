@@ -33,7 +33,7 @@ MyGame::MyGame() : Game()
 
 	//Initalize mouse observers
 	mouseDisp = new EventDispatcher();
-	mouseClick = new MouseClickEvent(mouseDisp, templateBar, Game::mouse, allSprites);
+	mouseClick = new MouseClickEvent(mouseDisp, templateBar, mouse, allSprites);
 	clickManager = new ClickManager();
 	mouseDisp->addEventListener(clickManager, MouseClickEvent::TILE_SELECTED);
 }
