@@ -17,4 +17,5 @@ Untitled Ghost Game (lovingly shortened to UGG) is a 2D Exploratory Puzzle Game 
 
 ## Installation
 
-don't
+don't 
+^aw sad :-(
