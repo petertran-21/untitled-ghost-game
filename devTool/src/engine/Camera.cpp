@@ -252,16 +252,6 @@ void Camera::addGrid()
     grid = true;
 }
 
-int Camera::getWidth()
-{
-    return width;
-}
-
-int Camera::getHeight()
-{
-    return height;
-}
-
 bool Camera::hasMouseFocus()
 {
     return mouseFocus;

@@ -39,9 +39,7 @@ class Camera : public DisplayObjectContainer {
         //Adds grid
         void addGrid();
 
-        //Window dimensions
-        int getWidth();
-        int getHeight();
+        //Global screen grid size
         static int getGridCellSize()
         {
             return GRID_CELL_SIZE;
@@ -70,10 +68,6 @@ class Camera : public DisplayObjectContainer {
         SDL_Window* window;
         SDL_Renderer* renderer;
         int windowID;
-
-        //Window dimensions
-        int width;
-        int height;
 
         //Window grid
         static const int GRID_CELL_SIZE = 20;
