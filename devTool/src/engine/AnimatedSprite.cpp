@@ -147,7 +147,7 @@ void AnimatedSprite::update( set<SDL_Scancode> pressedKeys, Controller::Joystick
 
 }
 
-void AnimatedSprite::draw( AffineTransform &at, SDL_Renderer* renderer ) 
+void AnimatedSprite::draw( AffineTransform &at, SDL_Renderer* renderer, Mouse* mouse ) 
 {
-    Sprite::draw( at, renderer );
+    Sprite::draw( at, renderer, mouse );
 }

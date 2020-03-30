@@ -220,20 +220,23 @@ void Camera::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState cu
 	DisplayObjectContainer::update( pressedKeys, currState, mouse, renderer );
 }
 
-void Camera::draw( AffineTransform &at, SDL_Renderer* renderer )
+void Camera::draw( AffineTransform &at, SDL_Renderer* renderer, Mouse* mouse )
 {
     //Clear screen
     SDL_SetRenderDrawColor(renderer, 120, 120, 120, 1);
     SDL_RenderClear(renderer);
 
-    //Adds grid
+    //Draw grid
     if( grid )
     {
         drawGrid();
     }
 
     //Draw children
-	DisplayObjectContainer::draw( at, renderer );
+	DisplayObjectContainer::draw( at, renderer, mouse );
+
+    //Draw mouse select box
+    mouse->drawSelectBox( renderer );
 
     //Update screen
     SDL_RenderPresent(renderer);

@@ -40,6 +40,6 @@ void Sprite::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState cu
     DisplayObjectContainer::update( pressedKeys, currState, mouse, renderer );
 }
 
-void Sprite::draw( AffineTransform &at, SDL_Renderer* renderer ) {
-    DisplayObjectContainer::draw( at, renderer );
+void Sprite::draw( AffineTransform &at, SDL_Renderer* renderer, Mouse* mouse ) {
+    DisplayObjectContainer::draw( at, renderer, mouse );
 }

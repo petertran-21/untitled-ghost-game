@@ -47,7 +47,7 @@ void DisplayObject::update( set<SDL_Scancode> pressedKeys, Controller::JoystickS
 
 }
 
-void DisplayObject::draw( AffineTransform &at, SDL_Renderer* renderer )
+void DisplayObject::draw( AffineTransform &at, SDL_Renderer* renderer, Mouse* mouse )
 {
 	applyTransformations(at);
 

@@ -51,6 +51,9 @@ private:
 	void passEventToCameras( SDL_Event& event );
 	void handleWindowChange( SDL_Keycode windowCode );
 
+	//Handles mouse observers
+	virtual void checkConditions();
+
 	//Keyboard
 	set<SDL_Scancode> pressedKeys;
 

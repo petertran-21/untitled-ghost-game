@@ -83,12 +83,13 @@ void Game::start()
 			SDL_Renderer* mainRenderer = main->getRenderer();
 			SDL_Renderer* editorRenderer = editor->getRenderer();
 
+			this->checkConditions();
 			main->update( pressedKeys, gameController->getJoystickState(), mouse, mainRenderer );
 			editor->update( pressedKeys, gameController->getJoystickState(), mouse, editorRenderer );
 
 			AffineTransform at;
-			main->draw( at, mainRenderer );
-			editor->draw( at, editorRenderer );
+			main->draw( at, mainRenderer, mouse );
+			editor->draw( at, editorRenderer, mouse );
 
 			frameCounter++;
 		}
@@ -155,4 +156,9 @@ void Game::passEventToCameras( SDL_Event& event )
 	{
 		cameras[ i ]->handleEvent( event );
 	}
+}
+
+void Game::checkConditions()
+{
+	//Nothing here, calls MyGame
 }

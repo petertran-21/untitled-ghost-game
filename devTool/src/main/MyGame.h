@@ -28,6 +28,10 @@ public:
 
 private:
 
+
+	//Handles mouse observers
+	virtual void checkConditions();
+
 	//Main screen
 	Camera* main;
 	Scene* allSprites;

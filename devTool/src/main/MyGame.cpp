@@ -47,3 +47,8 @@ MyGame::~MyGame()
 	delete mouseClick;
 	delete clickManager;
 }
+
+void MyGame::checkConditions()
+{
+	mouseClick->checkCondition();
+}

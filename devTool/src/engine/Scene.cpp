@@ -145,12 +145,16 @@ void Scene::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
     for( DisplayObject* character : children )
     {
         //TODO
+        if( mouse->leftClick )
+        {
+            cout << "Mouse left click!" << endl;
+        }
     }
 
     DisplayObjectContainer::update( pressedKeys, currState, mouse, renderer );
 }
 
-void Scene::draw( AffineTransform &at, SDL_Renderer* renderer )
+void Scene::draw( AffineTransform &at, SDL_Renderer* renderer, Mouse* mouse )
 {
-    DisplayObjectContainer::draw( at, renderer );
+    DisplayObjectContainer::draw( at, renderer, mouse );
 }

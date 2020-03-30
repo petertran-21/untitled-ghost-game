@@ -105,13 +105,13 @@ void DisplayObjectContainer::update( set<SDL_Scancode> pressedKeys, Controller::
     }
 }
 
-void DisplayObjectContainer::draw( AffineTransform &at, SDL_Renderer* renderer ) {
-    DisplayObject::draw( at, renderer );
+void DisplayObjectContainer::draw( AffineTransform &at, SDL_Renderer* renderer, Mouse* mouse ) {
+    DisplayObject::draw( at, renderer, mouse );
     applyTransformations(at);
     // undo the parent's pivot
     at.translate(pivot.x, pivot.y);
     for (int i = 0; i < children.size(); i++) {
-        children[i]->draw( at, renderer );
+        children[i]->draw( at, renderer, mouse );
     }
     // redo the parent's pivot
     at.translate(-pivot.x, -pivot.y);
