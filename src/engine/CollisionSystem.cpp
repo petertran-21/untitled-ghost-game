@@ -17,6 +17,7 @@ CollisionSystem::~CollisionSystem(){
 void CollisionSystem::update(){
   watchForCollisions("pyro", "archer");
   watchForCollisions("Ghost", "NPC");
+  watchForCollisions("Shrub", "Fire");
 }
 
 //This system watches the game's display tree and is notified whenever a display object is placed onto
@@ -52,6 +53,9 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
 
             if (type1 == "Ghost" && type2 == "NPC"){
               resolveCollision_Ghost_NPC(inView[i], inView[j]);
+            }
+            else if (type1 == "Shrub" && type2 == "Fire"){
+              resolveCollision_Shrub_Fire(inView[i]);
             }
             else{
               resolveCollision(inView[i], inView[j],
@@ -460,5 +464,9 @@ void CollisionSystem::resolveCollision_Ghost_NPC(DisplayObject* ghost, DisplayOb
   Ghost* g = dynamic_cast<Ghost*>(ghost);
 
   g->npc = (MainNPC*)npc;
-  //ghost->npc = npc;
+}
+
+void CollisionSystem::resolveCollision_Shrub_Fire(DisplayObject* shrub) {
+  Shrub* s = dynamic_cast<Shrub*>(shrub);
+  if (s->fire_timer <= s->fire_threshold) s->fire_timer++;
 }

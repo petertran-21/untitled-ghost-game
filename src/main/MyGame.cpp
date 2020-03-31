@@ -70,6 +70,12 @@ MyGame::MyGame() : Game(1000, 1000){
 	npc->createHitbox();
 	npc2->createHitbox();
 
+	Shrub* s = new Shrub();
+	container->addChild(s);
+	//s->drawHitbox();
+	DOAdded->addChildCalled(s);
+	DOAdded->checkCondition();
+
 	//uncomment following line to possess pyromancer
 	// player->npc = npc;
 

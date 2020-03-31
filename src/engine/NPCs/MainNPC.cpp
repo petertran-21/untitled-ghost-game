@@ -26,17 +26,6 @@ void MainNPC::draw(AffineTransform &at){
 void MainNPC::state_idle(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
     if (state_new) cout << "STATE: IDLE" << endl;
 
-    ///////////////////////////////////////////////REMOVE THIS, TESTING PURPOSES ONLY
-    //check for possession
-    // for(int code:pressedKeys){
-	// 	switch (code) {
-	// 		case SDL_SCANCODE_E: 
-    //             is_possessed = true;
-    //             break;
-    //     }
-    // }
-    ///////////////////////////////////////////////
-
     if (is_possessed) state_switch(npc_states::Possessed);
 }
 
@@ -62,28 +51,6 @@ void MainNPC::state_possessed(set<SDL_Scancode> pressedKeys, Controller::Joystic
         }
     }
 
-    
-    // for(int code:pressedKeys){
-	// 	switch (code) {
-    //         //check for movement
-	// 		case SDL_SCANCODE_W: 
-    //         case SDL_SCANCODE_A: 
-    //         case SDL_SCANCODE_S: 
-    //         case SDL_SCANCODE_D: state_switch(Moving); break;
-    //         //activate ability
-    //         case SDL_SCANCODE_SPACE: 
-    //             if (cooldown_timer == 0){
-    //                 state_switch(Ability); 
-    //                 cooldown_timer = cooldown_max;
-    //             }
-    //             break;
-    //         //exit NPC
-    //         case SDL_SCANCODE_E: 
-    //             state_switch(Idle);
-    //             is_possessed = false;
-    //             break;
-    //     }
-    // }
 }
 
 void MainNPC::state_moving(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){

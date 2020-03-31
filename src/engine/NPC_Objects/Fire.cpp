@@ -9,6 +9,8 @@ using namespace std;
 Fire::Fire(SDL_Point pos) : AnimatedSprite("Fire"){
     this->position = pos;
 
+    this->type = "Fire";
+
     this->addAnimation("./resources/items/", "fire", 1, 1, false);
 	this->play("fire");
 }
