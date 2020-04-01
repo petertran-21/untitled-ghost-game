@@ -49,7 +49,8 @@ public:
 	//xDelta2 and yDelta2 are the amount other moved before causing the collision.
 	void resolveCollision(DisplayObject* d, DisplayObject* other, int xDelta1, int yDelta1, int xDelta2, int yDelta2);
 	void resolveCollision_Ghost_NPC(DisplayObject* ghost, DisplayObject* npc);
-	void resolveCollision_Shrub_Fire(DisplayObject* shrub);
+	void resolveCollision_NPC_NPC(DisplayObject* npc, DisplayObject* npc1);
+	void resolveCollision_NPC_Object(DisplayObject* npc, DisplayObject* obj);
 
 private:
 	vector<DisplayObject*> inView;

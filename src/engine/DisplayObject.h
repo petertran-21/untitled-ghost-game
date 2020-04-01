@@ -10,7 +10,7 @@
 #include <fstream>
 #include <vector>
 
-enum directions {N, S, E, W};
+enum directions {N, S, E, W, None};
 
 using namespace std;
 
