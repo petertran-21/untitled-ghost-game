@@ -27,6 +27,9 @@ void DOAddedEvent::checkCondition(){
     this->DTNumChildren = displayTree->children.size();
     //cout << "Add Event" << endl;
   }
+  //for loop i = dtnumchildren to the end of child.size(), call distach event for each.
+    //create hitbox() 
+    //dispatchEvent
 }
 
 void DOAddedEvent::addChildCalled(DisplayObject* childAdded) {

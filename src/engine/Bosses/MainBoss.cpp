@@ -32,3 +32,11 @@ void MainBoss::state_execute(set<SDL_Scancode> pressedKeys, Controller::Joystick
     if (state_updated) state_updated = false;
     else state_new = false;
 }
+
+void MainBoss::state_death(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
+    cout<<"runs"<<endl;
+}
+
+void MainBoss::state_attack(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
+    cout<<"runs"<<endl;
+}
