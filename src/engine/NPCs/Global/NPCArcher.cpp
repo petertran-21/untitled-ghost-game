@@ -8,7 +8,7 @@ NPCArcher::NPCArcher() : MainNPC(){
     //this->id = "archer";
     this->position.x = 100;
     this->position.y = 100;
-	this->addAnimation("./resources/npcs/", "npc_base", 2, 1, true);
+	this->addAnimation("../resources/npcs/", "npc_base", 2, 1, true);
 	this->play("npc_base");
 }
 
