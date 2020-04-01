@@ -410,14 +410,18 @@ void CollisionSystem::resolveCollision(DisplayObject* d, DisplayObject* other, i
   SDL_Point othercenter = {other->position.x + other->width, other->position.y };
 
   double difference = distance(dcenter, othercenter);
-  while(difference > 1000) {
+  while(difference > 100 || difference < 50) {
     if (collidesWith(d, other)){
       dpos1 = d->position;
+      otherpos1 = other->position;
     } else {
       dpos2 = d->position;
+      otherpos2 = other->position;
     }
     d->position = { (dpos1.x + dpos2.x)/2, (dpos1.y + dpos2.y)/2 };
     dcenter = {d->position.x + d->width, d->position.y + d->height};
+
+    other->position = { (otherpos1.x + otherpos2.x)/2, (otherpos1.y + otherpos2.y)/2 };
 
     difference = distance(dcenter, othercenter);
   }
