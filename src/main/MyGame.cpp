@@ -18,19 +18,6 @@ MyGame::MyGame() : Game(1000, 1000){
 	//-----------------------------------------
 
 	//-------------Character Programming Demo 
-	// instance = this;
-
-	// environment = new DisplayObjectContainer();
-	// instance->addChild(environment);
-
-	// allSprites = new DisplayObjectContainer();
-	// instance->addChild(allSprites);
-
-	// collisionSystem = new CollisionSystem();
-	// displayTreeDisp = new EventDispatcher();
-	// DOAdded = new DOAddedEvent(displayTreeDisp, environment);
-	// DORemoved = new DORemovedEvent(displayTreeDisp, environment);
-
 	instance = this;
 
 	allSprites = new DisplayObjectContainer();
@@ -49,75 +36,20 @@ MyGame::MyGame() : Game(1000, 1000){
 	player = new Ghost();
 	allSprites->addChild(player);
 	container->addChild(player);
-	player->drawHitbox();
-	DOAdded->addChildCalled(player);
-	DOAdded->checkCondition();
 	
 	npc = new NPCPyromancer();
 	npc->position.x += 300;
 	container->addChild(npc);
-	npc->drawHitbox();
-	DOAdded->addChildCalled(npc);
-	DOAdded->checkCondition();
 
 	NPCArcher* npc2 = new NPCArcher();
 	container->addChild(npc2);
-	npc2->drawHitbox();
-	DOAdded->addChildCalled(npc2);
-	DOAdded->checkCondition();
-
-	player->createHitbox();
-	npc->createHitbox();
-	npc2->createHitbox();
 
 	Shrub* s = new Shrub();
 	container->addChild(s);
-	//s->drawHitbox();
-	DOAdded->addChildCalled(s);
+	DOAdded->addChildCalled(container);
 	DOAdded->checkCondition();
-
-	//uncomment following line to possess pyromancer
-	// player->npc = npc;
-
-	//run following line to possess archer
-	//player->npc = npc2;
-	//-----------------------------------------
-
-
-	// instance = this;
-
-	// allSprites = new DisplayObjectContainer();
-	// instance->addChild(allSprites);
-
-	// container = new DisplayObjectContainer();
-	// allSprites->addChild(container);
-
-	// collisionSystem = new CollisionSystem();
-	// displayTreeDisp = new EventDispatcher();
-	// DOAdded = new DOAddedEvent(displayTreeDisp, container);
-	// DORemoved = new DORemovedEvent(displayTreeDisp, container);
-	// displayTreeDisp->addEventListener(collisionSystem, DOAddedEvent::DO_ADDED);
-	// displayTreeDisp->addEventListener(collisionSystem, DORemovedEvent::DO_REMOVED);
 	
-
-	// character = new AnimatedSprite("character");
-	// character->addSpriteSheet("./resources/character/character_idle.png", "./resources/character/character_animations.xml", "idle", 16, 2, true);
-	// character->addSpriteSheet("./resources/character/character_walk.png", "./resources/character/character_animations2.xml", "walk", 16, 2, true);
-	// container->addChild(character);
-	// character->drawHitbox();
-	// character->play("idle");
-	// DOAdded->addChildCalled(character);
-	// DOAdded->checkCondition();
-
-	// crocodile = new Sprite("crocodile", "./resources/enemies/crocodile.png");
-	// container->addChild(crocodile);
-	// crocodile->drawHitbox();
-	// crocodile->position.x = 300;
-	// DOAdded->addChildCalled(crocodile);
-	// DOAdded->checkCondition();
-
-	// character->createHitbox();
-	// crocodile->createHitbox();
+	//-----------------------------------------
 
 }
 

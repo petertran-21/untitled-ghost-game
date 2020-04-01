@@ -21,15 +21,13 @@ DOAddedEvent::~DOAddedEvent(){
 }
 
 void DOAddedEvent::checkCondition(){
-  // check if size of allSprites (displayTree) has increased
-  if (this->DTNumChildren < displayTree->children.size()) {
+  for (int i=0; i<displayTree->children.size(); i++){
+    this->displayTree->children.at(i) -> drawHitbox();
+    this->displayTree->children.at(i) -> createHitbox();
     this->getSource()->dispatchEvent(this);
-    this->DTNumChildren = displayTree->children.size();
-    //cout << "Add Event" << endl;
+    this->DTNumChildren = i;
+    this->recentlyAdded = this->displayTree->children.at(i);
   }
-  //for loop i = dtnumchildren to the end of child.size(), call distach event for each.
-    //create hitbox() 
-    //dispatchEvent
 }
 
 void DOAddedEvent::addChildCalled(DisplayObject* childAdded) {

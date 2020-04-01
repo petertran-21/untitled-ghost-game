@@ -52,8 +52,6 @@ private:
 	Ghost* player;
 	bool walking = false;
 
-	// AnimatedSprite* character;
-	// Sprite* crocodile;
 	DisplayObjectContainer* container;
 
 	EventDispatcher* displayTreeDisp;
