@@ -8,6 +8,11 @@ MainNPC::MainNPC() : AnimatedSprite("NPC"){
     this->type = "NPC";
 }
 
+MainNPC::MainNPC(DisplayObjectContainer* container) : AnimatedSprite("NPC"){
+    this->type = "NPC";
+    this->collisionContainer = container;
+}
+
 void MainNPC::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
 	AnimatedSprite::update(pressedKeys, currState);
 
