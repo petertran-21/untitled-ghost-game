@@ -2,6 +2,7 @@
 #define MAINNPC_H
 
 #include "AnimatedSprite.h"
+#include "DisplayObjectContainer.h"
 #include "Controls.h"
 
 using namespace std;
@@ -11,8 +12,8 @@ enum class npc_states {Idle, Possessed, Moving, Ability};
 class MainNPC : public AnimatedSprite{
     
     public:
-
         MainNPC();
+        MainNPC(DisplayObjectContainer* container);
         virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 	    virtual void draw(AffineTransform &at);
         //virtual void onCollision(DisplayObject* other);
@@ -40,6 +41,7 @@ class MainNPC : public AnimatedSprite{
         virtual void state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState) = 0;
 
         void resolve_collision(DisplayObject *obj);
+        DisplayObjectContainer* collisionContainer;
    
 };
 

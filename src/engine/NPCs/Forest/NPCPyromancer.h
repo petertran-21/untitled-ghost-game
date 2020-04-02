@@ -3,15 +3,16 @@
 
 #include "MainNPC.h"
 #include "Fire.h"
+#include "DisplayObjectContainer.h"
 
 using namespace std;
 
 class NPCPyromancer : public MainNPC{
     
     public:
-        NPCPyromancer();
+        NPCPyromancer(DisplayObjectContainer* container);
         void state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
-   
+        DisplayObjectContainer* collisionContainer;
 };
 
 

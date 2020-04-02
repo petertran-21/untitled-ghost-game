@@ -21,13 +21,16 @@ DOAddedEvent::~DOAddedEvent(){
 }
 
 void DOAddedEvent::checkCondition(){
-  for (int i=0; i<displayTree->children.size(); i++){
+  for (int i=DTNumChildren; i<displayTree->children.size(); i++){
+    cout<< "stats: "<<displayTree->children.size()<<" "<<DTNumChildren<<endl;
     this->displayTree->children.at(i) -> drawHitbox();
     this->displayTree->children.at(i) -> createHitbox();
+    DisplayObjectContainer* obj = (DisplayObjectContainer*) this->displayTree->children.at(i);
     this->getSource()->dispatchEvent(this);
     this->DTNumChildren = i;
     this->recentlyAdded = this->displayTree->children.at(i);
   }
+  //account for deletion
 }
 
 void DOAddedEvent::addChildCalled(DisplayObject* childAdded) {
