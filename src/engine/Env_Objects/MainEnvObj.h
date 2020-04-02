@@ -3,7 +3,6 @@
 
 #include "AnimatedSprite.h"
 #include "Controls.h"
-#include "NPCObjImports.h"
 
 using namespace std;
 

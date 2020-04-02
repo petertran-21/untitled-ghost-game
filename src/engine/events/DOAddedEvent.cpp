@@ -22,7 +22,7 @@ DOAddedEvent::~DOAddedEvent(){
 
 void DOAddedEvent::checkCondition(){
   for (int i=DTNumChildren; i<displayTree->children.size(); i++){
-    cout<< "stats: "<<displayTree->children.size()<<" "<<DTNumChildren<<endl;
+    //cout<< "stats: "<<displayTree->children.size()<<" "<<DTNumChildren<<endl;
     this->displayTree->children.at(i) -> drawHitbox();
     this->displayTree->children.at(i) -> createHitbox();
     DisplayObjectContainer* obj = (DisplayObjectContainer*) this->displayTree->children.at(i);

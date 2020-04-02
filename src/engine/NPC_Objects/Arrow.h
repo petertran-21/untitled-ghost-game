@@ -2,11 +2,11 @@
 #define ARROW_H
 
 #include "Controller.h"
-#include "AnimatedSprite.h"
+#include "MainNPCObj.h"
 
 using namespace std;
 
-class Arrow : public AnimatedSprite{
+class Arrow : public MainNPCObj{
     
     public:
         Arrow();

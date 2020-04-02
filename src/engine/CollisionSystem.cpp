@@ -17,6 +17,7 @@ CollisionSystem::~CollisionSystem(){
 void CollisionSystem::update(){
   //watchForCollisions("NPC", "NPC");
   watchForCollisions("Ghost", "NPC");
+  watchForCollisions("NPCObj", "EnvObj");
   // watchForCollisions("NPC", "EnvObj");
 }
 
@@ -26,7 +27,7 @@ void CollisionSystem::handleEvent(Event* e){
   if (e->getType() == DOAddedEvent::DO_ADDED) {
     DOAddedEvent* event = (DOAddedEvent*) e;
     inView.push_back(event->recentlyAdded);
-    std::cout << "DO added to the game." << std::endl;
+    //std::cout << "DO added to the game." << std::endl;
   }
   if (e->getType() == DORemovedEvent::DO_REMOVED) {
     DORemovedEvent* event = (DORemovedEvent*) e;
@@ -64,8 +65,8 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
             //   //nothing happens :)
             // }
 
-            inView[i]->resolve_collision(inView[j]);
-            inView[j]->resolve_collision(inView[i]);
+            if (inView[i]) inView[i]->resolve_collision(inView[j]);
+            if (inView[j]) inView[j]->resolve_collision(inView[i]);
 
             } else {
               //Save deltas

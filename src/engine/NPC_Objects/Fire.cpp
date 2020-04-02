@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Fire::Fire(SDL_Point pos) : AnimatedSprite("Fire"){
+Fire::Fire(SDL_Point pos) : MainNPCObj(){
     this->position = pos;
 
     this->type = "Fire";
@@ -18,4 +18,11 @@ Fire::Fire(SDL_Point pos) : AnimatedSprite("Fire"){
 
 void Fire::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
     AnimatedSprite::update(pressedKeys, currState);
+}
+
+void Fire::resolve_collision(DisplayObject* obj){
+    Shrub *s = dynamic_cast<Shrub*>(obj);
+    if (s){
+        if (s->fire_timer < s->fire_threshold) s->fire_timer++;
+    }
 }

@@ -7,14 +7,14 @@
 using namespace std;
 
 
-Arrow::Arrow() : AnimatedSprite("Arrow"){
+Arrow::Arrow() : MainNPCObj(){
 
     this->addAnimation("./resources/items/", "arrow", 1, 1, false);
 
 	this->play("arrow");
 }
 
-Arrow::Arrow(SDL_Point pos, directions direction) : AnimatedSprite("Arrow"){
+Arrow::Arrow(SDL_Point pos, directions direction) : MainNPCObj(){
     this->position = pos;
     this->dir = direction;
 
@@ -59,8 +59,8 @@ void Arrow::fly(){
             break;
         }
 
-    cout << position.x << endl;
-    cout << position.y << endl;
+    //cout << position.x << endl;
+    //cout << position.y << endl;
 }
 
 void Arrow::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){

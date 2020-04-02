@@ -122,8 +122,8 @@ void MainNPC::state_moving(set<SDL_Scancode> pressedKeys, Controller::JoystickSt
             }
         }
 
-        cout << "abilityPt: "<<abilityPt.x << ", "<<abilityPt.y <<endl;
-        cout << "position: "<<position.x << ", "<<position.y <<endl;
+        //cout << "abilityPt: "<<abilityPt.x << ", "<<abilityPt.y <<endl;
+        //cout << "position: "<<position.x << ", "<<position.y <<endl;
         
         can_move = false;
     }
