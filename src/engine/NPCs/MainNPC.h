@@ -38,6 +38,8 @@ class MainNPC : public AnimatedSprite{
         void state_possessed(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
         void state_moving(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
         virtual void state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState) = 0;
+
+        void resolve_collision(DisplayObject *obj);
    
 };
 

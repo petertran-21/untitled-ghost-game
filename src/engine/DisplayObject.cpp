@@ -188,3 +188,8 @@ AffineTransform* DisplayObject::getGlobalTransform(AffineTransform* at){
 
 	return at;
 }
+
+void DisplayObject::resolve_collision(DisplayObject *obj){
+	//implement in children
+	cout << "HELLO FROM DISPLAY OBJ COLLISION RESOLVE" << endl;
+}

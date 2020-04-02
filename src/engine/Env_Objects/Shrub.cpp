@@ -19,3 +19,11 @@ Shrub::Shrub() : MainEnvObj(){
 void Shrub::process_fire(){
     this->play("shrub_burned");
 }
+
+void Shrub::resolve_collision(DisplayObject *obj){
+    Fire *f = dynamic_cast<Fire*>(obj);
+    if (f) cout << "HIT BY FIRE!" << endl;
+
+    Arrow *a = dynamic_cast<Arrow*>(obj);
+    if (a) cout << "HIT BY ARROW!" << endl;
+}

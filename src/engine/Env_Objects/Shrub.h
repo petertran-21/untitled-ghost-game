@@ -12,6 +12,7 @@ class Shrub : public MainEnvObj{
         Shrub();
 
         void process_fire();
+        void resolve_collision(DisplayObject *obj);
 
 };
 

@@ -15,7 +15,7 @@ CollisionSystem::~CollisionSystem(){
 //checks collisions between pairs of DOs where the corresponding types have been requested
 //to be checked (via a single call to watchForCollisions) below.
 void CollisionSystem::update(){
-  watchForCollisions("NPC", "NPC");
+  //watchForCollisions("NPC", "NPC");
   watchForCollisions("Ghost", "NPC");
   // watchForCollisions("NPC", "EnvObj");
 }
@@ -50,19 +50,22 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
         //cout << j << endl;
         if (inView[j]->id == type2) {
           if(collidesWith(inView[i], inView[j])){
-            if (type1 == "Ghost" && type2 == "NPC"){
-              resolveCollision_Ghost_NPC(inView[i], inView[j]);
-            }
-            else if ((type1 == "NPC" && type2 == "NPC") && (inView[i] != inView[j])){
-              resolveCollision_NPC_NPC(inView[i], inView[j]);
-            }
-            else if (type1 == "NPC" && type2 == "EnvObj"){
-              resolveCollision_NPC_Object(inView[i], inView[j]);
-              // resolveCollision_Shrub_Fire(inView[i]);
-            }
-            else{
-              //nothing happens :)
-            }
+            // if (type1 == "Ghost" && type2 == "NPC"){
+            //   resolveCollision_Ghost_NPC(inView[i], inView[j]);
+            // }
+            // else if ((type1 == "NPC" && type2 == "NPC") && (inView[i] != inView[j])){
+            //   resolveCollision_NPC_NPC(inView[i], inView[j]);
+            // }
+            // else if (type1 == "NPC" && type2 == "EnvObj"){
+            //   resolveCollision_NPC_Object(inView[i], inView[j]);
+            //   // resolveCollision_Shrub_Fire(inView[i]);
+            // }
+            // else{
+            //   //nothing happens :)
+            // }
+
+            inView[i]->resolve_collision(inView[j]);
+            inView[j]->resolve_collision(inView[i]);
 
             } else {
               //Save deltas
@@ -466,11 +469,6 @@ void CollisionSystem::resolveCollision_Ghost_NPC(DisplayObject* ghost, DisplayOb
 
   g->npc = (MainNPC*)npc;
 }
-
-// void CollisionSystem::resolveCollision_Shrub_Fire(DisplayObject* shrub) {
-//   Shrub* s = dynamic_cast<Shrub*>(shrub);
-//   if (s->fire_timer <= s->fire_threshold) s->fire_timer++;
-// }
 
 void CollisionSystem::resolveCollision_NPC_NPC(DisplayObject* npc, DisplayObject* npc1){
   MainNPC* npc2 = (MainNPC*) npc;

@@ -149,3 +149,7 @@ void MainNPC::state_execute(set<SDL_Scancode> pressedKeys, Controller::JoystickS
     if (state_updated) state_updated = false;
     else state_new = false;
 }
+
+void MainNPC::resolve_collision(DisplayObject *obj){
+    //cout << "HELLO FROM MAINNPC COLLISION RESOLVE" << endl;
+}

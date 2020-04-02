@@ -3,6 +3,7 @@
 
 #include "AnimatedSprite.h"
 #include "Controls.h"
+#include "NPCObjImports.h"
 
 using namespace std;
 
@@ -36,6 +37,7 @@ class MainEnvObj : public AnimatedSprite{
         void state_execute(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
         void state_switch(obj_states new_state);
         void state_idle(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
+
    
 };
 

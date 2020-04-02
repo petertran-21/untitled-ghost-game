@@ -61,6 +61,7 @@ public:
 	SDL_Surface* image = NULL;
 	void drawHitbox();
 	void createHitbox();
+	virtual void resolve_collision(DisplayObject *obj);
 	vector<SDL_Point> translateHitbox(SDL_Point upperLeft, SDL_Point upperRight, SDL_Point lowerRight, SDL_Point lowerLeft);
 	vector<SDL_Point> getHitbox();
 	AffineTransform* getGlobalTransform(AffineTransform* at);

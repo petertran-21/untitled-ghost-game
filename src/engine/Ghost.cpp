@@ -234,3 +234,11 @@ void Ghost::state_execute(set<SDL_Scancode> pressedKeys, Controller::JoystickSta
     if (state_updated) state_updated = false;
     else state_new = false;
 }
+
+void Ghost::resolve_collision(DisplayObject *obj){
+	MainNPC* collider = dynamic_cast<MainNPC*>(obj);
+	//check that collider is an NPC
+	if (collider){
+		npc = collider;
+	}
+}

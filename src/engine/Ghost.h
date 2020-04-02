@@ -54,6 +54,8 @@ public:
 	/* Current Enemy player is engaging with*/
 	Enemy* curEnemy = NULL;
 
+	void resolve_collision(DisplayObject *obj);
+
 private:
 
 	bool isPossessing = false;
