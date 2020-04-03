@@ -21,6 +21,7 @@ void Valve::toggle(){
 
     for (WaterJet* w : jets){
         w->active = on;
+        w->dir = this->dir;
     }
 }
 
@@ -30,4 +31,5 @@ void Valve::add_jet(WaterJet* w){
 
 void Valve::resolve_collision(DisplayObject* obj){
     //do nothing
+
 }

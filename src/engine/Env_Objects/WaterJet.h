@@ -21,6 +21,7 @@ class WaterJet : public MainEnvObj{
         int tile_range = 5;
 
         vector<WaterStream*> streams;
+        // vector<DisplayObject*> streams;
         DisplayObjectContainer* collisionContainer;
         DisplayObjectContainer* drawingContainer;
 

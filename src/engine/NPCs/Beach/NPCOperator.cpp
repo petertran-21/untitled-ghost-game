@@ -42,6 +42,7 @@ void NPCOperator::resolve_collision(DisplayObject *obj){
     MainNPC::resolve_collision(obj);
     Valve *v = dynamic_cast<Valve*>(obj);
     if (v){
+        v->dir = this->dir;
         current_valve = v;
     }
 }

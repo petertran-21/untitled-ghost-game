@@ -82,7 +82,6 @@ MyGame::MyGame() : Game(1000, 1000){
 	v->add_jet(w);
 	w->position.x += 700;
 	w->position.y += 100;
-	w->dir = S;
 
 	Crab * c = new Crab();
 	allSprites->addChild(c);
@@ -126,9 +125,9 @@ MyGame::~MyGame(){
 }
 
 void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
-	collisionSystem->update();
 	DORemoved->checkCondition();
 	DOAdded->checkCondition();
+	collisionSystem->update();
 	Game::update(pressedKeys, currState);
 }
 

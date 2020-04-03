@@ -11,7 +11,7 @@ class WaterStream : public MainEnvObj{
     
     public:
         WaterStream(directions dir, DisplayObjectContainer* container);
-        directions dir = S;
+        directions dir = None;
 
         int push_timer = 0;
         int push_time_max = 10;

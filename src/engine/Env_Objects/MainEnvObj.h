@@ -4,6 +4,7 @@
 #include "AnimatedSprite.h"
 #include "Controls.h"
 #include "DisplayObjectContainer.h"
+#include "DisplayObject.h"
 
 using namespace std;
 
