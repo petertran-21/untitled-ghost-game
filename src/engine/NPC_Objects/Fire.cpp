@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Fire::Fire(SDL_Point pos, MainNPC* npcParent) : MainNPCObj(){
+Fire::Fire(SDL_Point pos, DisplayObjectContainer* npcParent) : MainNPCObj(){
     this->position = pos;
     this->subtype = "fire";
 
@@ -14,7 +14,6 @@ Fire::Fire(SDL_Point pos, MainNPC* npcParent) : MainNPCObj(){
 	this->play("fire");
     this->parent = npcParent;
 }
-
 
 void Fire::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
     AnimatedSprite::update(pressedKeys, currState);

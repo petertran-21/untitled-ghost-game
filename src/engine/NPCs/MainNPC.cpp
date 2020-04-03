@@ -153,5 +153,63 @@ void MainNPC::state_execute(set<SDL_Scancode> pressedKeys, Controller::JoystickS
 }
 
 void MainNPC::resolve_collision(DisplayObject *obj){
-    cout << "HELLO FROM MAINNPC COLLISION RESOLVE" << endl;
+    //COLLIDES WITH WATER STREAM
+    WaterStream* s = dynamic_cast<WaterStream*>(obj);
+    if (s){
+        //DO NOTHING 
+        return;
+    }
+
+    //COLLIDES WITH BROKEN WALL
+    BreakableWall* b = dynamic_cast<BreakableWall*>(obj);
+    if (b){
+
+        if (b->broken){
+            //DO NOTHING 
+            return;
+        }
+    }
+
+    // DEFAULT FOR COLLIDING WITH SOLIDS
+	if (obj && obj->type != "EnvObj"){
+        //check that npcs are overlapping
+        if ((position.y == obj->position.y) && (position.x == obj->position.x)){
+            switch (dir){
+            //reset possessed npc's location to previous based on location it came from
+            case N:
+                position.y = position.y + 100;
+                dir = None;
+                break;
+            case E:
+                position.x = position.x - 100;
+                dir = None;
+                break;
+            case S: 
+                position.y = position.y - 100;
+                dir = None;
+                break;
+            case W:
+                position.x = position.x + 100;
+                dir = None;
+                break;
+            }
+        }
+	}
 }
+
+void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectContainer* collideContainer, DisplayObjectContainer* drawContainer){
+    //COLLISIONS WITH COLLECTIBLES
+    for (DisplayObject* child: drawContainer->children){
+        if ((child->type == "Collectible") && (child->subtype == "item pouch")){
+            if ((obj->position.x == child->position.x) && (obj->position.y == child->position.y) && (this->position.x == obj->position.x) && (this->position.y == obj->position.y)){
+                vector<DisplayObject*>::iterator collideItr = find(collideContainer->children.begin(), collideContainer->children.end(), obj);
+                vector<DisplayObject*>::iterator drawItr = find(drawContainer->children.begin(), drawContainer->children.end(), obj);
+                if (collideItr != collideContainer->children.end() && drawItr != drawContainer->children.end()){
+                    collideContainer->children.erase(collideItr);
+                    drawContainer->children.erase(drawItr);
+                }
+            }
+        }
+    }
+}
+

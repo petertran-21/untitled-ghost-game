@@ -20,6 +20,7 @@
 #include "Ghost.h"
 #include "NPCImports.h"
 #include "EnvObjImports.h"
+#include "EnvObjImports.h"
 #include "CollisionSystem.h"
 #include "DOAddedEvent.h"
 #include "DORemovedEvent.h"

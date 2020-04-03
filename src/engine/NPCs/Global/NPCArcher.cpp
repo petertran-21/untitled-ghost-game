@@ -35,18 +35,6 @@ void NPCArcher::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joystic
 }
 
 void NPCArcher::resolve_collision(DisplayObject *obj){
-    for (DisplayObject* child: drawingContainer->children){
-        if ((child->type == "Collectible") && (child->subtype == "item pouch")){
-            if ((obj->position.x == child->position.x) && (obj->position.y == child->position.y) && (this->position.x == obj->position.x) && (this->position.y == obj->position.y)){
-                vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), obj);
-                vector<DisplayObject*>::iterator drawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), obj);
-                if (collideItr != this->collisionContainer->children.end() && drawItr != this->drawingContainer->children.end()){
-                    this->collisionContainer->children.erase(collideItr);
-                    
-                    this->drawingContainer->children.erase(drawItr);
-                    
-                }
-            }
-        }
-    }
+    MainNPC::resolve_collision(obj);
+    MainNPC::resolve_collectible_collision(obj, this->collisionContainer, this->drawingContainer);
 }

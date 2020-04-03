@@ -18,6 +18,7 @@ void CollisionSystem::update(){
   watchForCollisions("NPC", "NPC");
   watchForCollisions("Ghost", "NPC");
   watchForCollisions("NPCObj", "EnvObj");
+  watchForCollisions("NPC", "NPCObj");
   watchForCollisions("NPC", "EnvObj");
   watchForCollisions("NPC", "Collectible");
 }
@@ -61,6 +62,9 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
             }
             else if ((type1 == "NPC" && type2 == "EnvObj")){
               resolveCollision_NPC_EnvObj(inView[i], inView[j]);
+            }
+            else if ((type1 == "NPC") && (type2 == "NPCObj")){
+              resolveCollision_NPC_NPCObj(inView[i], inView[j]);
             }
             else if ((type1 == "NPC" && type2 == "Collectible")){
               resolveCollision_NPC_Collectible(inView[i], inView[j]);
@@ -514,9 +518,12 @@ void CollisionSystem::resolveCollision_NPC_NPC(DisplayObject* npc, DisplayObject
 }
 
 void CollisionSystem::resolveCollision_NPC_EnvObj(DisplayObject* npc, DisplayObject* envObj){
-  // Shrub* s = dynamic_cast<Shrub*>(envObj);
-  // cout<<"running NPC with EnvObj--------------"<<endl;
-  // if (s->fire_timer <= s->fire_threshold) s->fire_timer++;
+  npc->resolve_collision(envObj);
+  envObj->resolve_collision(npc);
+}
+void CollisionSystem::resolveCollision_NPC_NPCObj(DisplayObject* npc, DisplayObject* npcObj){
+  npc->resolve_collision(npcObj);
+  npcObj->resolve_collision(npc);
 }
 
 void CollisionSystem::resolveCollision_NPC_Collectible(DisplayObject* npc, DisplayObject* collectible){

@@ -5,7 +5,6 @@
 #include "MainEnvObj.h"
 
 #include "Fire.h"
-#include "DisplayObjectContainer.h"
 #include "Arrow.h"
 
 using namespace std;

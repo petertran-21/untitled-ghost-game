@@ -29,7 +29,7 @@ void Shrub::resolve_collision(DisplayObject *obj){
             vector<DisplayObject*>::iterator fireItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), obj);
             if (fireItr != this->collisionContainer->children.end()){
 
-                MainNPC* npc = f->parent;
+                DisplayObjectContainer* npc = f->parent;
                 npc->removeImmediateChild(npc->children.at(0));
                 
                 this->collisionContainer->children.erase(fireItr);

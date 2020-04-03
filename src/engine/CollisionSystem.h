@@ -51,6 +51,7 @@ public:
 	void resolveCollision_Ghost_NPC(DisplayObject* ghost, DisplayObject* npc);
 	void resolveCollision_NPC_NPC(DisplayObject* npc, DisplayObject* npc1);
 	void resolveCollision_NPC_EnvObj(DisplayObject* npc, DisplayObject* envObj);
+	void resolveCollision_NPC_NPCObj(DisplayObject* npc, DisplayObject* npcObj);
 	void resolveCollision_NPC_Collectible(DisplayObject* npc, DisplayObject* collectible);
 	void resolveCollision_NPCObj_EnvObj(DisplayObject* NPCObj, DisplayObject* envObj);
 

@@ -5,6 +5,9 @@
 #include "DisplayObjectContainer.h"
 #include "MainCollectibles.h"
 #include "Controls.h"
+#include "EnvObjImports.h"
+#include "CollectiblesImports.h"
+#include "NPCObjImports.h"
 
 using namespace std;
 
@@ -27,7 +30,7 @@ class MainNPC : public AnimatedSprite{
         int grid_size = 100;
         void move_on_grid(directions direction, int distance);
         
-        int cooldown_max = 10;
+        int cooldown_max = 60;
         int cooldown_timer = 0;
 
         npc_states state = npc_states::Idle;
@@ -41,7 +44,8 @@ class MainNPC : public AnimatedSprite{
         void state_moving(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
         virtual void state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState) = 0;
 
-        void resolve_collision(DisplayObject *obj);
+        virtual void resolve_collision(DisplayObject *obj);
+        virtual void resolve_collectible_collision(DisplayObject *obj, DisplayObjectContainer* collideContainer, DisplayObjectContainer* drawContainer);
         DisplayObjectContainer* collisionContainer;
         DisplayObjectContainer* drawingContainer;
    

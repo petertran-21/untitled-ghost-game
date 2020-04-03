@@ -19,26 +19,38 @@ void NPCExcavator::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joys
 
         switch(dir){
             case N: 
-                //if(collision detected @ dir and colliding with breakable wall)
-                    //breakable_wall.destroy = true;
                     cout << "Excavated North" << endl;
+                    excavate = true;
                 break;
             case S: 
-                //if(collision detected @ dir and colliding with breakable wall)
-                    //breakable_wall.destroy = true;
                     cout << "Excavated South" << endl;
+                    excavate = true;
                 break;
             case E: 
-                //if(collision detected @ dir and colliding with breakable wall)
-                    //breakable_wall.destroy = true;
                     cout << "Excavated East" << endl;
+                    excavate = true;
                 break;
             case W: 
-                //if(collision detected @ dir and colliding with breakable wall)
-                    //breakable_wall.destroy = true;
                     cout << "Excavated West" << endl;
+                    excavate = true;
                 break;
         }
     }
     state_switch(npc_states::Possessed);
+}
+
+void NPCExcavator::resolve_collision(DisplayObject * obj){
+    MainNPC::resolve_collectible_collision(obj, this->collisionContainer, this->drawingContainer);
+    if (obj->subtype=="breakable wall" && excavate == true){
+        BreakableWall* b = (BreakableWall*) obj;
+        b->broken = true;
+        //TODO: if there's more than one breakable there might be a problem-->need to test
+        vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), obj);
+        vector<DisplayObject*>::iterator drawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), obj);
+        if (collideItr != this->collisionContainer->children.end() && drawItr != this->drawingContainer->children.end()){
+            this->collisionContainer->children.erase(collideItr);
+            this->drawingContainer->children.erase(drawItr);
+        }   
+        excavate = false;
+	}
 }

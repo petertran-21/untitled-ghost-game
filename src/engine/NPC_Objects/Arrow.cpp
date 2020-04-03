@@ -13,8 +13,7 @@ Arrow::Arrow() : MainNPCObj(){
 
 	this->play("arrow");
 }
-
-Arrow::Arrow(SDL_Point pos, directions direction, MainNPC* npcParent) : MainNPCObj(){
+Arrow::Arrow(SDL_Point pos, directions direction, DisplayObjectContainer* npcParent) : MainNPCObj(){
     this->position = pos;
     this->dir = direction;
 

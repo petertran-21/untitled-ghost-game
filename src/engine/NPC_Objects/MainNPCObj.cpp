@@ -8,7 +8,7 @@ MainNPCObj::MainNPCObj() : AnimatedSprite("NPCObj"){
     this->type = "NPCObj";
 }
 
-MainNPCObj::MainNPCObj(MainNPC* npcParent) : AnimatedSprite("NPCObj"){
+MainNPCObj::MainNPCObj(DisplayObjectContainer* npcParent) : AnimatedSprite("NPCObj"){
     this->type = "NPCObj";
     this->parent = npcParent;
 }

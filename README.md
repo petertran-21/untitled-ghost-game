@@ -45,15 +45,21 @@ For PS4 controller:
 - Press **E** to possess NPC. 
 - Press **SPACE** to use ability of NPC.
 
+### Enemy Programming Demo
+Implemented some NPC and object interactions. You can do the following with the NPCs present:
+- All NPCs can collect item pouch object
+- Pyromancer NPC can set fire to shrub (either on the shurb or next to shrub)
+- Collectors will pick up a crab on collision, the crab then sticks to your position until you press space. Then the crab is placed at the adjacent tile (in the direction you are facing) and you have a about a second or so before you pick it up again
+- Operators can turn on/off valves by standing next to them and pressing space. The corresponding water jets linked to the valve will turn on and create a stream of water. If an npc or crab steps into the water, they get pushed to the end of the stream. 
+- Excavators can dig up rocks by standing next to them and pressing space. This will allow npcs to pass through that space
 
-### Comment on Collision Detection from Design Team
-We have integrated a simple collision detection from the engine team, but have not yet integrated the fully functioning collision detection and resolution system due to time constraints across teams. We have designed two of our NPCs to be in collision with each other via the format provided by engine team so that we can just switch out the class functions for a fully working collision system. 
+### NPC Locations
+For your reference and easy demo understanding, the following locations are their respective NPCS:
+- top-left: excavatar
+- top-right: pyromancer
+- bottom-left: operator
+- bottom-right: collector
 
-Following limitations:
-- Current collision system detects collisions via x-axis only. 
-- We have to hardcode the specific objects' ids into collisionSystem.cpp. 
-- Collision resolution resolves to the same point when x-axis collision is detected.
-- Collision system does not return which specific objects have collided.
 
 ### General Comments from Design Team
-For character programming assignment, we inmplemented two NPC's abilities and the ghost character's possession as the main components of our main character. 
+For enemy programming assignment, we separated objects into three types: environmental objects (EnvObj), collectibles (Collectibles), and NPC Objects (NPCObj). We mostly worked on collision resolution functions between NPCs and Objects and show an interaction between NPC and at least one object of each category for this demo. 
