@@ -1,11 +1,17 @@
 #include <iostream>
 #include <cstdlib>
 #include "MainEnvObj.h"
+#include "DisplayObjectContainer.h"
 
 using namespace std;
 
 MainEnvObj::MainEnvObj() : AnimatedSprite("EnvObj"){
     this->type = "EnvObj";
+}
+
+MainEnvObj::MainEnvObj(DisplayObjectContainer* container) : AnimatedSprite("EnvObj"){
+    this->type = "EnvObj";
+    this->collisionContainer = container;
 }
 
 void MainEnvObj::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){

@@ -34,11 +34,11 @@ MyGame::MyGame() : Game(1000, 1000){
 	displayTreeDisp->addEventListener(collisionSystem, DOAddedEvent::DO_ADDED);
 	displayTreeDisp->addEventListener(collisionSystem, DORemovedEvent::DO_REMOVED);
 
-	Shrub* s = new Shrub();
+	Shrub* s = new Shrub(container);
 	allSprites->addChild(s);
 	container->addChild(s);
 
-	npc = new NPCPyromancer(container); // NPCPyromancer(collisionContainer);
+	npc = new NPCPyromancer(container); 
 	npc->position.x += 300;
 	allSprites->addChild(npc);
 	container->addChild(npc);
@@ -65,6 +65,7 @@ MyGame::~MyGame(){
 
 void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
 	collisionSystem->update();
+	DORemoved->checkCondition();
 	DOAdded->checkCondition();
 	Game::update(pressedKeys, currState);
 }

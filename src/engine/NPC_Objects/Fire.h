@@ -12,7 +12,7 @@ class Fire : public MainNPCObj{
     
     public:
 
-        Fire(SDL_Point pos);
+        Fire(SDL_Point pos, MainNPC* npcParent);
 
         virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
         void resolve_collision(DisplayObject *obj);

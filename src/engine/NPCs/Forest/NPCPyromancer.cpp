@@ -17,9 +17,10 @@ void NPCPyromancer::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joy
     if (state_new){
         cout << "STATE: ABILITY" << endl;
         if (abilityPt.x != 0 || abilityPt.y != 0){
-            Fire *f = new Fire(abilityPt); 
+            Fire *f = new Fire(abilityPt, this); 
             this->addChild(f);
-            Fire *fCollision = new Fire(abilityPt);
+            cout<<"upon creation: "<<f<<endl;
+            Fire *fCollision = new Fire(abilityPt, this);
 
             fCollision->position.x = this->position.x + f->position.x;
             fCollision->position.y = this->position.y + f->position.y;

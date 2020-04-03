@@ -15,10 +15,11 @@ CollisionSystem::~CollisionSystem(){
 //checks collisions between pairs of DOs where the corresponding types have been requested
 //to be checked (via a single call to watchForCollisions) below.
 void CollisionSystem::update(){
-  //watchForCollisions("NPC", "NPC");
+  watchForCollisions("NPC", "NPC");
   watchForCollisions("Ghost", "NPC");
   watchForCollisions("NPCObj", "EnvObj");
-  // watchForCollisions("NPC", "EnvObj");
+  watchForCollisions("NPC", "EnvObj");
+  // watchForCollisions("NPC", "Collectible");
 }
 
 //This system watches the game's display tree and is notified whenever a display object is placed onto
@@ -51,22 +52,28 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
         //cout << j << endl;
         if (inView[j]->id == type2) {
           if(collidesWith(inView[i], inView[j])){
-            // if (type1 == "Ghost" && type2 == "NPC"){
-            //   resolveCollision_Ghost_NPC(inView[i], inView[j]);
-            // }
-            // else if ((type1 == "NPC" && type2 == "NPC") && (inView[i] != inView[j])){
-            //   resolveCollision_NPC_NPC(inView[i], inView[j]);
-            // }
-            // else if (type1 == "NPC" && type2 == "EnvObj"){
-            //   resolveCollision_NPC_Object(inView[i], inView[j]);
-            //   // resolveCollision_Shrub_Fire(inView[i]);
-            // }
-            // else{
-            //   //nothing happens :)
-            // }
+            // cout<< "TYPE 1: "<< type1 <<" ----- TYPE 2: "<<type2 <<endl;
+            if (type1 == "Ghost" && type2 == "NPC"){
+              resolveCollision_Ghost_NPC(inView[i], inView[j]);
+            }
+            else if ((type1 == "NPC" && type2 == "NPC") && (inView[i] != inView[j])){
+              resolveCollision_NPC_NPC(inView[i], inView[j]);
+            }
+            else if ((type1 == "NPC" && type2 == "EnvObj")){
+              resolveCollision_NPC_EnvObj(inView[i], inView[j]);
+            }
+            else if ((type1 == "NPC" && type2 == "Collectible")){
+              resolveCollision_NPC_Collectible(inView[i], inView[j]);
+            }
+            else if ((type1 == "NPCObj" && type2 == "EnvObj")){
+              resolveCollision_NPCObj_EnvObj(inView[i], inView[j]);
+            }
+            else{
+              //nothing happens :)
+            }
 
-            if (inView[i]) inView[i]->resolve_collision(inView[j]);
-            if (inView[j]) inView[j]->resolve_collision(inView[i]);
+            // if (inView[i]) inView[i]->resolve_collision(inView[j]);
+            // if (inView[j]) inView[j]->resolve_collision(inView[i]);
 
             } else {
               //Save deltas
@@ -506,7 +513,17 @@ void CollisionSystem::resolveCollision_NPC_NPC(DisplayObject* npc, DisplayObject
 
 }
 
-void CollisionSystem::resolveCollision_NPC_Object(DisplayObject* npc, DisplayObject* obj){
-  Shrub* s = dynamic_cast<Shrub*>(obj);
-  if (s->fire_timer <= s->fire_threshold) s->fire_timer++;
+void CollisionSystem::resolveCollision_NPC_EnvObj(DisplayObject* npc, DisplayObject* envObj){
+  // Shrub* s = dynamic_cast<Shrub*>(envObj);
+  // cout<<"running NPC with EnvObj--------------"<<endl;
+  // if (s->fire_timer <= s->fire_threshold) s->fire_timer++;
+}
+
+void CollisionSystem::resolveCollision_NPC_Collectible(DisplayObject* npc, DisplayObject* collectible){
+  cout<<"running NPC with Collectibles--------------"<<endl;
+}
+
+void CollisionSystem::resolveCollision_NPCObj_EnvObj(DisplayObject* NPCObj, DisplayObject* envObj){
+  NPCObj->resolve_collision(envObj);
+  envObj->resolve_collision(NPCObj);
 }

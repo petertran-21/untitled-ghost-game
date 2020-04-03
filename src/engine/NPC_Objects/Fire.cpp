@@ -6,13 +6,13 @@
 
 using namespace std;
 
-Fire::Fire(SDL_Point pos) : MainNPCObj(){
+Fire::Fire(SDL_Point pos, MainNPC* npcParent) : MainNPCObj(){
     this->position = pos;
-
-    this->type = "Fire";
+    this->subtype = "fire";
 
     this->addAnimation("./resources/items/", "fire", 1, 1, false);
 	this->play("fire");
+    this->parent = npcParent;
 }
 
 

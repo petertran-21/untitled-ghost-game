@@ -77,6 +77,22 @@
             "path" : "./resources/templates/beachEnvTemplates/dockVerticalTemp.json"
         },
         {
+            "name" : "doorSide",
+            "path" : "./resources/templates/beachEnvTemplates/doorSideTemp.json"
+        },
+        {
+            "name" : "doorSideOpen",
+            "path" : "./resources/templates/beachEnvTemplates/doorSideOpenTemp.json"
+        },
+        {
+            "name" : "doorVert",
+            "path" : "./resources/templates/beachEnvTemplates/doorVertTemp.json"
+        },
+        {
+            "name" : "doorVertOpen",
+            "path" : "./resources/templates/beachEnvTemplates/doorVertOpenTemp.json"
+        },
+        {
             "name" : "palm",
             "path" : "./resources/templates/beachEnvTemplates/palmTemp.json"
         },
@@ -97,6 +113,22 @@
             "path" : "./resources/templates/beachEnvTemplates/sandCornerTemp.json"
         },
         {
+            "name" : "sandPit",
+            "path" : "./resources/templates/beachEnvTemplates/sandPitTemp.json"
+        },
+        {
+            "name" : "sandSideDown",
+            "path" : "./resources/templates/beachEnvTemplates/sandSideDownTemp.json"
+        },
+        {
+            "name" : "sandSideLeft",
+            "path" : "./resources/templates/beachEnvTemplates/sandSideLeftTemp.json"
+        },
+        {
+            "name" : "sandSideRight",
+            "path" : "./resources/templates/beachEnvTemplates/sandSideRightTemp.json"
+        },
+        {
             "name" : "ocean",
             "path" : "./resources/templates/beachEnvTemplates/oceanTemp.json"
         },
@@ -115,6 +147,18 @@
         {
             "name" : "rock1",
             "path" : "./resources/templates/beachEnvTemplates/rock1Temp.json"
+        },
+        {
+            "name" : "buttonUnpressed",
+            "path" : "./resources/templates/beachEnvTemplates/buttonUnpressedTemp.json"
+        },
+        {
+            "name" : "waterValve",
+            "path" : "./resources/templates/beachEnvTemplates/waterValveTemp.json"
+        },
+        {
+            "name" : "valve",
+            "path" : "./resources/templates/beachEnvTemplates/valveTemp.json"
         }
     ]
 }

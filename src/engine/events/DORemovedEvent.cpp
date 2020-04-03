@@ -21,8 +21,8 @@ DORemovedEvent::~DORemovedEvent(){
 }
 
 void DORemovedEvent::checkCondition(){
-  // TODO: MODIFY THIS 
   // check if size of allSprites (displayTree) has decreased
+  // cout<<"RUNNING REMOVE EVENT CONDITION"<<endl;
   if (this->DTNumChildren > displayTree->children.size()) {
     this->getSource()->dispatchEvent(this);
     this->DTNumChildren = displayTree->children.size();

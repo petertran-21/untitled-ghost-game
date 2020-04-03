@@ -50,7 +50,9 @@ public:
 	void resolveCollision(DisplayObject* d, DisplayObject* other, int xDelta1, int yDelta1, int xDelta2, int yDelta2);
 	void resolveCollision_Ghost_NPC(DisplayObject* ghost, DisplayObject* npc);
 	void resolveCollision_NPC_NPC(DisplayObject* npc, DisplayObject* npc1);
-	void resolveCollision_NPC_Object(DisplayObject* npc, DisplayObject* obj);
+	void resolveCollision_NPC_EnvObj(DisplayObject* npc, DisplayObject* envObj);
+	void resolveCollision_NPC_Collectible(DisplayObject* npc, DisplayObject* collectible);
+	void resolveCollision_NPCObj_EnvObj(DisplayObject* NPCObj, DisplayObject* envObj);
 
 private:
 	vector<DisplayObject*> inView;

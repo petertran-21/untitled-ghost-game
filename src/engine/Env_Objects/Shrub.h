@@ -5,6 +5,7 @@
 #include "MainEnvObj.h"
 
 #include "Fire.h"
+#include "DisplayObjectContainer.h"
 #include "Arrow.h"
 
 using namespace std;
@@ -12,7 +13,7 @@ using namespace std;
 class Shrub : public MainEnvObj{
     
     public:
-        Shrub();
+        Shrub(DisplayObjectContainer* container);
 
         void process_fire();
         void resolve_collision(DisplayObject *obj);
