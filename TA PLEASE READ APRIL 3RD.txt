@@ -1,0 +1,9 @@
+To the TA grading this,
+
+For this assignment, the UI is kind of scattered. Here's how to interpret the ones you see when you run the game.
+
+The leftmost tall panel is a "menu" where the up and down arrow keys would be you selecting an option. (They do nothing at the moment besides register in console that you picked them via cout)
+The smaller panel adjacent to it just reports your current x coordinate and updates as you move in the x-direction.
+There is a small panel to the FAR right (out of screen upon initial load in) that is a checklist of tasks, if you complete it, the task turns green aka completed. That task is to transition the scene, so to do that, just walk to the right until the screen transitions.
+
+Hopefully that covers it. Thanks!

@@ -18,8 +18,9 @@ public:
 
 	virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 	virtual void draw(AffineTransform &at);
-private:
 
+	bool isActive = true;		// Checked in Camera.h when drawing.
+private:
 };
 
 #endif

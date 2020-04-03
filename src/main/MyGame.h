@@ -19,6 +19,7 @@
 #include "Tween.h"
 #include "Layer.h"
 #include "TweenJuggler.h"
+#include "UIDefs.h"
 
 using namespace std;
 
@@ -31,8 +32,10 @@ public:
 	virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 	virtual void draw(AffineTransform &at);
 
+
 private:
 
+	TweenJuggler* tweenJuggler;
 	DisplayObjectContainer* allSprites;
 
 	Camera* camera;	
@@ -47,7 +50,17 @@ private:
 	DOAddedEvent* DOAdded;
 	DORemovedEvent* DORemoved;
 
+	Scene* scene_1;
+	Scene* scene_2;
+
+	Sound* new_sound;
+
+	Checklist* checklistTest;
+	SelectionMenu* selectionMenuTest;
+	TextBox* textboxTest;
+	
 	bool walking = false;
+	bool transition = false;
 
 };
 
