@@ -3,6 +3,7 @@
 
 #include "AnimatedSprite.h"
 #include "DisplayObjectContainer.h"
+#include "MainCollectibles.h"
 #include "Controls.h"
 
 using namespace std;
@@ -13,7 +14,7 @@ class MainNPC : public AnimatedSprite{
     
     public:
         MainNPC();
-        MainNPC(DisplayObjectContainer* container);
+        MainNPC(DisplayObjectContainer* container, DisplayObjectContainer* allSprites);
         virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 	    virtual void draw(AffineTransform &at);
         //virtual void onCollision(DisplayObject* other);
@@ -42,6 +43,7 @@ class MainNPC : public AnimatedSprite{
 
         void resolve_collision(DisplayObject *obj);
         DisplayObjectContainer* collisionContainer;
+        DisplayObjectContainer* drawingContainer;
    
 };
 

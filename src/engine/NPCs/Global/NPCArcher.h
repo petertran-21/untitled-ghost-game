@@ -10,9 +10,11 @@ using namespace std;
 class NPCArcher : public MainNPC{
     
     public:
-        NPCArcher(DisplayObjectContainer* container);
+        NPCArcher(DisplayObjectContainer* container, DisplayObjectContainer* allSprites);
         void state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
         DisplayObjectContainer* collisionContainer;
+
+        void resolve_collision(DisplayObject* obj);
    
 };
 

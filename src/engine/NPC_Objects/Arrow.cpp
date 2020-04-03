@@ -14,7 +14,7 @@ Arrow::Arrow() : MainNPCObj(){
 	this->play("arrow");
 }
 
-Arrow::Arrow(SDL_Point pos, directions direction) : MainNPCObj(){
+Arrow::Arrow(SDL_Point pos, directions direction, MainNPC* npcParent) : MainNPCObj(){
     this->position = pos;
     this->dir = direction;
 
@@ -33,6 +33,7 @@ Arrow::Arrow(SDL_Point pos, directions direction) : MainNPCObj(){
 
     this->addAnimation("./resources/items/", "arrow", 1, 1, false);
 	this->play("arrow");
+    this->parent = npcParent;
 }
 
 void Arrow::fly(){

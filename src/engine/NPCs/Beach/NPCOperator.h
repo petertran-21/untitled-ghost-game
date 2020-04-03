@@ -8,9 +8,9 @@ using namespace std;
 class NPCOperator : public MainNPC{
     
     public:
-        NPCOperator();
+        NPCOperator(DisplayObjectContainer* container, DisplayObjectContainer* allSprites);
         void state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
-   
+        DisplayObjectContainer* collisionContainer;
 };
 
 

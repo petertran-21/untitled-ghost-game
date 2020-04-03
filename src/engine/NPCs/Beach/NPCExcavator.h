@@ -8,9 +8,9 @@ using namespace std;
 class NPCExcavator : public MainNPC{
     
     public:
-        NPCExcavator();
+        NPCExcavator(DisplayObjectContainer* container, DisplayObjectContainer* allSprites);
         void state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
-   
+        DisplayObjectContainer* collisionContainer;
 };
 
 

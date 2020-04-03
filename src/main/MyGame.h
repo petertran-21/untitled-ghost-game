@@ -26,6 +26,7 @@
 #include "Tween.h"
 #include "Layer.h"
 #include "TweenJuggler.h"
+#include "CollectiblesImports.h"
 
 
 using namespace std;

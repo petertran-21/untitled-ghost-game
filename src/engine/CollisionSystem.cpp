@@ -19,7 +19,7 @@ void CollisionSystem::update(){
   watchForCollisions("Ghost", "NPC");
   watchForCollisions("NPCObj", "EnvObj");
   watchForCollisions("NPC", "EnvObj");
-  // watchForCollisions("NPC", "Collectible");
+  watchForCollisions("NPC", "Collectible");
 }
 
 //This system watches the game's display tree and is notified whenever a display object is placed onto
@@ -520,7 +520,8 @@ void CollisionSystem::resolveCollision_NPC_EnvObj(DisplayObject* npc, DisplayObj
 }
 
 void CollisionSystem::resolveCollision_NPC_Collectible(DisplayObject* npc, DisplayObject* collectible){
-  cout<<"running NPC with Collectibles--------------"<<endl;
+  npc->resolve_collision(collectible);
+  collectible->resolve_collision(npc);
 }
 
 void CollisionSystem::resolveCollision_NPCObj_EnvObj(DisplayObject* NPCObj, DisplayObject* envObj){

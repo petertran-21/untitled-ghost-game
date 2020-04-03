@@ -38,12 +38,18 @@ MyGame::MyGame() : Game(1000, 1000){
 	allSprites->addChild(s);
 	container->addChild(s);
 
-	npc = new NPCPyromancer(container); 
+	ItemPouch* p = new ItemPouch(container);
+	p->position.x = 500;
+	p->position.y = 500;
+	allSprites->addChild(p);
+	container->addChild(p);
+
+	npc = new NPCPyromancer(container, allSprites); 
 	npc->position.x += 300;
 	allSprites->addChild(npc);
 	container->addChild(npc);
 
-	NPCArcher* npc2 = new NPCArcher(container);
+	NPCArcher* npc2 = new NPCArcher(container, allSprites);
 	allSprites->addChild(npc2);
 	container->addChild(npc2);
 
@@ -53,7 +59,6 @@ MyGame::MyGame() : Game(1000, 1000){
 
 	DOAdded->addChildCalled(container);
 	DOAdded->checkCondition();
-	
 	//-----------------------------------------
 
 }

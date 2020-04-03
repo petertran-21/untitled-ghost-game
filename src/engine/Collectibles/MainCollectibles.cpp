@@ -29,7 +29,7 @@ void MainCollectibles::state_idle(set<SDL_Scancode> pressedKeys, Controller::Joy
 }
 
 //STATE MACHINE METHODS
-void MainCollectibles::state_switch(obj_states new_state){
+void MainCollectibles::state_switch(collectible_states new_state){
     if (state != new_state){
         state_new = true;
         state = new_state;
@@ -38,7 +38,7 @@ void MainCollectibles::state_switch(obj_states new_state){
 }
 void MainCollectibles::state_execute(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
     switch(state){
-        case obj_states::Idle:      MainCollectibles::state_idle(pressedKeys, currState);      break;
+        case collectible_states::Idle:      MainCollectibles::state_idle(pressedKeys, currState);      break;
     }
     if (state_updated) state_updated = false;
     else state_new = false;

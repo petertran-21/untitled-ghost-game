@@ -10,7 +10,7 @@ class Arrow : public MainNPCObj{
     
     public:
         Arrow();
-        Arrow(SDL_Point pos, directions direction);
+        Arrow(SDL_Point pos, directions direction, MainNPC* npcParent);
 
         int movespeed = 4;
         directions dir = S;

@@ -8,9 +8,10 @@ MainNPC::MainNPC() : AnimatedSprite("NPC"){
     this->type = "NPC";
 }
 
-MainNPC::MainNPC(DisplayObjectContainer* container) : AnimatedSprite("NPC"){
+MainNPC::MainNPC(DisplayObjectContainer* container, DisplayObjectContainer* allSprites) : AnimatedSprite("NPC"){
     this->type = "NPC";
     this->collisionContainer = container;
+    this->drawingContainer = allSprites;
 }
 
 void MainNPC::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
@@ -120,11 +121,7 @@ void MainNPC::state_moving(set<SDL_Scancode> pressedKeys, Controller::JoystickSt
                 child->position.x += grid_size; 
                 break;
             }
-        }
-
-        //cout << "abilityPt: "<<abilityPt.x << ", "<<abilityPt.y <<endl;
-        //cout << "position: "<<position.x << ", "<<position.y <<endl;
-        
+        }        
         can_move = false;
     }
 
@@ -156,5 +153,5 @@ void MainNPC::state_execute(set<SDL_Scancode> pressedKeys, Controller::JoystickS
 }
 
 void MainNPC::resolve_collision(DisplayObject *obj){
-    //cout << "HELLO FROM MAINNPC COLLISION RESOLVE" << endl;
+    cout << "HELLO FROM MAINNPC COLLISION RESOLVE" << endl;
 }

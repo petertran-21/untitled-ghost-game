@@ -4,11 +4,13 @@
 
 using namespace std;
 
-NPCOperator::NPCOperator() : MainNPC(){
+NPCOperator::NPCOperator(DisplayObjectContainer* container, DisplayObjectContainer* allSprites) : MainNPC(){
     this->position.x = 100;
     this->position.y = 100;
 	this->addAnimation("./resources/npcs/", "npc_base", 2, 1, true);
 	this->play("npc_base");
+    this->collisionContainer = container;
+    this->drawingContainer = allSprites;
 }
 
 void NPCOperator::state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
@@ -40,3 +42,4 @@ void NPCOperator::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joyst
     }
     state_switch(npc_states::Possessed);
 }
+

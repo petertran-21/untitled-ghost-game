@@ -8,9 +8,9 @@ using namespace std;
 class NPCFisherman : public MainNPC{
     
     public:
-        NPCFisherman();
+        NPCFisherman(DisplayObjectContainer* container, DisplayObjectContainer* allSprites);
         void state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
-   
+        DisplayObjectContainer* collisionContainer;
 };
 
 

@@ -10,7 +10,7 @@ using namespace std;
 class NPCPyromancer : public MainNPC{
     
     public:
-        NPCPyromancer(DisplayObjectContainer* container);
+        NPCPyromancer(DisplayObjectContainer* container, DisplayObjectContainer* allSprites);
         void state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
         DisplayObjectContainer* collisionContainer;
 };
