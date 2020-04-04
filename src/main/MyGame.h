@@ -5,6 +5,7 @@
 #include <SDL2/SDL_image.h>
 #include <iostream>
 #include "Game.h"
+#include "Sprite.h"
 #include "AnimatedSprite.h"
 #include "EventDispatcher.h"
 #include "DOAddedEvent.h"
@@ -16,9 +17,18 @@
 #include "Scene.h"
 #include "Sound.h"
 #include "Camera.h"
+#include "Ghost.h"
+#include "NPCImports.h"
+#include "EnvObjImports.h"
+#include "EnvObjImports.h"
+#include "CollisionSystem.h"
+#include "DOAddedEvent.h"
+#include "DORemovedEvent.h"
 #include "Tween.h"
 #include "Layer.h"
 #include "TweenJuggler.h"
+#include "CollectiblesImports.h"
+
 
 using namespace std;
 
@@ -32,22 +42,24 @@ public:
 	virtual void draw(AffineTransform &at);
 
 private:
-
+	Camera* camera;
+	Scene* scene_1;
+	
 	DisplayObjectContainer* allSprites;
-
-	Camera* camera;	
-	AnimatedSprite* character;
-	Sprite* crocodile;
-	DisplayObjectContainer* container;
-
+	DisplayObjectContainer* environment;
 	EventDispatcher* controllerDisp;
+
+	AnimatedSprite* character;
+	MainNPC* npc;
+	Ghost* player;
+	bool walking = false;
+
+	DisplayObjectContainer* container;
 
 	EventDispatcher* displayTreeDisp;
 	CollisionSystem* collisionSystem;
 	DOAddedEvent* DOAdded;
 	DORemovedEvent* DORemoved;
-
-	bool walking = false;
 
 };
 

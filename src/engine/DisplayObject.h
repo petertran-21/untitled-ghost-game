@@ -10,6 +10,8 @@
 #include <fstream>
 #include <vector>
 
+enum directions {N, S, E, W, None};
+
 using namespace std;
 
 class DisplayObject{
@@ -19,6 +21,7 @@ public:
 	string imgPath = "";
 	int red, green, blue;
 	string type = "DisplayObject";
+	string subtype = "";
 
 	DisplayObject* parent = NULL;
 
@@ -59,6 +62,7 @@ public:
 	SDL_Surface* image = NULL;
 	void drawHitbox();
 	void createHitbox();
+	virtual void resolve_collision(DisplayObject *obj);
 	vector<SDL_Point> translateHitbox(SDL_Point upperLeft, SDL_Point upperRight, SDL_Point lowerRight, SDL_Point lowerLeft);
 	vector<SDL_Point> getHitbox();
 	AffineTransform* getGlobalTransform(AffineTransform* at);

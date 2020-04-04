@@ -1,0 +1,164 @@
+{
+    "templates": [
+        {
+            "name" : "character",
+            "path" : "./resources/templates/characterTemplates/characterTemp.json"
+        },
+        {
+            "name" : "staticCharacter",
+            "path" : "./resources/templates/characterTemplates/staticTemp.json"
+        },
+        {
+            "name" : "npc",
+            "path" : "./resources/templates/characterTemplates/npcTemp.json"
+        },
+        {
+            "name" : "grendel",
+            "path" : "./resources/templates/characterTemplates/grendelTemp.json"
+        },
+        {
+            "name" : "snake",
+            "path" : "./resources/templates/animalTemplates/snakeTemp.json"
+        },
+        {
+            "name" : "crocodile",
+            "path" : "./resources/templates/animalTemplates/crocodileTemp.json"
+        },
+        {
+            "name" : "crab",
+            "path" : "./resources/templates/animalTemplates/crabTemp.json"
+        },
+        {
+            "name" : "horn",
+            "path" : "./resources/templates/itemTemplates/hornTemp.json"
+        },
+        {
+            "name" : "boat",
+            "path" : "./resources/templates/itemTemplates/boatTemp.json"
+        },
+        {
+            "name" : "itemPouch",
+            "path" : "./resources/templates/itemTemplates/itemPouchTemp.json"
+        },
+        {
+            "name" : "npc",
+            "path" : "./resources/templates/characterTemplates/npcTemp.json"
+        },
+        {
+            "name" : "bigDirt",
+            "path" : "./resources/templates/swampEnvTemplates/bigDirtTemp.json"
+        },
+        {
+            "name" : "smallDirt",
+            "path" : "./resources/templates/swampEnvTemplates/smallDirtTemp.json"
+        },
+        {
+            "name" : "bigGrass",
+            "path" : "./resources/templates/swampEnvTemplates/bigGrassTemp.json"
+        },
+        {
+            "name" : "smallGrass",
+            "path" : "./resources/templates/swampEnvTemplates/smallGrassTemp.json"
+        },
+        {
+            "name" : "largeGrass",
+            "path" : "./resources/templates/swampEnvTemplates/largeGrassTemp.json"
+        },
+        {
+            "name" : "pond",
+            "path" : "./resources/templates/swampEnvTemplates/pondTemp.json"
+        },
+        {
+            "name" : "dockHorizontal",
+            "path" : "./resources/templates/beachEnvTemplates/dockHorizontalTemp.json"
+        },
+        {
+            "name" : "dockVertical",
+            "path" : "./resources/templates/beachEnvTemplates/dockVerticalTemp.json"
+        },
+        {
+            "name" : "doorSide",
+            "path" : "./resources/templates/beachEnvTemplates/doorSideTemp.json"
+        },
+        {
+            "name" : "doorSideOpen",
+            "path" : "./resources/templates/beachEnvTemplates/doorSideOpenTemp.json"
+        },
+        {
+            "name" : "doorVert",
+            "path" : "./resources/templates/beachEnvTemplates/doorVertTemp.json"
+        },
+        {
+            "name" : "doorVertOpen",
+            "path" : "./resources/templates/beachEnvTemplates/doorVertOpenTemp.json"
+        },
+        {
+            "name" : "palm",
+            "path" : "./resources/templates/beachEnvTemplates/palmTemp.json"
+        },
+        {
+            "name" : "plank",
+            "path" : "./resources/templates/beachEnvTemplates/plankTemp.json"
+        },
+        {
+            "name" : "sand",
+            "path" : "./resources/templates/beachEnvTemplates/sandTemp.json"
+        },
+        {
+            "name" : "sandTile",
+            "path" : "./resources/templates/beachEnvTemplates/sandTileTemp.json"
+        },
+        {
+            "name" : "sandCorner",
+            "path" : "./resources/templates/beachEnvTemplates/sandCornerTemp.json"
+        },
+        {
+            "name" : "sandPit",
+            "path" : "./resources/templates/beachEnvTemplates/sandPitTemp.json"
+        },
+        {
+            "name" : "sandSideDown",
+            "path" : "./resources/templates/beachEnvTemplates/sandSideDownTemp.json"
+        },
+        {
+            "name" : "sandSideLeft",
+            "path" : "./resources/templates/beachEnvTemplates/sandSideLeftTemp.json"
+        },
+        {
+            "name" : "sandSideRight",
+            "path" : "./resources/templates/beachEnvTemplates/sandSideRightTemp.json"
+        },
+        {
+            "name" : "ocean",
+            "path" : "./resources/templates/beachEnvTemplates/oceanTemp.json"
+        },
+        {
+            "name" : "oceanCorner",
+            "path" : "./resources/templates/beachEnvTemplates/oceanCornerTemp.json"
+        },
+        {
+            "name" : "oceanSide",
+            "path" : "./resources/templates/beachEnvTemplates/oceanSideTemp.json"
+        },
+        {
+            "name" : "oceanSideR",
+            "path" : "./resources/templates/beachEnvTemplates/oceanSideRTemp.json"
+        },
+        {
+            "name" : "rock1",
+            "path" : "./resources/templates/beachEnvTemplates/rock1Temp.json"
+        },
+        {
+            "name" : "buttonUnpressed",
+            "path" : "./resources/templates/beachEnvTemplates/buttonUnpressedTemp.json"
+        },
+        {
+            "name" : "waterValve",
+            "path" : "./resources/templates/beachEnvTemplates/waterValveTemp.json"
+        },
+        {
+            "name" : "valve",
+            "path" : "./resources/templates/beachEnvTemplates/valveTemp.json"
+        }
+    ]
+}

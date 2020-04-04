@@ -15,8 +15,12 @@ CollisionSystem::~CollisionSystem(){
 //checks collisions between pairs of DOs where the corresponding types have been requested
 //to be checked (via a single call to watchForCollisions) below.
 void CollisionSystem::update(){
-  watchForCollisions("character", "crocodile");
-  // watchForCollisions("player", "enemy");
+  watchForCollisions("NPC", "NPC");
+  watchForCollisions("Ghost", "NPC");
+  watchForCollisions("NPCObj", "EnvObj");
+  watchForCollisions("NPC", "NPCObj");
+  watchForCollisions("NPC", "EnvObj");
+  watchForCollisions("NPC", "Collectible");
 }
 
 //This system watches the game's display tree and is notified whenever a display object is placed onto
@@ -25,7 +29,7 @@ void CollisionSystem::handleEvent(Event* e){
   if (e->getType() == DOAddedEvent::DO_ADDED) {
     DOAddedEvent* event = (DOAddedEvent*) e;
     inView.push_back(event->recentlyAdded);
-    std::cout << "DO added to the game." << std::endl;
+    // std::cout << "DO added to the game." << event->recentlyAdded->type << std::endl;
   }
   if (e->getType() == DORemovedEvent::DO_REMOVED) {
     DORemovedEvent* event = (DORemovedEvent*) e;
@@ -49,11 +53,32 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
         //cout << j << endl;
         if (inView[j]->id == type2) {
           if(collidesWith(inView[i], inView[j])){
-            resolveCollision(inView[i], inView[j],
-            inView[i]->position.x - inView[i]->lastNonCollidedPos.x,
-            inView[i]->position.y - inView[i]->lastNonCollidedPos.y,
-            inView[j]->position.x - inView[j]->lastNonCollidedPos.x,
-            inView[j]->position.y - inView[j]->lastNonCollidedPos.y);
+            // cout<< "TYPE 1: "<< type1 <<" ----- TYPE 2: "<<type2 <<endl;
+            if (type1 == "Ghost" && type2 == "NPC"){
+              resolveCollision_Ghost_NPC(inView[i], inView[j]);
+            }
+            else if ((type1 == "NPC" && type2 == "NPC") && (inView[i] != inView[j])){
+              resolveCollision_NPC_NPC(inView[i], inView[j]);
+            }
+            else if ((type1 == "NPC" && type2 == "EnvObj")){
+              resolveCollision_NPC_EnvObj(inView[i], inView[j]);
+            }
+            else if ((type1 == "NPC") && (type2 == "NPCObj")){
+              resolveCollision_NPC_NPCObj(inView[i], inView[j]);
+            }
+            else if ((type1 == "NPC" && type2 == "Collectible")){
+              resolveCollision_NPC_Collectible(inView[i], inView[j]);
+            }
+            else if ((type1 == "NPCObj" && type2 == "EnvObj")){
+              resolveCollision_NPCObj_EnvObj(inView[i], inView[j]);
+            }
+            else{
+              //nothing happens :)
+            }
+
+            // if (inView[i]) inView[i]->resolve_collision(inView[j]);
+            // if (inView[j]) inView[j]->resolve_collision(inView[i]);
+
             } else {
               //Save deltas
               vector<SDL_Point> iHitbox = inView[i]->getHitbox();
@@ -430,8 +455,10 @@ void CollisionSystem::resolveCollision(DisplayObject* d, DisplayObject* other, i
     }
 
     // Find midpoints
-    d->position.x = (d->position.x + (d->position.x - xDelta1))/2;
-    d->position.y = (d->position.y + (d->position.y - yDelta1))/2;
+    d->position.x = d->position.x - 100;
+    d->position.y = d->position.y - 100;
+    // d->position.x = (d->position.x + (d->position.x - xDelta1))/2;
+    // d->position.y = (d->position.y + (d->position.y - yDelta1))/2;
 
     other->position.x = (other->position.x + (other->position.x - xDelta2))/2;
     other->position.y = (other->position.y + (other->position.y - yDelta2))/2;
@@ -447,4 +474,64 @@ void CollisionSystem::resolveCollision(DisplayObject* d, DisplayObject* other, i
 
 
 
+}
+
+void CollisionSystem::resolveCollision_Ghost_NPC(DisplayObject* ghost, DisplayObject* npc) {
+  Ghost* g = dynamic_cast<Ghost*>(ghost);
+
+  g->npc = (MainNPC*)npc;
+}
+
+void CollisionSystem::resolveCollision_NPC_NPC(DisplayObject* npc, DisplayObject* npc1){
+  MainNPC* npc2 = (MainNPC*) npc;
+  MainNPC* npc3 = (MainNPC*) npc1;
+  MainNPC* pNPC = npc3;
+  MainNPC* npNPC = npc2;
+  //check which npc is possessed
+  if (npc2->is_possessed){
+    pNPC = npc2;
+    npNPC = npc3;
+  }
+  //check that npcs are overlapping
+  if ((pNPC->position.y == npNPC->position.y) && (pNPC->position.x == npNPC->position.x)){
+    switch (pNPC->dir){
+      //reset possessed npc's location to previous based on location it came from
+      case N:
+        pNPC->position.y = pNPC->position.y + 100;
+        pNPC->dir = None;
+        break;
+      case E:
+        pNPC->position.x = pNPC->position.x - 100;
+        pNPC->dir = None;
+        break;
+      case S: 
+        pNPC->position.y = pNPC->position.y - 100;
+        pNPC->dir = None;
+        break;
+      case W:
+        pNPC->position.x = pNPC->position.x + 100;
+        pNPC->dir = None;
+        break;
+    }
+  }
+
+}
+
+void CollisionSystem::resolveCollision_NPC_EnvObj(DisplayObject* npc, DisplayObject* envObj){
+  npc->resolve_collision(envObj);
+  envObj->resolve_collision(npc);
+}
+void CollisionSystem::resolveCollision_NPC_NPCObj(DisplayObject* npc, DisplayObject* npcObj){
+  npc->resolve_collision(npcObj);
+  npcObj->resolve_collision(npc);
+}
+
+void CollisionSystem::resolveCollision_NPC_Collectible(DisplayObject* npc, DisplayObject* collectible){
+  npc->resolve_collision(collectible);
+  collectible->resolve_collision(npc);
+}
+
+void CollisionSystem::resolveCollision_NPCObj_EnvObj(DisplayObject* NPCObj, DisplayObject* envObj){
+  NPCObj->resolve_collision(envObj);
+  envObj->resolve_collision(NPCObj);
 }

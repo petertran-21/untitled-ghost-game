@@ -1,0 +1,20 @@
+{
+    "sprites": [
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/animals/",
+            "height": 100,
+            "id": "1458777923",
+            "isStatic": true,
+            "isStaticBaseFile": "crab.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 320,
+            "posY": 120,
+            "rotation": 0.0,
+            "width": 100
+        }
+    ]
+}

@@ -5,6 +5,11 @@
 #include "DisplayObjectContainer.h"
 #include "EventListener.h"
 
+#include "Ghost.h"
+#include "MainNPC.h"
+#include "EnvObjImports.h"
+
+
 #include <iostream>
 
 using namespace std;
@@ -34,6 +39,7 @@ public:
 	bool collidesWith(DisplayObject* obj1, DisplayObject* obj2);
 	// float slope(SDL_Point p1, SDL_Point p2);
 	float calculateArea(float a, float b, float c);
+	float slope(SDL_Point p1, SDL_Point p2);
 	double distance(SDL_Point p1, SDL_Point p2);
 	int calculateOrientation(SDL_Point p1, SDL_Point p2, SDL_Point p3, SDL_Point p4);
 	bool isLocatedInRect(SDL_Point hb1_point, vector<SDL_Point> hb2);
@@ -42,6 +48,12 @@ public:
 	//xDelta1 and yDelta1 are the amount d moved before causing the collision.
 	//xDelta2 and yDelta2 are the amount other moved before causing the collision.
 	void resolveCollision(DisplayObject* d, DisplayObject* other, int xDelta1, int yDelta1, int xDelta2, int yDelta2);
+	void resolveCollision_Ghost_NPC(DisplayObject* ghost, DisplayObject* npc);
+	void resolveCollision_NPC_NPC(DisplayObject* npc, DisplayObject* npc1);
+	void resolveCollision_NPC_EnvObj(DisplayObject* npc, DisplayObject* envObj);
+	void resolveCollision_NPC_NPCObj(DisplayObject* npc, DisplayObject* npcObj);
+	void resolveCollision_NPC_Collectible(DisplayObject* npc, DisplayObject* collectible);
+	void resolveCollision_NPCObj_EnvObj(DisplayObject* NPCObj, DisplayObject* envObj);
 
 private:
 	vector<DisplayObject*> inView;

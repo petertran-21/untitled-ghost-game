@@ -86,13 +86,18 @@ void Controller::setState(SDL_Event event) {
 			if (event.jbutton.which == 0) {
 
 				// "A" button pressed
-				if (event.jbutton.button == 0) {
+				if (event.jbutton.button == SDL_CONTROLLER_BUTTON_A) {
 					currState.buttonA = event.jbutton.state;
 				}
 
-				// "B" button pressed
-				if (event.jbutton.button == 1) {
-					currState.buttonB = event.jbutton.state;
+				// "X" button pressed
+				if (event.jbutton.button == SDL_CONTROLLER_BUTTON_X) {
+					currState.buttonX = event.jbutton.state;
+				}
+
+				// "Y" button pressed
+				if (event.jbutton.button == SDL_CONTROLLER_BUTTON_Y) {
+					currState.buttonY = event.jbutton.state;
 				}
 			}
 
@@ -104,13 +109,18 @@ void Controller::setState(SDL_Event event) {
 			if (event.jbutton.which == 0) {
 
 				// "A" button released
-				if (event.jbutton.button == 0) {
+				if (event.jbutton.button == SDL_CONTROLLER_BUTTON_A) {
 					currState.buttonA = event.jbutton.state;
 				}
 
-				// "B" button released
-				if (event.jbutton.button == 1) {
-					currState.buttonB = event.jbutton.state;
+				// "X" button released
+				if (event.jbutton.button == SDL_CONTROLLER_BUTTON_X) {
+					currState.buttonX = event.jbutton.state;
+				}
+
+				// "Y" button released
+				if (event.jbutton.button == SDL_CONTROLLER_BUTTON_Y) {
+					currState.buttonY = event.jbutton.state;
 				}
 			}
 

@@ -2,6 +2,7 @@
 #define ANIMATEDSPRITE_H
 
 #include "Sprite.h"
+#include "Controller.h"
 #include <vector>
 #include <string>
 #include <stdlib.h>

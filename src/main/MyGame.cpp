@@ -1,19 +1,32 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
+#include <algorithm>
 #include "MyGame.h"
 
 using namespace std;
 
-MyGame::MyGame() : Game(1200, 800){
+MyGame::MyGame() : Game(1000, 1000){
+	//------------Work from the SFX/Level Team
 	camera = new Camera();
-	
+	scene_1 = new Scene();
+
+	scene_1->loadScene("./resources/scenes/beachEntrance.json");
+
+	this->addChild(camera);
+	camera->addChild(scene_1);
+	//-----------------------------------------
+
+	//-------------Character Programming Demo 
+	instance = this;
+
 	allSprites = new DisplayObjectContainer();
 	instance->addChild(allSprites);
-
 	container = new DisplayObjectContainer();
-	allSprites->addChild(container);
 
+	// uncomment following line to check that collision boxes for objects are identical to drawing
+	allSprites->addChild(container);
+	
 	collisionSystem = new CollisionSystem();
 	displayTreeDisp = new EventDispatcher();
 	DOAdded = new DOAddedEvent(displayTreeDisp, container);
@@ -21,150 +34,99 @@ MyGame::MyGame() : Game(1200, 800){
 	displayTreeDisp->addEventListener(collisionSystem, DOAddedEvent::DO_ADDED);
 	displayTreeDisp->addEventListener(collisionSystem, DORemovedEvent::DO_REMOVED);
 
+	// Shrub* s = new Shrub(container);
+	// allSprites->addChild(s);
+	// container->addChild(s);
 
-	character = new AnimatedSprite("character");
-	character->addSpriteSheet("./resources/character/character_idle.png", "./resources/character/character_animations.xml", "idle", 16, 2, true);
-	character->addSpriteSheet("./resources/character/character_walk.png", "./resources/character/character_animations2.xml", "walk", 16, 2, true);
-	container->addChild(character);
-	character->drawHitbox();
-	character->play("idle");
-	DOAdded->addChildCalled(character);
+	ItemPouch* p = new ItemPouch(container);
+	p->position.x = 900;
+	p->position.y = 900;
+	allSprites->addChild(p);
+	container->addChild(p);
+
+	// npc = new NPCPyromancer(container, allSprites); 
+	// npc->position.x += 300;
+	// allSprites->addChild(npc);
+	// container->addChild(npc);
+
+	// NPCArcher* npc2 = new NPCArcher(container, allSprites);
+	// allSprites->addChild(npc2);
+	// container->addChild(npc2);
+
+	// player = new Ghost();
+	// allSprites->addChild(player);
+	// container->addChild(player);
+
+	// DOAdded->addChildCalled(container);
+	// DOAdded->checkCondition();
+
+	Shrub* s = new Shrub(container);
+	allSprites->addChild(s);
+	container->addChild(s);
+
+	BreakableWall *b = new BreakableWall(container);
+	allSprites->addChild(b);
+	container->addChild(b);
+	b->position.x += 200;
+	b->position.y += 200;
+
+	Valve * v = new Valve(container);
+	allSprites->addChild(v);
+	container->addChild(v);
+	v->position.x += 500;
+	v->position.y += 300;
+
+	WaterJet * w = new WaterJet(container, allSprites);
+	allSprites->addChild(w);
+	container->addChild(w);
+	v->add_jet(w);
+	w->position.x += 700;
+	w->position.y += 100;
+
+	Crab * c = new Crab();
+	allSprites->addChild(c);
+	container->addChild(c);
+	c->position.y += 600;
+	c->position.x += 600;
+
+	npc = new NPCPyromancer(container, allSprites); 
+	npc->position.x += 300;
+	allSprites->addChild(npc);
+	container->addChild(npc);
+
+	NPCOperator* npc2 = new NPCOperator(container, allSprites);
+	npc2->position.y += 500;
+	allSprites->addChild(npc2);
+	container->addChild(npc2);
+
+	NPCExcavator* npc3 = new NPCExcavator(container, allSprites);
+	allSprites->addChild(npc3);
+	container->addChild(npc3);
+
+	NPCCollector* npc4 = new NPCCollector(container, allSprites);
+	npc4->position.x += 300;
+	npc4->position.y += 500;
+	allSprites->addChild(npc4);
+	container->addChild(npc4);
+
+	player = new Ghost();
+	allSprites->addChild(player);
+	container->addChild(player);
+
+	DOAdded->addChildCalled(container);
 	DOAdded->checkCondition();
-
-	crocodile = new Sprite("crocodile", "./resources/enemies/crocodile.png");
-	container->addChild(crocodile);
-	crocodile->drawHitbox();
-	crocodile->position.x = 300;
-	DOAdded->addChildCalled(crocodile);
-	DOAdded->checkCondition();
-
-	character->createHitbox();
-	crocodile->createHitbox();
+	//-----------------------------------------
 
 }
 
 MyGame::~MyGame(){
-
+	delete scene_1;
 	delete camera;
 }
 
-
 void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
-	int origPosX = character->position.x;
-
-	if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {
-		character->position.x += 1;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end()) {
-		character->position.x -= 1;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_DOWN) != pressedKeys.end()) {
-		character->position.y += 1;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_UP) != pressedKeys.end()) {
-		character->position.y -= 1;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_V) != pressedKeys.end()) {
-		character->scaleX *= 1.1;
-		character->scaleY *= 1.1;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_B) != pressedKeys.end()) {
-		character->scaleX /= 1.1;
-		character->scaleY /= 1.1;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_X) != pressedKeys.end()) {
-		character->rotation += 0.1;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_C) != pressedKeys.end()) {
-		character->rotation -= 0.1;
-	}
-
-	if (pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end()) {
-		container->position.x += 1;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_A) != pressedKeys.end()) {
-		container->position.x -= 1;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end()) {
-		container->position.y += 1;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end()) {
-		container->position.y -= 1;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_F) != pressedKeys.end()) {
-		container->scaleX *= 1.1;
-		container->scaleY *= 1.1;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_G) != pressedKeys.end()) {
-		container->scaleX /= 1.1;
-		container->scaleY /= 1.1;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_E) != pressedKeys.end()) {
-		container->rotation += 0.1;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_R) != pressedKeys.end()) {
-		container->rotation -= 0.1;
-	}
-
-	if (pressedKeys.find(SDL_SCANCODE_L) != pressedKeys.end()) {
-		crocodile->position.x += 1;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_J) != pressedKeys.end()) {
-		crocodile->position.x -= 1;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_K) != pressedKeys.end()) {
-		crocodile->position.y += 1;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_I) != pressedKeys.end()) {
-		crocodile->position.y -= 1;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_N) != pressedKeys.end()) {
-		crocodile->scaleX *= 1.1;
-		crocodile->scaleY *= 1.1;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_M) != pressedKeys.end()) {
-		crocodile->scaleX /= 1.1;
-		crocodile->scaleY /= 1.1;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_O) != pressedKeys.end()) {
-		crocodile->rotation += 0.1;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end()) {
-		crocodile->rotation -= 0.1;
-	}
-
-	/*
- 	 * GAME CONTROLLER STUFF
-	 */
-
-	// movement
-	character->position.x += currState.leftStickX * 5;
-	character->position.y += currState.leftStickY * 5;
-
-	// increase scale
-	// integer division truncates, so convert to float
-	character->scaleX += currState.buttonA / 10.0;
-	character->scaleY += currState.buttonA / 10.0;
-
-	// decrease scale
-	// integer division truncates, so convert to float
-	character->scaleX -= currState.buttonB / 10.0;
-	character->scaleY -= currState.buttonB / 10.0;
-
-	if (character->position.x != origPosX){
-		if (!walking){
-			character->play("walk");
-			walking = true;
-		}
-	} else {
-		if (walking){
-			character->play("idle");
-			walking = false;
-		}
-	}
-	
-	//DOAdded->checkCondition();
-	//DORemoved->checkCondition();
+	DORemoved->checkCondition();
+	DOAdded->checkCondition();
 	collisionSystem->update();
 	Game::update(pressedKeys, currState);
 }
@@ -172,5 +134,5 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 void MyGame::draw(AffineTransform &at){
 	//SDL_RenderClear(Game::renderer);
 	Game::draw(at);
-
+	//SDL_RenderPresent(Game::renderer);
 }
