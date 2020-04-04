@@ -28,6 +28,7 @@
 #include "Layer.h"
 #include "TweenJuggler.h"
 #include "CollectiblesImports.h"
+#include "UIDefs.h"
 
 
 using namespace std;
@@ -52,7 +53,6 @@ private:
 	AnimatedSprite* character;
 	MainNPC* npc;
 	Ghost* player;
-	bool walking = false;
 
 	DisplayObjectContainer* container;
 
@@ -60,6 +60,17 @@ private:
 	CollisionSystem* collisionSystem;
 	DOAddedEvent* DOAdded;
 	DORemovedEvent* DORemoved;
+
+	//From UI_WORK
+	TweenJuggler* tweenJuggler;
+	Sprite* crocodile;
+	Scene* scene_2;
+	Sound* new_sound;
+	Checklist* checklistTest;
+	SelectionMenu* selectionMenuTest;
+	TextBox* textboxTest;
+	bool walking = false;
+	bool transition = false;
 
 };
 

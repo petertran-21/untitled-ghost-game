@@ -116,7 +116,17 @@ MyGame::MyGame() : Game(1000, 1000){
 	DOAdded->addChildCalled(container);
 	DOAdded->checkCondition();
 	//-----------------------------------------
+	// TODO, SFX will add later
 
+	// selectionMenuTest = new SelectionMenu();
+	// selectionMenuTest->addToMenu("Save");
+	// selectionMenuTest->addToMenu("Load");
+	// selectionMenuTest->addToMenu("Quit");
+	// container->addChild(selectionMenuTest);
+
+	// checklistTest = new Checklist();
+	// checklistTest->addEntry("Change Scene");
+	// container->addChild(checklistTest);
 }
 
 MyGame::~MyGame(){
