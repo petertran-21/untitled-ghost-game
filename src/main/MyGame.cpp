@@ -7,7 +7,7 @@ using namespace std;
 
 MyGame::MyGame() : Game(1200, 800){
 	camera = new Camera();
-	
+
 	allSprites = new DisplayObjectContainer();
 	instance->addChild(allSprites);
 
@@ -23,8 +23,8 @@ MyGame::MyGame() : Game(1200, 800){
 
 
 	character = new AnimatedSprite("character");
-	character->addSpriteSheet("./resources/character/character_idle.png", "./resources/character/character_animations.xml", "idle", 16, 2, true);
-	character->addSpriteSheet("./resources/character/character_walk.png", "./resources/character/character_animations2.xml", "walk", 16, 2, true);
+	character->addSpriteSheet("./resources/grendel/Grendel_Idle_Sheet.png", "./resources/grendel/grendel_idle.xml", "idle", 3, 12, true);
+	character->addSpriteSheet("./resources/grendel/Grendel_Move_Sheet.png", "./resources/grendel/grendel_move.xml", "move", 4, 12, true);
 	container->addChild(character);
 	character->drawHitbox();
 	character->play("idle");
@@ -35,6 +35,8 @@ MyGame::MyGame() : Game(1200, 800){
 	container->addChild(crocodile);
 	crocodile->drawHitbox();
 	crocodile->position.x = 300;
+	crocodile->position.y = 100;
+	crocodile->rotation = 6;
 	DOAdded->addChildCalled(crocodile);
 	DOAdded->checkCondition();
 
@@ -153,7 +155,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 
 	if (character->position.x != origPosX){
 		if (!walking){
-			character->play("walk");
+			character->play("move");
 			walking = true;
 		}
 	} else {
@@ -162,7 +164,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 			walking = false;
 		}
 	}
-	
+
 	//DOAdded->checkCondition();
 	//DORemoved->checkCondition();
 	collisionSystem->update();

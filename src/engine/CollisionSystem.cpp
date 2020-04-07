@@ -46,22 +46,23 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
   for(int i = 0; i < inView.size(); i++) {
     if (inView[i]->id == type1){
       for(int j = 0; j < inView.size(); j++) {
-        //cout << j << endl;
         if (inView[j]->id == type2) {
           if(collidesWith(inView[i], inView[j])){
             resolveCollision(inView[i], inView[j],
-            inView[i]->position.x - inView[i]->lastNonCollidedPos.x,
-            inView[i]->position.y - inView[i]->lastNonCollidedPos.y,
-            inView[j]->position.x - inView[j]->lastNonCollidedPos.x,
-            inView[j]->position.y - inView[j]->lastNonCollidedPos.y);
+            inView[i]->position.x - inView[i]->lastNonCollidedPos.x + inView[i]->parent->position.x,
+            inView[i]->position.y - inView[i]->lastNonCollidedPos.y + inView[i]->parent->position.y,
+            inView[j]->position.x - inView[j]->lastNonCollidedPos.x + inView[j]->parent->position.x,
+            inView[j]->position.y - inView[j]->lastNonCollidedPos.y + inView[j]->parent->position.y);
             } else {
               //Save deltas
               vector<SDL_Point> iHitbox = inView[i]->getHitbox();
               vector<SDL_Point> jHitbox = inView[j]->getHitbox();
               inView[i]->lastNonCollidedPos.x = iHitbox[0].x;
               inView[i]->lastNonCollidedPos.y = iHitbox[0].y;
+              inView[i]->lastNonCollidedHB = iHitbox;
               inView[j]->lastNonCollidedPos.x = jHitbox[0].x;
               inView[j]->lastNonCollidedPos.y = jHitbox[0].y;
+              inView[j]->lastNonCollidedHB = jHitbox;
             }
           }
         }
@@ -69,72 +70,109 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
     }
   }
 
+void CollisionSystem::watchForAdjacency(string type1, string type2) {
+  for(int i = 0; i < inView.size(); i++) {
+    if (inView[i]->id == type1){
+      for(int j = 0; j < inView.size(); j++) {
+        if (inView[j]->id == type2) {
+          std::cout << isAdjacentTo(inView[i], inView[j]) << std::endl;
+          // resolve adjacency goes here;
+        }
+      }
+    }
+  }
+}
+
+vector<int> CollisionSystem::findXYProjections(vector<SDL_Point> hitbox) {
+  //find min and max points in hitboxes
+  vector<int> projections;
+
+  int minX = 9999;
+  int maxX = 0;
+  for(int k = 0; k < 4; k++) {
+    if(hitbox.at(k).x < minX) {
+      minX = hitbox.at(k).x;
+    }
+    if(hitbox.at(k).x > maxX) {
+      maxX = hitbox.at(k).x;
+    }
+  }
+  projections.push_back(minX);
+  projections.push_back(maxX);
+  int minY = 9999;
+  int maxY = 0;
+  for(int k = 0; k < 4; k++) {
+    if(hitbox.at(k).y < minY) {
+      minY = hitbox.at(k).y;
+    }
+    if(hitbox.at(k).y > maxY) {
+      maxY = hitbox.at(k).y;
+    }
+  }
+  projections.push_back(minY);
+  projections.push_back(maxY);
+
+  return projections;
+}
+
+
+int CollisionSystem::projectionsOverlap(vector<int> projections1, vector<int> projections2) {
+
+  int minX1 = projections1[0];
+  int maxX1 = projections1[1];
+  int minY1 = projections1[2];
+  int maxY1 = projections1[3];
+
+  int minX2 = projections2[0];
+  int maxX2 = projections2[1];
+  int minY2 = projections2[2];
+  int maxY2 = projections2[3];
+
+  if (((minX1 <= minX2 && minX2 <= maxX1) ||
+      (minX2 <= minX1 && minX1 <= maxX2)) &&
+      ((minY1 <= minY2 && minY2 <= maxY1) ||
+      (minY2 <= minY1 && minY1 <= maxY2))) {
+        return 3;
+  } else if(((minX1 <= minX2 && minX2 <= maxX1) ||
+      (minX2 <= minX1 && minX1 <= maxX2))) {
+        return 2;
+  } else if(((minY1 <= minY2 && minY2 <= maxY1) ||
+  (minY2 <= minY1 && minY1 <= maxY2))) {
+        return 1;
+  } else return 0;
+}
+
+// returns 1 - obj1 is directly right of obj2;
+// returns 2 - obj1 is directly left of obj2;
+// returns 3 - obj1 is directly above obj2;
+// returns 4 - obj1 is directly below obj2;
+// returns 0 - not adjacent
+int CollisionSystem::isAdjacentTo(DisplayObject* obj1, DisplayObject* obj2) {
+  int xDif = obj1->position.x - obj2->position.x;
+  int yDif = obj1->position.y - obj2->position.y;
+
+  if(xDif > 0 && yDif == 0) {
+    return 1;
+  }
+  else if(xDif < 0 && yDif == 0) {
+    return 2;
+  }
+  else if(xDif == 0 && yDif < 0) {
+    return 3;
+  }
+  else if(xDif == 0 && yDif > 0) {
+    return 4;
+  }
+  return 0;
+}
 //returns true iff obj1 hitbox and obj2 hitbox overlap. Uses the following method from DO:
 //	SDL_Point* DisplayObject::getGlobalHitbox();
 bool CollisionSystem::collidesWith(DisplayObject* obj1, DisplayObject* obj2) {
   vector<SDL_Point> hitbox1 = obj1->getHitbox();
   vector<SDL_Point> hitbox2 = obj2->getHitbox();
 
-  // std::cout << "obj1:" << std::endl;
-	// std::cout << obj1->getHitbox()[0].x << ", " << obj1->getHitbox()[0].y << std::endl;
-	// std::cout << obj1->getHitbox()[1].x << ", " << obj1->getHitbox()[1].y << std::endl;
-	// std::cout << obj1->getHitbox()[2].x << ", " << obj1->getHitbox()[2].y << std::endl;
-	// std::cout << obj1->getHitbox()[3].x << ", " << obj1->getHitbox()[3].y << std::endl;
-  //
-	// std::cout << "obj2:" << std::endl;
-	// std::cout << obj2->getHitbox()[0].x << ", " << obj2->getHitbox()[0].y << std::endl;
-	// std::cout << obj2->getHitbox()[1].x << ", " << obj2->getHitbox()[1].y << std::endl;
-	// std::cout << obj2->getHitbox()[2].x << ", " << obj2->getHitbox()[2].y << std::endl;
-	// std::cout << obj2->getHitbox()[3].x << ", " << obj2->getHitbox()[3].y << std::endl;
-
-  //find min and max points in hitboxes
-  int minX1 = 9999;
-  int maxX1 = 0;
-  for(int k = 0; k < 4; k++) {
-    if(hitbox1.at(k).x < minX1) {
-      minX1 = hitbox1.at(k).x;
-    }
-    if(hitbox1.at(k).x > maxX1) {
-      maxX1 = hitbox1.at(k).x;
-    }
-  }
-  int minY1 = 9999;
-  int maxY1 = 0;
-  for(int k = 0; k < 4; k++) {
-    if(hitbox1.at(k).y < minY1) {
-      minY1 = hitbox1.at(k).y;
-    }
-    if(hitbox1.at(k).y > maxY1) {
-      maxY1 = hitbox1.at(k).y;
-    }
-  }
-  int minX2 = 9999;
-  int maxX2 = 0;
-  for(int k = 0; k < 4; k++) {
-    if(hitbox2.at(k).x < minX2) {
-      minX2 = hitbox2.at(k).x;
-    }
-    if(hitbox2.at(k).x > maxX2) {
-      maxX2 = hitbox2.at(k).x;
-    }
-  }
-  int minY2 = 9999;
-  int maxY2 = 0;
-  for(int k = 0; k < 4; k++) {
-    if(hitbox2.at(k).y < minY2) {
-      minY2 = hitbox2.at(k).y;
-    }
-
-    if(hitbox2.at(k).y > maxY2) {
-      maxY2 = hitbox2.at(k).y;
-    }
-  }
-
   // if the two hitboxes have overlapping x and y ranges, check for overlap
-  if (((minX1 <= minX2 && minX2 <= maxX1) || // first on left, second on right
-      (minX2 <= minX1 && minX1 <= maxX2)) &&
-      ((minY1 <= minY2 && minY2 <= maxY1) ||
-      (minY2 <= minY1 && minY1 <= maxY2))) {
+  if (projectionsOverlap(findXYProjections(hitbox1),findXYProjections(hitbox2)) == 3) {
 
     // for each edge for hitbox1 and each edge in hitbox2
     if(calculateOrientation(hitbox1.at(0),hitbox1.at(1),hitbox2.at(1),hitbox2.at(0)) == 3 &&
@@ -328,16 +366,6 @@ bool CollisionSystem::collidesWith(DisplayObject* obj1, DisplayObject* obj2) {
   return false;
 }
 
-// float CollisionSystem::slope(SDL_Point p1, SDL_Point p2) {
-//   float slope = 0.0;
-//   if (p2.x - p1.x != 0){
-//     slope = float(p2.y - p1.y) / float(p2.x - p1.x);
-//   }
-//   if (slope == -0) {
-//     slope = 0.0;
-//   }
-//   return slope;
-// }
 
 int CollisionSystem::calculateOrientation(SDL_Point p1, SDL_Point p2, SDL_Point p3, SDL_Point p4) {
   // first point test
@@ -347,9 +375,7 @@ int CollisionSystem::calculateOrientation(SDL_Point p1, SDL_Point p2, SDL_Point 
               (p2.x - p1.x) * (p3.y - p2.y);
   int val2 = (p2.y - p1.y) * (p4.x - p2.x) -
               (p2.x - p1.x) * (p4.y - p2.y);
-  // std::cout << "---" << std::endl;
-  // std::cout << "val1" << val1 << std::endl;
-  // std::cout << "val2" << val2 << std::endl;
+
   if (val1 > 0) {
     // left turn detected, set to 1
     firstTurn = 1;
@@ -399,31 +425,110 @@ double CollisionSystem::distance(SDL_Point p1, SDL_Point p2) {
 //xDelta2 and yDelta2 are the amount other moved before causing the collision.
 void CollisionSystem::resolveCollision(DisplayObject* d, DisplayObject* other, int xDelta1, int yDelta1, int xDelta2, int yDelta2) {
 
-  SDL_Point dpos1 = d->position;
-  SDL_Point dpos2 = {d->position.x - xDelta1, d->position.y - yDelta1};
-  d->position = {(dpos1.x + dpos2.x)/2, (dpos1.y + dpos2.y)/2 };
-
-  SDL_Point otherpos1 = other->position;
-  SDL_Point otherpos2 = {other->position.x - xDelta2, other->position.y - yDelta2}; 
-
-  SDL_Point dcenter = {d->position.x + d->width, d->position.y + d->height};
-  SDL_Point othercenter = {other->position.x + other->width, other->position.y };
-
-  double difference = distance(dcenter, othercenter);
-  while(difference > 100 || difference < 50) {
-    if (collidesWith(d, other)){
-      dpos1 = d->position;
-      otherpos1 = other->position;
-    } else {
-      dpos2 = d->position;
-      otherpos2 = other->position;
-    }
-    d->position = { (dpos1.x + dpos2.x)/2, (dpos1.y + dpos2.y)/2 };
-    dcenter = {d->position.x + d->width, d->position.y + d->height};
-
-    other->position = { (otherpos1.x + otherpos2.x)/2, (otherpos1.y + otherpos2.y)/2 };
-
-    difference = distance(dcenter, othercenter);
+  // if collision caused by Y value
+  if (projectionsOverlap(findXYProjections(d->lastNonCollidedHB),findXYProjections(other->lastNonCollidedHB)) == 2) {
+    d->position.y = d->position.y - yDelta1;
+    other->position.y = other->position.y - yDelta2;
   }
 
+  // if collision caused by X value
+  else if (projectionsOverlap(findXYProjections(d->lastNonCollidedHB),findXYProjections(other->lastNonCollidedHB)) == 1) {
+    d->position.x = d->position.x - xDelta1;
+    other->position.x = other->position.x - xDelta2;
+  }
+
+  // if collision on corner value
+  else if (projectionsOverlap(findXYProjections(d->lastNonCollidedHB),findXYProjections(other->lastNonCollidedHB)) == 0) {
+    d->position.y = d->position.y - yDelta1;
+    other->position.y = other->position.y - yDelta2;
+    d->position.x = d->position.x - xDelta1;
+    other->position.x = other->position.x - xDelta2;
+  }
+
+  // if collision on rotated sprites
+  else if (projectionsOverlap(findXYProjections(d->lastNonCollidedHB),findXYProjections(other->lastNonCollidedHB)) == 3) {
+
+    // movement left/right ONLY
+    if(yDelta1 == 0 && yDelta2 == 0) {
+      d->position.y = d->position.y - xDelta1;
+      other->position.y = other->position.y - xDelta2;
+      d->createHitbox();
+      other->createHitbox();
+      if(collidesWith(d,other)) {
+        d->position.y = d->position.y + 2*xDelta1;
+        other->position.y = other->position.y + 2*xDelta2;
+        while(collidesWith(d,other)) {
+          d->position.y = d->position.y + xDelta1;
+          other->position.y = other->position.y + xDelta2;
+          d->createHitbox();
+          other->createHitbox();
+        }
+      }
+    }
+    // movement up/down ONLY
+    else if(xDelta1 == 0 && xDelta2 == 0) {
+      d->position.x = d->position.x + yDelta1;
+      other->position.x = other->position.x + yDelta2;
+      d->createHitbox();
+      other->createHitbox();
+      if(collidesWith(d,other)) {
+        d->position.x = d->position.x - 2*yDelta1;
+        other->position.x = other->position.x - 2*yDelta2;
+        while(collidesWith(d,other)) {
+          d->position.x = d->position.x - yDelta1;
+          other->position.x = other->position.x - yDelta2;
+          d->createHitbox();
+          other->createHitbox();
+        }
+      }
+    }
+    // movement in two directions
+    else {
+      int iter1 = 0;
+      int iter2 = 0;
+      int origD = d->position.x;
+      int origO = other->position.x;
+      while(collidesWith(d,other)) {
+        d->position.x = d->position.x + xDelta1;
+        other->position.x = other->position.x + xDelta2;
+        d->createHitbox();
+        other->createHitbox();
+        iter1++;
+      }
+      d->position.x = origD;
+      other->position.x = origO;
+      d->createHitbox();
+      other->createHitbox();
+      while(collidesWith(d,other)) {
+        d->position.x = d->position.x - xDelta1;
+        other->position.x = other->position.x - xDelta2;
+        d->createHitbox();
+        other->createHitbox();
+        iter2++;
+      }
+      d->position.x = origD;
+      other->position.x = origO;
+      d->createHitbox();
+      other->createHitbox();
+
+      // collision is to the right of the sprite
+      if(iter1 > iter2) {
+        // keep y, reset x
+        while(collidesWith(d,other)) {
+          d->position.x = d->position.x - xDelta1;
+          other->position.x = other->position.x - xDelta2;
+          d->createHitbox();
+          other->createHitbox();
+        }
+      } else { // collision is to the left
+        // keep x, reset y
+        while(collidesWith(d,other)) {
+          d->position.y = d->position.y - yDelta1;
+          other->position.y = other->position.y - yDelta2;
+          d->createHitbox();
+          other->createHitbox();
+        }
+      }
+    }
+  }
 }

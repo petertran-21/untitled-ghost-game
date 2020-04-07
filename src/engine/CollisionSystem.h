@@ -28,7 +28,14 @@ public:
 	//of DOs of a given type (e.g., player vs platform). The system will begin to check all player objects
 	//against all platform objects that are in the current scene.
 	void watchForCollisions(string type1, string type2);
+	int watchForAdjacency(string type1, string type2);
 
+	vector<int> findXYProjections(vector<SDL_Point> hitbox);
+
+	int projectionsOverlap(vector<int> projections1, vector<int> projections2);
+
+
+	int isAdjacentTo(DisplayObject* obj1, DisplayObject* obj2);
 	//returns true iff obj1 hitbox and obj2 hitbox overlap. Uses the following method from DO:
 	//	SDL_Point* DisplayObject::getGlobalHitbox();
 	bool collidesWith(DisplayObject* obj1, DisplayObject* obj2);
