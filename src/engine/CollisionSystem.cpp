@@ -151,16 +151,16 @@ int CollisionSystem::isAdjacentTo(DisplayObject* obj1, DisplayObject* obj2) {
   int xDif = obj1->position.x - obj2->position.x;
   int yDif = obj1->position.y - obj2->position.y;
 
-  if(xDif > 0 && yDif == 0) {
+  if(xDif > 0 && xDif < 101 && yDif == 0) {
     return 1;
   }
-  else if(xDif < 0 && yDif == 0) {
+  else if(xDif < 0 && xDif > -101 && yDif == 0) {
     return 2;
   }
-  else if(xDif == 0 && yDif < 0) {
+  else if(xDif == 0 && yDif < 0 && yDif > -101) {
     return 3;
   }
-  else if(xDif == 0 && yDif > 0) {
+  else if(xDif == 0 && yDif > 0 && yDif < 101) {
     return 4;
   }
   return 0;

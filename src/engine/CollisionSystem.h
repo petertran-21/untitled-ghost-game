@@ -28,7 +28,7 @@ public:
 	//of DOs of a given type (e.g., player vs platform). The system will begin to check all player objects
 	//against all platform objects that are in the current scene.
 	void watchForCollisions(string type1, string type2);
-	int watchForAdjacency(string type1, string type2);
+	void watchForAdjacency(string type1, string type2);
 
 	vector<int> findXYProjections(vector<SDL_Point> hitbox);
 
