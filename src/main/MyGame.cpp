@@ -39,10 +39,38 @@ MyGame::~MyGame(){
 }
 
 void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
+	if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {
+		character->position.x += 1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end()) {
+		character->position.x -= 1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_DOWN) != pressedKeys.end()) {
+		character->position.y += 1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_UP) != pressedKeys.end()) {
+		character->position.y -= 1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_V) != pressedKeys.end()) {
+		character->scaleX *= 1.1;
+		character->scaleY *= 1.1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_B) != pressedKeys.end()) {
+		character->scaleX /= 1.1;
+		character->scaleY /= 1.1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_X) != pressedKeys.end()) {
+		character->rotation += 0.1;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_C) != pressedKeys.end()) {
+		character->rotation -= 0.1;
+	}
+
+	
 	DORemoved->checkCondition();
 	DOAdded->checkCondition();
 	collisionSystem->update();
-	
+
 	Game::update(pressedKeys, currState);
 }
 
