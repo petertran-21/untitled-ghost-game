@@ -1,5 +1,6 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_opengl.h>
 #include <iostream>
 #include <algorithm>
 #include "MyGame.h"
@@ -26,8 +27,8 @@ MyGame::MyGame() : Game(1000, 1000){
 	character = new AnimatedSprite("character");
 	character->addSpriteSheet("./resources/grendel/Grendel_Idle_Sheet.png", "./resources/grendel/grendel_idle.xml", "idle", 3, 12, true);
 	character->addSpriteSheet("./resources/grendel/Grendel_Move_Sheet.png", "./resources/grendel/grendel_move.xml", "move", 4, 12, true);
+	//character->drawBox = true;
 	container->addChild(character);
-	character->drawHitbox();
 	character->play("idle");
 	DOAdded->addChildCalled(character);
 	DOAdded->checkCondition();
@@ -39,6 +40,8 @@ MyGame::~MyGame(){
 }
 
 void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
+	int origPosX = character->position.x;
+
 	if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {
 		character->position.x += 1;
 	}
@@ -66,7 +69,18 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 		character->rotation -= 0.1;
 	}
 
-	
+	if (character->position.x != origPosX){
+		if (!walking){
+			character->play("move");
+			walking = true;
+		}
+	} else {
+		if (walking){
+			character->play("idle");
+			walking = false;
+		}
+	}
+
 	DORemoved->checkCondition();
 	DOAdded->checkCondition();
 	collisionSystem->update();

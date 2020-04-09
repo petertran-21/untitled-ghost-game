@@ -3,6 +3,7 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <GLFW/glfw3.h>
 #include <iostream>
 #include "Game.h"
 #include "Sprite.h"
@@ -34,7 +35,7 @@
 using namespace std;
 
 class MyGame : public Game{
-	
+
 public:
 	MyGame();
 	virtual ~MyGame();
@@ -44,15 +45,11 @@ public:
 
 private:
 	Camera* camera;
-	Scene* scene_1;
-	
+
 	DisplayObjectContainer* allSprites;
-	DisplayObjectContainer* environment;
-	EventDispatcher* controllerDisp;
 
 	AnimatedSprite* character;
-	MainNPC* npc;
-	Ghost* player;
+	bool walking;
 
 	DisplayObjectContainer* container;
 
@@ -61,16 +58,6 @@ private:
 	DOAddedEvent* DOAdded;
 	DORemovedEvent* DORemoved;
 
-	//From UI_WORK
-	TweenJuggler* tweenJuggler;
-	Sprite* crocodile;
-	Scene* scene_2;
-	Sound* new_sound;
-	Checklist* checklistTest;
-	SelectionMenu* selectionMenuTest;
-	TextBox* textboxTest;
-	bool walking = false;
-	bool transition = false;
 
 };
 
