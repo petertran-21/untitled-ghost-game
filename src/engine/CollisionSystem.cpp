@@ -15,12 +15,8 @@ CollisionSystem::~CollisionSystem(){
 //checks collisions between pairs of DOs where the corresponding types have been requested
 //to be checked (via a single call to watchForCollisions) below.
 void CollisionSystem::update(){
-  watchForCollisions("NPC", "NPC");
-  watchForCollisions("Ghost", "NPC");
-  watchForCollisions("NPCObj", "EnvObj");
-  watchForCollisions("NPC", "NPCObj");
-  watchForCollisions("NPC", "EnvObj");
-  watchForCollisions("NPC", "Collectible");
+  watchForCollisions("character", "crocodile");
+  // watchForCollisions("player", "enemy");
 }
 
 //This system watches the game's display tree and is notified whenever a display object is placed onto
@@ -29,7 +25,7 @@ void CollisionSystem::handleEvent(Event* e){
   if (e->getType() == DOAddedEvent::DO_ADDED) {
     DOAddedEvent* event = (DOAddedEvent*) e;
     inView.push_back(event->recentlyAdded);
-    // std::cout << "DO added to the game." << event->recentlyAdded->type << std::endl;
+    std::cout << "DO added to the game." << std::endl;
   }
   if (e->getType() == DORemovedEvent::DO_REMOVED) {
     DORemovedEvent* event = (DORemovedEvent*) e;
@@ -50,43 +46,23 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
   for(int i = 0; i < inView.size(); i++) {
     if (inView[i]->id == type1){
       for(int j = 0; j < inView.size(); j++) {
-        //cout << j << endl;
         if (inView[j]->id == type2) {
           if(collidesWith(inView[i], inView[j])){
-            // cout<< "TYPE 1: "<< type1 <<" ----- TYPE 2: "<<type2 <<endl;
-            if (type1 == "Ghost" && type2 == "NPC"){
-              resolveCollision_Ghost_NPC(inView[i], inView[j]);
-            }
-            else if ((type1 == "NPC" && type2 == "NPC") && (inView[i] != inView[j])){
-              resolveCollision_NPC_NPC(inView[i], inView[j]);
-            }
-            else if ((type1 == "NPC" && type2 == "EnvObj")){
-              resolveCollision_NPC_EnvObj(inView[i], inView[j]);
-            }
-            else if ((type1 == "NPC") && (type2 == "NPCObj")){
-              resolveCollision_NPC_NPCObj(inView[i], inView[j]);
-            }
-            else if ((type1 == "NPC" && type2 == "Collectible")){
-              resolveCollision_NPC_Collectible(inView[i], inView[j]);
-            }
-            else if ((type1 == "NPCObj" && type2 == "EnvObj")){
-              resolveCollision_NPCObj_EnvObj(inView[i], inView[j]);
-            }
-            else{
-              //nothing happens :)
-            }
-
-            // if (inView[i]) inView[i]->resolve_collision(inView[j]);
-            // if (inView[j]) inView[j]->resolve_collision(inView[i]);
-
+            resolveCollision(inView[i], inView[j],
+            inView[i]->position.x - inView[i]->lastNonCollidedPos.x + inView[i]->parent->position.x,
+            inView[i]->position.y - inView[i]->lastNonCollidedPos.y + inView[i]->parent->position.y,
+            inView[j]->position.x - inView[j]->lastNonCollidedPos.x + inView[j]->parent->position.x,
+            inView[j]->position.y - inView[j]->lastNonCollidedPos.y + inView[j]->parent->position.y);
             } else {
               //Save deltas
               vector<SDL_Point> iHitbox = inView[i]->getHitbox();
               vector<SDL_Point> jHitbox = inView[j]->getHitbox();
               inView[i]->lastNonCollidedPos.x = iHitbox[0].x;
               inView[i]->lastNonCollidedPos.y = iHitbox[0].y;
+              inView[i]->lastNonCollidedHB = iHitbox;
               inView[j]->lastNonCollidedPos.x = jHitbox[0].x;
               inView[j]->lastNonCollidedPos.y = jHitbox[0].y;
+              inView[j]->lastNonCollidedHB = jHitbox;
             }
           }
         }
@@ -94,72 +70,109 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
     }
   }
 
+void CollisionSystem::watchForAdjacency(string type1, string type2) {
+  for(int i = 0; i < inView.size(); i++) {
+    if (inView[i]->id == type1){
+      for(int j = 0; j < inView.size(); j++) {
+        if (inView[j]->id == type2) {
+          std::cout << isAdjacentTo(inView[i], inView[j]) << std::endl;
+          // resolve adjacency goes here;
+        }
+      }
+    }
+  }
+}
+
+vector<int> CollisionSystem::findXYProjections(vector<SDL_Point> hitbox) {
+  //find min and max points in hitboxes
+  vector<int> projections;
+
+  int minX = 9999;
+  int maxX = 0;
+  for(int k = 0; k < 4; k++) {
+    if(hitbox.at(k).x < minX) {
+      minX = hitbox.at(k).x;
+    }
+    if(hitbox.at(k).x > maxX) {
+      maxX = hitbox.at(k).x;
+    }
+  }
+  projections.push_back(minX);
+  projections.push_back(maxX);
+  int minY = 9999;
+  int maxY = 0;
+  for(int k = 0; k < 4; k++) {
+    if(hitbox.at(k).y < minY) {
+      minY = hitbox.at(k).y;
+    }
+    if(hitbox.at(k).y > maxY) {
+      maxY = hitbox.at(k).y;
+    }
+  }
+  projections.push_back(minY);
+  projections.push_back(maxY);
+
+  return projections;
+}
+
+
+int CollisionSystem::projectionsOverlap(vector<int> projections1, vector<int> projections2) {
+
+  int minX1 = projections1[0];
+  int maxX1 = projections1[1];
+  int minY1 = projections1[2];
+  int maxY1 = projections1[3];
+
+  int minX2 = projections2[0];
+  int maxX2 = projections2[1];
+  int minY2 = projections2[2];
+  int maxY2 = projections2[3];
+
+  if (((minX1 <= minX2 && minX2 <= maxX1) ||
+      (minX2 <= minX1 && minX1 <= maxX2)) &&
+      ((minY1 <= minY2 && minY2 <= maxY1) ||
+      (minY2 <= minY1 && minY1 <= maxY2))) {
+        return 3;
+  } else if(((minX1 <= minX2 && minX2 <= maxX1) ||
+      (minX2 <= minX1 && minX1 <= maxX2))) {
+        return 2;
+  } else if(((minY1 <= minY2 && minY2 <= maxY1) ||
+  (minY2 <= minY1 && minY1 <= maxY2))) {
+        return 1;
+  } else return 0;
+}
+
+// returns 1 - obj1 is directly right of obj2;
+// returns 2 - obj1 is directly left of obj2;
+// returns 3 - obj1 is directly above obj2;
+// returns 4 - obj1 is directly below obj2;
+// returns 0 - not adjacent
+int CollisionSystem::isAdjacentTo(DisplayObject* obj1, DisplayObject* obj2) {
+  int xDif = obj1->position.x - obj2->position.x;
+  int yDif = obj1->position.y - obj2->position.y;
+
+  if(xDif > 0 && xDif < 101 && yDif == 0) {
+    return 1;
+  }
+  else if(xDif < 0 && xDif > -101 && yDif == 0) {
+    return 2;
+  }
+  else if(xDif == 0 && yDif < 0 && yDif > -101) {
+    return 3;
+  }
+  else if(xDif == 0 && yDif > 0 && yDif < 101) {
+    return 4;
+  }
+  return 0;
+}
 //returns true iff obj1 hitbox and obj2 hitbox overlap. Uses the following method from DO:
 //	SDL_Point* DisplayObject::getGlobalHitbox();
 bool CollisionSystem::collidesWith(DisplayObject* obj1, DisplayObject* obj2) {
   vector<SDL_Point> hitbox1 = obj1->getHitbox();
   vector<SDL_Point> hitbox2 = obj2->getHitbox();
 
-  // std::cout << "obj1:" << std::endl;
-	// std::cout << obj1->getHitbox()[0].x << ", " << obj1->getHitbox()[0].y << std::endl;
-	// std::cout << obj1->getHitbox()[1].x << ", " << obj1->getHitbox()[1].y << std::endl;
-	// std::cout << obj1->getHitbox()[2].x << ", " << obj1->getHitbox()[2].y << std::endl;
-	// std::cout << obj1->getHitbox()[3].x << ", " << obj1->getHitbox()[3].y << std::endl;
-  //
-	// std::cout << "obj2:" << std::endl;
-	// std::cout << obj2->getHitbox()[0].x << ", " << obj2->getHitbox()[0].y << std::endl;
-	// std::cout << obj2->getHitbox()[1].x << ", " << obj2->getHitbox()[1].y << std::endl;
-	// std::cout << obj2->getHitbox()[2].x << ", " << obj2->getHitbox()[2].y << std::endl;
-	// std::cout << obj2->getHitbox()[3].x << ", " << obj2->getHitbox()[3].y << std::endl;
-
-  //find min and max points in hitboxes
-  int minX1 = 9999;
-  int maxX1 = 0;
-  for(int k = 0; k < 4; k++) {
-    if(hitbox1.at(k).x < minX1) {
-      minX1 = hitbox1.at(k).x;
-    }
-    if(hitbox1.at(k).x > maxX1) {
-      maxX1 = hitbox1.at(k).x;
-    }
-  }
-  int minY1 = 9999;
-  int maxY1 = 0;
-  for(int k = 0; k < 4; k++) {
-    if(hitbox1.at(k).y < minY1) {
-      minY1 = hitbox1.at(k).y;
-    }
-    if(hitbox1.at(k).y > maxY1) {
-      maxY1 = hitbox1.at(k).y;
-    }
-  }
-  int minX2 = 9999;
-  int maxX2 = 0;
-  for(int k = 0; k < 4; k++) {
-    if(hitbox2.at(k).x < minX2) {
-      minX2 = hitbox2.at(k).x;
-    }
-    if(hitbox2.at(k).x > maxX2) {
-      maxX2 = hitbox2.at(k).x;
-    }
-  }
-  int minY2 = 9999;
-  int maxY2 = 0;
-  for(int k = 0; k < 4; k++) {
-    if(hitbox2.at(k).y < minY2) {
-      minY2 = hitbox2.at(k).y;
-    }
-
-    if(hitbox2.at(k).y > maxY2) {
-      maxY2 = hitbox2.at(k).y;
-    }
-  }
-
   // if the two hitboxes have overlapping x and y ranges, check for overlap
-  if (((minX1 <= minX2 && minX2 <= maxX1) || // first on left, second on right
-      (minX2 <= minX1 && minX1 <= maxX2)) &&
-      ((minY1 <= minY2 && minY2 <= maxY1) ||
-      (minY2 <= minY1 && minY1 <= maxY2))) {
+  if (projectionsOverlap(findXYProjections(hitbox1),findXYProjections(hitbox2)) == 3) {
 
     // for each edge for hitbox1 and each edge in hitbox2
     if(calculateOrientation(hitbox1.at(0),hitbox1.at(1),hitbox2.at(1),hitbox2.at(0)) == 3 &&
@@ -353,16 +366,6 @@ bool CollisionSystem::collidesWith(DisplayObject* obj1, DisplayObject* obj2) {
   return false;
 }
 
-// float CollisionSystem::slope(SDL_Point p1, SDL_Point p2) {
-//   float slope = 0.0;
-//   if (p2.x - p1.x != 0){
-//     slope = float(p2.y - p1.y) / float(p2.x - p1.x);
-//   }
-//   if (slope == -0) {
-//     slope = 0.0;
-//   }
-//   return slope;
-// }
 
 int CollisionSystem::calculateOrientation(SDL_Point p1, SDL_Point p2, SDL_Point p3, SDL_Point p4) {
   // first point test
@@ -372,9 +375,7 @@ int CollisionSystem::calculateOrientation(SDL_Point p1, SDL_Point p2, SDL_Point 
               (p2.x - p1.x) * (p3.y - p2.y);
   int val2 = (p2.y - p1.y) * (p4.x - p2.x) -
               (p2.x - p1.x) * (p4.y - p2.y);
-  // std::cout << "---" << std::endl;
-  // std::cout << "val1" << val1 << std::endl;
-  // std::cout << "val2" << val2 << std::endl;
+
   if (val1 > 0) {
     // left turn detected, set to 1
     firstTurn = 1;
@@ -423,115 +424,111 @@ double CollisionSystem::distance(SDL_Point p1, SDL_Point p2) {
 //xDelta1 and yDelta1 are the amount d moved before causing the collision.
 //xDelta2 and yDelta2 are the amount other moved before causing the collision.
 void CollisionSystem::resolveCollision(DisplayObject* d, DisplayObject* other, int xDelta1, int yDelta1, int xDelta2, int yDelta2) {
-  //std::cout << "Collision" << std::endl;
-  //d->position = d->lastNonCollidedPos;
-  //other->position = other->lastNonCollidedPos;
 
-  // For now just do 5 iterations to get closer -- Should this be recursive? ¯\_(ツ)_/¯
-  int i = 0;
-  bool lastIterartionCollided = true;
-  while(i < 5){
+  // if collision caused by Y value
+  if (projectionsOverlap(findXYProjections(d->lastNonCollidedHB),findXYProjections(other->lastNonCollidedHB)) == 2) {
+    d->position.y = d->position.y - yDelta1;
+    other->position.y = other->position.y - yDelta2;
+  }
 
-    if (collidesWith(d, other)){
-      // Move further away
-      if (!lastIterartionCollided){
-        xDelta1 = -xDelta1;
-        yDelta1 = - yDelta1;
+  // if collision caused by X value
+  else if (projectionsOverlap(findXYProjections(d->lastNonCollidedHB),findXYProjections(other->lastNonCollidedHB)) == 1) {
+    d->position.x = d->position.x - xDelta1;
+    other->position.x = other->position.x - xDelta2;
+  }
 
-        xDelta2 = -xDelta2;
-        yDelta2 = -yDelta2;
+  // if collision on corner value
+  else if (projectionsOverlap(findXYProjections(d->lastNonCollidedHB),findXYProjections(other->lastNonCollidedHB)) == 0) {
+    d->position.y = d->position.y - yDelta1;
+    other->position.y = other->position.y - yDelta2;
+    d->position.x = d->position.x - xDelta1;
+    other->position.x = other->position.x - xDelta2;
+  }
+
+  // if collision on rotated sprites
+  else if (projectionsOverlap(findXYProjections(d->lastNonCollidedHB),findXYProjections(other->lastNonCollidedHB)) == 3) {
+
+    // movement left/right ONLY
+    if(yDelta1 == 0 && yDelta2 == 0) {
+      d->position.y = d->position.y - xDelta1;
+      other->position.y = other->position.y - xDelta2;
+      d->createHitbox();
+      other->createHitbox();
+      if(collidesWith(d,other)) {
+        d->position.y = d->position.y + 2*xDelta1;
+        other->position.y = other->position.y + 2*xDelta2;
+        while(collidesWith(d,other)) {
+          d->position.y = d->position.y + xDelta1;
+          other->position.y = other->position.y + xDelta2;
+          d->createHitbox();
+          other->createHitbox();
+        }
       }
-      lastIterartionCollided = true;
-    } else {
-      // Move closer
-      if (lastIterartionCollided){
-        xDelta1 = -xDelta1;
-        yDelta1 = - yDelta1;
-
-        xDelta2 = -xDelta2;
-        yDelta2 = -yDelta2;
+    }
+    // movement up/down ONLY
+    else if(xDelta1 == 0 && xDelta2 == 0) {
+      d->position.x = d->position.x + yDelta1;
+      other->position.x = other->position.x + yDelta2;
+      d->createHitbox();
+      other->createHitbox();
+      if(collidesWith(d,other)) {
+        d->position.x = d->position.x - 2*yDelta1;
+        other->position.x = other->position.x - 2*yDelta2;
+        while(collidesWith(d,other)) {
+          d->position.x = d->position.x - yDelta1;
+          other->position.x = other->position.x - yDelta2;
+          d->createHitbox();
+          other->createHitbox();
+        }
       }
-      lastIterartionCollided = false;
     }
+    // movement in two directions
+    else {
+      int iter1 = 0;
+      int iter2 = 0;
+      int origD = d->position.x;
+      int origO = other->position.x;
+      while(collidesWith(d,other)) {
+        d->position.x = d->position.x + xDelta1;
+        other->position.x = other->position.x + xDelta2;
+        d->createHitbox();
+        other->createHitbox();
+        iter1++;
+      }
+      d->position.x = origD;
+      other->position.x = origO;
+      d->createHitbox();
+      other->createHitbox();
+      while(collidesWith(d,other)) {
+        d->position.x = d->position.x - xDelta1;
+        other->position.x = other->position.x - xDelta2;
+        d->createHitbox();
+        other->createHitbox();
+        iter2++;
+      }
+      d->position.x = origD;
+      other->position.x = origO;
+      d->createHitbox();
+      other->createHitbox();
 
-    // Find midpoints
-    d->position.x = d->position.x - 100;
-    d->position.y = d->position.y - 100;
-    // d->position.x = (d->position.x + (d->position.x - xDelta1))/2;
-    // d->position.y = (d->position.y + (d->position.y - yDelta1))/2;
-
-    other->position.x = (other->position.x + (other->position.x - xDelta2))/2;
-    other->position.y = (other->position.y + (other->position.y - yDelta2))/2;
-    //cout << other->position.x << endl;
-    // Shorten move distance
-    xDelta1 = xDelta1/2;
-    yDelta1 = yDelta1/2;
-
-    xDelta2 = xDelta2/2;
-    yDelta2 = yDelta2/2;
-    i++;
-  }
-
-
-
-}
-
-void CollisionSystem::resolveCollision_Ghost_NPC(DisplayObject* ghost, DisplayObject* npc) {
-  Ghost* g = dynamic_cast<Ghost*>(ghost);
-
-  g->npc = (MainNPC*)npc;
-}
-
-void CollisionSystem::resolveCollision_NPC_NPC(DisplayObject* npc, DisplayObject* npc1){
-  MainNPC* npc2 = (MainNPC*) npc;
-  MainNPC* npc3 = (MainNPC*) npc1;
-  MainNPC* pNPC = npc3;
-  MainNPC* npNPC = npc2;
-  //check which npc is possessed
-  if (npc2->is_possessed){
-    pNPC = npc2;
-    npNPC = npc3;
-  }
-  //check that npcs are overlapping
-  if ((pNPC->position.y == npNPC->position.y) && (pNPC->position.x == npNPC->position.x)){
-    switch (pNPC->dir){
-      //reset possessed npc's location to previous based on location it came from
-      case N:
-        pNPC->position.y = pNPC->position.y + 100;
-        pNPC->dir = None;
-        break;
-      case E:
-        pNPC->position.x = pNPC->position.x - 100;
-        pNPC->dir = None;
-        break;
-      case S: 
-        pNPC->position.y = pNPC->position.y - 100;
-        pNPC->dir = None;
-        break;
-      case W:
-        pNPC->position.x = pNPC->position.x + 100;
-        pNPC->dir = None;
-        break;
+      // collision is to the right of the sprite
+      if(iter1 > iter2) {
+        // keep y, reset x
+        while(collidesWith(d,other)) {
+          d->position.x = d->position.x - xDelta1;
+          other->position.x = other->position.x - xDelta2;
+          d->createHitbox();
+          other->createHitbox();
+        }
+      } else { // collision is to the left
+        // keep x, reset y
+        while(collidesWith(d,other)) {
+          d->position.y = d->position.y - yDelta1;
+          other->position.y = other->position.y - yDelta2;
+          d->createHitbox();
+          other->createHitbox();
+        }
+      }
     }
   }
-
-}
-
-void CollisionSystem::resolveCollision_NPC_EnvObj(DisplayObject* npc, DisplayObject* envObj){
-  npc->resolve_collision(envObj);
-  envObj->resolve_collision(npc);
-}
-void CollisionSystem::resolveCollision_NPC_NPCObj(DisplayObject* npc, DisplayObject* npcObj){
-  npc->resolve_collision(npcObj);
-  npcObj->resolve_collision(npc);
-}
-
-void CollisionSystem::resolveCollision_NPC_Collectible(DisplayObject* npc, DisplayObject* collectible){
-  npc->resolve_collision(collectible);
-  collectible->resolve_collision(npc);
-}
-
-void CollisionSystem::resolveCollision_NPCObj_EnvObj(DisplayObject* NPCObj, DisplayObject* envObj){
-  NPCObj->resolve_collision(envObj);
-  envObj->resolve_collision(NPCObj);
 }

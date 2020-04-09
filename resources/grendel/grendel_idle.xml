@@ -1,0 +1,5 @@
+<idle name="idle_animation">
+  <layer0 x="0" y="0" width="100" height="100" />
+  <layer1 x="100" y="0" width="100" height="100" />
+  <layer2 x="200" y="0" width="100" height="100" />
+</idle>
