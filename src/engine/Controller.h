@@ -27,7 +27,6 @@ class Controller {
         ~Controller();
 
         void setState(SDL_Event event);
-        SDL_Joystick* getJoystick();
         Controller::JoystickState getJoystickState();
 
     private:

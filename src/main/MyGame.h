@@ -9,9 +9,6 @@
 #include "Sprite.h"
 #include "AnimatedSprite.h"
 #include "EventDispatcher.h"
-#include "DOAddedEvent.h"
-#include "DORemovedEvent.h"
-#include "CollisionSystem.h"
 #include "Controller.h"
 #include "QuestManager.h"
 #include "PickedUpEvent.h"
@@ -31,14 +28,13 @@
 #include "CollectiblesImports.h"
 #include "UIDefs.h"
 
-
 using namespace std;
 
 class MyGame : public Game{
 	
 public:
 	MyGame();
-	virtual ~MyGame();
+	~MyGame();
 
 	virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 	virtual void draw(AffineTransform &at);
