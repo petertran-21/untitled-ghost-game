@@ -33,6 +33,10 @@ MyGame::MyGame() : Game(1000, 1000){
 	DOAdded->addChildCalled(character);
 	DOAdded->checkCondition();
 
+	// light = new Light("WHITE", "white");
+	// allSprites->addChild(light);
+
+
 }
 
 MyGame::~MyGame(){

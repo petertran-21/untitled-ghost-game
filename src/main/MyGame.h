@@ -5,6 +5,7 @@
 #include <SDL2/SDL_image.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include "Light.h"
 #include "Game.h"
 #include "Sprite.h"
 #include "AnimatedSprite.h"
@@ -57,6 +58,8 @@ private:
 	CollisionSystem* collisionSystem;
 	DOAddedEvent* DOAdded;
 	DORemovedEvent* DORemoved;
+
+	Light* light;
 
 
 };

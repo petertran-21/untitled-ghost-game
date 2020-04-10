@@ -2,6 +2,7 @@
 #define LIGHT_H
 
 #include <vector>
+#include "Game.h"
 #include "DisplayObject.h"
 #include "AffineTransform.h"
 #include "Controller.h"
@@ -13,17 +14,19 @@ using namespace std;
 class Light : public DisplayObject{
 
 public:
-	Light(DisplayObject* parent, string id, int red, int green, int blue);
+  Light(string id, string color);
+	Light(DisplayObject* parent, string id, string color);
 	virtual ~Light();
-
-  void loadRGBTexture(int red, int green, int blue);
 
 	virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 	virtual void draw(AffineTransform &at);
 
 	DisplayObject* parent;
   string id = "DEFAULT_LIGHT";
+  string color;
 private:
+
+  SDL_Texture* texture;
 
 
 };
