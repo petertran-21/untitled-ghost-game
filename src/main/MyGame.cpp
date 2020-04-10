@@ -119,9 +119,14 @@ MyGame::MyGame() : Game(1000, 1000)
 	// container->addChild(checklistTest);
 }
 
-MyGame::~MyGame(){
-	delete scene_1;
-	delete camera;
+MyGame::~MyGame()
+{
+	/**
+	 * Don't delete children of "this"
+	 * because it's handled automatically through
+	 * Game's superclass, DisplayObjectContainer.
+	 */
+	
 	delete displayTreeDisp;
 	delete collisionSystem;
 	delete DOAdded;
