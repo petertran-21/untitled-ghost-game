@@ -1,32 +1,22 @@
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <iostream>
-#include <algorithm>
 #include "MyGame.h"
 
-using namespace std;
-
-MyGame::MyGame() : Game(1000, 1000){
-	//------------Work from the SFX/Level Team
+MyGame::MyGame() : Game(1000, 1000)
+{
+	//SFX team work
 	camera = new Camera();
 	scene_1 = new Scene();
-
 	scene_1->loadScene("./resources/scenes/beachEntrance.json");
-
-	this->addChild(camera);
 	camera->addChild(scene_1);
-	//-----------------------------------------
+	this->addChild(camera);
 
-	//-------------Character Programming Demo 
-	instance = this;
-
+	//Character demo work
 	allSprites = new DisplayObjectContainer();
-	instance->addChild(allSprites);
 	container = new DisplayObjectContainer();
+	this->addChild(allSprites);
 
-	// uncomment following line to check that collision boxes for objects are identical to drawing
-	allSprites->addChild(container);
-	
+	//uncomment following line to check that collision boxes for objects are identical to drawing
+	//allSprites->addChild(container);
+
 	collisionSystem = new CollisionSystem();
 	displayTreeDisp = new EventDispatcher();
 	DOAdded = new DOAddedEvent(displayTreeDisp, container);
@@ -132,6 +122,10 @@ MyGame::MyGame() : Game(1000, 1000){
 MyGame::~MyGame(){
 	delete scene_1;
 	delete camera;
+	delete displayTreeDisp;
+	delete collisionSystem;
+	delete DOAdded;
+	delete DORemoved;
 }
 
 void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
@@ -142,7 +136,5 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 }
 
 void MyGame::draw(AffineTransform &at){
-	//SDL_RenderClear(Game::renderer);
 	Game::draw(at);
-	//SDL_RenderPresent(Game::renderer);
 }

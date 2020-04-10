@@ -4,6 +4,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
+#include <algorithm>
 #include "Game.h"
 #include "Sprite.h"
 #include "AnimatedSprite.h"
