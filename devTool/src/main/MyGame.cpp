@@ -40,9 +40,12 @@ MyGame::MyGame() : Game()
 
 MyGame::~MyGame()
 {
-	delete allSprites;
-	delete allComponents;
-	delete templateBar;
+	/**
+	 * Don't delete children of instance
+	 * because it's handled automatically through
+	 * Game's superclass, DisplayObjectContainer.
+	 */
+
 	delete mouseDisp;
 	delete mouseClick;
 	delete clickManager;
