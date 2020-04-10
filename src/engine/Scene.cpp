@@ -1,16 +1,14 @@
 #include "Scene.h"
-#include "AnimatedSprite.h"
-#include "Layer.h"
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <string>
-#include <iostream>
-#include <fstream>
-#include "json.hpp"
 
-using json = nlohmann::json;
-// Scene contstructor just calls parent DOC constructor
-Scene::Scene() : DisplayObjectContainer(){}
+Scene::Scene() : DisplayObjectContainer()
+{
+    isActive = true;
+}
+
+Scene::~Scene()
+{
+    isActive = false;
+}
 
 // void Scene::loadScene(string sceneFilePath){
 //     std::ifstream i(sceneFilePath);
