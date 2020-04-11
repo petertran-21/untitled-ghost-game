@@ -1,6 +1,7 @@
 #include "CollisionSystem.h"
 #include "DOAddedEvent.h"
 #include "DORemovedEvent.h"
+#include "MainNPC.h"
 
 #include <cmath>
 
@@ -77,7 +78,7 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
             inView[j]->position.x - inView[j]->lastNonCollidedPos.x + inView[j]->parent->position.x,
             inView[j]->position.y - inView[j]->lastNonCollidedPos.y + inView[j]->parent->position.y);
             }
-            
+
             } else {
               //Save deltas
               vector<SDL_Point> iHitbox = inView[i]->getHitbox();
@@ -611,4 +612,3 @@ void CollisionSystem::resolveCollision_NPCObj_EnvObj(DisplayObject* NPCObj, Disp
   NPCObj->resolve_collision(envObj);
   envObj->resolve_collision(NPCObj);
 }
-
