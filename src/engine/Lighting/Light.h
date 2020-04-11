@@ -15,15 +15,14 @@ class Light : public DisplayObject{
 
 public:
   Light(string id, string color);
-	Light(DisplayObject* parent, string id, string color);
 	virtual ~Light();
 
 	virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 	virtual void draw(AffineTransform &at);
 
-	DisplayObject* parent;
   string id = "DEFAULT_LIGHT";
   string color;
+  int direction = 0;
 private:
 
   SDL_Texture* texture;

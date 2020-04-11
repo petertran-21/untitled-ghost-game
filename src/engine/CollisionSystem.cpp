@@ -15,12 +15,12 @@ CollisionSystem::~CollisionSystem(){
 //checks collisions between pairs of DOs where the corresponding types have been requested
 //to be checked (via a single call to watchForCollisions) below.
 void CollisionSystem::update(){
-  watchForCollisions("NPC", "NPC");
-  watchForCollisions("Ghost", "NPC");
-  watchForCollisions("NPCObj", "EnvObj");
-  watchForCollisions("NPC", "NPCObj");
-  watchForCollisions("NPC", "EnvObj");
-  watchForCollisions("NPC", "Collectible");
+  // watchForCollisions("NPC", "NPC");
+  // watchForCollisions("Ghost", "NPC");
+  // watchForCollisions("NPCObj", "EnvObj");
+  // watchForCollisions("NPC", "NPCObj");
+  // watchForCollisions("NPC", "EnvObj");
+  // watchForCollisions("NPC", "Collectible");
 }
 
 //This system watches the game's display tree and is notified whenever a display object is placed onto
@@ -423,56 +423,6 @@ double CollisionSystem::distance(SDL_Point p1, SDL_Point p2) {
 //xDelta1 and yDelta1 are the amount d moved before causing the collision.
 //xDelta2 and yDelta2 are the amount other moved before causing the collision.
 void CollisionSystem::resolveCollision(DisplayObject* d, DisplayObject* other, int xDelta1, int yDelta1, int xDelta2, int yDelta2) {
-  //std::cout << "Collision" << std::endl;
-  //d->position = d->lastNonCollidedPos;
-  //other->position = other->lastNonCollidedPos;
-
-  // For now just do 5 iterations to get closer -- Should this be recursive? ¯\_(ツ)_/¯
-  int i = 0;
-  bool lastIterartionCollided = true;
-  while(i < 5){
-
-    if (collidesWith(d, other)){
-      // Move further away
-      if (!lastIterartionCollided){
-        xDelta1 = -xDelta1;
-        yDelta1 = - yDelta1;
-
-        xDelta2 = -xDelta2;
-        yDelta2 = -yDelta2;
-      }
-      lastIterartionCollided = true;
-    } else {
-      // Move closer
-      if (lastIterartionCollided){
-        xDelta1 = -xDelta1;
-        yDelta1 = - yDelta1;
-
-        xDelta2 = -xDelta2;
-        yDelta2 = -yDelta2;
-      }
-      lastIterartionCollided = false;
-    }
-
-    // Find midpoints
-    d->position.x = d->position.x - 100;
-    d->position.y = d->position.y - 100;
-    // d->position.x = (d->position.x + (d->position.x - xDelta1))/2;
-    // d->position.y = (d->position.y + (d->position.y - yDelta1))/2;
-
-    other->position.x = (other->position.x + (other->position.x - xDelta2))/2;
-    other->position.y = (other->position.y + (other->position.y - yDelta2))/2;
-    //cout << other->position.x << endl;
-    // Shorten move distance
-    xDelta1 = xDelta1/2;
-    yDelta1 = yDelta1/2;
-
-    xDelta2 = xDelta2/2;
-    yDelta2 = yDelta2/2;
-    i++;
-  }
-
-
 
 }
 
@@ -504,7 +454,7 @@ void CollisionSystem::resolveCollision_NPC_NPC(DisplayObject* npc, DisplayObject
         pNPC->position.x = pNPC->position.x - 100;
         pNPC->dir = None;
         break;
-      case S: 
+      case S:
         pNPC->position.y = pNPC->position.y - 100;
         pNPC->dir = None;
         break;

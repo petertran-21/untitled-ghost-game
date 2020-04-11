@@ -95,12 +95,29 @@ void DisplayObjectContainer::update(set<SDL_Scancode> pressedKeys, Controller::J
 }
 
 void DisplayObjectContainer::draw(AffineTransform &at) {
+  // draw lights
+    vector<DisplayObject*> toDraw;
+    applyTransformations(at);
+    at.translate(pivot.x, pivot.y);
+    for (int j = 0; j < children.size(); j++) {
+      if (children[j]->id.find("_LIGHT")) {
+        children[j]->draw(at);
+      } else {
+        toDraw.push_back(children[j]);
+      }
+    }
+    at.translate(-pivot.x, -pivot.y);
+    reverseTransformations(at);
+
+    // draw object
     DisplayObject::draw(at);
+
+    // draw child objects
     applyTransformations(at);
     // undo the parent's pivot
     at.translate(pivot.x, pivot.y);
-    for (int i = 0; i < children.size(); i++) {
-        children[i]->draw(at);
+    for (int i = 0; i < toDraw.size(); i++) {
+        toDraw[i]->draw(at);
     }
     // redo the parent's pivot
     at.translate(-pivot.x, -pivot.y);

@@ -4,16 +4,7 @@ Light::Light(string id, string color) {
   this->id = id + "_LIGHT";
 
   this->color = color;
-  this->loadTexture("./resources/light/" + color + ".png");
-}
-
-Light::Light(DisplayObject* parent, string id, string color) {
-  this->parent = parent;
-  this->id = id + "_LIGHT";
-
-  this->color = color;
-  this->loadTexture("./resources/light/" + color + ".png");
-
+  this->loadTexture("./resources/light/" + color + "_light" + direction + ".png");
 }
 
 Light::~Light() {
