@@ -49,6 +49,12 @@ public:
 	//xDelta1 and yDelta1 are the amount d moved before causing the collision.
 	//xDelta2 and yDelta2 are the amount other moved before causing the collision.
 	void resolveCollision(DisplayObject* d, DisplayObject* other, int xDelta1, int yDelta1, int xDelta2, int yDelta2);
+	void resolveCollision_Ghost_NPC(DisplayObject* ghost, DisplayObject* npc);
+	void resolveCollision_NPC_NPC(DisplayObject* npc, DisplayObject* npc1);
+	void resolveCollision_NPC_EnvObj(DisplayObject* npc, DisplayObject* envObj);
+	void resolveCollision_NPC_NPCObj(DisplayObject* npc, DisplayObject* npcObj);
+	void resolveCollision_NPC_Collectible(DisplayObject* npc, DisplayObject* collectible);
+	void resolveCollision_NPCObj_EnvObj(DisplayObject* NPCObj, DisplayObject* envObj);
 
 private:
 	vector<DisplayObject*> inView;
