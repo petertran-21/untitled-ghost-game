@@ -12,7 +12,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	//Character demo work
 	allSprites = new DisplayObjectContainer();
 	container = new DisplayObjectContainer();
-	this->addChild(allSprites);
+	instance->addChild(allSprites);
 
 	//uncomment following line to check that collision boxes for objects are identical to drawing
 	//allSprites->addChild(container);
@@ -34,7 +34,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	allSprites->addChild(p);
 	container->addChild(p);
 
-	// npc = new NPCPyromancer(container, allSprites); 
+	// npc = new NPCPyromancer(container, allSprites);
 	// npc->position.x += 300;
 	// allSprites->addChild(npc);
 	// container->addChild(npc);
@@ -79,7 +79,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	c->position.y += 600;
 	c->position.x += 600;
 
-	npc = new NPCPyromancer(container, allSprites); 
+	npc = new NPCPyromancer(container, allSprites);
 	npc->position.x += 300;
 	allSprites->addChild(npc);
 	container->addChild(npc);
@@ -126,7 +126,7 @@ MyGame::~MyGame()
 	 * because it's handled automatically through
 	 * Game's superclass, DisplayObjectContainer.
 	 */
-	
+
 	delete displayTreeDisp;
 	delete collisionSystem;
 	delete DOAdded;
