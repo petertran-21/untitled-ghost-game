@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_opengl.h>
@@ -9,13 +10,35 @@ using namespace std;
 
 MyGame::MyGame() : Game(1000, 1000){
 	camera = new Camera();
+=======
+#include "MyGame.h"
 
+MyGame::MyGame() : Game(1000, 1000)
+{
+	//SFX team work
+	camera = new Camera();
+	scene_1 = new Scene();
+	scene_1->loadScene("./resources/scenes/beachEntrance.json");
+	camera->addChild(scene_1);
+	this->addChild(camera);
+>>>>>>> 507a229d55f2804225fc1786674a1784d7909235
+
+	//Character demo work
 	allSprites = new DisplayObjectContainer();
+<<<<<<< HEAD
 	instance->addChild(allSprites);
 
 	container = new DisplayObjectContainer();
 	allSprites->addChild(container);
 
+=======
+	container = new DisplayObjectContainer();
+	this->addChild(allSprites);
+
+	//uncomment following line to check that collision boxes for objects are identical to drawing
+	//allSprites->addChild(container);
+
+>>>>>>> 507a229d55f2804225fc1786674a1784d7909235
 	collisionSystem = new CollisionSystem();
 	displayTreeDisp = new EventDispatcher();
 	DOAdded = new DOAddedEvent(displayTreeDisp, container);
@@ -39,8 +62,23 @@ MyGame::MyGame() : Game(1000, 1000){
 
 }
 
+<<<<<<< HEAD
 MyGame::~MyGame(){
 
+=======
+MyGame::~MyGame()
+{
+	/**
+	 * Don't delete children of "this"
+	 * because it's handled automatically through
+	 * Game's superclass, DisplayObjectContainer.
+	 */
+	
+	delete displayTreeDisp;
+	delete collisionSystem;
+	delete DOAdded;
+	delete DORemoved;
+>>>>>>> 507a229d55f2804225fc1786674a1784d7909235
 }
 
 void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
@@ -93,7 +131,5 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 }
 
 void MyGame::draw(AffineTransform &at){
-	//SDL_RenderClear(Game::renderer);
 	Game::draw(at);
-	//SDL_RenderPresent(Game::renderer);
 }

@@ -15,12 +15,12 @@ CollisionSystem::~CollisionSystem(){
 //checks collisions between pairs of DOs where the corresponding types have been requested
 //to be checked (via a single call to watchForCollisions) below.
 void CollisionSystem::update(){
-  // watchForCollisions("NPC", "NPC");
-  // watchForCollisions("Ghost", "NPC");
-  // watchForCollisions("NPCObj", "EnvObj");
-  // watchForCollisions("NPC", "NPCObj");
-  // watchForCollisions("NPC", "EnvObj");
-  // watchForCollisions("NPC", "Collectible");
+  watchForCollisions("NPC", "NPC");
+  watchForCollisions("Ghost", "NPC");
+  watchForCollisions("NPCObj", "EnvObj");
+  watchForCollisions("NPC", "NPCObj");
+  watchForCollisions("NPC", "EnvObj");
+  watchForCollisions("NPC", "Collectible");
 }
 
 //This system watches the game's display tree and is notified whenever a display object is placed onto

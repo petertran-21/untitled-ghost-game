@@ -66,6 +66,10 @@ public:
 	vector<SDL_Point> getHitbox();
 	AffineTransform* getGlobalTransform(AffineTransform* at);
 	SDL_Point lastNonCollidedPos = {0, 0};
+<<<<<<< HEAD
+=======
+	vector<SDL_Point> lastNonCollidedHB;
+>>>>>>> 507a229d55f2804225fc1786674a1784d7909235
 
 private:
 	double distance(SDL_Point &p1, SDL_Point &p2);

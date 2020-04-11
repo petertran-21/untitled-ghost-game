@@ -15,7 +15,7 @@ Untitled Ghost Game (lovingly shortened to UGG) is a 2D Exploratory Puzzle Game 
     - Joseph Kim
 
 
-## Installation
+## Error Help
 
 If you receive the `fatal error: 'SDL2/SDL_mixer.h' file not found` message upon running `make`, you can fix it by running the following command-line command...
 
@@ -23,6 +23,9 @@ If you receive the `fatal error: 'SDL2/SDL_mixer.h' file not found` message upon
     - `$ brew install sdl2_mixer`
 - Windows users
     - pretty sure this issue only exists for MacOS
+
+## Connecting a Controller
+
 Connect your controller to your computer via Bluetooth. There are good tutorials for this on YouTube. Next, run `./bin/myGame`. Note that the controller must be connected via Bluetooth to your computer before you run `./bin/myGame` for it to be recognized in the code! Look for `SDL_NumJoysticks() = 1` to be printed in the terminal.
 
 ## Demo for character programming 

@@ -5,9 +5,9 @@
 #include "DisplayObject.h"
 #include "AffineTransform.h"
 #include "Controller.h"
-//#include "MyGame.h"
 #include <string>
 #include <fstream>
+#include <iostream>
 
 using namespace std;
 

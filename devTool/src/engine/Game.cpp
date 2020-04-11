@@ -41,16 +41,14 @@ Game::~Game()
 	delete mouse;
 	delete gameController;
 	pressedKeys.clear();
-	destroyCameras();
-	quitSDL();
-}
 
-void Game::destroyCameras()
-{
-	for( int i = 0; i < TOTAL_WINDOWS; i++ )
-	{
-		delete cameras[ i ];
-	}
+	/**
+	 * Don't delete children of "this" (aka the cameras)
+	 * because it's handled automatically through
+	 * Game's superclass, DisplayObjectContainer.
+	 */
+	
+	quitSDL();
 }
 
 void Game::quitSDL()

@@ -1,54 +1,62 @@
-#include <iostream>
 #include "Game.h"
-#include <string>
-#include <ctime>
-#include "DisplayObject.h"
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <iostream>
 
-using namespace std;
-
-SDL_Renderer* Game::renderer;
+/**
+ * STATIC REFERENCES
+ */
 Game* Game::instance;
+SDL_Renderer* Game::renderer;
 unsigned int Game::frameCounter = 0;
 
-Game::Game(int windowWidth, int windowHeight){
-	Game::instance = this;
-
-	this->windowWidth = windowWidth;
-	this->windowHeight = windowHeight;
-
+Game::Game()
+{
 	initSDL();
 	TTF_Init();
+
+	Game::instance = this;
+	this->windowWidth = 1000;
+	this->windowHeight = 1000;
+	init();
 }
 
-Game::~Game(){
+Game::Game(int windowWidth, int windowHeight)
+{
+	initSDL();
+	TTF_Init();
+
+	Game::instance = this;
+	this->windowWidth = windowWidth;
+	this->windowHeight = windowHeight;
+	init();	
+}
+
+void Game::initSDL()
+{
+	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK);
+	IMG_Init(IMG_INIT_PNG);
+}
+
+void Game::init()
+{
+	gameController = new Controller();
+	window = SDL_CreateWindow("Untitled-Ghost-Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, this->windowWidth, this->windowHeight, 0);
+	renderer = SDL_CreateRenderer(window, -1, 0);
+}
+
+Game::~Game()
+{
 	quitSDL();
 }
 
 void Game::quitSDL(){
-	cout << "Quitting sdl" << endl;
-	SDL_DestroyRenderer(Game::renderer);
+	cout << "Quitting SDL" << endl;
+	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
-	SDL_JoystickClose(gameController->getJoystick());
+	renderer = NULL;
+	window = NULL;
+	delete gameController;
+	pressedKeys.clear();
 	IMG_Quit();
 	SDL_Quit();
-}
-
-void Game::initSDL(){
-	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK);
-	IMG_Init(IMG_INIT_PNG);
-
-	// Controller must be initialized after SDL_Init(SDL_INIT_JOYSTICK) is called
-	gameController = new Controller();
-
-	window = SDL_CreateWindow("myGame",
-		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, this->windowWidth, this->windowHeight, 0);
-
-	SDL_Renderer * renderer = SDL_CreateRenderer(window, -1, 0);
-
-	Game::renderer = renderer;
 }
 
 void Game::start(){
@@ -92,7 +100,12 @@ void Game::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currS
 }
 
 void Game::draw(AffineTransform &at){
-	SDL_RenderClear(Game::renderer);
+	SDL_RenderClear(renderer);
 	DisplayObjectContainer::draw(at);
+<<<<<<< HEAD
 	SDL_RenderPresent(Game::renderer);
 }
+=======
+	SDL_RenderPresent(renderer);
+}
+>>>>>>> 507a229d55f2804225fc1786674a1784d7909235
