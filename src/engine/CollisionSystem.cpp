@@ -2,6 +2,7 @@
 #include "DOAddedEvent.h"
 #include "DORemovedEvent.h"
 #include "MainNPC.h"
+#include "Ghost.h"
 
 #include <cmath>
 
@@ -72,11 +73,11 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
               resolveCollision_NPCObj_EnvObj(inView[i], inView[j]);
             }
             else{
-              resolveCollision(inView[i], inView[j],
-            inView[i]->position.x - inView[i]->lastNonCollidedPos.x + inView[i]->parent->position.x,
-            inView[i]->position.y - inView[i]->lastNonCollidedPos.y + inView[i]->parent->position.y,
-            inView[j]->position.x - inView[j]->lastNonCollidedPos.x + inView[j]->parent->position.x,
-            inView[j]->position.y - inView[j]->lastNonCollidedPos.y + inView[j]->parent->position.y);
+              // resolveCollision(inView[i], inView[j],
+              // inView[i]->position.x - inView[i]->lastNonCollidedPos.x + inView[i]->parent->position.x,
+              // inView[i]->position.y - inView[i]->lastNonCollidedPos.y + inView[i]->parent->position.y,
+              // inView[j]->position.x - inView[j]->lastNonCollidedPos.x + inView[j]->parent->position.x,
+              // inView[j]->position.y - inView[j]->lastNonCollidedPos.y + inView[j]->parent->position.y);
             }
 
             } else {
