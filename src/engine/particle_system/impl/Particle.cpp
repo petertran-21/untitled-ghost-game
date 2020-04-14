@@ -15,12 +15,9 @@ Particle::Particle( int x, int y ) : DisplayObject()
     //Randomly assign texture
     switch( rand() % 3 )
     {
-        /**
-        * TODO, this is broken, you must load these .bmp files differently
-        */
-        case 0: this->loadTexture( "./resources/particles/38_particle_engines/red.bmp" ); break;
-        case 1: this->loadTexture( "./resources/particles/38_particle_engines/blue.bmp" ); break;
-        case 2: this->loadTexture( "./resources/particles/38_particle_engines/green.bmp" ); break;
+        case 0: this->loadTexture( "./resources/particles/red.bmp" ); break;
+        case 1: this->loadTexture( "./resources/particles/blue.bmp" ); break;
+        case 2: this->loadTexture( "./resources/particles/green.bmp" ); break;
     }
 }
 

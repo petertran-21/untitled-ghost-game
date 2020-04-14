@@ -8,10 +8,7 @@ Dot::Dot( int x, int y ) : DisplayObjectContainer()
     velocityX = 0;
     velocityY = 0;
 
-    /**
-     * TODO, this is broken, you must load these .bmp files differently
-     */
-    this->loadTexture( "./resources/particles/38_particle_engines/dot.bmp" );
+    this->loadTexture( "./resources/particles/dot.bmp" );
 
     for( int i = 0; i < TOTAL_PARTICLES; i++ )
     {
