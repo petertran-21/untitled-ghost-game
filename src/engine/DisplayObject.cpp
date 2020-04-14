@@ -47,9 +47,18 @@ void DisplayObject::loadTexture(string filepath){
 	image = IMG_Load(filepath.c_str());
 	if( image == NULL )
 	{
-		printf( "Unable to load image %s! SDL_image Error: %s\n", filepath.c_str(), IMG_GetError() );
+		printf( "SDL_image Error: %s\n", IMG_GetError() );
 	}
-	texture = SDL_CreateTextureFromSurface(Game::renderer, image);
+	width = image->w;
+	height = image->h;
+
+	SDL_SetColorKey( image, SDL_TRUE, SDL_MapRGB( image->format, 0, 0xFF, 0xFF ) );
+
+    texture = SDL_CreateTextureFromSurface(Game::renderer, image);
+	if( texture == NULL )
+	{
+		printf( "SDL Error: %s\n", SDL_GetError() );
+	}
 	setTexture(texture);
 }
 
