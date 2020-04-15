@@ -21,7 +21,7 @@ public:
 	Scene();
 	~Scene();
 
-	void loadScene(string sceneFilePath);
+	void loadScene(string sceneFilePath, DisplayObjectContainer* collisionContainer);
 
 	virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 	virtual void draw(AffineTransform &at);

@@ -1,4 +1,7 @@
 #include "Scene.h"
+#include "DisplayObjectContainer.h"
+#include "EnvObjImports.h"
+#include "CollectiblesImports.h"
 
 Scene::Scene() : DisplayObjectContainer()
 {
@@ -122,7 +125,7 @@ void Scene::loadScene(string sceneFilePath){
 }
 */
 
-void Scene::loadScene(string sceneFilePath){
+void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncontainer){
     std::ifstream i(sceneFilePath);
     json j = json::parse(i);
     unordered_map<string, DisplayObjectContainer*> parents = {};
@@ -131,11 +134,16 @@ void Scene::loadScene(string sceneFilePath){
     for (auto sprite : j["sprites"]){
         // Get sprite subtype
         DisplayObjectContainer* unit;
+        std::string imgPath = ""; //Cannot declare variables in a switch
         
         switch((int)sprite["subtype"]) {
             case 2: // Sprites (usually tiles)
-                std::string imgPath = sprite["basePathFolder"].get<std::string>() + sprite["isStaticBaseFile"].get<std::string>();
+                imgPath = sprite["basePathFolder"].get<std::string>() + sprite["isStaticBaseFile"].get<std::string>();
                 unit = new Sprite(sprite["id"].get<std::string>(), imgPath);
+                break;
+            case 9: // Item Pouch
+                unit = new ItemPouch(Collisioncontainer);
+                break;
 
         }
 

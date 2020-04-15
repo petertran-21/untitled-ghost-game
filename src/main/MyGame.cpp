@@ -5,7 +5,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	//SFX team work
 	camera = new Camera();
 	scene_1 = new Scene();
-	scene_1->loadScene("./resources/scenes/beachEntrance.json");
+	
 	camera->addChild(scene_1);
 	this->addChild(camera);
 
@@ -24,6 +24,8 @@ MyGame::MyGame() : Game(1000, 1000)
 	displayTreeDisp->addEventListener(collisionSystem, DOAddedEvent::DO_ADDED);
 	displayTreeDisp->addEventListener(collisionSystem, DORemovedEvent::DO_REMOVED);
 
+	scene_1->loadScene("./resources/scenes/beachEntrance.json", container);
+
 	// Shrub* s = new Shrub(container);
 	// allSprites->addChild(s);
 	// container->addChild(s);
@@ -31,8 +33,8 @@ MyGame::MyGame() : Game(1000, 1000)
 	ItemPouch* p = new ItemPouch(container);
 	p->position.x = 900;
 	p->position.y = 900;
-	allSprites->addChild(p);
-	container->addChild(p);
+	//allSprites->addChild(p);
+	//container->addChild(p);
 
 	// npc = new NPCPyromancer(container, allSprites);
 	// npc->position.x += 300;
