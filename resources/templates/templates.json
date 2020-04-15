@@ -175,6 +175,10 @@
         {
             "name" : "NPCExcavator",
             "path" : "./resources/templates/NPCTemplates/NPCExcavator.json"
+        },
+        {
+            "name" : "NPCCollector",
+            "path" : "./resources/templates/NPCTemplates/NPCCollector.json"
         }
     ]
     
