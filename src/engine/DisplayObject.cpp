@@ -49,8 +49,6 @@ void DisplayObject::loadTexture(string filepath){
 	{
 		printf( "SDL_image Error: %s\n", IMG_GetError() );
 	}
-	width = image->w;
-	height = image->h;
 
 	SDL_SetColorKey( image, SDL_TRUE, SDL_MapRGB( image->format, 0, 0xFF, 0xFF ) );
 
@@ -59,6 +57,9 @@ void DisplayObject::loadTexture(string filepath){
 	{
 		printf( "SDL Error: %s\n", SDL_GetError() );
 	}
+	
+	width = image->w;
+	height = image->h;
 	setTexture(texture);
 }
 
