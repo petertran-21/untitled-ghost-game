@@ -11,6 +11,7 @@ BreakableWall::BreakableWall(DisplayObjectContainer* container) : MainEnvObj(){
     
 	this->play("breakable_wall");
     this->collisionContainer = container;
+    container->addChild(this);
 }
 
 void BreakableWall::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){

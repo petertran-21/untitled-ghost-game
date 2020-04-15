@@ -11,6 +11,7 @@ NPCPyromancer::NPCPyromancer(DisplayObjectContainer* container, DisplayObjectCon
 	this->addAnimation("../resources/npcs/", "npc_base", 2, 1, true);
 	this->play("npc_base");
     this->collisionContainer = container;
+    container->addChild(this);
     this->drawingContainer = allSprites;
 }
 

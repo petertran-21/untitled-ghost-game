@@ -1,5 +1,6 @@
 #ifndef BREAKABLEWALL_H
 #define BREAKABLEWALL_H
+#define BREAKABLEWALL_SUBTYPE 10
 
 #include "Controller.h"
 #include "MainEnvObj.h"

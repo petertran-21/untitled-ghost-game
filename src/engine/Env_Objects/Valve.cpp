@@ -12,6 +12,7 @@ Valve::Valve(DisplayObjectContainer* container) : MainEnvObj(){
     
 	this->play("valve");
     this->collisionContainer = container;
+    container->addChild(this);
 }
 
 void Valve::toggle(){

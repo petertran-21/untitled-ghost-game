@@ -2,6 +2,8 @@
 #include "DisplayObjectContainer.h"
 #include "EnvObjImports.h"
 #include "CollectiblesImports.h"
+#include "NPCObjImports.h"
+#include "NPCImports.h"
 
 Scene::Scene() : DisplayObjectContainer()
 {
@@ -154,6 +156,24 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 break;
             case SHRUB_SUBTYPE:
                 unit = new Shrub(Collisioncontainer);
+                break;
+            case VALVE_SUBTYPE:
+                unit = new Valve(Collisioncontainer);
+                break;
+            case CRAB_SUBTYPE:
+                unit = new Crab(Collisioncontainer);
+                break;
+            case NPCPYROMANCER_SUBTYPE:
+                unit = new NPCPyromancer(Collisioncontainer, foreground);
+                break;
+            case NPCOPERATOR_SUBTYPE:
+                unit = new NPCOperator(Collisioncontainer, foreground);
+                break;
+            case NPCEXCAVATOR_SUBTYPE:
+                unit = new NPCExcavator(Collisioncontainer, foreground);
+                break;
+
+
 
         }
 

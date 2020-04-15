@@ -22,7 +22,7 @@ For referencing which number corresponds to each subtype of object due to C++ no
 19: NPCExcavator
 20: NPCOperator
 21: NPCLumberjack
-451: NPCPyromaniac
+451: NPCPyromancer
 22: NPCArcher
 23: NPCSwordsman
 24: NPCVillager

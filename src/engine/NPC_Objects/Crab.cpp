@@ -6,9 +6,11 @@
 
 using namespace std;
 
-Crab::Crab() : MainNPCObj(){
+Crab::Crab(DisplayObjectContainer* container) : MainNPCObj(){
     this->addAnimation("./resources/items/", "crab_idle", 1, 1, false);
 	this->play("crab_idle");
+    this->collisionContainer = container;
+    container->addChild(this);
 }
 
 void Crab::resolve_collision(DisplayObject *obj){

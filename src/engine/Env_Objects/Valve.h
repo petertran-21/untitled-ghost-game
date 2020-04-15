@@ -1,5 +1,6 @@
 #ifndef VALVE_H
 #define VALVE_H
+#define VALVE_SUBTYPE 12
 
 #include "Controller.h"
 #include "MainEnvObj.h"
