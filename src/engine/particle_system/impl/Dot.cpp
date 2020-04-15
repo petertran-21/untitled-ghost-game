@@ -17,7 +17,7 @@ Dot::Dot( int x, int y ) : DisplayObjectContainer()
          * Particle is a child of Dot, therefore the position
          * is relative to Dot. Coodinates ( 0, 0 ) centers it on the parent.
          */
-        this->addChild( new Particle( 0, 0 ) );
+        this->addChild( new Particle( 0, 0, this->width, this->height ) );
     }
 }
 

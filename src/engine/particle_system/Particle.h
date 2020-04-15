@@ -17,11 +17,25 @@ class Particle : public DisplayObject
 {
     public:
 
-        Particle( int x, int y );
+        /**
+         * Particle Constructor
+         * @param x offset from parent
+         * @param y offset from parent
+         * @param x_range of the spread
+         * @param y_range of the spread
+         */
+        Particle( int x, int y, int x_range, int y_range );
+
         ~Particle();
 
         virtual void update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState );
 	    virtual void draw( AffineTransform &at );
+
+    private:
+
+        //The range in which a Particle can be draw
+        int x_range;
+        int y_range;
 };
 
 #endif

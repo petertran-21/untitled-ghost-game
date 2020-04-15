@@ -1,10 +1,18 @@
 #include "Particle.h"
 
-Particle::Particle( int x, int y ) : DisplayObject()
+Particle::Particle( int x, int y, int x_range, int y_range ) : DisplayObject()
 {
-    //Set offsets
-    position.x = x - 5 + ( rand() % 25 );
-    position.y = y - 5 + ( rand() % 25 );
+    /**
+     * IMPORTANT
+     * This randomly sets a Particle's initial position within 
+     * the limits { -range/2, ... 0, ..., range/2 }
+     */
+    position.x = x + (rand() % x_range) - ((int) x_range / 2);
+    position.y = y + (rand() % y_range) - ((int) y_range / 2);
+
+    //Save ranges
+    this->x_range = x_range;
+    this->y_range = y_range;
 
     //Set transparency
     alpha = 192;
