@@ -6,9 +6,6 @@ Particle::Particle( int x, int y ) : DisplayObject()
     position.x = x - 5 + ( rand() % 25 );
     position.y = y - 5 + ( rand() % 25 );
 
-    //Init animation
-    frame = rand() % 5;
-
     //Set transparency
     alpha = 192;
 
@@ -27,8 +24,7 @@ Particle::~Particle()
 }
 
 void Particle::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState )
-{
-    frame++;
+{   
     DisplayObject::update( pressedKeys, currState );
 }
 

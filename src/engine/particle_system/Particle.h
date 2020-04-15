@@ -22,11 +22,6 @@ class Particle : public DisplayObject
 
         virtual void update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState );
 	    virtual void draw( AffineTransform &at );
-
-    private:
-
-        //Current frame of animation
-        int frame;
 };
 
 #endif
