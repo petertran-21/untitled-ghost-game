@@ -2,6 +2,7 @@
 
 Dot::Dot() : DisplayObjectContainer()
 {
+    type = "Dot";
     position.x = 0;
     position.y = 0;
     width = 0;
@@ -21,14 +22,14 @@ Dot::~Dot()
 
 void Dot::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState )
 {
-    //Set spawn range to parent dimensions
+    //Match parent dimensions
     if( parent != NULL )
     {
-        width = parent->width;
-        height = parent->height;
+        width = parent->width * PARENT_TO_DOT_RATIO;
+        height = parent->height * PARENT_TO_DOT_RATIO;
     }
 
-    //Replace destroyed particles (creates a "trailing" effect)
+    //Replace destroyed particles
     while( this->numChildren() < TOTAL_PARTICLES )
     {
         this->addChild( new Particle() );

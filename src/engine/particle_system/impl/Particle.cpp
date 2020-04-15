@@ -2,14 +2,15 @@
 
 Particle::Particle() : DisplayObject()
 {
+    type = "Particle";
     position.x = 0;
     position.y = 0;
-    x_range = 0;
-    y_range = 0;
+    horizontal_domain = 0;
+    vertical_domain = 0;
     alpha = 192;
 
-    //Randomize frame so particles die randomly
-    frame = rand() % LIFE_SPAN;
+    //Randomize age so deaths occur async
+    age = rand() % LIFE_SPAN;
 
     //Randomly assign texture
     switch( rand() % 4 )
@@ -28,48 +29,47 @@ Particle::~Particle()
 
 void Particle::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState )
 {   
-    //Set spawn range to parent dimensions
+    //Set spawn range
     if( parent != NULL )
     {
-        x_range = parent->width;
-        y_range = parent->height;
-    }
-    
-    //Update counter
-    frame++;
-
-    //Kill old particles (creates a "trailing" effect)
-    if( frame > LIFE_SPAN )
-    {
-        ((DisplayObjectContainer*) this->parent)->removeImmediateChild(this);
+        horizontal_domain = parent->width;
+        vertical_domain = parent->height;
     }
 
-    //HANDLE MOVEMENTS
-    int x_trail = 0;
-    int y_trail = 0;
+    //Update age
+    age++;
+
+    /**
+     * SUFFICIENT FOR DEMO
+     * 
+     * Creates a trailing effect when the Ghost moves.
+     * It works great but need to find a better way b/c
+     * this would move all particles on the screen, not
+     * just the ones on the Ghost.
+     */
     if( Controls::holdLeft( pressedKeys, currState ) )
     {
-        x_trail = TRAIL_LENGTH;
+        position.x += TRAIL_LENGTH;
     }
     if( Controls::holdRight( pressedKeys, currState ) )
     {
-        x_trail = -TRAIL_LENGTH;
+        position.x -= TRAIL_LENGTH;
     }
     if ( Controls::holdUp( pressedKeys, currState ) )
     {
-        y_trail = TRAIL_LENGTH;
+        position.y += TRAIL_LENGTH;
     }
     if ( Controls::holdDown( pressedKeys, currState ) )
     {
-        y_trail = -TRAIL_LENGTH;
+        position.y -= TRAIL_LENGTH;
     }
 
-    //Slow particle movement
-    if( frame % 30 == 0 )
+    //Frequency of updates
+    if( age % UPDATE_RATE == 0 )
     {
         //Simulate random movement
-        position.x = (rand() % x_range) - ((int) x_range / 2) + x_trail;
-        position.y = (rand() % y_range) - ((int) y_range / 2) + y_trail;
+        position.x = (rand() % horizontal_domain) - ((int) horizontal_domain / 2);
+        position.y = (rand() % vertical_domain) - ((int) vertical_domain / 2);
     }
     
     DisplayObject::update( pressedKeys, currState );

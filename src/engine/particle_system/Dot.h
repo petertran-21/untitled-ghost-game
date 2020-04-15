@@ -28,6 +28,9 @@ class Dot : public DisplayObjectContainer
 
         //Total number of particles
         static const int TOTAL_PARTICLES = 20;
+
+        //Dot to parent ratio
+        const double PARENT_TO_DOT_RATIO = 0.80;
 };
 
 #endif

@@ -27,18 +27,21 @@ class Particle : public DisplayObject
 
     private:
 
-        //The range in which a Particle can be draw
-        int x_range;
-        int y_range;
+        //Spawn range limits
+        int horizontal_domain;
+        int vertical_domain;
 
-        //Current frame
-        int frame;
+        //Number of frames since creation
+        int age;
 
-        //Life of a particle
+        //Number of frames before death
         static const int LIFE_SPAN = 100;
 
-        //Trail length
-        static const int TRAIL_LENGTH = 200;
+        //Effects the speed of particles
+        static const int UPDATE_RATE = 10;
+
+        //Effects the particle trail length when Ghost moves
+        static const int TRAIL_LENGTH = UPDATE_RATE * 4;
 };
 
 #endif
