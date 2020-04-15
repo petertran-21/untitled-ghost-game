@@ -27,7 +27,7 @@ class Particle : public DisplayObject
 
     private:
 
-        //Spawn range limits
+        //Range that particles can spawn within
         int horizontal_domain;
         int vertical_domain;
 

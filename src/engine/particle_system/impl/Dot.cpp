@@ -29,12 +29,6 @@ void Dot::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currS
         height = parent->height * PARENT_TO_DOT_RATIO;
     }
 
-    //Replace destroyed particles
-    while( this->numChildren() < TOTAL_PARTICLES )
-    {
-        this->addChild( new Particle() );
-    }
-
     DisplayObjectContainer::update( pressedKeys, currState );
 }
 
