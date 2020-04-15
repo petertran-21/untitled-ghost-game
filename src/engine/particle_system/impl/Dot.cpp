@@ -24,7 +24,8 @@ Dot::Dot( int x, int y ) : DisplayObjectContainer()
 Dot::~Dot()
 {
     /**
-     * Particle destruction is handled by the base-class destructor DisplayObjectContainer.
+     * Particle destruction is handled by the 
+     * base-class destructor DisplayObjectContainer.
      */
 }
 
