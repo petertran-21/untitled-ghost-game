@@ -17,12 +17,16 @@ Particle::Particle( int x, int y, int x_range, int y_range ) : DisplayObject()
     //Set transparency
     alpha = 192;
 
+    //Set frame
+    frame = 0;
+
     //Randomly assign texture
-    switch( rand() % 3 )
+    switch( rand() % 4 )
     {
         case 0: this->loadTexture( "./resources/particles/red.bmp" ); break;
         case 1: this->loadTexture( "./resources/particles/blue.bmp" ); break;
         case 2: this->loadTexture( "./resources/particles/green.bmp" ); break;
+        case 3: this->loadTexture( "./resources/particles/shimmer.bmp" ); break;
     }
 }
 
@@ -33,9 +37,16 @@ Particle::~Particle()
 
 void Particle::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState )
 {   
-    //Simulate random movement
-    position.x = (rand() % x_range) - ((int) x_range / 2);
-    position.y = (rand() % y_range) - ((int) y_range / 2);
+    //Update counter
+    frame++;
+
+    //Slow particle movement
+    if( frame % 2 == 0 )
+    {
+        //Simulate random movement
+        position.x = (rand() % x_range) - ((int) x_range / 2);
+        position.y = (rand() % y_range) - ((int) y_range / 2);
+    }
     
     DisplayObject::update( pressedKeys, currState );
 }

@@ -36,6 +36,9 @@ class Particle : public DisplayObject
         //The range in which a Particle can be draw
         int x_range;
         int y_range;
+
+        //Current frame
+        int frame;
 };
 
 #endif
