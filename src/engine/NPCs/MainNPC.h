@@ -45,6 +45,7 @@ class MainNPC : public AnimatedSprite{
         virtual void state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState) = 0;
 
         virtual void resolve_collision(DisplayObject *obj);
+        virtual void resolve_adjacency(DisplayObject *obj, int status);
         virtual void resolve_collectible_collision(DisplayObject *obj, DisplayObjectContainer* collideContainer, DisplayObjectContainer* drawContainer);
         DisplayObjectContainer* collisionContainer;
         DisplayObjectContainer* drawingContainer;

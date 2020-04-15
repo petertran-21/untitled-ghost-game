@@ -35,6 +35,7 @@ void WaterJet::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState c
 
                 streams.push_back(s);
                 this->collisionContainer->addChild(s);
+                this->drawingContainer->addChild(s);
                 cout<<"STREAMS SIZE: "<<streams.size()<<endl;
                 cout<<"CC SIZE: "<<collisionContainer->children.size()<<endl;
             } 
@@ -59,6 +60,10 @@ void WaterJet::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState c
                 vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), streams[i]);
                 if (collideItr != this->collisionContainer->children.end()){
                     this->collisionContainer->children.erase(collideItr);
+                }
+                vector<DisplayObject*>::iterator collideItr2 = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), streams[i]);
+                if (collideItr2 != this->drawingContainer->children.end()){
+                    this->drawingContainer->children.erase(collideItr2);
                 }
                 streams.pop_back();
                 //delete stream

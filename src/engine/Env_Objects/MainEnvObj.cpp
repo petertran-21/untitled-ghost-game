@@ -18,23 +18,6 @@ void MainEnvObj::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState
 	AnimatedSprite::update(pressedKeys, currState);
 
     MainEnvObj::state_execute(pressedKeys, currState);
-
-    if (flammable){
-        //catching fire
-        if (fire_timer == fire_threshold) on_fire = true;
-
-        //burning
-        if (on_fire){
-            spread_fire();
-            burn_timer++;
-            
-            //burned
-            if (burn_timer == burn_time_max){
-                on_fire = false;
-                process_fire();
-            }
-        }
-    }
 }
 
 void MainEnvObj::draw(AffineTransform &at){
@@ -60,12 +43,4 @@ void MainEnvObj::state_execute(set<SDL_Scancode> pressedKeys, Controller::Joysti
     }
     if (state_updated) state_updated = false;
     else state_new = false;
-}
-
-void MainEnvObj::spread_fire(){
-    //check surrounding flammable objects 
-}
-
-void MainEnvObj::process_fire(){
-    //check surrounding flammable objects 
 }

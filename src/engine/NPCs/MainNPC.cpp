@@ -164,14 +164,28 @@ void MainNPC::resolve_collision(DisplayObject *obj){
     BreakableWall* b = dynamic_cast<BreakableWall*>(obj);
     if (b){
 
-        if (b->broken){
-            //DO NOTHING 
-            return;
-        }
+        //DO NOTHING 
+        if (b->broken) return;
+    }
+
+    //COLLIDES WITH SUNKEN LOG
+    Log* l = dynamic_cast<Log*>(obj);
+    if (l){
+
+        //DO NOTHING 
+        if (l->sunk) return;
+    }
+
+    //COLLIDES WITH BURNT SHRUB
+    Shrub* sh = dynamic_cast<Shrub*>(obj);
+    if (sh){
+
+        //DO NOTHING 
+        if (sh->burned) return;
     }
 
     // DEFAULT FOR COLLIDING WITH SOLIDS
-	if (obj && obj->type != "EnvObj"){
+	if (obj && obj->type == "EnvObj"){
         //check that npcs are overlapping
         if ((position.y == obj->position.y) && (position.x == obj->position.x)){
             switch (dir){
@@ -195,6 +209,10 @@ void MainNPC::resolve_collision(DisplayObject *obj){
             }
         }
 	}
+}
+
+void MainNPC::resolve_adjacency(DisplayObject *obj, int status){
+    //cout << "ADJACENCY STATUS :" << status << endl;
 }
 
 void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectContainer* collideContainer, DisplayObjectContainer* drawContainer){

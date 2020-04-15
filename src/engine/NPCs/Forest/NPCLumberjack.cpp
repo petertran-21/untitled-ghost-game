@@ -17,6 +17,8 @@ void NPCLumberjack::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joy
     if (state_new){
         cout << "STATE: ABILITY" << endl;
 
+        chopping = true;
+
         switch(dir){
             case N: 
                 //if(collision detected @ dir and colliding with tree)
@@ -41,4 +43,21 @@ void NPCLumberjack::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joy
         }
     }
     state_switch(npc_states::Possessed);
+}
+
+void NPCLumberjack::resolve_adjacency(DisplayObject *obj, int status){
+
+    if (obj->subtype=="log" && chopping == true){
+
+        if (status == 0){
+            chopping = false;
+            return;
+        }
+        
+        Log* l = (Log*) obj;
+        l->chopped = true;
+        
+        
+        chopping = false;
+    }
 }

@@ -18,7 +18,32 @@ Shrub::Shrub(DisplayObjectContainer* container) : MainEnvObj(){
     this->collisionContainer = container;
 }
 
+void Shrub::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
+    MainEnvObj::update(pressedKeys, currState);
+
+    if (flammable){
+        //catching fire
+        if (fire_timer == fire_threshold) on_fire = true;
+
+        //burning
+        if (on_fire){
+            spread_fire();
+            burn_timer++;
+            
+            //burned
+            if (burn_timer == burn_time_max){
+                process_fire();
+            }
+        }
+    }
+}
+
+void Shrub::spread_fire(){
+}
+
 void Shrub::process_fire(){
+    on_fire = false;
+    burned = true;
     this->play("shrub_burned");
 }
 

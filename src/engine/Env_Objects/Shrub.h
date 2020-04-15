@@ -13,8 +13,18 @@ class Shrub : public MainEnvObj{
     
     public:
         Shrub(DisplayObjectContainer* container);
+        void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 
+        bool flammable = false;
+        bool on_fire = false;
+        int fire_timer = 0;
+        int fire_threshold = 10;  //how long it takes to catch fire, incremented in collision resolution
+        int burn_time_max = 20;      //how long it takes to burn
+        int burn_timer = 0;
+        bool burned = false;
+        void spread_fire();     //spread fire to adjacent flammable objects
         void process_fire();
+        
         void resolve_collision(DisplayObject *obj);
 
 };

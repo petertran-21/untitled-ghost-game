@@ -40,10 +40,24 @@ void NPCExcavator::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joys
 }
 
 void NPCExcavator::resolve_collision(DisplayObject * obj){
+    MainNPC::resolve_collision(obj);
     MainNPC::resolve_collectible_collision(obj, this->collisionContainer, this->drawingContainer);
+    
+}
+
+void NPCExcavator::resolve_adjacency(DisplayObject * obj, int status){
+
     if (obj->subtype=="breakable wall" && excavate == true){
+
+        if (status == 0){
+            excavate = false;
+            return;
+        }
+        
         BreakableWall* b = (BreakableWall*) obj;
         b->broken = true;
+
+        
         //TODO: if there's more than one breakable there might be a problem-->need to test
         vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), obj);
         vector<DisplayObject*>::iterator drawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), obj);
@@ -51,6 +65,7 @@ void NPCExcavator::resolve_collision(DisplayObject * obj){
             this->collisionContainer->children.erase(collideItr);
             this->drawingContainer->children.erase(drawItr);
         }   
+        
         excavate = false;
 	}
 }
