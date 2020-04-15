@@ -1,5 +1,6 @@
 #ifndef DISPLAYOBJECT_H
 #define DISPLAYOBJECT_H
+#define DISPLAYOBJECT_SUBTYPE 0
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>

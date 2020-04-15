@@ -9,6 +9,7 @@ ItemPouch::ItemPouch(DisplayObjectContainer* container):MainCollectibles(){
     this->addAnimation("./resources/items/", "item_pouch", 1, 1, false);
     this->play("item_pouch");
     this->collisionContainer = container;
+    container->addChild(this);
 }
 
 void ItemPouch::resolve_collision(DisplayObject *obj){   

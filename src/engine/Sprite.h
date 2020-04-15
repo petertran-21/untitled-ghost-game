@@ -1,5 +1,6 @@
 #ifndef SPRITE_H
 #define SPRITE_H
+#define SPRITE_SUBTYPE 2
 
 #include "DisplayObjectContainer.h"
 #include "Controller.h"

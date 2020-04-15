@@ -15,6 +15,7 @@ Shrub::Shrub(DisplayObjectContainer* container) : MainEnvObj(){
 
 	this->play("shrub");
     this->collisionContainer = container;
+    container->addChild(this);
 }
 
 void Shrub::process_fire(){

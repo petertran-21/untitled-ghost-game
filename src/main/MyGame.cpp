@@ -30,11 +30,6 @@ MyGame::MyGame() : Game(1000, 1000)
 	// allSprites->addChild(s);
 	// container->addChild(s);
 
-	ItemPouch* p = new ItemPouch(container);
-	p->position.x = 900;
-	p->position.y = 900;
-	//allSprites->addChild(p);
-	//container->addChild(p);
 
 	// npc = new NPCPyromancer(container, allSprites);
 	// npc->position.x += 300;
@@ -52,9 +47,6 @@ MyGame::MyGame() : Game(1000, 1000)
 	// DOAdded->addChildCalled(container);
 	// DOAdded->checkCondition();
 
-	Shrub* s = new Shrub(container);
-	allSprites->addChild(s);
-	container->addChild(s);
 
 	BreakableWall *b = new BreakableWall(container);
 	allSprites->addChild(b);

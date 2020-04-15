@@ -1,5 +1,6 @@
 #ifndef ITEMPOUCH_H
 #define ITEMPOUCH_H
+#define ITEMPOUCH_SUBTYPE 9
 
 #include "Controller.h"
 #include "MainCollectibles.h"

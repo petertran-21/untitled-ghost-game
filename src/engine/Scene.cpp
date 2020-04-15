@@ -131,46 +131,61 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
     unordered_map<string, DisplayObjectContainer*> parents = {};
     unordered_map<DisplayObject*, string> needsParent = {};
 
+    DisplayObjectContainer* foreground = new DisplayObjectContainer();
+    DisplayObjectContainer* background = new DisplayObjectContainer();
+    background->parent = this;
+    this->addChild(background);
+    
+    foreground->parent = this;
+    this->addChild(foreground);
+
     for (auto sprite : j["sprites"]){
         // Get sprite subtype
         DisplayObjectContainer* unit;
         std::string imgPath = ""; //Cannot declare variables in a switch
         
         switch((int)sprite["subtype"]) {
-            case 2: // Sprites (usually tiles)
+            case SPRITE_SUBTYPE: // Sprites (usually tiles)
                 imgPath = sprite["basePathFolder"].get<std::string>() + sprite["isStaticBaseFile"].get<std::string>();
                 unit = new Sprite(sprite["id"].get<std::string>(), imgPath);
                 break;
-            case 9: // Item Pouch
+            case ITEMPOUCH_SUBTYPE: // Item Pouch
                 unit = new ItemPouch(Collisioncontainer);
                 break;
+            case SHRUB_SUBTYPE:
+                unit = new Shrub(Collisioncontainer);
 
         }
 
-        
-        unit->id = sprite["id"];
-        unit->imgPath = sprite["basePathFolder"];
-        unit->position.x = sprite["posX"];
-        unit->position.y = sprite["posY"];
-        unit->pivot.x = sprite["pivotX"];
-        unit->pivot.y = sprite["pivotY"];
-        unit->alpha = sprite["alpha"];
-        unit->visible = sprite["isVisible"];
-        unit->rotation = sprite["rotation"];
-        unit->width = sprite["width"];
-        unit->height = sprite["height"];
-        
-        if (sprite["parent"] == "") {
-            this->addChild(unit);
-            unit->parent = this;
-            //cout << unit->id << endl;
-        } else {
-            // Need to find parent object
-            needsParent[unit] = sprite["parent"];
+        if (unit != NULL) {
+            unit->id = sprite["id"];
+            unit->imgPath = sprite["basePathFolder"];
+            unit->position.x = sprite["posX"];
+            unit->position.y = sprite["posY"];
+            unit->pivot.x = sprite["pivotX"];
+            unit->pivot.y = sprite["pivotY"];
+            unit->alpha = sprite["alpha"];
+            unit->visible = sprite["isVisible"];
+            unit->rotation = sprite["rotation"];
+            unit->width = sprite["width"];
+            unit->height = sprite["height"];
+            
+            if (sprite["parent"] == "") {
+                background->addChild(unit);
+                unit->parent = background;
+                //cout << unit->id << endl;
+            }   else if (sprite["parent"] == "foreground") {
+                foreground->addChild(unit);
+                unit->parent = foreground;
+            } else {
+                // Need to find parent object
+                needsParent[unit] = sprite["parent"];
+
+            }
+
+            parents[unit->id] = unit;
 
         }
-
-        parents[unit->id] = unit;
         
     }
     // Setting up parents
