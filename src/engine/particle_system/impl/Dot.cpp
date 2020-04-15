@@ -1,36 +1,33 @@
 #include "Dot.h"
 
-Dot::Dot( int x, int y ) : DisplayObjectContainer()
+Dot::Dot() : DisplayObjectContainer()
 {
-    position.x = x;
-    position.y = y;
+    position.x = 0;
+    position.y = 0;
+    width = 0;
+    height = 0;
 
-    velocityX = 0;
-    velocityY = 0;
-
-    this->loadTexture( "./resources/particles/dot.bmp" );
-
+    //Create particles
     for( int i = 0; i < TOTAL_PARTICLES; i++ )
     {
-        /**
-         * IMPORTANT
-         * Particle is a child of Dot, therefore the position
-         * is relative to Dot. Coodinates ( 0, 0 ) centers it on the parent.
-         */
-        this->addChild( new Particle( 0, 0, this->width, this->height ) );
+        this->addChild( new Particle() );
     }
 }
 
 Dot::~Dot()
 {
-    /**
-     * Particle destruction is handled by the 
-     * base-class destructor DisplayObjectContainer.
-     */
+
 }
 
 void Dot::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState )
 {
+    //Set spawn range to parent dimensions
+    if( parent != NULL )
+    {
+        width = parent->width;
+        height = parent->height;
+    }
+    
     DisplayObjectContainer::update( pressedKeys, currState );
 }
 

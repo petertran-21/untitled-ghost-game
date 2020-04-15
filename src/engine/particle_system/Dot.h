@@ -18,7 +18,7 @@ class Dot : public DisplayObjectContainer
 {
     public:
 
-        Dot(int x, int y);
+        Dot();
         ~Dot();
 
         virtual void update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState );
@@ -28,13 +28,6 @@ class Dot : public DisplayObjectContainer
 
         //Total number of particles
         static const int TOTAL_PARTICLES = 20;
-
-        //The velocity of the dot
-        int velocityX;
-        int velocityY;
-
-        //Maxiumum axis velocity of the dot
-        static const int DOT_VELOCITY = 10;
 };
 
 #endif

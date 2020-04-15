@@ -1,24 +1,13 @@
 #include "Particle.h"
 
-Particle::Particle( int x, int y, int x_range, int y_range ) : DisplayObject()
+Particle::Particle() : DisplayObject()
 {
-    /**
-     * IMPORTANT
-     * This randomly sets a Particle's initial position within 
-     * the limits { -range/2, ... 0, ..., range/2 }
-     */
-    position.x = x + (rand() % x_range) - ((int) x_range / 2);
-    position.y = y + (rand() % y_range) - ((int) y_range / 2);
-
-    //Save ranges
-    this->x_range = x_range;
-    this->y_range = y_range;
-
-    //Set transparency
-    alpha = 192;
-
-    //Set frame
+    position.x = 0;
+    position.y = 0;
+    x_range = 0;
+    y_range = 0;
     frame = 0;
+    alpha = 192;
 
     //Randomly assign texture
     switch( rand() % 4 )
@@ -37,6 +26,13 @@ Particle::~Particle()
 
 void Particle::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState )
 {   
+    //Set spawn range to parent dimensions
+    if( parent != NULL )
+    {
+        x_range = parent->width;
+        y_range = parent->height;
+    }
+    
     //Update counter
     frame++;
 
