@@ -101,7 +101,12 @@ MyGame::MyGame() : Game(1000, 1000)
 
 	player = new Ghost();
 	allSprites->addChild(player);
-	container->addChild(player);
+	//container->addChild(player);
+
+	//DEMO FOR PARTICLE SYSTEM
+	player->addChild( new Dot() );
+	
+	//END DEMO FOR PARTICLE SYSTEM
 
 	DOAdded->addChildCalled(container);
 	DOAdded->checkCondition();
