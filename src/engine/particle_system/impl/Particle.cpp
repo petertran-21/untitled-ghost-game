@@ -33,6 +33,10 @@ Particle::~Particle()
 
 void Particle::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState )
 {   
+    //Simulate random movement
+    position.x = (rand() % x_range) - ((int) x_range / 2);
+    position.y = (rand() % y_range) - ((int) y_range / 2);
+    
     DisplayObject::update( pressedKeys, currState );
 }
 
