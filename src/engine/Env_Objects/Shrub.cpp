@@ -7,7 +7,6 @@ using namespace std;
 
 
 Shrub::Shrub(DisplayObjectContainer* container) : MainEnvObj(){
-    this->subtype = "shrub";
     this->addAnimation("./resources/items/", "shrub", 1, 1, false);
     this->addAnimation("./resources/items/", "shrub_burned", 1, 1, false);
     this->flammable = true;

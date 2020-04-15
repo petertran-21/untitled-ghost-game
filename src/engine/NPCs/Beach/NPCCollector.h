@@ -16,6 +16,7 @@ class NPCCollector : public MainNPC{
         void resolve_collision(DisplayObject* obj);
         Crab *crab = NULL;
         bool can_collect = true;
+        int subtype = 18;
    
 };
 

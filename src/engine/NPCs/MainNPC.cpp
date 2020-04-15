@@ -200,7 +200,7 @@ void MainNPC::resolve_collision(DisplayObject *obj){
 void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectContainer* collideContainer, DisplayObjectContainer* drawContainer){
     //COLLISIONS WITH COLLECTIBLES
     for (DisplayObject* child: drawContainer->children){
-        if ((child->type == "Collectible") && (child->subtype == "item pouch")){
+        if ((child->type == "Collectible") && (child->subtype == 9)){ // 9 == subtype
             if ((obj->position.x == child->position.x) && (obj->position.y == child->position.y) && (this->position.x == obj->position.x) && (this->position.y == obj->position.y)){
                 vector<DisplayObject*>::iterator collideItr = find(collideContainer->children.begin(), collideContainer->children.end(), obj);
                 vector<DisplayObject*>::iterator drawItr = find(drawContainer->children.begin(), drawContainer->children.end(), obj);

@@ -21,6 +21,8 @@ class Valve : public MainEnvObj{
         void add_jet(WaterJet* w);
         void resolve_collision(DisplayObject *obj);
 
+        int subtype = 12;
+
 };
 
 #endif

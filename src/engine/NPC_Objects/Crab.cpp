@@ -7,7 +7,6 @@
 using namespace std;
 
 Crab::Crab() : MainNPCObj(){
-    this->subtype = "crab";
     this->addAnimation("./resources/items/", "crab_idle", 1, 1, false);
 	this->play("crab_idle");
 }

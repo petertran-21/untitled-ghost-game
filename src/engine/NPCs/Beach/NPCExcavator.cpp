@@ -41,7 +41,7 @@ void NPCExcavator::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joys
 
 void NPCExcavator::resolve_collision(DisplayObject * obj){
     MainNPC::resolve_collectible_collision(obj, this->collisionContainer, this->drawingContainer);
-    if (obj->subtype=="breakable wall" && excavate == true){
+    if (obj->subtype==10 && excavate == true){ // 10 == BreakableWall
         BreakableWall* b = (BreakableWall*) obj;
         b->broken = true;
         //TODO: if there's more than one breakable there might be a problem-->need to test

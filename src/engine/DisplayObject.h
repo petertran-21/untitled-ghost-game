@@ -21,7 +21,7 @@ public:
 	string imgPath = "";
 	int red, green, blue;
 	string type = "DisplayObject";
-	string subtype = "";
+	int subtype = 0;
 
 	DisplayObject* parent = NULL;
 

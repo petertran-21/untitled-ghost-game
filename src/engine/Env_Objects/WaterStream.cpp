@@ -9,7 +9,6 @@ using namespace std;
 
 
 WaterStream::WaterStream(directions dir, DisplayObjectContainer* container) : MainEnvObj(){
-    this->subtype = "water stream";
     this->dir = dir;
     this->addAnimation("./resources/items/", "water_stream", 1, 1, false);
 	this->play("water_stream");

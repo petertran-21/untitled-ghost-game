@@ -15,6 +15,7 @@ class WaterStream : public MainEnvObj{
 
         int push_timer = 0;
         int push_time_max = 10;
+        int subtype = 14;
 
         void resolve_collision(DisplayObject *obj);
 

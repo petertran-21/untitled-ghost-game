@@ -13,6 +13,7 @@ class NPCOperator : public MainNPC{
         DisplayObjectContainer* collisionContainer;
         void resolve_collision(DisplayObject *obj);
         Valve* current_valve = NULL;
+        int subtype = 20;
 };
 
 #endif

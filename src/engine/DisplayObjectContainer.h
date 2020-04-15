@@ -18,6 +18,7 @@ public:
 	DisplayObjectContainer(string id, string filepath);
 	DisplayObjectContainer(string id, int red, int green, int blue);
 	virtual ~DisplayObjectContainer();
+	int subtype = 1;
 
 	void addChild(DisplayObject* child);
 	void removeImmediateChild(DisplayObject* child);

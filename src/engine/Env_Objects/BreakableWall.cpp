@@ -7,7 +7,6 @@ using namespace std;
 
 
 BreakableWall::BreakableWall(DisplayObjectContainer* container) : MainEnvObj(){
-    this->subtype="breakable wall";
     this->addAnimation("./resources/items/", "breakable_wall", 1, 1, false);
     
 	this->play("breakable_wall");

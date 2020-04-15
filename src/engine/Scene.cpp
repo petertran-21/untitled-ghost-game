@@ -62,6 +62,7 @@ Scene::~Scene()
 //     }
 // }
 
+/*
 void Scene::loadScene(string sceneFilePath){
     std::ifstream i(sceneFilePath);
     json j = json::parse(i);
@@ -118,7 +119,59 @@ void Scene::loadScene(string sceneFilePath){
         //cout << it.second << endl;
         parents[it.second]->addChild(it.first);
     }
-    
+}
+*/
+
+void Scene::loadScene(string sceneFilePath){
+    std::ifstream i(sceneFilePath);
+    json j = json::parse(i);
+    unordered_map<string, DisplayObjectContainer*> parents = {};
+    unordered_map<DisplayObject*, string> needsParent = {};
+
+    for (auto sprite : j["sprites"]){
+        // Get sprite subtype
+        DisplayObjectContainer* unit;
+        
+        switch((int)sprite["subtype"]) {
+            case 2: // Sprites (usually tiles)
+                std::string imgPath = sprite["basePathFolder"].get<std::string>() + sprite["isStaticBaseFile"].get<std::string>();
+                unit = new Sprite(sprite["id"].get<std::string>(), imgPath);
+
+        }
+
+        
+        unit->id = sprite["id"];
+        unit->imgPath = sprite["basePathFolder"];
+        unit->position.x = sprite["posX"];
+        unit->position.y = sprite["posY"];
+        unit->pivot.x = sprite["pivotX"];
+        unit->pivot.y = sprite["pivotY"];
+        unit->alpha = sprite["alpha"];
+        unit->visible = sprite["isVisible"];
+        unit->rotation = sprite["rotation"];
+        unit->width = sprite["width"];
+        unit->height = sprite["height"];
+        
+        if (sprite["parent"] == "") {
+            this->addChild(unit);
+            unit->parent = this;
+            //cout << unit->id << endl;
+        } else {
+            // Need to find parent object
+            needsParent[unit] = sprite["parent"];
+
+        }
+
+        parents[unit->id] = unit;
+        
+    }
+    // Setting up parents
+    for (auto it : needsParent){
+        it.first->parent = parents[it.second];
+        //cout << it.first->id << endl;
+        //cout << it.second << endl;
+        parents[it.second]->addChild(it.first);
+    }
 
 }
 

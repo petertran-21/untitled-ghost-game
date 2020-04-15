@@ -26,6 +26,7 @@ public:
 	void onEnemyCollision(Enemy* enemy);
 	virtual void onCollision(DisplayObject* other);
 	void boo();
+	int subtype = 4;
 
 	MainNPC* npc;
 

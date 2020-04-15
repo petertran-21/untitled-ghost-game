@@ -13,6 +13,7 @@ class ItemPouch : public MainCollectibles{
         ItemPouch(DisplayObjectContainer* container);
 
         void resolve_collision(DisplayObject *obj);
+        int subtype = 9;
 
 };
 
