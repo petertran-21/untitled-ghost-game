@@ -2,6 +2,8 @@
 #define PARTICLE_H
 
 #include "DisplayObject.h"
+#include "DisplayObjectContainer.h"
+#include "Controls.h"
 
 using namespace std;
 
@@ -31,6 +33,12 @@ class Particle : public DisplayObject
 
         //Current frame
         int frame;
+
+        //Life of a particle
+        static const int LIFE_SPAN = 100;
+
+        //Trail length
+        static const int TRAIL_LENGTH = 200;
 };
 
 #endif

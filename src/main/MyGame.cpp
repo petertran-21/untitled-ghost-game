@@ -5,7 +5,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	//SFX team work
 	camera = new Camera();
 	scene_1 = new Scene();
-	scene_1->loadScene("./resources/scenes/beachEntrance.json");
+	//scene_1->loadScene("./resources/scenes/beachEntrance.json");
 	camera->addChild(scene_1);
 	instance->addChild(camera);
 
