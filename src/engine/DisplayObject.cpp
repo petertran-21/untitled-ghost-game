@@ -22,14 +22,14 @@ DisplayObject::DisplayObject(){
 DisplayObject::DisplayObject(string id, string filepath){
 	this->id = id;
 	this->imgPath = filepath;
-
+	this->subtype = DISPLAYOBJECT_SUBTYPE;
 	loadTexture(filepath);
 }
 
 DisplayObject::DisplayObject(string id, int red, int green, int blue){
 	isRGB = true;
 	this->id = id;
-
+	this->subtype = DISPLAYOBJECT_SUBTYPE;
 	this->red = red;
 	this->blue = blue;
 	this->green = green;

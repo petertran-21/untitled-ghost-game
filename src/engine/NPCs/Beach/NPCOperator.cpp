@@ -10,6 +10,7 @@ NPCOperator::NPCOperator(DisplayObjectContainer* container, DisplayObjectContain
     this->collisionContainer = container;
     container->addChild(this);
     this->drawingContainer = allSprites;
+    this->subtype = NPCOPERATOR_SUBTYPE;
 }
 
 void NPCOperator::state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){

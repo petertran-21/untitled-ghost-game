@@ -13,6 +13,7 @@ NPCPyromancer::NPCPyromancer(DisplayObjectContainer* container, DisplayObjectCon
     this->collisionContainer = container;
     container->addChild(this);
     this->drawingContainer = allSprites;
+    this->subtype = NPCPYROMANCER_SUBTYPE;
 }
 
 void NPCPyromancer::state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){

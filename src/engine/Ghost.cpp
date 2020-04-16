@@ -18,7 +18,7 @@ using namespace std;
 Ghost::Ghost() : AnimatedSprite("Ghost"){
 
 	this->type = "Ghost";
-
+	this->subtype = GHOST_SUBTYPE;
 	this->npc = NULL;
 	
 	this->position.x = 55;

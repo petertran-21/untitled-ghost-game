@@ -9,7 +9,7 @@ using namespace std;
 Valve::Valve(DisplayObjectContainer* container) : MainEnvObj(){
 
     this->addAnimation("./resources/items/", "valve", 1, 1, false);
-    
+    this->subtype = VALVE_SUBTYPE;
 	this->play("valve");
     this->collisionContainer = container;
     container->addChild(this);

@@ -11,6 +11,7 @@ Crab::Crab(DisplayObjectContainer* container) : MainNPCObj(){
 	this->play("crab_idle");
     this->collisionContainer = container;
     container->addChild(this);
+    this->subtype = CRAB_SUBTYPE;
 }
 
 void Crab::resolve_collision(DisplayObject *obj){

@@ -172,6 +172,9 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             case NPCEXCAVATOR_SUBTYPE:
                 unit = new NPCExcavator(Collisioncontainer, foreground);
                 break;
+            case NPCCOLLECTOR_SUBTYPE:
+                unit = new NPCCollector(Collisioncontainer, foreground);
+                break;
 
 
 
@@ -193,10 +196,10 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             if (sprite["parent"] == "") {
                 background->addChild(unit);
                 unit->parent = background;
-                //cout << unit->id << endl;
             }   else if (sprite["parent"] == "foreground") {
                 foreground->addChild(unit);
                 unit->parent = foreground;
+                cout << unit->subtype << endl;
             } else {
                 // Need to find parent object
                 needsParent[unit] = sprite["parent"];

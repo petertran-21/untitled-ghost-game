@@ -10,6 +10,7 @@ NPCExcavator::NPCExcavator(DisplayObjectContainer* container, DisplayObjectConta
     this->collisionContainer = container;
     container->addChild(this);
     this->drawingContainer = allSprites;
+    this->subtype = NPCEXCAVATOR_SUBTYPE;
 }
 
 void NPCExcavator::state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){

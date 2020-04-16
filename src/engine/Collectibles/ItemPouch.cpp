@@ -10,6 +10,7 @@ ItemPouch::ItemPouch(DisplayObjectContainer* container):MainCollectibles(){
     this->play("item_pouch");
     this->collisionContainer = container;
     container->addChild(this);
+    this->subtype = ITEMPOUCH_SUBTYPE;
 }
 
 void ItemPouch::resolve_collision(DisplayObject *obj){   

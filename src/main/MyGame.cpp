@@ -87,11 +87,11 @@ MyGame::MyGame() : Game(1000, 1000)
 	// allSprites->addChild(npc3);
 	// container->addChild(npc3);
 
-	NPCCollector* npc4 = new NPCCollector(container, allSprites);
-	npc4->position.x += 300;
-	npc4->position.y += 500;
-	allSprites->addChild(npc4);
-	container->addChild(npc4);
+	// NPCCollector* npc4 = new NPCCollector(container, allSprites);
+	// npc4->position.x += 300;
+	// npc4->position.y += 500;
+	// allSprites->addChild(npc4);
+	// container->addChild(npc4);
 
 	player = new Ghost();
 	allSprites->addChild(player);

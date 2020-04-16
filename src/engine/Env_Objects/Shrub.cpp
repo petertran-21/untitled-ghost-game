@@ -12,7 +12,7 @@ Shrub::Shrub(DisplayObjectContainer* container) : MainEnvObj(){
     this->flammable = true;
     this->fire_timer = 0;
     this->fire_threshold = 5;
-
+    this->subtype = SHRUB_SUBTYPE;
 	this->play("shrub");
     this->collisionContainer = container;
     container->addChild(this);

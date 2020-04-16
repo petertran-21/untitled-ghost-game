@@ -13,7 +13,6 @@ class Crab : public MainNPCObj{
 
         Crab(DisplayObjectContainer* container);
         bool collected = false;
-        int subtype = 16;
         void resolve_collision(DisplayObject *obj);
 };
 #endif

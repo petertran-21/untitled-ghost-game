@@ -15,7 +15,6 @@ class NPCPyromancer : public MainNPC{
         void state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
         DisplayObjectContainer* collisionContainer;
         void resolve_collision(DisplayObject *obj);
-        int subtype = 451;
 };
 
 

@@ -17,7 +17,6 @@ class Shrub : public MainEnvObj{
 
         void process_fire();
         void resolve_collision(DisplayObject *obj);
-        int subtype = 11;
 
 };
 

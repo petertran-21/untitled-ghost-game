@@ -1,6 +1,6 @@
 #ifndef GHOST_H
 #define GHOST_H
-
+#define GHOST_SUBTYPE 4
 #include <iostream>
 #include "AnimatedSprite.h"
 #include <vector>
@@ -26,7 +26,6 @@ public:
 	void onEnemyCollision(Enemy* enemy);
 	virtual void onCollision(DisplayObject* other);
 	void boo();
-	int subtype = 4;
 
 	MainNPC* npc;
 

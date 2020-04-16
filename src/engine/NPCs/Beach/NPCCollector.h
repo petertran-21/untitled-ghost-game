@@ -1,5 +1,6 @@
 #ifndef NPCCOLLECTOR_H
 #define NPCCOLLECTOR_H
+#define NPCCOLLECTOR_SUBTYPE 18
 
 #include "MainNPC.h"
 #include "Crab.h"
@@ -16,7 +17,6 @@ class NPCCollector : public MainNPC{
         void resolve_collision(DisplayObject* obj);
         Crab *crab = NULL;
         bool can_collect = true;
-        int subtype = 18;
    
 };
 

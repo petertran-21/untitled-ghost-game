@@ -16,7 +16,6 @@ class NPCExcavator : public MainNPC{
         void resolve_collision(DisplayObject * obj);
 
         bool excavate = false;
-        int subtype = 19;
 };
 
 
