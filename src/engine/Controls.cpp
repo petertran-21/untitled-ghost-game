@@ -9,6 +9,7 @@ bool Controls::holdRight(set<SDL_Scancode> pressedKeys, Controller::JoystickStat
   if (pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end() || currState.leftStickX > 0) {
     return true;
   }
+  return false;
 }
 
 bool Controls::holdLeft(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
@@ -16,6 +17,7 @@ bool Controls::holdLeft(set<SDL_Scancode> pressedKeys, Controller::JoystickState
   if (pressedKeys.find(SDL_SCANCODE_A) != pressedKeys.end() || currState.leftStickX < 0) {
     return true;
   }
+  return false;
 }
 
 bool Controls::holdUp(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
@@ -23,6 +25,7 @@ bool Controls::holdUp(set<SDL_Scancode> pressedKeys, Controller::JoystickState c
   if (pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end() || currState.leftStickY < 0) {
     return true;
   }
+  return false;
 }
 
 bool Controls::holdDown(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
@@ -30,6 +33,7 @@ bool Controls::holdDown(set<SDL_Scancode> pressedKeys, Controller::JoystickState
   if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end() || currState.leftStickY > 0) {
 		return true;
   }
+  return false;
 }
 
 bool Controls::pressPossess(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
@@ -43,7 +47,10 @@ bool Controls::pressPossess(set<SDL_Scancode> pressedKeys, Controller::JoystickS
     return false;
 
   }
-  else pressing_possess = false;
+  else {
+    pressing_possess = false;
+  }
+  return false;
     
 }
 
@@ -58,7 +65,10 @@ bool Controls::pressBoo(set<SDL_Scancode> pressedKeys, Controller::JoystickState
     return false;
 
   }
-  else pressing_boo = false;
+  else {
+    pressing_boo = false;
+  }
+  return false;
 }
 
 bool Controls::pressAbility(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
@@ -71,10 +81,13 @@ bool Controls::pressAbility(set<SDL_Scancode> pressedKeys, Controller::JoystickS
     return false;
 
   }
-  else pressing_ability = false;
+  else {
+    pressing_ability = false;
+  }
+  return false;
 }
     
 bool Controls::reverse_controls(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
-
+  return false;
 }
 
