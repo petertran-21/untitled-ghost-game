@@ -1,5 +1,6 @@
 #ifndef LAYER_H
 #define LAYER_H
+
 #include "DisplayObjectContainer.h"
 
 class Layer : public DisplayObjectContainer{ 
