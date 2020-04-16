@@ -1,6 +1,8 @@
 #ifndef DISPLAYOBJECT_H
 #define DISPLAYOBJECT_H
 
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 #include "AffineTransform.h"
 #include "Controller.h"
 #include <string>
