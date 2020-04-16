@@ -15,6 +15,7 @@ class NPCLumberjack : public MainNPC{
 
         bool chopping = false;
 
+        void resolve_collision(DisplayObject* obj);
         void resolve_adjacency(DisplayObject *obj, int status);
 };
 

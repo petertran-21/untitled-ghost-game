@@ -20,8 +20,5 @@ void Fire::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currS
 }
 
 void Fire::resolve_collision(DisplayObject* obj){
-    Shrub *s = dynamic_cast<Shrub*>(obj);
-    if (s){
-        if (s->fire_timer < s->fire_threshold) s->fire_timer++;
-    }
+
 }

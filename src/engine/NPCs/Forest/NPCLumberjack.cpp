@@ -45,19 +45,22 @@ void NPCLumberjack::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joy
     state_switch(npc_states::Possessed);
 }
 
+void NPCLumberjack::resolve_collision(DisplayObject* obj){
+    MainNPC::resolve_collision(obj);
+}
+
 void NPCLumberjack::resolve_adjacency(DisplayObject *obj, int status){
+    if (status != 0) cout << "HELLO" << endl;
 
     if (obj->subtype=="log" && chopping == true){
 
-        if (status == 0){
+        if (status != 0){
             chopping = false;
+            Log* l = (Log*) obj;
+            l->chopped = true;
             return;
         }
+        //else chopping = false;
         
-        Log* l = (Log*) obj;
-        l->chopped = true;
-        
-        
-        chopping = false;
     }
 }

@@ -22,20 +22,25 @@ void Log::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currSt
 
 void Log::resolve_collision(DisplayObject *obj){
     //on collide w/water --> sink
-    if (obj->type == "EnvObj"){
+    /*
+    if (obj->type == "Water"){
         sunk = true;
         cout << "SUNK" << endl;
     }
+    */
 }
 
 void Log::resolve_adjacency(DisplayObject *obj, int status){
-    if (obj->type == "NPC" && !sunk && chopped){
-        switch(status){
-            case 0: return; break;
-            case 1: position.x -= 100; break;
-            case 2: position.x += 100; break;
-            case 3: position.y += 100; break;
-            case 4: position.y -= 100; break;
+    if (obj->type == "NPC"){
+        //push log around
+        if (!sunk && chopped){
+            switch(status){
+                case 0: return; break;
+                case 1: position.x -= 100; break;
+                case 2: position.x += 100; break;
+                case 3: position.y += 100; break;
+                case 4: position.y -= 100; break;
+            }
         }
     }
 }

@@ -27,6 +27,7 @@ void CollisionSystem::update(){
   watchForAdjacency("NPC", "EnvObj");
   watchForAdjacency("NPC", "NPCObj");
   watchForAdjacency("NPCObj", "EnvObj");
+  watchForAdjacency("EnvObj", "EnvObj");
 
 }
 
@@ -116,6 +117,9 @@ void CollisionSystem::watchForAdjacency(string type1, string type2) {
           }
           else if ((type1 == "NPCObj" && type2 == "EnvObj")){
               resolveAdjacency_NPCObj_EnvObj(inView[i], inView[j], status);
+          }
+          else if ((type1 == "EnvObj" && type2 == "EnvObj")){
+              resolveAdjacency_EnvObj_EnvObj(inView[i], inView[j], status);
           }
         }
       }
@@ -648,4 +652,9 @@ void CollisionSystem::resolveAdjacency_NPC_NPCObj(DisplayObject* npc, DisplayObj
 void CollisionSystem::resolveAdjacency_NPCObj_EnvObj(DisplayObject* NPCObj, DisplayObject* envObj, int status){
   NPCObj->resolve_adjacency(envObj, status);
   envObj->resolve_adjacency(NPCObj, status);
+}
+
+void CollisionSystem::resolveAdjacency_EnvObj_EnvObj(DisplayObject* envObj1, DisplayObject* envObj2, int status){
+  envObj1->resolve_adjacency(envObj2, status);
+  envObj2->resolve_adjacency(envObj1, status);
 }

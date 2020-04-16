@@ -47,14 +47,12 @@ void NPCOperator::resolve_adjacency(DisplayObject *obj, int status){
 
     if (obj->subtype=="valve" && operated == true){
 
-        if (status == 0){
+        if (status != 0){
             operated = false;
+            Valve* v = (Valve*) obj;
+            v->toggle();
             return;
         }
-        
-        Valve* v = (Valve*) obj;
-        v->toggle();
-        
-        operated = false;
+        else operated = false;
 	}
 }

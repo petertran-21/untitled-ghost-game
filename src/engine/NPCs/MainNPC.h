@@ -30,7 +30,7 @@ class MainNPC : public AnimatedSprite{
         int grid_size = 100;
         void move_on_grid(directions direction, int distance);
         
-        int cooldown_max = 60;
+        int cooldown_max = 30;
         int cooldown_timer = 0;
 
         npc_states state = npc_states::Idle;

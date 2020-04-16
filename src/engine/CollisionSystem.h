@@ -59,6 +59,7 @@ public:
 	void resolveAdjacency_NPC_EnvObj(DisplayObject* npc, DisplayObject* envObj, int status);
 	void resolveAdjacency_NPC_NPCObj(DisplayObject* npc, DisplayObject* npcObj, int status);
 	void resolveAdjacency_NPCObj_EnvObj(DisplayObject* NPCObj, DisplayObject* envObj, int status);
+	void resolveAdjacency_EnvObj_EnvObj(DisplayObject* envObj1, DisplayObject* envObj2, int status);
 
 private:
 	vector<DisplayObject*> inView;

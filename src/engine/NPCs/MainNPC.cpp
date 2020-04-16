@@ -173,7 +173,30 @@ void MainNPC::resolve_collision(DisplayObject *obj){
     if (l){
 
         //DO NOTHING 
-        if (l->sunk) return;
+        if (l->sunk && l->chopped) return;
+
+         //check that npcs are overlapping
+        if ((position.y == obj->position.y) && (position.x == obj->position.x)){
+            switch (dir){
+            //reset possessed npc's location to previous based on location it came from
+            case N:
+                position.y = position.y + 100;
+                dir = None;
+                break;
+            case E:
+                position.x = position.x - 100;
+                dir = None;
+                break;
+            case S: 
+                position.y = position.y - 100;
+                dir = None;
+                break;
+            case W:
+                position.x = position.x + 100;
+                dir = None;
+                break;
+            }
+        }
     }
 
     //COLLIDES WITH BURNT SHRUB
@@ -182,6 +205,13 @@ void MainNPC::resolve_collision(DisplayObject *obj){
 
         //DO NOTHING 
         if (sh->burned) return;
+    }
+
+    Bridge* br = dynamic_cast<Bridge*>(obj);
+    if (br){
+
+        //DO NOTHING 
+        if (br->open) return;
     }
 
     // DEFAULT FOR COLLIDING WITH SOLIDS

@@ -9,6 +9,7 @@ using namespace std;
 Shrub::Shrub(DisplayObjectContainer* container) : MainEnvObj(){
     this->subtype = "shrub";
     this->addAnimation("./resources/items/", "shrub", 1, 1, false);
+    this->addAnimation("./resources/items/", "shrub_fire", 1, 1, false);
     this->addAnimation("./resources/items/", "shrub_burned", 1, 1, false);
     this->flammable = true;
     this->fire_timer = 0;
@@ -23,22 +24,22 @@ void Shrub::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState curr
 
     if (flammable){
         //catching fire
-        if (fire_timer == fire_threshold) on_fire = true;
+        if (fire_timer == fire_threshold){
+            on_fire = true;
+            fire_timer++;
+        }
 
         //burning
         if (on_fire){
-            spread_fire();
+
             burn_timer++;
-            
+            this->play("shrub_fire");
             //burned
             if (burn_timer == burn_time_max){
                 process_fire();
             }
         }
     }
-}
-
-void Shrub::spread_fire(){
 }
 
 void Shrub::process_fire(){
@@ -50,7 +51,8 @@ void Shrub::process_fire(){
 void Shrub::resolve_collision(DisplayObject *obj){
     Fire *f = dynamic_cast<Fire*>(obj);
     if (f){
-        if (burn_timer == burn_time_max){
+        if (fire_timer < fire_threshold) fire_timer++;
+        else if (burn_timer == burn_time_max){
             vector<DisplayObject*>::iterator fireItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), obj);
             if (fireItr != this->collisionContainer->children.end()){
 
@@ -61,8 +63,12 @@ void Shrub::resolve_collision(DisplayObject *obj){
             }
         }
     }
-
-    Arrow *a = dynamic_cast<Arrow*>(obj);
-    if (a) cout << "HIT BY ARROW!" << endl;
     
+}
+
+void Shrub::resolve_adjacency(DisplayObject *obj, int status){
+    Shrub *s = dynamic_cast<Shrub*>(obj);
+    if (s && on_fire && status != 0){
+        if (s->on_fire == false && !s->burned) s->on_fire = true;
+    }
 }

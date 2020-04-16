@@ -54,6 +54,16 @@ MyGame::MyGame() : Game(1000, 1000)
 	allSprites->addChild(s);
 	container->addChild(s);
 
+	Shrub* s1 = new Shrub(container);
+	allSprites->addChild(s1);
+	container->addChild(s1);
+	s1->position.x = 100;
+
+	Shrub* s2 = new Shrub(container);
+	allSprites->addChild(s2);
+	container->addChild(s2);
+	s2->position.x = 200;
+
 	Bridge *b = new Bridge(container);
 	allSprites->addChild(b);
 	container->addChild(b);
@@ -78,6 +88,12 @@ MyGame::MyGame() : Game(1000, 1000)
 	container->addChild(c);
 	c->position.y += 600;
 	c->position.x += 600;
+
+	Log * c1 = new Log();
+	allSprites->addChild(c1);
+	container->addChild(c1);
+	c1->position.y += 800;
+	c1->position.x += 600;
 
 	npc = new NPCPyromancer(container, allSprites);
 	npc->position.x += 300;
