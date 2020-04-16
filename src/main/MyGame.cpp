@@ -28,7 +28,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	allSprites->addChild(player);
 
 	//DEMO FOR PARTICLE SYSTEM
-	player->addChild( new Dot() );
+	player->addChild( new ParticleEmitter() );
 	
 	//END DEMO FOR PARTICLE SYSTEM
 

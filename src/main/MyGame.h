@@ -27,7 +27,7 @@
 #include "TweenJuggler.h"
 #include "CollectiblesImports.h"
 #include "UIDefs.h"
-#include "particle_system/Dot.h"
+#include "particle_system/ParticleEmitter.h"
 
 using namespace std;
 
