@@ -4,6 +4,7 @@
 #include "TweenableParams.h"
 #include "TweenTransitions.h"
 #include "Game.h"           // For access to Game's frameCounter attribute.
+#include <iostream>
 
 class TweenParam{
 public:

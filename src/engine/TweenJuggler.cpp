@@ -1,5 +1,4 @@
 #include "TweenJuggler.h"
-#include <iostream>
 
 TweenJuggler* TweenJuggler::instance = NULL;
 

@@ -1,5 +1,4 @@
 #include "TweenParam.h"
-#include <iostream>
 
 TweenParam::TweenParam(TweenableParams paramToTween, double startVal, double endVal, double time){
     this->param = paramToTween;

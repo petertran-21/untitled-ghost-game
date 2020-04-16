@@ -2,6 +2,7 @@
 #define TWEENTRANSITIONS_H
 
 #include "TweenTransitionTypes.h"
+#include <math.h>
 
 class TweenTransitions{
 public:
