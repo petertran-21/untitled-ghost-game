@@ -30,9 +30,15 @@ MyGame::MyGame() : Game(1000, 1000)
 
 	ItemPouch* p = new ItemPouch(container);
 	p->position.x = 900;
-	p->position.y = 900;
+	p->position.y = 500;
 	allSprites->addChild(p);
 	container->addChild(p);
+
+	Gem* g = new Gem(container);
+	g->position.x = 900;
+	g->position.y = 400;
+	allSprites->addChild(g);
+	container->addChild(g);
 
 	// npc = new NPCPyromancer(container, allSprites);
 	// npc->position.x += 300;

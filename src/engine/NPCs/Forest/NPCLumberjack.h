@@ -3,6 +3,7 @@
 
 #include "MainNPC.h"
 #include "Log.h"
+#include "Bridge.h"
 
 using namespace std;
 

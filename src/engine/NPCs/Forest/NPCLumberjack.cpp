@@ -63,4 +63,16 @@ void NPCLumberjack::resolve_adjacency(DisplayObject *obj, int status){
         //else chopping = false;
         
     }
+
+    if (obj->subtype=="bridge" && chopping == true){
+
+        if (status != 0){
+            chopping = false;
+            Bridge* b = (Bridge*) obj;
+            b->open = true;
+            return;
+        }
+        //else chopping = false;
+        
+    }
 }

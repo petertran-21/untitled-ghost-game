@@ -153,6 +153,7 @@ void MainNPC::state_execute(set<SDL_Scancode> pressedKeys, Controller::JoystickS
 }
 
 void MainNPC::resolve_collision(DisplayObject *obj){
+
     //COLLIDES WITH WATER STREAM
     WaterStream* s = dynamic_cast<WaterStream*>(obj);
     if (s){
@@ -207,6 +208,7 @@ void MainNPC::resolve_collision(DisplayObject *obj){
         if (sh->burned) return;
     }
 
+    //COLLIDES WITH BRIDGE
     Bridge* br = dynamic_cast<Bridge*>(obj);
     if (br){
 
