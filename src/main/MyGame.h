@@ -66,8 +66,12 @@ private:
 	Checklist* checklistTest;
 	SelectionMenu* selectionMenuTest;
 	TextBox* textboxTest;
+
+	DisplayObjectContainer* UIContainer;		// Holds all UI elements as children.
+
 	bool walking = false;
 	bool transition = false;
+	bool UIOpen = false;
 
 };
 

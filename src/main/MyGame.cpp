@@ -1,6 +1,6 @@
 #include "MyGame.h"
 
-MyGame::MyGame() : Game(1000, 1000)
+MyGame::MyGame() : Game(1200, 800)
 {
 	//SFX team work
 	camera = new Camera();
@@ -108,11 +108,16 @@ MyGame::MyGame() : Game(1000, 1000)
 	//-----------------------------------------
 	// TODO, SFX will add later
 
-	// selectionMenuTest = new SelectionMenu();
-	// selectionMenuTest->addToMenu("Save");
-	// selectionMenuTest->addToMenu("Load");
-	// selectionMenuTest->addToMenu("Quit");
-	// container->addChild(selectionMenuTest);
+	UIContainer = new DisplayObjectContainer();
+
+	selectionMenuTest = new SelectionMenu(0, 0);
+	selectionMenuTest->addToMenu("Save");
+	selectionMenuTest->addToMenu("Load");
+	selectionMenuTest->addToMenu("Quit");
+
+	textboxTest = new TextBox(0, 400);
+	UIContainer->addChild(selectionMenuTest);
+	UIContainer->addChild(textboxTest);
 
 	// checklistTest = new Checklist();
 	// checklistTest->addEntry("Change Scene");
@@ -134,10 +139,31 @@ MyGame::~MyGame()
 }
 
 void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
-	DORemoved->checkCondition();
-	DOAdded->checkCondition();
-	collisionSystem->update();
-	Game::update(pressedKeys, currState);
+	if (!UIOpen){
+		DORemoved->checkCondition();
+		DOAdded->checkCondition();
+		collisionSystem->update();
+		Game::update(pressedKeys, currState);
+	}
+
+	if (pressedKeys.find(SDL_SCANCODE_DOWN) != pressedKeys.end() && UIOpen){
+		selectionMenuTest->incrementPosition();
+	}
+	if (pressedKeys.find(SDL_SCANCODE_UP) != pressedKeys.end() && UIOpen){
+		selectionMenuTest->decrementPosition();
+	}
+	if (pressedKeys.find(SDL_SCANCODE_RETURN) != pressedKeys.end() && UIOpen){
+		std::cout << selectionMenuTest->getCurrentlySelected() << std::endl;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end() && !UIOpen){
+		this->addChild(UIContainer);
+		textboxTest->setText("X-pos: " + std::to_string(player->position.x));
+		UIOpen = !UIOpen;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_Q) != pressedKeys.end() && UIOpen){
+		this->children.erase(std::remove(this->children.begin(), this->children.end(), UIContainer), this->children.end());
+		UIOpen = false;
+	}
 }
 
 void MyGame::draw(AffineTransform &at){
