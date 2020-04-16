@@ -16,9 +16,9 @@ NPCOperator::NPCOperator(DisplayObjectContainer* container, DisplayObjectContain
 void NPCOperator::state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
     if (state_new){
         cout << "STATE: ABILITY" << endl;
-        if (current_valve != NULL){
-            current_valve->toggle();
-        }
+        
+        operated = true;
+
         switch(dir){
             case N: 
                     cout << "Operated North" << endl;
@@ -40,9 +40,19 @@ void NPCOperator::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joyst
 void NPCOperator::resolve_collision(DisplayObject *obj){
     MainNPC::resolve_collectible_collision(obj, this->collisionContainer, this->drawingContainer);
     MainNPC::resolve_collision(obj);
-    Valve *v = dynamic_cast<Valve*>(obj);
-    if (v){
-        v->dir = this->dir;
-        current_valve = v;
-    }
+
+}
+
+void NPCOperator::resolve_adjacency(DisplayObject *obj, int status){
+
+    if (obj->subtype=="valve" && operated == true){
+
+        if (status != 0){
+            operated = false;
+            Valve* v = (Valve*) obj;
+            v->toggle();
+            return;
+        }
+        else operated = false;
+	}
 }

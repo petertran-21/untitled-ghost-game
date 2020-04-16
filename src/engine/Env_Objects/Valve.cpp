@@ -6,8 +6,9 @@
 using namespace std;
 
 
-Valve::Valve(DisplayObjectContainer* container) : MainEnvObj(){
-
+Valve::Valve(DisplayObjectContainer* container, directions dir) : MainEnvObj(){
+    this->subtype = "valve";
+    this->dir = dir;
     this->addAnimation("./resources/items/", "valve", 1, 1, false);
     
 	this->play("valve");

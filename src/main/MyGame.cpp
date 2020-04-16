@@ -30,9 +30,15 @@ MyGame::MyGame() : Game(1000, 1000)
 
 	ItemPouch* p = new ItemPouch(container);
 	p->position.x = 900;
-	p->position.y = 900;
+	p->position.y = 500;
 	allSprites->addChild(p);
 	container->addChild(p);
+
+	Gem* g = new Gem(container);
+	g->position.x = 900;
+	g->position.y = 400;
+	allSprites->addChild(g);
+	container->addChild(g);
 
 	// npc = new NPCPyromancer(container, allSprites);
 	// npc->position.x += 300;
@@ -54,13 +60,23 @@ MyGame::MyGame() : Game(1000, 1000)
 	allSprites->addChild(s);
 	container->addChild(s);
 
-	SceneTrigger *b = new SceneTrigger(container);
+	Shrub* s1 = new Shrub(container);
+	allSprites->addChild(s1);
+	container->addChild(s1);
+	s1->position.x = 100;
+
+	Shrub* s2 = new Shrub(container);
+	allSprites->addChild(s2);
+	container->addChild(s2);
+	s2->position.x = 200;
+
+	Bridge *b = new Bridge(container);
 	allSprites->addChild(b);
 	container->addChild(b);
 	b->position.x += 200;
 	b->position.y += 200;
 
-	Valve * v = new Valve(container);
+	Valve * v = new Valve(container, S);
 	allSprites->addChild(v);
 	container->addChild(v);
 	v->position.x += 500;
@@ -73,27 +89,30 @@ MyGame::MyGame() : Game(1000, 1000)
 	w->position.x += 700;
 	w->position.y += 100;
 
-	Crab * c = new Crab();
+	Log * c = new Log();
 	allSprites->addChild(c);
 	container->addChild(c);
 	c->position.y += 600;
 	c->position.x += 600;
+
+	Log * c1 = new Log();
+	allSprites->addChild(c1);
+	container->addChild(c1);
+	c1->position.y += 800;
+	c1->position.x += 600;
 
 	npc = new NPCPyromancer(container, allSprites);
 	npc->position.x += 300;
 	allSprites->addChild(npc);
 	container->addChild(npc);
 
-	NPCOperator* npc2 = new NPCOperator(container, allSprites);
+	NPCArcher* npc2 = new NPCArcher(container, allSprites);
 	npc2->position.y += 500;
 	allSprites->addChild(npc2);
 	container->addChild(npc2);
 
-	NPCExcavator* npc3 = new NPCExcavator(container, allSprites);
-	allSprites->addChild(npc3);
-	container->addChild(npc3);
 
-	NPCCollector* npc4 = new NPCCollector(container, allSprites);
+	NPCLumberjack* npc4 = new NPCLumberjack(container, allSprites);
 	npc4->position.x += 300;
 	npc4->position.y += 500;
 	allSprites->addChild(npc4);

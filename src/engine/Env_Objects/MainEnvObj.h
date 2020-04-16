@@ -1,6 +1,7 @@
 #ifndef MAINENVOBJ_H
 #define MAINENVOBJ_H
 
+#include <algorithm>
 #include "AnimatedSprite.h"
 #include "Controls.h"
 #include "DisplayObjectContainer.h"
@@ -18,16 +19,6 @@ class MainEnvObj : public AnimatedSprite{
         MainEnvObj(DisplayObjectContainer* container);
         virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 	    virtual void draw(AffineTransform &at);
-        //virtual void onCollision(DisplayObject* other);
-
-        bool flammable = false;
-        bool on_fire = false;
-        int fire_timer = 0;
-        int fire_threshold = 5;  //how long it takes to catch fire, incremented in collision resolution
-        int burn_time_max = 10;      //how long it takes to burn
-        int burn_timer = 0;
-        void spread_fire();     //spread fire to adjacent flammable objects
-        virtual void process_fire();    //what happens when it burns up
         
         int timer_max = 10;
         int timer = 0;

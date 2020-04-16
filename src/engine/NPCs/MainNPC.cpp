@@ -153,6 +153,7 @@ void MainNPC::state_execute(set<SDL_Scancode> pressedKeys, Controller::JoystickS
 }
 
 void MainNPC::resolve_collision(DisplayObject *obj){
+
     //COLLIDES WITH WATER STREAM
     WaterStream* s = dynamic_cast<WaterStream*>(obj);
     if (s){
@@ -164,14 +165,59 @@ void MainNPC::resolve_collision(DisplayObject *obj){
     BreakableWall* b = dynamic_cast<BreakableWall*>(obj);
     if (b){
 
-        if (b->broken){
-            //DO NOTHING 
-            return;
+        //DO NOTHING 
+        if (b->broken) return;
+    }
+
+    //COLLIDES WITH SUNKEN LOG
+    Log* l = dynamic_cast<Log*>(obj);
+    if (l){
+
+        //DO NOTHING 
+        if (l->sunk && l->chopped) return;
+
+         //check that npcs are overlapping
+        if ((position.y == obj->position.y) && (position.x == obj->position.x)){
+            switch (dir){
+            //reset possessed npc's location to previous based on location it came from
+            case N:
+                position.y = position.y + 100;
+                dir = None;
+                break;
+            case E:
+                position.x = position.x - 100;
+                dir = None;
+                break;
+            case S: 
+                position.y = position.y - 100;
+                dir = None;
+                break;
+            case W:
+                position.x = position.x + 100;
+                dir = None;
+                break;
+            }
         }
     }
 
+    //COLLIDES WITH BURNT SHRUB
+    Shrub* sh = dynamic_cast<Shrub*>(obj);
+    if (sh){
+
+        //DO NOTHING 
+        if (sh->burned) return;
+    }
+
+    //COLLIDES WITH BRIDGE
+    Bridge* br = dynamic_cast<Bridge*>(obj);
+    if (br){
+
+        //DO NOTHING 
+        if (br->open) return;
+    }
+
     // DEFAULT FOR COLLIDING WITH SOLIDS
-	if (obj && obj->type != "EnvObj"){
+	if (obj && obj->type == "EnvObj"){
         //check that npcs are overlapping
         if ((position.y == obj->position.y) && (position.x == obj->position.x)){
             switch (dir){
@@ -195,6 +241,10 @@ void MainNPC::resolve_collision(DisplayObject *obj){
             }
         }
 	}
+}
+
+void MainNPC::resolve_adjacency(DisplayObject *obj, int status){
+    //cout << "ADJACENCY STATUS :" << status << endl;
 }
 
 void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectContainer* collideContainer, DisplayObjectContainer* drawContainer){

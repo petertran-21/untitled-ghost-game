@@ -11,8 +11,11 @@ class NPCOperator : public MainNPC{
         NPCOperator(DisplayObjectContainer* container, DisplayObjectContainer* allSprites);
         void state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
         DisplayObjectContainer* collisionContainer;
+
+        bool operated = false;
+
         void resolve_collision(DisplayObject *obj);
-        Valve* current_valve = NULL;
+        void resolve_adjacency(DisplayObject *obj, int status);
 };
 
 #endif
