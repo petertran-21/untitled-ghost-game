@@ -1,18 +1,22 @@
 #ifndef DISPLAYOBJECT_H
 #define DISPLAYOBJECT_H
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <set>
 #include "AffineTransform.h"
 #include "Controller.h"
 #include <string>
 #include <fstream>
+#include <iostream>
+#include <algorithm>
+#include <cmath>
+#include <set>
 #include <vector>
+#include "./rapidxml-1.13/rapidxml.hpp"
 
 enum directions {N, S, E, W, None};
+#define PI 3.14159265
 
 using namespace std;
+using namespace rapidxml;
 
 class DisplayObject{
 

@@ -1,17 +1,10 @@
 #include "DisplayObject.h"
-#include "AffineTransform.h"
-#include <string>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
+
+/**
+ * Game is derived from DisplayObject
+ * so we import Game once it exists (.cpp)
+ */
 #include "Game.h"
-#include <iostream>
-#include <algorithm>
-#include <cmath>
-#include "./rapidxml-1.13/rapidxml.hpp"
-
-#define PI 3.14159265
-
-using namespace rapidxml;
 
 DisplayObject::DisplayObject(){
 	image = NULL;
