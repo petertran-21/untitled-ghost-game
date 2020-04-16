@@ -31,7 +31,7 @@ void CollisionSystem::handleEvent(Event* e){
   if (e->getType() == DOAddedEvent::DO_ADDED) {
     DOAddedEvent* event = (DOAddedEvent*) e;
     inView.push_back(event->recentlyAdded);
-    std::cout << "DO added to the game." << std::endl;
+    std::cout << "DO added to the game. " << event->recentlyAdded->type << std::endl;
   }
   if (e->getType() == DORemovedEvent::DO_REMOVED) {
     DORemovedEvent* event = (DORemovedEvent*) e;
@@ -50,9 +50,9 @@ void CollisionSystem::handleEvent(Event* e){
 //against all platform objects that are in the current scene.
 void CollisionSystem::watchForCollisions(string type1, string type2){
   for(int i = 0; i < inView.size(); i++) {
-    if (inView[i]->id == type1){
+    if (inView[i]->type == type1){
       for(int j = 0; j < inView.size(); j++) {
-        if (inView[j]->id == type2) {
+        if (inView[j]->type == type2) {
           if(collidesWith(inView[i], inView[j])){
 	    if (type1 == "Ghost" && type2 == "NPC"){
               resolveCollision_Ghost_NPC(inView[i], inView[j]);
@@ -562,7 +562,7 @@ void CollisionSystem::resolveCollision(DisplayObject* d, DisplayObject* other, i
 
 void CollisionSystem::resolveCollision_Ghost_NPC(DisplayObject* ghost, DisplayObject* npc) {
   Ghost* g = dynamic_cast<Ghost*>(ghost);
-
+  
   g->npc = (MainNPC*)npc;
 }
 

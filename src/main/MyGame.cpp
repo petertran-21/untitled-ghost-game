@@ -78,9 +78,9 @@ MyGame::MyGame() : Game(1000, 1000)
 	// allSprites->addChild(npc);
 	// container->addChild(npc);
 
-	// NPCOperator* npc2 = new NPCOperator(container, allSprites);
+	// NPCOperator* npc2 = new NPCOperator(container, scene_1);
 	// npc2->position.y += 500;
-	// allSprites->addChild(npc2);
+	// scene_1->addChild(npc2);
 	// container->addChild(npc2);
 
 	// NPCExcavator* npc3 = new NPCExcavator(container, allSprites);
@@ -94,10 +94,9 @@ MyGame::MyGame() : Game(1000, 1000)
 	// container->addChild(npc4);
 
 	player = new Ghost();
-	allSprites->addChild(player);
 	container->addChild(player);
-
-	DOAdded->addChildCalled(container);
+	scene_1->addChild(player);
+	//DOAdded->addChildCalled(container);
 	DOAdded->checkCondition();
 	//-----------------------------------------
 	// TODO, SFX will add later

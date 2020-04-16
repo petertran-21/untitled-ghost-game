@@ -197,8 +197,9 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 background->addChild(unit);
                 unit->parent = background;
             }   else if (sprite["parent"] == "foreground") {
-                foreground->addChild(unit);
-                unit->parent = foreground;
+                //foreground->addChild(unit);
+                this->addChild(unit);
+                unit->parent = this;
                 cout << unit->subtype << endl;
             } else {
                 // Need to find parent object
