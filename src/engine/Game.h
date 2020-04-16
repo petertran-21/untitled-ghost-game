@@ -3,9 +3,6 @@
 
 #include <SDL2/SDL_ttf.h>
 #include "DisplayObjectContainer.h"
-#include "EventDispatcher.h"
-#include "PickedUpEvent.h"
-#include "QuestManager.h"
 #include <ctime>
 
 class Game : public DisplayObjectContainer {
