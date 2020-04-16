@@ -2,7 +2,6 @@
 #define PARTICLE_H
 
 #include "DisplayObject.h"
-#include "DisplayObjectContainer.h"
 #include "Controls.h"
 
 using namespace std;
