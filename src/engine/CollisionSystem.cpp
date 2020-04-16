@@ -6,8 +6,8 @@
 
 #include <cmath>
 
-CollisionSystem::CollisionSystem(){
-
+CollisionSystem::CollisionSystem(Camera *maincam){
+  this->maincam = maincam;
 }
 
 CollisionSystem::~CollisionSystem(){
@@ -23,6 +23,7 @@ void CollisionSystem::update(){
   watchForCollisions("NPC", "NPCObj");
   watchForCollisions("NPC", "EnvObj");
   watchForCollisions("NPC", "Collectible");
+  watchForCollisions("Ghost", "SceneTrigger");
 }
 
 //This system watches the game's display tree and is notified whenever a display object is placed onto
@@ -71,6 +72,9 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
             }
             else if ((type1 == "NPCObj" && type2 == "EnvObj")){
               resolveCollision_NPCObj_EnvObj(inView[i], inView[j]);
+            }
+            else if ((type1 == "Ghost" && type2 == "SceneTrigger")){
+              resolveCollision_SceneTrigger(inView[j]);
             }
             else{
               // resolveCollision(inView[i], inView[j],
@@ -618,4 +622,29 @@ void CollisionSystem::resolveCollision_NPC_Collectible(DisplayObject* npc, Displ
 void CollisionSystem::resolveCollision_NPCObj_EnvObj(DisplayObject* NPCObj, DisplayObject* envObj){
   NPCObj->resolve_collision(envObj);
   envObj->resolve_collision(NPCObj);
+}
+
+void CollisionSystem::resolveCollision_SceneTrigger(DisplayObject* triggerObj){
+  Scene *current = dynamic_cast<Scene*>(maincam->getChild(0));
+  Scene *next = new Scene();
+
+  SceneTrigger *trigger = dynamic_cast<SceneTrigger*>(triggerObj);
+
+  if (trigger->active){
+    next->loadScene(trigger->scene_path);
+    maincam->changeScene(current, next);
+
+    //REMOVING COLLISION BOXES?
+    // DisplayObject* obj;
+    // vector<DisplayObject*>::iterator itr = find(trigger->collisionContainer->children.begin(), trigger->collisionContainer->children.end(), obj);
+    // if (itr != trigger->collisionContainer->children.end()){
+        
+    //     trigger->collisionContainer->children.erase(itr);
+    // }
+
+    maincam->removeChild(0);
+    maincam->addChild(next);
+  }
+
+  trigger->active = false;
 }

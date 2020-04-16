@@ -4,6 +4,8 @@
 #include "Event.h"
 #include "DisplayObjectContainer.h"
 #include "EventListener.h"
+#include "Camera.h"
+#include "SceneTrigger.h"
 
 #include <iostream>
 
@@ -13,8 +15,10 @@ class CollisionSystem : public EventListener{
 
 public:
 
-	CollisionSystem();
+	CollisionSystem(Camera *maincam);
 	~CollisionSystem();
+
+	Camera *maincam;
 
 	//checks collisions between pairs of DOs where the corresponding types have been requested
 	//to be checked (via a single call to watchForCollisions) below.
@@ -55,6 +59,7 @@ public:
 	void resolveCollision_NPC_NPCObj(DisplayObject* npc, DisplayObject* npcObj);
 	void resolveCollision_NPC_Collectible(DisplayObject* npc, DisplayObject* collectible);
 	void resolveCollision_NPCObj_EnvObj(DisplayObject* NPCObj, DisplayObject* envObj);
+	void resolveCollision_SceneTrigger(DisplayObject* triggerObj);
 
 private:
 	vector<DisplayObject*> inView;
