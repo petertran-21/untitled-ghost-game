@@ -12,6 +12,8 @@
 #include <cmath>
 #include <set>
 #include <vector>
+
+//XML Parser for configuration files
 #include "./rapidxml-1.13/rapidxml.hpp"
 
 enum directions {N, S, E, W, None};

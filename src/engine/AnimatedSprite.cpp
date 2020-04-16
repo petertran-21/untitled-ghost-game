@@ -1,9 +1,4 @@
 #include "AnimatedSprite.h"
-#include "Game.h"
-#include <string>
-#include <iostream>
-
-using namespace rapidxml;
 
 AnimatedSprite::AnimatedSprite() : Sprite() {
     this->type = "AnimatedSprite";
@@ -17,15 +12,35 @@ AnimatedSprite::AnimatedSprite(string id) : Sprite(id, 0, 0, 0) {
 //   this->type = "AnimatedSprite";
 // }
 
-AnimatedSprite::~AnimatedSprite() {
-    for (Animation* an : animations) {
-        for (int i = 0; i < an->numFrames; i++) {// this needs to be an iterator loop
-            if(an->frames[i]->image != NULL) SDL_FreeSurface(an->frames[i]->image);
-	        if(an->frames[i]->texture != NULL) SDL_DestroyTexture(an->frames[i]->texture);
+AnimatedSprite::~AnimatedSprite() 
+{
+    for (Animation* an : animations) 
+    {
+        for (int i = 0; i < an->numFrames; i++) 
+        {
+            if(an->frames[i]->image != NULL) 
+            {
+                SDL_FreeSurface(an->frames[i]->image);
+                an->frames[i]->image = NULL;
+            }
+	        if(an->frames[i]->texture != NULL) 
+            {
+                SDL_DestroyTexture(an->frames[i]->texture);
+                an->frames[i]->texture = NULL;
+            }
             delete an->frames[i];
         }
         delete an->frames;
         delete an;
+    }
+    for (SpriteSheet* sheet : spriteSheets) 
+    {
+        for (int i = 0; i < sheet->numLayers; i++) 
+        {
+            delete sheet->layers[i];
+        }
+        delete sheet->layers;
+        delete sheet;
     }
 }
 
