@@ -7,7 +7,7 @@ Game* Game::instance;
 SDL_Renderer* Game::renderer;
 unsigned int Game::frameCounter = 0;
 
-Game::Game()
+Game::Game() : DisplayObjectContainer()
 {
 	initSDL();
 	TTF_Init();
@@ -18,7 +18,7 @@ Game::Game()
 	init();
 }
 
-Game::Game(int windowWidth, int windowHeight)
+Game::Game(int windowWidth, int windowHeight) : DisplayObjectContainer()
 {
 	initSDL();
 	TTF_Init();

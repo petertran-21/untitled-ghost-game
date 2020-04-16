@@ -1,22 +1,12 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #include "DisplayObjectContainer.h"
-#include "DisplayObject.h"
 #include "EventDispatcher.h"
 #include "PickedUpEvent.h"
 #include "QuestManager.h"
-#include "Controller.h"
-#include <iostream>
-#include <string>
 #include <ctime>
-#include <vector>
-#include <set>
-
-using namespace std;
 
 class Game : public DisplayObjectContainer {
 
