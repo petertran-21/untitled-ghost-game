@@ -1,12 +1,4 @@
-#include <iostream>
-#include <cstdlib>
-#include <set>
-
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 #include "Controls.h"
-
-using namespace std;
 
 bool Controls::pressing_possess = false;
 bool Controls::pressing_boo = false;
