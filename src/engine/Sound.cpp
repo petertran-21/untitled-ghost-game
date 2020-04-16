@@ -1,9 +1,4 @@
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_mixer.h>
 #include "Sound.h"
-#include <string>
-
-using namespace std;
 
 Sound::Sound(){
     if (SDL_Init(SDL_INIT_AUDIO) < 0){
