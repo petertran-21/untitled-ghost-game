@@ -6,6 +6,7 @@
 #include "Controls.h"
 #include "DisplayObjectContainer.h"
 #include "DisplayObject.h"
+#include <algorithm>
 
 using namespace std;
 
