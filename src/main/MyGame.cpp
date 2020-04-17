@@ -24,7 +24,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	displayTreeDisp->addEventListener(collisionSystem, DOAddedEvent::DO_ADDED);
 	displayTreeDisp->addEventListener(collisionSystem, DORemovedEvent::DO_REMOVED);
 
-	scene_1->loadScene("./resources/scenes/forestHub.json", container);
+	scene_1->loadScene("./resources/scenes/beachEntrance.json", container);
 
 	//---------------SCENE TRIGGER-------------------------
 	// SceneTrigger* beachTrigger = new SceneTrigger(container);
@@ -149,6 +149,27 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 		DOAdded->checkCondition();
 		collisionSystem->update();
 		Game::update(pressedKeys, currState);
+
+		if (pressedKeys.find(SDL_SCANCODE_N) != pressedKeys.end()){
+			camera->getChild(0)->scaleX /= 1.1;
+			camera->getChild(0)->scaleY /= 1.1;
+		}
+		if (pressedKeys.find(SDL_SCANCODE_M) != pressedKeys.end()){
+			camera->getChild(0)->scaleX *= 1.1;
+			camera->getChild(0)->scaleY *= 1.1;
+		}
+		if (pressedKeys.find(SDL_SCANCODE_J) != pressedKeys.end()){
+			camera->getChild(0)->position.x += 10;
+		}
+		if (pressedKeys.find(SDL_SCANCODE_L) != pressedKeys.end()){
+			camera->getChild(0)->position.x -= 10;
+		}
+		if (pressedKeys.find(SDL_SCANCODE_I) != pressedKeys.end()){
+			camera->getChild(0)->position.y += 10;
+		}
+		if (pressedKeys.find(SDL_SCANCODE_K) != pressedKeys.end()){
+			camera->getChild(0)->position.y -= 10;
+		}
 	}
 
 	if (pressedKeys.find(SDL_SCANCODE_DOWN) != pressedKeys.end() && UIOpen){
