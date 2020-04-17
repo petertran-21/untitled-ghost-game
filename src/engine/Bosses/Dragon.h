@@ -11,7 +11,6 @@ class Dragon : public MainBoss{
         Dragon();
         void state_idle(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
         void state_attack(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
-        int subtype = 5;
    
 };
 

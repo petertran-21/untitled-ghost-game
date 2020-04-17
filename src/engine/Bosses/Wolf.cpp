@@ -6,9 +6,7 @@
 using namespace std;
 
 Wolf::Wolf(DisplayObjectContainer* container, DisplayObjectContainer* allSprites) : MainBoss(){
-    this->subtype = "wolf";
-    this->position.x = 100;
-    this->position.y = 100;
+    this->subtype = WOLF_SUBTYPE;
 
     this->collisionContainer = container;
     this->drawingContainer = allSprites;

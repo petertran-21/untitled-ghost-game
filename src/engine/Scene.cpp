@@ -186,7 +186,7 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 unit = new Gem(Collisioncontainer);
                 break;
             case WOLF_SUBTYPE:
-                unit = new Wolf();
+                unit = new Wolf(Collisioncontainer, foreground);
                 break;
             /* Looking for...
             Gem Holder
