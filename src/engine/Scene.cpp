@@ -4,6 +4,7 @@
 #include "CollectiblesImports.h"
 #include "NPCObjImports.h"
 #include "NPCImports.h"
+#include "Ghost.h"
 #include "BossImports.h"
 
 Scene::Scene() : DisplayObjectContainer()
@@ -197,7 +198,12 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 break;
             case WATERJET_SUBTYPE:
                 unit = new WaterJet(Collisioncontainer, foreground);
-
+            case GHOST_SUBTYPE:
+                unit = new Ghost();
+                break;
+            case SCENE_TRIGGER_SUBTYPE:
+                unit = new SceneTrigger(Collisioncontainer);
+                break;
 
 
         }
