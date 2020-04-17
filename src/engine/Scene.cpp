@@ -140,7 +140,6 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
     DisplayObjectContainer* background = new DisplayObjectContainer();
     background->parent = this;
     this->addChild(background);
-    
     foreground->parent = this;
     this->addChild(foreground);
 
@@ -199,6 +198,7 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 break;
             case WATERJET_SUBTYPE:
                 unit = new WaterJet(Collisioncontainer, foreground);
+                break;
             case GHOST_SUBTYPE:
                 unit = new Ghost();
                 unit->addChild( new ParticleEmitter() );

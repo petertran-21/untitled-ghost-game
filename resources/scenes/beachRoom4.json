@@ -22,7 +22,7 @@
             "id": "SceneTrigger",
             "basePathFolder": "./resources/items/",
             "isStaticBaseFile": "scene_trigger",
-            "scene_path": "./resources/scenes/beachRoom4.json",
+            "scene_path": "./resources/scenes/beachRoom5.json",
             "posX": 1800,
             "posY": 200,
             "pivotX": 0,
