@@ -5,11 +5,17 @@
 using namespace std;
 
 MainBoss::MainBoss() : AnimatedSprite("Boss"){
-    this->type = "Boss";
+    this->type = "boss";
 }
 
 void MainBoss::draw(AffineTransform &at){
 	AnimatedSprite::draw(at);
+}
+
+void MainBoss::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
+	AnimatedSprite::update(pressedKeys, currState);
+
+    MainBoss::state_execute(pressedKeys, currState);
 }
 
 void MainBoss::state_idle(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){

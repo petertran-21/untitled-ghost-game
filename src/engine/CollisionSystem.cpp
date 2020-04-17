@@ -24,6 +24,7 @@ void CollisionSystem::update(){
   watchForCollisions("NPC", "EnvObj");
   watchForCollisions("NPC", "Collectible");
   watchForCollisions("Ghost", "SceneTrigger");
+  watchForCollisions("Boss", "NPCObj");
 
   watchForAdjacency("NPC", "EnvObj");
   watchForAdjacency("NPC", "NPCObj");
@@ -79,6 +80,9 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
               resolveCollision_NPCObj_EnvObj(inView[i], inView[j]);
             }
             else if ((type1 == "Ghost" && type2 == "SceneTrigger")){
+              resolveCollision_SceneTrigger(inView[j]);
+            }
+            else if ((type1 == "Boss" && type2 == "NPCObj")){
               resolveCollision_SceneTrigger(inView[j]);
             }
             else{
@@ -663,6 +667,11 @@ void CollisionSystem::resolveCollision_SceneTrigger(DisplayObject* triggerObj){
   }
 
   trigger->active = false;
+}
+
+void CollisionSystem::resolveCollision_Boss_NPCObj(DisplayObject* bossObj, DisplayObject* NPCObj){
+  bossObj->resolve_collision(NPCObj);
+  NPCObj->resolve_collision(bossObj);
 }
 
 void CollisionSystem::resolveAdjacency_NPC_EnvObj(DisplayObject* npc, DisplayObject* envObj, int status){

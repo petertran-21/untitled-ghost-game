@@ -15,6 +15,7 @@ class MainBoss : public AnimatedSprite{
         MainBoss();
 
 	    virtual void draw(AffineTransform &at);
+        virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
         
         boss_states state = boss_states::Idle;
         bool state_new = true;

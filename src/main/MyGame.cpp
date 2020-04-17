@@ -28,18 +28,6 @@ MyGame::MyGame() : Game(1000, 1000)
 	// allSprites->addChild(s);
 	// container->addChild(s);
 
-	ItemPouch* p = new ItemPouch(container);
-	p->position.x = 900;
-	p->position.y = 500;
-	allSprites->addChild(p);
-	container->addChild(p);
-
-	Gem* g = new Gem(container);
-	g->position.x = 900;
-	g->position.y = 400;
-	allSprites->addChild(g);
-	container->addChild(g);
-
 	// npc = new NPCPyromancer(container, allSprites);
 	// npc->position.x += 300;
 	// allSprites->addChild(npc);
@@ -56,26 +44,6 @@ MyGame::MyGame() : Game(1000, 1000)
 	// DOAdded->addChildCalled(container);
 	// DOAdded->checkCondition();
 
-	Shrub* s = new Shrub(container);
-	allSprites->addChild(s);
-	container->addChild(s);
-
-	Shrub* s1 = new Shrub(container);
-	allSprites->addChild(s1);
-	container->addChild(s1);
-	s1->position.x = 100;
-
-	Shrub* s2 = new Shrub(container);
-	allSprites->addChild(s2);
-	container->addChild(s2);
-	s2->position.x = 200;
-
-	Bridge *b = new Bridge(container);
-	allSprites->addChild(b);
-	container->addChild(b);
-	b->position.x += 200;
-	b->position.y += 200;
-
 	Valve * v = new Valve(container, S);
 	allSprites->addChild(v);
 	container->addChild(v);
@@ -89,34 +57,35 @@ MyGame::MyGame() : Game(1000, 1000)
 	w->position.x += 700;
 	w->position.y += 100;
 
-	Log * c = new Log();
-	allSprites->addChild(c);
-	container->addChild(c);
-	c->position.y += 600;
-	c->position.x += 600;
+	NPCCollector* npc1 = new NPCCollector(container, allSprites);
+	npc1->position.x += 0;
+	npc1->position.y += 500;
+	allSprites->addChild(npc1);
+	container->addChild(npc1);
 
-	Log * c1 = new Log();
-	allSprites->addChild(c1);
-	container->addChild(c1);
-	c1->position.y += 800;
-	c1->position.x += 600;
-
-	npc = new NPCPyromancer(container, allSprites);
-	npc->position.x += 300;
-	allSprites->addChild(npc);
-	container->addChild(npc);
-
-	NPCArcher* npc2 = new NPCArcher(container, allSprites);
+	NPCOperator* npc2 = new NPCOperator(container, allSprites);
+	npc2->position.x += 300;
 	npc2->position.y += 500;
 	allSprites->addChild(npc2);
 	container->addChild(npc2);
 
+	Pirate * p = new Pirate();
+	allSprites->addChild(p);
+	container->addChild(p);
+	p->position.x += 600;
+	p->position.y += 400;
 
-	NPCLumberjack* npc4 = new NPCLumberjack(container, allSprites);
-	npc4->position.x += 300;
-	npc4->position.y += 500;
-	allSprites->addChild(npc4);
-	container->addChild(npc4);
+	Wolf * wolf = new Wolf();
+	allSprites->addChild(wolf);
+	container->addChild(wolf);
+	wolf->position.x += 100;
+	wolf->position.y += 100;
+
+	Crab * c = new Crab();
+	allSprites->addChild(c);
+	container->addChild(c);
+	c->position.x += 600;
+	c->position.y += 100;
 
 	player = new Ghost();
 	allSprites->addChild(player);

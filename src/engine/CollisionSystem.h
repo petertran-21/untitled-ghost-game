@@ -60,6 +60,7 @@ public:
 	void resolveCollision_NPC_Collectible(DisplayObject* npc, DisplayObject* collectible);
 	void resolveCollision_NPCObj_EnvObj(DisplayObject* NPCObj, DisplayObject* envObj);
 	void resolveCollision_SceneTrigger(DisplayObject* triggerObj);
+	void resolveCollision_Boss_NPCObj(DisplayObject* bossObj, DisplayObject* npcObj);
 
 	void resolveAdjacency_NPC_EnvObj(DisplayObject* npc, DisplayObject* envObj, int status);
 	void resolveAdjacency_NPC_NPCObj(DisplayObject* npc, DisplayObject* npcObj, int status);

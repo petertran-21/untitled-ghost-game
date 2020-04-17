@@ -26,6 +26,7 @@
 #include "TweenJuggler.h"
 #include "CollectiblesImports.h"
 #include "UIDefs.h"
+#include "BossImports.h"
 
 using namespace std;
 
