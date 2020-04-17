@@ -24,14 +24,14 @@ MyGame::MyGame() : Game(1000, 1000)
 	displayTreeDisp->addEventListener(collisionSystem, DOAddedEvent::DO_ADDED);
 	displayTreeDisp->addEventListener(collisionSystem, DORemovedEvent::DO_REMOVED);
 
-	scene_1->loadScene("./resources/scenes/beachEntrance.json", container);
+	scene_1->loadScene("./resources/scenes/forestHub.json", container);
 
 	//---------------SCENE TRIGGER-------------------------
-	SceneTrigger* beachTrigger = new SceneTrigger(container);
-	beachTrigger->position.x = 200;
-	beachTrigger->position.y = 900;
-	cout<<"scene trigger location: "<<beachTrigger->position.x << " "<<beachTrigger->position.y<<endl;
-	container->addChild(beachTrigger);
+	// SceneTrigger* beachTrigger = new SceneTrigger(container);
+	// beachTrigger->position.x = 200;
+	// beachTrigger->position.y = 900;
+	// cout<<"scene trigger location: "<<beachTrigger->position.x << " "<<beachTrigger->position.y<<endl;
+	// container->addChild(beachTrigger);
 
 	//-----------------------------------------------------
 
@@ -108,10 +108,10 @@ MyGame::MyGame() : Game(1000, 1000)
 	// allSprites->addChild(npc4);
 	// container->addChild(npc4);
 
-	player = new Ghost();
-	player->addChild( new ParticleEmitter() );
-	container->addChild(player);
-	scene_1->addChild(player);
+	// // player = new Ghost();
+	// // player->addChild( new ParticleEmitter() );
+	// // container->addChild(player);
+	// // scene_1->addChild(player);
 	//DOAdded->addChildCalled(container);
 	DOAdded->checkCondition();
 	//-----------------------------------------

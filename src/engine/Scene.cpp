@@ -5,6 +5,7 @@
 #include "NPCObjImports.h"
 #include "NPCImports.h"
 #include "Ghost.h"
+#include "particle_system/ParticleEmitter.h"
 #include "BossImports.h"
 
 Scene::Scene() : DisplayObjectContainer()
@@ -200,9 +201,12 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 unit = new WaterJet(Collisioncontainer, foreground);
             case GHOST_SUBTYPE:
                 unit = new Ghost();
+                unit->addChild( new ParticleEmitter() );
+                Collisioncontainer->addChild(unit);
                 break;
             case SCENE_TRIGGER_SUBTYPE:
-                unit = new SceneTrigger(Collisioncontainer);
+                unit = new SceneTrigger(Collisioncontainer, sprite["scene_path"]);
+                Collisioncontainer->addChild(unit);               
                 break;
 
 

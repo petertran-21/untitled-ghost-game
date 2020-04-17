@@ -3,6 +3,7 @@
 Ghost::Ghost() : AnimatedSprite("Ghost"){
 
 	this->type = "Ghost";
+	this->id = "Ghost";
 	this->subtype = GHOST_SUBTYPE;
 	this->npc = NULL;
 	
@@ -10,8 +11,8 @@ Ghost::Ghost() : AnimatedSprite("Ghost"){
 	this->position.y = 200;
 	this->width = 416;
 	this->height = 454;
-	this->scaleX = 0.3;
-	this->scaleY = 0.3;
+	// this->scaleX = 0.3;
+	// this->scaleY = 0.3;
 	this->pivot.x = this->width / 2;
 	this->pivot.y = this->height / 2;
 
