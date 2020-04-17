@@ -3298,23 +3298,7 @@
             "height": 50, 
             "id": "gem2"
         }, 
-        {
-            "isStatic": true, 
-            "parent": "foreground", 
-            "subtype": 22, 
-            "pivotX": 0, 
-            "pivotY": 0, 
-            "basePathFolder": "./resources/npcs/", 
-            "isStaticBaseFile": "npc_base.png", 
-            "width": 100, 
-            "posY": 100, 
-            "posX": 700, 
-            "isVisible": true, 
-            "alpha": 255, 
-            "rotation": 0.0, 
-            "height": 100, 
-            "id": "archer"
-        }, 
+
         {
             "isStatic": true, 
             "parent": "foreground", 
@@ -3332,30 +3316,14 @@
             "height": 100, 
             "id": "pyromancer"
         }, 
-        {
-            "isStatic": true, 
-            "parent": "foreground", 
-            "subtype": 21, 
-            "pivotX": 0, 
-            "pivotY": 0, 
-            "basePathFolder": "./resources/npcs/", 
-            "isStaticBaseFile": "npc_base.png", 
-            "width": 100, 
-            "posY": 700, 
-            "posX": 200, 
-            "isVisible": true, 
-            "alpha": 255, 
-            "rotation": 0.0, 
-            "height": 100, 
-            "id": "lumberjack"
-        },
+
         {
             "id": "SceneTrigger",
             "basePathFolder": "./resources/items/",
             "isStaticBaseFile": "scene_trigger",
             "scene_path": "./resources/scenes/forest2.json",
-            "posX": 200,
-            "posY": 900,
+            "posX": 0,
+            "posY": 1200,
             "pivotX": 0,
             "pivotY": 0,
             "rotation": 0.0,
@@ -3372,8 +3340,8 @@
             "basePathFolder": "./resources/items/",
             "isStaticBaseFile": "scene_trigger",
             "scene_path": "./resources/scenes/forest3.json",
-            "posX": 200,
-            "posY": 900,
+            "posX": 0,
+            "posY": 200,
             "pivotX": 0,
             "pivotY": 0,
             "rotation": 0.0,
@@ -3385,5 +3353,22 @@
             "height": 100,
             "subtype": 108
         },
+        {
+            "id": "Ghost",
+            "basePathFolder": "./resources/grandel/",
+            "isStaticBaseFile": "Idle",
+            "posX": 200,
+            "posY": 200,
+            "pivotX": 0,
+            "pivotY": 0,
+            "rotation": 0.0,
+            "alpha": 255,
+            "isVisible": true,
+            "isStatic": true,
+            "parent": "foreground",
+            "width": 100,
+            "height": 100,
+            "subtype": 4
+        }
     ]
 }

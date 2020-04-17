@@ -5,12 +5,12 @@
 using namespace std;
 
 NPCLumberjack::NPCLumberjack(DisplayObjectContainer* container, DisplayObjectContainer* allSprites) : MainNPC(){
-    this->position.x = 100;
-    this->position.y = 100;
-	this->addAnimation("./resources/npcs/", "npc_base", 2, 1, true);
+	this->addAnimation("../resources/npcs/", "npc_base", 1, 1, true);
 	this->play("npc_base");
     this->collisionContainer = container;
+    container->addChild(this);
     this->drawingContainer = allSprites;
+    this->subtype = NPCLUMBERJACK_SUBTYPE;
 }
 
 void NPCLumberjack::state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
@@ -45,13 +45,9 @@ void NPCLumberjack::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joy
     state_switch(npc_states::Possessed);
 }
 
-void NPCLumberjack::resolve_collision(DisplayObject* obj){
-    MainNPC::resolve_collision(obj);
-}
-
 void NPCLumberjack::resolve_adjacency(DisplayObject *obj, int status){
     //if (status != 0) cout << "HELLO" << endl;
-
+    
     if (obj->subtype==102 && chopping == true){
 
         if (status != 0){
@@ -60,7 +56,6 @@ void NPCLumberjack::resolve_adjacency(DisplayObject *obj, int status){
             l->chopped = true;
             return;
         }
-        //else chopping = false;
         
     }
 
@@ -72,7 +67,6 @@ void NPCLumberjack::resolve_adjacency(DisplayObject *obj, int status){
             b->open = true;
             return;
         }
-        //else chopping = false;
         
     }
 }
