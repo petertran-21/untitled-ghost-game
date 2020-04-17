@@ -159,6 +159,27 @@
         {
             "name" : "valve",
             "path" : "./resources/templates/beachEnvTemplates/valveTemp.json"
+        },
+        {
+            "name" : "shrub",
+            "path" : "./resources/templates/itemTemplates/shrubTemp.json"
+        },
+        {
+            "name" : "breakable wall",
+            "path" : "./resources/templates/itemTemplates/BreakableWallTemp.json"
+        },
+        {
+            "name" : "NPCPyromancer",
+            "path" : "./resources/templates/NPCTemplates/NPCPyromancer.json"
+        },
+        {
+            "name" : "NPCExcavator",
+            "path" : "./resources/templates/NPCTemplates/NPCExcavator.json"
+        },
+        {
+            "name" : "NPCCollector",
+            "path" : "./resources/templates/NPCTemplates/NPCCollector.json"
         }
     ]
+    
 }

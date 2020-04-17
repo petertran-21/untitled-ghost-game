@@ -8,16 +8,16 @@ using namespace std;
 
 
 Shrub::Shrub(DisplayObjectContainer* container) : MainEnvObj(){
-    this->subtype = "shrub";
     this->addAnimation("./resources/items/", "shrub", 1, 1, false);
     this->addAnimation("./resources/items/", "shrub_fire", 1, 1, false);
     this->addAnimation("./resources/items/", "shrub_burned", 1, 1, false);
     this->flammable = true;
     this->fire_timer = 0;
     this->fire_threshold = 5;
-
+    this->subtype = SHRUB_SUBTYPE;
 	this->play("shrub");
     this->collisionContainer = container;
+    container->addChild(this);
 }
 
 void Shrub::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){

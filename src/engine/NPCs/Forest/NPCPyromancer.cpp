@@ -11,7 +11,9 @@ NPCPyromancer::NPCPyromancer(DisplayObjectContainer* container, DisplayObjectCon
 	this->addAnimation("../resources/npcs/", "npc_base", 1, 1, true);
 	this->play("npc_base");
     this->collisionContainer = container;
+    container->addChild(this);
     this->drawingContainer = allSprites;
+    this->subtype = NPCPYROMANCER_SUBTYPE;
 }
 
 void NPCPyromancer::state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){

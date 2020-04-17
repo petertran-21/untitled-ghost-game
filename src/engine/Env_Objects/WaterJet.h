@@ -1,5 +1,6 @@
 #ifndef WATERJET_H
 #define WATERJET_H
+#define WATERJET_SUBTYPE 13
 
 #include "Controller.h"
 #include "MainEnvObj.h"

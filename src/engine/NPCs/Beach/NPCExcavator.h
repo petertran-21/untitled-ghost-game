@@ -1,5 +1,6 @@
 #ifndef NPCEXCAVATOR_H
 #define NPCEXCAVATOR_H
+#define NPCEXCAVATOR_SUBTYPE 19
 
 #include "MainNPC.h"
 #include "BreakableWall.h"

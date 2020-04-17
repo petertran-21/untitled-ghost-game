@@ -1,5 +1,6 @@
 #ifndef NPCCOLLECTOR_H
 #define NPCCOLLECTOR_H
+#define NPCCOLLECTOR_SUBTYPE 18
 
 #include "MainNPC.h"
 #include "Crab.h"

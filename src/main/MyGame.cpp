@@ -5,7 +5,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	//SFX team work
 	camera = new Camera();
 	scene_1 = new Scene();
-	scene_1->loadScene("./resources/scenes/beachEntrance.json");
+	
 	camera->addChild(scene_1);
 	this->addChild(camera);
 
@@ -24,15 +24,12 @@ MyGame::MyGame() : Game(1000, 1000)
 	displayTreeDisp->addEventListener(collisionSystem, DOAddedEvent::DO_ADDED);
 	displayTreeDisp->addEventListener(collisionSystem, DORemovedEvent::DO_REMOVED);
 
+	scene_1->loadScene("./resources/scenes/beachBossD.json", container);
+
 	// Shrub* s = new Shrub(container);
 	// allSprites->addChild(s);
 	// container->addChild(s);
 
-	ItemPouch* p = new ItemPouch(container);
-	p->position.x = 900;
-	p->position.y = 500;
-	allSprites->addChild(p);
-	container->addChild(p);
 
 	Gem* g = new Gem(container);
 	g->position.x = 900;
@@ -56,73 +53,56 @@ MyGame::MyGame() : Game(1000, 1000)
 	// DOAdded->addChildCalled(container);
 	// DOAdded->checkCondition();
 
-	Shrub* s = new Shrub(container);
-	allSprites->addChild(s);
-	container->addChild(s);
 
-	Shrub* s1 = new Shrub(container);
-	allSprites->addChild(s1);
-	container->addChild(s1);
-	s1->position.x = 100;
+	// BreakableWall *b = new BreakableWall(container);
+	// allSprites->addChild(b);
+	// container->addChild(b);
+	// b->position.x += 200;
+	// b->position.y += 200;
 
-	Shrub* s2 = new Shrub(container);
-	allSprites->addChild(s2);
-	container->addChild(s2);
-	s2->position.x = 200;
+	// Valve * v = new Valve(container);
+	// allSprites->addChild(v);
+	// container->addChild(v);
+	// v->position.x += 500;
+	// v->position.y += 300;
 
-	Bridge *b = new Bridge(container);
-	allSprites->addChild(b);
-	container->addChild(b);
-	b->position.x += 200;
-	b->position.y += 200;
+	// WaterJet * w = new WaterJet(container, allSprites);
+	// allSprites->addChild(w);
+	// container->addChild(w);
+	// v->add_jet(w);
+	// w->position.x += 700;
+	// w->position.y += 100;
 
-	Valve * v = new Valve(container, S);
-	allSprites->addChild(v);
-	container->addChild(v);
-	v->position.x += 500;
-	v->position.y += 300;
+	// Crab * c = new Crab();
+	// allSprites->addChild(c);
+	// container->addChild(c);
+	// c->position.y += 600;
+	// c->position.x += 600;
 
-	WaterJet * w = new WaterJet(container, allSprites);
-	allSprites->addChild(w);
-	container->addChild(w);
-	v->add_jet(w);
-	w->position.x += 700;
-	w->position.y += 100;
+	// npc = new NPCPyromancer(container, allSprites);
+	// npc->position.x += 300;
+	// allSprites->addChild(npc);
+	// container->addChild(npc);
 
-	Log * c = new Log();
-	allSprites->addChild(c);
-	container->addChild(c);
-	c->position.y += 600;
-	c->position.x += 600;
+	// NPCOperator* npc2 = new NPCOperator(container, scene_1);
+	// npc2->position.y += 500;
+	// scene_1->addChild(npc2);
+	// container->addChild(npc2);
 
-	Log * c1 = new Log();
-	allSprites->addChild(c1);
-	container->addChild(c1);
-	c1->position.y += 800;
-	c1->position.x += 600;
+	// NPCExcavator* npc3 = new NPCExcavator(container, allSprites);
+	// allSprites->addChild(npc3);
+	// container->addChild(npc3);
 
-	npc = new NPCPyromancer(container, allSprites);
-	npc->position.x += 300;
-	allSprites->addChild(npc);
-	container->addChild(npc);
-
-	NPCArcher* npc2 = new NPCArcher(container, allSprites);
-	npc2->position.y += 500;
-	allSprites->addChild(npc2);
-	container->addChild(npc2);
-
-
-	NPCLumberjack* npc4 = new NPCLumberjack(container, allSprites);
-	npc4->position.x += 300;
-	npc4->position.y += 500;
-	allSprites->addChild(npc4);
-	container->addChild(npc4);
+	// NPCCollector* npc4 = new NPCCollector(container, allSprites);
+	// npc4->position.x += 300;
+	// npc4->position.y += 500;
+	// allSprites->addChild(npc4);
+	// container->addChild(npc4);
 
 	player = new Ghost();
-	allSprites->addChild(player);
 	container->addChild(player);
-
-	DOAdded->addChildCalled(container);
+	scene_1->addChild(player);
+	//DOAdded->addChildCalled(container);
 	DOAdded->checkCondition();
 	//-----------------------------------------
 	// TODO, SFX will add later

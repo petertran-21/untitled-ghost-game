@@ -15,5 +15,6 @@ class Fire : public MainNPCObj{
 
         virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
         void resolve_collision(DisplayObject *obj);
+        int subtype = 17;
 };
 #endif

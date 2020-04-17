@@ -15,6 +15,7 @@ class NPCArcher : public MainNPC{
         DisplayObjectContainer* collisionContainer;
 
         void resolve_collision(DisplayObject* obj);
+        int subtype = 22;
    
 };
 

@@ -5,12 +5,12 @@
 using namespace std;
 
 NPCCollector::NPCCollector(DisplayObjectContainer* container, DisplayObjectContainer* allSprites) : MainNPC(){
-    this->position.x = 100;
-    this->position.y = 100;
 	this->addAnimation("./resources/npcs/", "npc_base", 2, 1, true);
 	this->play("npc_base");
     this->collisionContainer = container;
+    container->addChild(this);
     this->drawingContainer = allSprites;
+    this->subtype = NPCCOLLECTOR_SUBTYPE;
 }
 
 void NPCCollector::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
@@ -61,7 +61,7 @@ void NPCCollector::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joys
 void NPCCollector::resolve_collision(DisplayObject* obj){
     if (cooldown_timer > 0) return;
     
-    if (obj->subtype=="crab"){
+    if (obj->subtype==16){ // 16 == Crab
         //TODO: need to check for npc diagonal to crab. Cannot pick up in this situation
         //NOTE: crab is moved to position of NPC
         if (can_collect){

@@ -12,6 +12,7 @@ class NPCCraftsman : public MainNPC{
         NPCCraftsman(DisplayObjectContainer* container, DisplayObjectContainer* allSprites);
         void state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
         DisplayObjectContainer* collisionContainer;
+        int subtype = 25;
 };
 
 

@@ -13,5 +13,6 @@ class MainNPCObj : public AnimatedSprite{
         MainNPCObj();
         MainNPCObj(DisplayObjectContainer* npcParent);
         DisplayObjectContainer* parent;
+        DisplayObjectContainer* collisionContainer;
 };
 #endif

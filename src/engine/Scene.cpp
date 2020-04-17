@@ -1,4 +1,10 @@
 #include "Scene.h"
+#include "DisplayObjectContainer.h"
+#include "EnvObjImports.h"
+#include "CollectiblesImports.h"
+#include "NPCObjImports.h"
+#include "NPCImports.h"
+#include "BossImports.h"
 
 Scene::Scene() : DisplayObjectContainer()
 {
@@ -62,6 +68,7 @@ Scene::~Scene()
 //     }
 // }
 
+/*
 void Scene::loadScene(string sceneFilePath){
     std::ifstream i(sceneFilePath);
     json j = json::parse(i);
@@ -118,7 +125,122 @@ void Scene::loadScene(string sceneFilePath){
         //cout << it.second << endl;
         parents[it.second]->addChild(it.first);
     }
+}
+*/
+
+void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncontainer){
+    std::ifstream i(sceneFilePath);
+    json j = json::parse(i);
+    unordered_map<string, DisplayObjectContainer*> parents = {};
+    unordered_map<DisplayObject*, string> needsParent = {};
+
+    DisplayObjectContainer* foreground = new DisplayObjectContainer();
+    DisplayObjectContainer* background = new DisplayObjectContainer();
+    background->parent = this;
+    this->addChild(background);
     
+    foreground->parent = this;
+    this->addChild(foreground);
+
+    for (auto sprite : j["sprites"]){
+        // Get sprite subtype
+        DisplayObjectContainer* unit;
+        std::string imgPath = ""; //Cannot declare variables in a switch
+        
+        switch((int)sprite["subtype"]) {
+            case SPRITE_SUBTYPE: // Sprites (usually tiles)
+                imgPath = sprite["basePathFolder"].get<std::string>() + sprite["isStaticBaseFile"].get<std::string>();
+                unit = new Sprite(sprite["id"].get<std::string>(), imgPath);
+                break;
+            case ITEMPOUCH_SUBTYPE: // Item Pouch
+                unit = new ItemPouch(Collisioncontainer);
+                break;
+            case SHRUB_SUBTYPE:
+                unit = new Shrub(Collisioncontainer);
+                break;
+            case VALVE_SUBTYPE:
+                unit = new Valve(Collisioncontainer, E);
+                break;
+            case CRAB_SUBTYPE:
+                unit = new Crab(Collisioncontainer);
+                break;
+            case NPCPYROMANCER_SUBTYPE:
+                unit = new NPCPyromancer(Collisioncontainer, foreground);
+                break;
+            case NPCOPERATOR_SUBTYPE:
+                unit = new NPCOperator(Collisioncontainer, foreground);
+                break;
+            case NPCEXCAVATOR_SUBTYPE:
+                unit = new NPCExcavator(Collisioncontainer, foreground);
+                break;
+            case NPCCOLLECTOR_SUBTYPE:
+                unit = new NPCCollector(Collisioncontainer, foreground);
+                break;
+            case LOG_SUBTYPE:
+                unit = new Log();
+                break;
+            case BRIDGE_SUBTYPE:
+                unit = new Bridge(Collisioncontainer);
+                break;
+            case GEM_SUBTYPE:
+                unit = new Gem(Collisioncontainer);
+                break;
+            case WOLF_SUBTYPE:
+                unit = new Wolf();
+                break;
+            /* Looking for...
+            Gem Holder
+            HornFragment
+            */
+            case PIRATE_SUBTYPE:
+                unit = new Pirate();
+                break;
+            case WATERJET_SUBTYPE:
+                unit = new WaterJet(Collisioncontainer, foreground);
+
+
+
+        }
+
+        if (unit != NULL) {
+            unit->id = sprite["id"];
+            unit->imgPath = sprite["basePathFolder"];
+            unit->position.x = sprite["posX"];
+            unit->position.y = sprite["posY"];
+            unit->pivot.x = sprite["pivotX"];
+            unit->pivot.y = sprite["pivotY"];
+            unit->alpha = sprite["alpha"];
+            unit->visible = sprite["isVisible"];
+            unit->rotation = sprite["rotation"];
+            unit->width = sprite["width"];
+            unit->height = sprite["height"];
+            
+            if (sprite["parent"] == "") {
+                background->addChild(unit);
+                unit->parent = background;
+            }   else if (sprite["parent"] == "foreground") {
+                //foreground->addChild(unit);
+                this->addChild(unit);
+                unit->parent = this;
+                cout << unit->subtype << endl;
+            } else {
+                // Need to find parent object
+                needsParent[unit] = sprite["parent"];
+
+            }
+
+            parents[unit->id] = unit;
+
+        }
+        
+    }
+    // Setting up parents
+    for (auto it : needsParent){
+        it.first->parent = parents[it.second];
+        //cout << it.first->id << endl;
+        //cout << it.second << endl;
+        parents[it.second]->addChild(it.first);
+    }
 
 }
 

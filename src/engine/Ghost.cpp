@@ -3,7 +3,7 @@
 Ghost::Ghost() : AnimatedSprite("Ghost"){
 
 	this->type = "Ghost";
-
+	this->subtype = GHOST_SUBTYPE;
 	this->npc = NULL;
 	
 	this->position.x = 55;
@@ -153,6 +153,7 @@ void Ghost::state_possessing(set<SDL_Scancode> pressedKeys, Controller::Joystick
 
 		if (npc == NULL){
 			state_switch(ghost_states::Idle);
+			cout << "Yuck" << endl;
 			return;
 		}
 

@@ -7,7 +7,6 @@ using namespace std;
 
 
 Bridge::Bridge(DisplayObjectContainer* container) : MainEnvObj(){
-    this->subtype = "bridge";
     this->addAnimation("./resources/items/", "bridge_open", 1, 1, false);
     this->addAnimation("./resources/items/", "bridge_closed", 1, 1, false);
 

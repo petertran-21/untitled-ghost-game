@@ -1,8 +1,6 @@
 #ifndef GHOST_H
 #define GHOST_H
-
-#include <cstdlib>
-#include <math.h>
+#define GHOST_SUBTYPE 4
 #include "AnimatedSprite.h"
 #include "Enemy.h"
 #include "Controls.h"

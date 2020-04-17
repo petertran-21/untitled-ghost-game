@@ -7,7 +7,6 @@ using namespace std;
 
 
 Log::Log() : MainNPCObj(){
-    this->subtype = "log";
     this->addAnimation("./resources/items/", "tree", 1, 1, false);
     this->addAnimation("./resources/items/", "log", 1, 1, false);
 
