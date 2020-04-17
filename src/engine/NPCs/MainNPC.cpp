@@ -84,21 +84,25 @@ void MainNPC::state_moving(set<SDL_Scancode> pressedKeys, Controller::JoystickSt
                 //check collision @ direction//
                 position.y -= grid_size; 
                 abilityPt = {0, -100};
+                // this->play("back");
                 break;
             case S:
                 //check collision @ direction//
                 position.y += grid_size;
                 abilityPt = {0, 100};
+                // this->play("forward");
                 break;
             case E: 
                 //check collision @ direction//
                 position.x += grid_size; 
                 abilityPt = {100, 0};
+                // this->play("right");
                 break;
             case W: 
                 //check collision @ direction//
                 position.x -= grid_size; 
                 abilityPt = {-100, 0};
+                // this->play("left");
                 break;
         }
 

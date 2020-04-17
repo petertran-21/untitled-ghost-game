@@ -111,6 +111,11 @@ MyGame::MyGame() : Game(1000, 1000)
 	allSprites->addChild(npc2);
 	container->addChild(npc2);
 
+	NPCCollector* npc3 = new NPCCollector(container, allSprites);
+	npc3->position.y += 800;
+	allSprites->addChild(npc3);
+	container->addChild(npc3);
+
 
 	NPCLumberjack* npc4 = new NPCLumberjack(container, allSprites);
 	npc4->position.x += 300;

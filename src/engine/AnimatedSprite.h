@@ -54,7 +54,7 @@ public:
 	//AnimatedSprite(string id, string spriteSheetPath, string xmlPath);
 	~AnimatedSprite();
 
-	void addAnimation(string basepath, string animName, int numFrames, int frameRate, bool loop);
+	void addAnimation(string basepath, string animName, int numFrames, int frameRate, bool loop, string newAnimName = "");
 	void addSpriteSheet(string spriteSheetPath, string xmlFilePath, string animName, int numLayers, int frameRate, bool loop);
 	Animation* getAnimation(string animName);
 	SpriteSheet* getSpriteSheet(string animName);

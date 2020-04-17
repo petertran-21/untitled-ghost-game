@@ -29,9 +29,8 @@ AnimatedSprite::~AnimatedSprite() {
     }
 }
 
-void AnimatedSprite::addAnimation(string basepath, string animName, int numFrames, int frameRate, bool loop) {
+void AnimatedSprite::addAnimation(string basepath, string animName, int numFrames, int frameRate, bool loop, string newAnimName) {
     Animation* anim = new Animation();
-    anim->animName = animName;
     anim->numFrames = numFrames;
     anim->frameRate = frameRate;
     anim->loop = loop;
@@ -43,6 +42,12 @@ void AnimatedSprite::addAnimation(string basepath, string animName, int numFrame
         f->image = IMG_Load(path.c_str());
         f->texture = SDL_CreateTextureFromSurface(Game::renderer, f->image);
         anim->frames[i] = f;
+    }
+    if (newAnimName == ""){
+        anim->animName = animName;
+    }
+    else{
+        anim->animName = newAnimName;
     }
     animations.push_back(anim);
 }

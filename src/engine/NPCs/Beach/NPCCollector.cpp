@@ -7,7 +7,11 @@ using namespace std;
 NPCCollector::NPCCollector(DisplayObjectContainer* container, DisplayObjectContainer* allSprites) : MainNPC(){
     this->position.x = 100;
     this->position.y = 100;
-	this->addAnimation("./resources/npcs/", "npc_base", 2, 1, true);
+	this->addAnimation("./resources/npcs/", "npc_base", 1, 1, false);
+	// this->addAnimation("./resources/npcs/collector", "collector_forward", 30, 1, false, "forward");
+    // this->addAnimation("./resources/npcs/collector", "collector_back", 30, 1, false, "back");
+    // this->addAnimation("./resources/npcs/collector", "collector_left", 30, 1, false, "left");
+    // this->addAnimation("./resources/npcs/collector", "collector_right", 30, 1, false, "right");
 	this->play("npc_base");
     this->collisionContainer = container;
     this->drawingContainer = allSprites;
