@@ -50,7 +50,7 @@ public:
 // Effectively a TextBox with slightly altered functionality.
 class SelectionMenu : public DisplayObjectContainer{
 public:
-    SelectionMenu(int posX = 0, int posY = 0, int width = 400, int height = 1000);
+    SelectionMenu(int posX = 0, int posY = 0, int width = 400, int height = 0);
     
     void addToMenu(std::string entry);
     void removeFromMenu(std::string entry);
@@ -63,7 +63,7 @@ public:
 
     SDL_Color highlightedColor = {255, 215, 0};     // The selected text should have a different color.
     bool active;        // The selection menu should not choose an option unless the menu is active.
-    int selectedIndex = 0;       // Position in the selection menu.
+    int selectedIndex = -1;       // Position in the selection menu.
     std::vector<std::string> entries;   // The actual Text* objects are added to the 'children' attribute inherited from DOC.
 
     virtual void draw(AffineTransform &at);

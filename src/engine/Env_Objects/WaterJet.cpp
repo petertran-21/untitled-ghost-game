@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <algorithm>
 
 #include "WaterJet.h"
 

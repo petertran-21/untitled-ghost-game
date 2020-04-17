@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <algorithm>
 #include "MainNPC.h"
 
 using namespace std;

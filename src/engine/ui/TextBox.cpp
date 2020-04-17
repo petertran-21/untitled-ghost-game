@@ -23,10 +23,7 @@ TextBox::TextBox(std::string content, int posX, int posY, int width, int height)
     this->height = height;
 }
 
-TextBox::~TextBox(){
-    delete this->text;
-    delete this;
-}
+TextBox::~TextBox(){}
 
 void TextBox::setFont(std::string path){
     this->text->font = TTF_OpenFont(path.c_str(), this->text->fontSize);
@@ -53,6 +50,7 @@ void TextBox::setFontSize(int sz){
 void TextBox::setText(std::string newText){
     this->text->content = newText;
     this->text->reloadFont();
+    this->text->width = newText.size() * 20;        // Fixes scaling issue.
 }
 
 void TextBox::draw(AffineTransform &at){
