@@ -5,3 +5,7 @@
 #include "WaterStream.h"
 #include "SceneTrigger.h"
 #include "Bridge.h"
+#include "Rock.h"
+#include "Door.h"
+#include "Button.h"
+#include "Pit.h"

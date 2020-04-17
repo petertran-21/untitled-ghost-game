@@ -2,3 +2,4 @@
 #include "Fire.h"
 #include "Crab.h"
 #include "Log.h"
+#include "GemHolder.h"
