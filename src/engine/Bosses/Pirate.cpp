@@ -9,6 +9,7 @@ Pirate::Pirate() : MainBoss(){
     this->position.y = 100;
 	// this->addAnimation("../resources/npcs/", "npc_base", 2, 1, true);
 	// this->play("npc_base");
+    this->subtype = PIRATE_SUBTYPE;
 }
 
 void Pirate::state_attack(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){

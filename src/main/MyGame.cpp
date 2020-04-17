@@ -24,7 +24,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	displayTreeDisp->addEventListener(collisionSystem, DOAddedEvent::DO_ADDED);
 	displayTreeDisp->addEventListener(collisionSystem, DORemovedEvent::DO_REMOVED);
 
-	scene_1->loadScene("./resources/scenes/beachEntrance.json", container);
+	scene_1->loadScene("./resources/scenes/beachBossD.json", container);
 
 	// Shrub* s = new Shrub(container);
 	// allSprites->addChild(s);

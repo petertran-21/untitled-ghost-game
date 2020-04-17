@@ -13,6 +13,7 @@ WaterStream::WaterStream(directions dir, DisplayObjectContainer* container) : Ma
     this->addAnimation("./resources/items/", "water_stream", 1, 1, false);
 	this->play("water_stream");
     this->collisionContainer = container;
+    this->subtype = WATERSTREAM_SUBTYPE;
 }
 
 

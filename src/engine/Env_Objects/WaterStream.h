@@ -1,5 +1,6 @@
 #ifndef WATER_STREAM_H
 #define WATER_STREAM_H
+#define WATERSTREAM_SUBTYPE 14
 
 #include "Controller.h"
 #include "MainEnvObj.h"
@@ -15,7 +16,6 @@ class WaterStream : public MainEnvObj{
 
         int push_timer = 0;
         int push_time_max = 10;
-        int subtype = 14;
 
         void resolve_collision(DisplayObject *obj);
 

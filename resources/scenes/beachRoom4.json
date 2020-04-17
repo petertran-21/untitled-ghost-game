@@ -144,14 +144,14 @@
             "isStatic": true,
             "isStaticBaseFile": "water_valve.png",
             "isVisible": true,
-            "parent": "",
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 700,
             "posY": 0,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 2
+            "subtype": 13
         },
         {
             "alpha": 255,
@@ -212,14 +212,14 @@
             "isStatic": true,
             "isStaticBaseFile": "water_valve.png",
             "isVisible": true,
-            "parent": "",
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1000,
             "posY": 0,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 2
+            "subtype": 13
         },
         {
             "alpha": 255,

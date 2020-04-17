@@ -1,5 +1,6 @@
 #ifndef WATERJET_H
 #define WATERJET_H
+#define WATERJET_SUBTYPE 13
 
 #include "Controller.h"
 #include "MainEnvObj.h"
@@ -19,7 +20,6 @@ class WaterJet : public MainEnvObj{
         bool init = true;
         directions dir = S;
         int tile_range = 5;
-        int subtype = 13;
 
         vector<WaterStream*> streams;
         // vector<DisplayObject*> streams;

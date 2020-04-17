@@ -192,6 +192,14 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             Gem Holder
             HornFragment
             */
+            case PIRATE_SUBTYPE:
+                unit = new Pirate();
+                break;
+            case WATERJET_SUBTYPE:
+                unit = new WaterJet(Collisioncontainer, foreground);
+
+
+
         }
 
         if (unit != NULL) {
