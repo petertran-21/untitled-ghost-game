@@ -697,23 +697,7 @@
             "height": 100, 
             "id": "caveWall34"
         }, 
-        {
-            "isStatic": true, 
-            "parent": "foreground", 
-            "subtype": 30, 
-            "pivotX": 0, 
-            "pivotY": 0, 
-            "basePathFolder": "./resources/items/", 
-            "isStaticBaseFile": "horn.png", 
-            "width": 100, 
-            "posY": -400, 
-            "posX": 1500, 
-            "isVisible": true, 
-            "alpha": 255, 
-            "rotation": 0.0, 
-            "height": 100, 
-            "id": "hornFragment"
-        }, 
+
         {
             "isStatic": true, 
             "parent": "", 
@@ -1275,23 +1259,7 @@
             "height": 100, 
             "id": "floor73"
         }, 
-        {
-            "isStatic": true, 
-            "parent": "foreground", 
-            "subtype": 22, 
-            "pivotX": 0, 
-            "pivotY": 0, 
-            "basePathFolder": "./resources/npcs/", 
-            "isStaticBaseFile": "npc_base.png", 
-            "width": 100, 
-            "posY": 0, 
-            "posX": 700, 
-            "isVisible": true, 
-            "alpha": 255, 
-            "rotation": 0.0, 
-            "height": 100, 
-            "id": "archer"
-        }, 
+
         {
             "isStatic": true, 
             "parent": "", 
@@ -1461,23 +1429,6 @@
             "rotation": 0.0, 
             "height": 100, 
             "id": "floor83"
-        }, 
-        {
-            "isStatic": true, 
-            "parent": "foreground", 
-            "subtype": 21, 
-            "pivotX": 0, 
-            "pivotY": 0, 
-            "basePathFolder": "./resources/npcs/", 
-            "isStaticBaseFile": "npc_base.png", 
-            "width": 100, 
-            "posY": 100, 
-            "posX": 200, 
-            "isVisible": true, 
-            "alpha": 255, 
-            "rotation": 0.0, 
-            "height": 100, 
-            "id": "lumberjack"
         }, 
         {
             "isStatic": true, 
@@ -1887,23 +1838,7 @@
             "height": 100, 
             "id": "floor107"
         }, 
-        {
-            "isStatic": true, 
-            "parent": "foreground", 
-            "subtype": 8, 
-            "pivotX": 0, 
-            "pivotY": 0, 
-            "basePathFolder": "./resources/npcs/", 
-            "isStaticBaseFile": "wolf.png", 
-            "width": 400, 
-            "posY": -100, 
-            "posX": 1100, 
-            "isVisible": true, 
-            "alpha": 255, 
-            "rotation": 0.0, 
-            "height": 400, 
-            "id": "wolfBoss"
-        }, 
+ 
         {
             "isStatic": true, 
             "parent": "", 
@@ -3015,7 +2950,7 @@
             "isStaticBaseFile": "scene_trigger",
             "scene_path": "./resources/scenes/campsite.json",
             "posX": 200,
-            "posY": 900,
+            "posY": 600,
             "pivotX": 0,
             "pivotY": 0,
             "rotation": 0.0,
@@ -3027,5 +2962,22 @@
             "height": 100,
             "subtype": 108
         },
+        {
+            "id": "Ghost",
+            "basePathFolder": "./resources/grandel/",
+            "isStaticBaseFile": "Idle",
+            "posX": 200,
+            "posY": 200,
+            "pivotX": 0,
+            "pivotY": 0,
+            "rotation": 0.0,
+            "alpha": 255,
+            "isVisible": true,
+            "isStatic": true,
+            "parent": "foreground",
+            "width": 100,
+            "height": 100,
+            "subtype": 4
+        }
     ]
 }

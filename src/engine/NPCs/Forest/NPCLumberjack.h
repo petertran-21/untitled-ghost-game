@@ -1,5 +1,6 @@
 #ifndef NPCLUMBERJACK_H
 #define NPCLUMBERJACK_H
+#define NPCLUMBERJACK_SUBTYPE 21
 
 #include "MainNPC.h"
 #include "Log.h"
@@ -16,9 +17,7 @@ class NPCLumberjack : public MainNPC{
 
         bool chopping = false;
 
-        void resolve_collision(DisplayObject* obj);
         void resolve_adjacency(DisplayObject *obj, int status);
-        int subtype = 21;
 };
 
 
