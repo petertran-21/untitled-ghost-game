@@ -26,6 +26,9 @@ void Pirate::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
     }
 }
 
+void Pirate::state_idle(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
+}
+
 void Pirate::state_attack(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
     if (state_new){
         cout << "PIRATE STATE: ATTACK" << endl;

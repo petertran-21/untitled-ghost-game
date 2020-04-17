@@ -9,9 +9,12 @@ using namespace std;
 class Wolf : public MainBoss{
     
     public:
-        Wolf();
-        void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
-        void state_idle(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
+        Wolf(DisplayObjectContainer* container, DisplayObjectContainer* allSprites);
+
+        int bark_timer = 0;
+        int bark_timer_max = 60;
+
+        virtual void state_idle(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
         void state_attack(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 
    

@@ -23,9 +23,11 @@ class MainBoss : public AnimatedSprite{
 
         void state_execute(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
         void state_switch(boss_states new_state);
-        virtual void state_idle(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
-        void state_death(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
-        virtual void state_attack(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
+        virtual void state_idle(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState)=0;
+        virtual void state_death(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
+        virtual void state_attack(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState)=0;
+        DisplayObjectContainer* collisionContainer;
+        DisplayObjectContainer* drawingContainer;
 
 };
 

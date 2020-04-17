@@ -11,6 +11,9 @@ Snake::Snake() : MainBoss(){
 	// this->play("npc_base");
 }
 
+void Snake::state_idle(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
+
+}
 void Snake::state_attack(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
     if (state_new){
         cout << "STATE: ATTACK" << endl;

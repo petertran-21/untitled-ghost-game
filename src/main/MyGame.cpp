@@ -75,7 +75,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	p->position.x += 600;
 	p->position.y += 400;
 
-	Wolf * wolf = new Wolf();
+	Wolf * wolf = new Wolf(container, allSprites);
 	allSprites->addChild(wolf);
 	container->addChild(wolf);
 	wolf->position.x += 100;

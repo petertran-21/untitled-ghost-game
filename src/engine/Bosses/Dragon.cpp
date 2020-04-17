@@ -11,6 +11,10 @@ Dragon::Dragon() : MainBoss(){
 	// this->play("npc_base");
 }
 
+void Dragon::state_idle(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
+}
+
+
 void Dragon::state_attack(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
     if (state_new){
         cout << "STATE: ATTACK" << endl;
