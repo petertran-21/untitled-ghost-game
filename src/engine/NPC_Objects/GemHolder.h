@@ -1,5 +1,5 @@
-#ifndef CRAB_H
-#define CRAB_H
+#ifndef GEMHOLDER_H
+#define GEMHOLDER_H
 
 #include "Controller.h"
 #include "MainNPCObj.h"
