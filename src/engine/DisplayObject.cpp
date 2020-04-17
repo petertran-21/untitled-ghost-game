@@ -163,7 +163,7 @@ void DisplayObject::createHitbox(){
 	int w = (int)distance(hitBoxPoints.at(0), hitBoxPoints.at(1));
 	int h = (int)distance(hitBoxPoints.at(1), hitBoxPoints.at(2));
 	SDL_Rect rect = { hitBoxPoints.at(0).x, hitBoxPoints.at(0).y, w, h};
-	// SDL_SetTextureAlphaMod(hitBox->curTexture, 0);
+	SDL_SetTextureAlphaMod(hitBox->curTexture, 0);
 	SDL_RenderCopyEx(Game::renderer, hitBox->curTexture, NULL, &rect, calculateRotation(hitBoxPoints.at(0), hitBoxPoints.at(1)), &corner, SDL_FLIP_NONE);
 }
 
