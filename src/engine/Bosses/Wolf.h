@@ -1,5 +1,6 @@
 #ifndef WOLF_H
 #define WOLF_H
+#define WOLF_SUBTYPE 8
 
 #include "MainBoss.h"
 

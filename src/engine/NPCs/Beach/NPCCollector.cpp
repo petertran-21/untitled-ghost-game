@@ -72,5 +72,6 @@ void NPCCollector::resolve_collision(DisplayObject* obj){
     }
     else{
         MainNPC::resolve_collectible_collision(obj, this->collisionContainer, this->drawingContainer);
+        MainNPC::resolve_collision(obj);
     }
 }

@@ -4,6 +4,7 @@
 #include "CollectiblesImports.h"
 #include "NPCObjImports.h"
 #include "NPCImports.h"
+#include "BossImports.h"
 
 Scene::Scene() : DisplayObjectContainer()
 {
@@ -158,7 +159,7 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 unit = new Shrub(Collisioncontainer);
                 break;
             case VALVE_SUBTYPE:
-                unit = new Valve(Collisioncontainer);
+                unit = new Valve(Collisioncontainer, E);
                 break;
             case CRAB_SUBTYPE:
                 unit = new Crab(Collisioncontainer);
@@ -175,9 +176,22 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             case NPCCOLLECTOR_SUBTYPE:
                 unit = new NPCCollector(Collisioncontainer, foreground);
                 break;
-
-
-
+            case LOG_SUBTYPE:
+                unit = new Log();
+                break;
+            case BRIDGE_SUBTYPE:
+                unit = new Bridge(Collisioncontainer);
+                break;
+            case GEM_SUBTYPE:
+                unit = new Gem(Collisioncontainer);
+                break;
+            case WOLF_SUBTYPE:
+                unit = new Wolf();
+                break;
+            /* Looking for...
+            Gem Holder
+            HornFragment
+            */
         }
 
         if (unit != NULL) {

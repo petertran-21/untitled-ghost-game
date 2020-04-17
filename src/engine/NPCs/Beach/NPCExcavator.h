@@ -14,6 +14,7 @@ class NPCExcavator : public MainNPC{
         void state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 
         void resolve_collision(DisplayObject * obj);
+        void resolve_adjacency(DisplayObject * obj, int status);
 
         bool excavate = false;
 };

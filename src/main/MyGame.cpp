@@ -31,6 +31,12 @@ MyGame::MyGame() : Game(1000, 1000)
 	// container->addChild(s);
 
 
+	Gem* g = new Gem(container);
+	g->position.x = 900;
+	g->position.y = 400;
+	allSprites->addChild(g);
+	container->addChild(g);
+
 	// npc = new NPCPyromancer(container, allSprites);
 	// npc->position.x += 300;
 	// allSprites->addChild(npc);

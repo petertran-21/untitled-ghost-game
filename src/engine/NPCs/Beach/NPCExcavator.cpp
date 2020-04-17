@@ -40,17 +40,32 @@ void NPCExcavator::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joys
 }
 
 void NPCExcavator::resolve_collision(DisplayObject * obj){
+    MainNPC::resolve_collision(obj);
     MainNPC::resolve_collectible_collision(obj, this->collisionContainer, this->drawingContainer);
-    if (obj->subtype==10 && excavate == true){ // 10 == BreakableWall
-        BreakableWall* b = (BreakableWall*) obj;
-        b->broken = true;
-        //TODO: if there's more than one breakable there might be a problem-->need to test
-        vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), obj);
-        vector<DisplayObject*>::iterator drawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), obj);
-        if (collideItr != this->collisionContainer->children.end() && drawItr != this->drawingContainer->children.end()){
-            this->collisionContainer->children.erase(collideItr);
-            this->drawingContainer->children.erase(drawItr);
-        }   
-        excavate = false;
+    
+}
+
+void NPCExcavator::resolve_adjacency(DisplayObject * obj, int status){
+
+    if (obj->subtype==10 && excavate == true){
+
+        if (status != 0){
+            excavate = false;
+            BreakableWall* b = (BreakableWall*) obj;
+            b->broken = true;
+
+            
+            //TODO: if there's more than one breakable there might be a problem-->need to test
+            vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), obj);
+            vector<DisplayObject*>::iterator drawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), obj);
+            if (collideItr != this->collisionContainer->children.end() && drawItr != this->drawingContainer->children.end()){
+                this->collisionContainer->children.erase(collideItr);
+                this->drawingContainer->children.erase(drawItr);
+            }   
+        
+            return;
+        }
+        else excavate = false;
+        
 	}
 }

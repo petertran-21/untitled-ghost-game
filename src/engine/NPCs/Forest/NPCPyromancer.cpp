@@ -8,7 +8,7 @@ NPCPyromancer::NPCPyromancer(DisplayObjectContainer* container, DisplayObjectCon
     //this->id = "pyro";
     this->position.x = 100;
     this->position.y = 100;
-	this->addAnimation("../resources/npcs/", "npc_base", 2, 1, true);
+	this->addAnimation("../resources/npcs/", "npc_base", 1, 1, true);
 	this->play("npc_base");
     this->collisionContainer = container;
     container->addChild(this);

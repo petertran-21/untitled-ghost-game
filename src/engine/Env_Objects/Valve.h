@@ -12,12 +12,13 @@ using namespace std;
 class Valve : public MainEnvObj{
     
     public:
-        Valve(DisplayObjectContainer* container);
+        Valve(DisplayObjectContainer* container, directions dir);
         
         bool on = false;
         void toggle();
         vector<WaterJet*> jets;
-        directions dir = None;
+        directions dir = S;
+        int subtype = 12;
 
         void add_jet(WaterJet* w);
         void resolve_collision(DisplayObject *obj);
