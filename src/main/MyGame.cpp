@@ -109,6 +109,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	// container->addChild(npc4);
 
 	player = new Ghost();
+	player->addChild( new ParticleEmitter() );
 	container->addChild(player);
 	scene_1->addChild(player);
 	//DOAdded->addChildCalled(container);
