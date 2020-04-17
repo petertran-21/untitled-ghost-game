@@ -5,10 +5,7 @@
 using namespace std;
 
 Pirate::Pirate() : MainBoss(){
-    this->subtype = "pirate";
-    this->position.x = 100;
-    this->position.y = 100;
-
+    this->subtype = PIRATE_SUBTYPE;
 	this->addAnimation("./resources/bosses/", "pirate_idle", 1, 1, false);
 	this->play("pirate_idle");
 
@@ -27,6 +24,8 @@ void Pirate::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 }
 
 void Pirate::state_idle(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
+	// this->addAnimation("../resources/npcs/", "npc_base", 2, 1, true);
+	// this->play("npc_base");
 }
 
 void Pirate::state_attack(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){

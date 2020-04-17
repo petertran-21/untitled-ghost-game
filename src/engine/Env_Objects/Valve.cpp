@@ -7,12 +7,12 @@ using namespace std;
 
 
 Valve::Valve(DisplayObjectContainer* container, directions dir) : MainEnvObj(){
-    this->subtype = "valve";
     this->dir = dir;
     this->addAnimation("./resources/items/", "valve", 1, 1, false);
-    
+    this->subtype = VALVE_SUBTYPE;
 	this->play("valve");
     this->collisionContainer = container;
+    container->addChild(this);
 }
 
 void Valve::toggle(){

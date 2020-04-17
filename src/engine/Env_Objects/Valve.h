@@ -1,5 +1,6 @@
 #ifndef VALVE_H
 #define VALVE_H
+#define VALVE_SUBTYPE 12
 
 #include "Controller.h"
 #include "MainEnvObj.h"
@@ -17,6 +18,7 @@ class Valve : public MainEnvObj{
         void toggle();
         vector<WaterJet*> jets;
         directions dir = S;
+        int subtype = 12;
 
         void add_jet(WaterJet* w);
         void resolve_collision(DisplayObject *obj);

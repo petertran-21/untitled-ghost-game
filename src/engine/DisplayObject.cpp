@@ -1,17 +1,10 @@
 #include "DisplayObject.h"
-#include "AffineTransform.h"
-#include <string>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
+
+/**
+ * Game is derived from DisplayObject
+ * so we import Game once it exists (.cpp)
+ */
 #include "Game.h"
-#include <iostream>
-#include <algorithm>
-#include <cmath>
-#include "./rapidxml-1.13/rapidxml.hpp"
-
-#define PI 3.14159265
-
-using namespace rapidxml;
 
 DisplayObject::DisplayObject(){
 	image = NULL;
@@ -22,14 +15,14 @@ DisplayObject::DisplayObject(){
 DisplayObject::DisplayObject(string id, string filepath){
 	this->id = id;
 	this->imgPath = filepath;
-
+	this->subtype = DISPLAYOBJECT_SUBTYPE;
 	loadTexture(filepath);
 }
 
 DisplayObject::DisplayObject(string id, int red, int green, int blue){
 	isRGB = true;
 	this->id = id;
-
+	this->subtype = DISPLAYOBJECT_SUBTYPE;
 	this->red = red;
 	this->blue = blue;
 	this->green = green;
@@ -45,7 +38,21 @@ DisplayObject::~DisplayObject(){
 
 void DisplayObject::loadTexture(string filepath){
 	image = IMG_Load(filepath.c_str());
-	texture = SDL_CreateTextureFromSurface(Game::renderer, image);
+	if( image == NULL )
+	{
+		printf( "SDL_image Error: %s\n", IMG_GetError() );
+	}
+
+	SDL_SetColorKey( image, SDL_TRUE, SDL_MapRGB( image->format, 0, 0xFF, 0xFF ) );
+
+    texture = SDL_CreateTextureFromSurface(Game::renderer, image);
+	if( texture == NULL )
+	{
+		printf( "SDL Error: %s\n", SDL_GetError() );
+	}
+	
+	width = image->w;
+	height = image->h;
 	setTexture(texture);
 }
 
@@ -156,7 +163,7 @@ void DisplayObject::createHitbox(){
 	int w = (int)distance(hitBoxPoints.at(0), hitBoxPoints.at(1));
 	int h = (int)distance(hitBoxPoints.at(1), hitBoxPoints.at(2));
 	SDL_Rect rect = { hitBoxPoints.at(0).x, hitBoxPoints.at(0).y, w, h};
-	// SDL_SetTextureAlphaMod(hitBox->curTexture, 0);
+	SDL_SetTextureAlphaMod(hitBox->curTexture, 0);
 	SDL_RenderCopyEx(Game::renderer, hitBox->curTexture, NULL, &rect, calculateRotation(hitBoxPoints.at(0), hitBoxPoints.at(1)), &corner, SDL_FLIP_NONE);
 }
 

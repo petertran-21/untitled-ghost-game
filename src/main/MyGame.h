@@ -1,15 +1,10 @@
 #ifndef MYGAME_H
 #define MYGAME_H
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <iostream>
-#include <algorithm>
 #include "Game.h"
 #include "Sprite.h"
 #include "AnimatedSprite.h"
 #include "EventDispatcher.h"
-#include "Controller.h"
 #include "QuestManager.h"
 #include "PickedUpEvent.h"
 #include "Scene.h"
@@ -27,6 +22,7 @@
 #include "CollectiblesImports.h"
 #include "UIDefs.h"
 #include "BossImports.h"
+#include "particle_system/ParticleEmitter.h"
 
 using namespace std;
 
@@ -66,8 +62,12 @@ private:
 	Checklist* checklistTest;
 	SelectionMenu* selectionMenuTest;
 	TextBox* textboxTest;
+
+	DisplayObjectContainer* UIContainer;		// Holds all UI elements as children.
+
 	bool walking = false;
 	bool transition = false;
+	bool UIOpen = false;
 
 };
 

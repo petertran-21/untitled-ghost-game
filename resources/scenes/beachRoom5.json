@@ -2,475 +2,11 @@
     "sprites": [
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1804289383",
+            "id": "caveWall3",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 0,
-            "posY": 0,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "846930886",
-            "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 100,
-            "posY": 0,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "1681692777",
-            "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 200,
-            "posY": 0,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "waterValve",
-            "isStatic": true,
-            "isStaticBaseFile": "water_valve.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 200,
-            "posY": 0,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "1957747793",
-            "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 300,
-            "posY": 0,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "424238335",
-            "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 400,
-            "posY": 0,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "719885386",
-            "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 500,
-            "posY": 0,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "1649760492",
-            "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 600,
-            "posY": 0,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "596516649",
-            "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 700,
-            "posY": 0,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "1189641421",
-            "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 800,
-            "posY": 0,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "1025202362",
-            "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 900,
-            "posY": 0,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "1350490027",
-            "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 1000,
-            "posY": 0,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "783368690",
-            "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 1100,
-            "posY": 0,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "1102520059",
-            "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 1200,
-            "posY": 0,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "2044897763",
-            "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 1300,
-            "posY": 0,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "1967513926",
-            "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 1400,
-            "posY": 0,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "1365180540",
-            "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 1500,
-            "posY": 0,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "1540383426",
-            "isStatic": true,
-            "isStaticBaseFile": "sandCorner.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 1600,
-            "posY": 0,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "304089172",
-            "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 1600,
-            "posY": 0,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "1303455736",
-            "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 1700,
-            "posY": 0,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "35005211",
-            "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 1800,
-            "posY": 0,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "521595368",
-            "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 1900,
-            "posY": 0,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "294702567",
-            "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 2000,
-            "posY": 0,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "1726956429",
-            "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 2100,
-            "posY": 0,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "336465782",
-            "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 2200,
-            "posY": 0,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "861021530",
-            "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 2300,
-            "posY": 0,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "278722862",
-            "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 0,
-            "posY": 100,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "beachRoomStart",
-            "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 0,
-            "posY": 200,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "2145174067",
-            "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 0,
-            "posY": 300,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "468703135",
-            "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -478,15 +14,16 @@
             "posX": 0,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1101513929",
+            "id": "caveWall2",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -494,15 +31,16 @@
             "posX": 0,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1801979802",
+            "id": "caveWall1",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -510,47 +48,543 @@
             "posX": 0,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1315634022",
+            "id": "caveWall4",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 0,
-            "posY": 700,
+            "posY": 300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "635723058",
+            "id": "caveWall6",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
-            "posX": 900,
-            "posY": 800,
+            "posX": 0,
+            "posY": 100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1369133069",
+            "id": "caveWall8",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveWall.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 0,
+            "posY": -100,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "caveWall9",
+            "isStatic": true,
+            "isStaticBaseFile": "caveWall.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 0,
+            "posY": -200,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "caveWall12",
+            "isStatic": true,
+            "isStaticBaseFile": "caveWall.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 0,
+            "posY": -500,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "caveWall10",
+            "isStatic": true,
+            "isStaticBaseFile": "caveWall.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 0,
+            "posY": -300,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "caveWall11",
+            "isStatic": true,
+            "isStaticBaseFile": "caveWall.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 0,
+            "posY": -400,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "caveWall7",
+            "isStatic": true,
+            "isStaticBaseFile": "caveWall.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 0,
+            "posY": 0,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "caveWall5",
+            "isStatic": true,
+            "isStaticBaseFile": "caveWall.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 0,
+            "posY": 200,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "floor13",
+            "isStatic": true,
+            "isStaticBaseFile": "caveFloor.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 100,
+            "posY": -500,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "floor14",
+            "isStatic": true,
+            "isStaticBaseFile": "caveFloor.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 200,
+            "posY": -500,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "floor15",
+            "isStatic": true,
+            "isStaticBaseFile": "caveFloor.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 300,
+            "posY": -500,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "floor18",
+            "isStatic": true,
+            "isStaticBaseFile": "caveFloor.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 600,
+            "posY": -500,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "floor17",
+            "isStatic": true,
+            "isStaticBaseFile": "caveFloor.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 500,
+            "posY": -500,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "floor16",
+            "isStatic": true,
+            "isStaticBaseFile": "caveFloor.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 400,
+            "posY": -500,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "floor19",
+            "isStatic": true,
+            "isStaticBaseFile": "caveFloor.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 1400,
+            "posY": -500,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "floor20",
+            "isStatic": true,
+            "isStaticBaseFile": "caveFloor.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 1500,
+            "posY": -500,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "floor21",
+            "isStatic": true,
+            "isStaticBaseFile": "caveFloor.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 1600,
+            "posY": -500,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "floor22",
+            "isStatic": true,
+            "isStaticBaseFile": "caveFloor.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 1700,
+            "posY": -500,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "caveWall23",
+            "isStatic": true,
+            "isStaticBaseFile": "caveWall.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 1800,
+            "posY": -500,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "floor24",
+            "isStatic": true,
+            "isStaticBaseFile": "caveFloor.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 100,
+            "posY": -400,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "floor25",
+            "isStatic": true,
+            "isStaticBaseFile": "caveFloor.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 200,
+            "posY": -400,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "floor26",
+            "isStatic": true,
+            "isStaticBaseFile": "caveFloor.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 300,
+            "posY": -400,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "floor27",
+            "isStatic": true,
+            "isStaticBaseFile": "caveFloor.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 400,
+            "posY": -400,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "floor28",
+            "isStatic": true,
+            "isStaticBaseFile": "caveFloor.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 500,
+            "posY": -400,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "floor29",
+            "isStatic": true,
+            "isStaticBaseFile": "caveFloor.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 600,
+            "posY": -400,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/npcs/",
+            "height": 100,
+            "id": "pyromancer",
+            "isStatic": true,
+            "isStaticBaseFile": "npc_base.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 500,
+            "posY": -400,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "floor30",
+            "isStatic": true,
+            "isStaticBaseFile": "caveFloor.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 1400,
+            "posY": -400,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "floor31",
+            "isStatic": true,
+            "isStaticBaseFile": "caveFloor.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 1500,
+            "posY": -400,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "floor32",
+            "isStatic": true,
+            "isStaticBaseFile": "caveFloor.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 1600,
+            "posY": -400,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "floor33",
+            "isStatic": true,
+            "isStaticBaseFile": "caveFloor.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 1700,
+            "posY": -400,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "floor35",
+            "isStatic": true,
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -558,7 +592,8 @@
             "posX": 900,
             "posY": 900,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -574,7 +609,8 @@
             "posX": 900,
             "posY": 1000,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -590,7 +626,8 @@
             "posX": 900,
             "posY": 1100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -606,7 +643,8 @@
             "posX": 900,
             "posY": 1200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -622,7 +660,8 @@
             "posX": 900,
             "posY": 1300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -638,7 +677,8 @@
             "posX": 900,
             "posY": 1400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -654,7 +694,8 @@
             "posX": 900,
             "posY": 1500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -670,7 +711,8 @@
             "posX": 900,
             "posY": 1600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -686,7 +728,8 @@
             "posX": 0,
             "posY": -100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -702,7 +745,8 @@
             "posX": 0,
             "posY": -200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -718,15 +762,16 @@
             "posX": 0,
             "posY": -300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "756898537",
+            "id": "floor36",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -734,7 +779,8 @@
             "posX": 100,
             "posY": -100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -748,113 +794,120 @@
             "pivotX": 0,
             "pivotY": 0,
             "posX": 200,
-            "posY": -100,
+            "posY": -300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1973594324",
+            "id": "floor37",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 300,
-            "posY": -100,
+            "posY": -300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "149798315",
+            "id": "floor38",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 400,
-            "posY": -100,
+            "posY": -300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "2038664370",
+            "id": "floor39",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 500,
-            "posY": -100,
+            "posY": -300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1129566413",
+            "id": "floor40",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 600,
-            "posY": -100,
+            "posY": -300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "184803526",
+            "id": "caveWall34",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
-            "posX": 700,
-            "posY": -100,
+            "posX": 1800,
+            "posY": -400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/items/",
             "height": 100,
-            "id": "412776091",
+            "id": "hornFragment",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "horn.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
-            "posX": 800,
-            "posY": -100,
+            "posX": 1500,
+            "posY": -400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1424268980",
+            "id": "floor41",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -862,7 +915,8 @@
             "posX": 900,
             "posY": -100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -878,7 +932,8 @@
             "posX": 1000,
             "posY": -100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -894,7 +949,8 @@
             "posX": 1100,
             "posY": -100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -910,7 +966,8 @@
             "posX": 1200,
             "posY": -100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -926,7 +983,8 @@
             "posX": 1300,
             "posY": -100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -940,81 +998,86 @@
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1400,
-            "posY": -100,
+            "posY": -300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "135497281",
+            "id": "floor42",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1500,
-            "posY": -100,
+            "posY": -300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "511702305",
+            "id": "floor43",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1600,
-            "posY": -100,
+            "posY": -300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "2084420925",
+            "id": "floor44",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1700,
-            "posY": -100,
+            "posY": -300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1937477084",
+            "id": "caveWall45",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1800,
-            "posY": -100,
+            "posY": -300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1827336327",
+            "id": "floor46",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -1022,7 +1085,8 @@
             "posX": 1900,
             "posY": -100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1038,7 +1102,8 @@
             "posX": 2000,
             "posY": -100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1054,7 +1119,8 @@
             "posX": 2100,
             "posY": -100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1070,7 +1136,8 @@
             "posX": 2200,
             "posY": -100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1086,7 +1153,8 @@
             "posX": 2300,
             "posY": -100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1102,15 +1170,16 @@
             "posX": 100,
             "posY": -200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1433925857",
+            "id": "floor47",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -1118,15 +1187,16 @@
             "posX": 200,
             "posY": -200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1141616124",
+            "id": "floor48",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -1134,207 +1204,220 @@
             "posX": 300,
             "posY": -200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "84353895",
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 300,
+            "id": "tree49",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "tree.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
-            "posX": 400,
-            "posY": -200,
+            "posX": 100,
+            "posY": -440,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "939819582",
+            "id": "floor50",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 1600,
+            "posY": -200,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "floor51",
+            "isStatic": true,
+            "isStaticBaseFile": "caveFloor.png",
+            "isVisible": true,
+            "parent": "foreground",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 1700,
+            "posY": -200,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 12
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "caveWall52",
+            "isStatic": true,
+            "isStaticBaseFile": "caveWall.png",
+            "isVisible": true,
+            "parent": "foreground",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 1800,
+            "posY": -200,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 12
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "floor53",
+            "isStatic": true,
+            "isStaticBaseFile": "caveFloor.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 100,
+            "posY": -100,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "floor54",
+            "isStatic": true,
+            "isStaticBaseFile": "caveFloor.png",
+            "isVisible": true,
+            "parent": "foreground",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 200,
+            "posY": -100,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 12
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "floor55",
+            "isStatic": true,
+            "isStaticBaseFile": "caveFloor.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 300,
+            "posY": -100,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "floor56",
+            "isStatic": true,
+            "isStaticBaseFile": "caveFloor.png",
+            "isVisible": true,
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 500,
-            "posY": -200,
+            "posY": -100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 12
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "2001100545",
+            "id": "floor57",
             "isStatic": true,
-            "isStaticBaseFile": "valve.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 400,
-            "posY": -200,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "1998898814",
-            "isStatic": true,
-            "isStaticBaseFile": "valve.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 500,
-            "posY": -200,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "1548233367",
-            "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 600,
-            "posY": -200,
+            "posY": -100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "610515434",
+            "id": "floor58",
             "isStatic": true,
-            "isStaticBaseFile": "valve.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 600,
-            "posY": -200,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "1585990364",
-            "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
-            "isVisible": true,
-            "parent": "",
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 700,
-            "posY": -200,
+            "posY": -100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 12
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1374344043",
+            "id": "floor59",
             "isStatic": true,
-            "isStaticBaseFile": "valve.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 700,
-            "posY": -200,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "760313750",
-            "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 800,
-            "posY": -200,
+            "posY": -100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1477171087",
+            "id": "floor60",
             "isStatic": true,
-            "isStaticBaseFile": "valve.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
-            "parent": "",
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
-            "posX": 800,
-            "posY": -200,
+            "posX": 1400,
+            "posY": -100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 12
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "356426808",
+            "id": "floor63",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 900,
-            "posY": -200,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "945117276",
-            "isStatic": true,
-            "isStaticBaseFile": "valve.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 900,
-            "posY": -200,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "1889947178",
-            "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -1342,7 +1425,8 @@
             "posX": 1000,
             "posY": -200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1352,13 +1436,14 @@
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
-            "parent": "",
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1000,
             "posY": -200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 12
         },
         {
             "alpha": 255,
@@ -1372,25 +1457,27 @@
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1100,
-            "posY": -200,
+            "posY": -100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "491705403",
+            "id": "floor62",
             "isStatic": true,
-            "isStaticBaseFile": "valve.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
-            "parent": "",
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1100,
             "posY": -200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 12
         },
         {
             "alpha": 255,
@@ -1404,33 +1491,35 @@
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1200,
-            "posY": -200,
+            "posY": -100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "752392754",
+            "id": "floor61",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1300,
-            "posY": -200,
+            "posY": -100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1474612399",
+            "id": "floor64",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -1438,7 +1527,8 @@
             "posX": 1400,
             "posY": -200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1454,7 +1544,8 @@
             "posX": 1500,
             "posY": -200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1468,49 +1559,52 @@
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1600,
-            "posY": -200,
+            "posY": -100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1411549676",
+            "id": "floor65",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1700,
-            "posY": -200,
+            "posY": -100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1843993368",
+            "id": "caveWall66",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1800,
-            "posY": -200,
+            "posY": -100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "943947739",
+            "id": "floor67",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -1518,7 +1612,8 @@
             "posX": 1900,
             "posY": -200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1534,7 +1629,8 @@
             "posX": 2000,
             "posY": -200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1550,7 +1646,8 @@
             "posX": 2100,
             "posY": -200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1566,7 +1663,8 @@
             "posX": 2200,
             "posY": -200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1582,7 +1680,8 @@
             "posX": 2300,
             "posY": -200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1596,49 +1695,52 @@
             "pivotX": 0,
             "pivotY": 0,
             "posX": 100,
-            "posY": -300,
+            "posY": 0,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1036140795",
+            "id": "floor68",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 200,
-            "posY": -300,
+            "posY": 0,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "463480570",
+            "id": "floor69",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 300,
-            "posY": -300,
+            "posY": 0,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "2040651434",
+            "id": "floor70",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -1646,7 +1748,8 @@
             "posX": 400,
             "posY": -300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1660,81 +1763,86 @@
             "pivotX": 0,
             "pivotY": 0,
             "posX": 500,
-            "posY": -300,
+            "posY": 0,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "317097467",
+            "id": "floor71",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 600,
-            "posY": -300,
+            "posY": 0,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1892066601",
+            "id": "floor72",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 700,
-            "posY": -300,
+            "posY": 0,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1376710097",
+            "id": "floor73",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 800,
-            "posY": -300,
+            "posY": 0,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/npcs/",
             "height": 100,
-            "id": "927612902",
+            "id": "archer",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "npc_base.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
-            "posX": 900,
-            "posY": -300,
+            "posX": 700,
+            "posY": 0,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1330573317",
+            "id": "floor74",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -1742,7 +1850,8 @@
             "posX": 1000,
             "posY": -300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1756,65 +1865,69 @@
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1100,
-            "posY": -300,
+            "posY": 0,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1687926652",
+            "id": "floor75",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1200,
-            "posY": -300,
+            "posY": 0,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "660260756",
+            "id": "floor76",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1300,
-            "posY": -300,
+            "posY": 0,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "959997301",
+            "id": "floor77",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1400,
-            "posY": -300,
+            "posY": 0,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "485560280",
+            "id": "floor78",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -1822,7 +1935,8 @@
             "posX": 1500,
             "posY": -300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1836,49 +1950,52 @@
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1600,
-            "posY": -300,
+            "posY": 0,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "593209441",
+            "id": "floor79",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1700,
-            "posY": -300,
+            "posY": 0,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1194953865",
+            "id": "caveWall80",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1800,
-            "posY": -300,
+            "posY": 0,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "894429689",
+            "id": "floor81",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -1886,7 +2003,8 @@
             "posX": 1900,
             "posY": -300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1902,7 +2020,8 @@
             "posX": 2000,
             "posY": -300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1918,7 +2037,8 @@
             "posX": 2100,
             "posY": -300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1934,7 +2054,8 @@
             "posX": 2200,
             "posY": -300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1950,7 +2071,8 @@
             "posX": 2300,
             "posY": -300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1966,15 +2088,16 @@
             "posX": 100,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1633108117",
+            "id": "floor82",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -1982,15 +2105,16 @@
             "posX": 200,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "2114738097",
+            "id": "floor83",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -1998,31 +2122,33 @@
             "posX": 300,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/npcs/",
             "height": 100,
-            "id": "2007905771",
+            "id": "lumberjack",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "npc_base.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
-            "posX": 400,
+            "posX": 200,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1469834481",
+            "id": "floor85",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -2030,7 +2156,8 @@
             "posX": 500,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -2046,15 +2173,16 @@
             "posX": 600,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1610120709",
+            "id": "floor87",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -2062,7 +2190,8 @@
             "posX": 700,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -2078,47 +2207,50 @@
             "posX": 800,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "631704567",
+            "id": "floor84",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
-            "posX": 900,
+            "posX": 500,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "498777856",
+            "id": "floor86",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
-            "posX": 1000,
+            "posX": 700,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1255179497",
+            "id": "floor88",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -2126,15 +2258,16 @@
             "posX": 1100,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "524872353",
+            "id": "floor89",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -2142,31 +2275,16 @@
             "posX": 1200,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "questItem1",
-            "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 1300,
-            "posY": 100,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/items/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
             "id": "1572276965",
             "isStatic": true,
-            "isStaticBaseFile": "item_pouch.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -2174,7 +2292,25 @@
             "posX": 1300,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "questItem1",
+            "isStatic": true,
+            "isStaticBaseFile": "caveFloor.png",
+            "isVisible": true,
+            "parent": "foreground",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 1300,
+            "posY": 100,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 9
         },
         {
             "alpha": 255,
@@ -2190,15 +2326,16 @@
             "posX": 1400,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1703964683",
+            "id": "floor92",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -2206,7 +2343,8 @@
             "posX": 1500,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -2222,15 +2360,16 @@
             "posX": 1600,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1600028624",
+            "id": "floor93",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -2238,15 +2377,16 @@
             "posX": 1700,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "160051528",
+            "id": "caveWall94",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -2254,47 +2394,50 @@
             "posX": 1800,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "2040332871",
+            "id": "shrub95",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "shrub.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
-            "posX": 1900,
+            "posX": 1600,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "112805732",
+            "id": "shrub96",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "shrub.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
-            "posX": 2000,
+            "posX": 1700,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1120048829",
+            "id": "floor97",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -2302,7 +2445,8 @@
             "posX": 2100,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -2318,7 +2462,8 @@
             "posX": 2200,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -2334,7 +2479,8 @@
             "posX": 2300,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -2350,15 +2496,16 @@
             "posX": 100,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1573363368",
+            "id": "floor98",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -2366,23 +2513,25 @@
             "posX": 200,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/npcs/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "operator",
+            "id": "floor99",
             "isStatic": true,
-            "isStaticBaseFile": "npc_base.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
-            "parent": "",
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 200,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 20
         },
         {
             "alpha": 255,
@@ -2398,15 +2547,16 @@
             "posX": 300,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1373226340",
+            "id": "floor101",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -2414,7 +2564,8 @@
             "posX": 400,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -2430,7 +2581,8 @@
             "posX": 500,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -2446,15 +2598,16 @@
             "posX": 600,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "289700723",
+            "id": "floor102",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -2462,15 +2615,33 @@
             "posX": 700,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1117142618",
+            "id": "floor100",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 500,
+            "posY": 200,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "floor103",
+            "isStatic": true,
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -2478,31 +2649,16 @@
             "posX": 800,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "168002245",
+            "id": "floor104",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 900,
-            "posY": 200,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "150122846",
-            "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -2510,7 +2666,8 @@
             "posX": 1000,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -2526,15 +2683,16 @@
             "posX": 1100,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "990892921",
+            "id": "floor105",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -2542,7 +2700,8 @@
             "posX": 2200,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -2558,7 +2717,8 @@
             "posX": 2300,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -2574,7 +2734,8 @@
             "posX": 2100,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -2590,7 +2751,8 @@
             "posX": 2000,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -2606,15 +2768,16 @@
             "posX": 1200,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "338888228",
+            "id": "floor106",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -2622,15 +2785,16 @@
             "posX": 1300,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "2147469841",
+            "id": "floor107",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -2638,31 +2802,33 @@
             "posX": 1400,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "438792350",
+            "basePathFolder": "./resources/npcs/",
+            "height": 400,
+            "id": "wolfBoss",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "wolf.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
             "pivotY": 0,
-            "posX": 1500,
-            "posY": 200,
+            "posX": 1100,
+            "posY": -100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1911165193",
+            "id": "floor108",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -2670,15 +2836,16 @@
             "posX": 1600,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "269441500",
+            "id": "floor109",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -2686,15 +2853,16 @@
             "posX": 1700,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "2142757034",
+            "id": "caveWall110",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -2702,15 +2870,16 @@
             "posX": 1800,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "116087764",
+            "id": "floor111",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -2718,7 +2887,8 @@
             "posX": 1900,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -2734,15 +2904,16 @@
             "posX": 100,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "155324914",
+            "id": "floor112",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -2750,15 +2921,16 @@
             "posX": 200,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "8936987",
+            "id": "floor113",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -2766,15 +2938,16 @@
             "posX": 300,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1982275856",
+            "id": "floor114",
             "isStatic": true,
-            "isStaticBaseFile": "sandSideDown.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -2782,7 +2955,8 @@
             "posX": 400,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -2798,7 +2972,8 @@
             "posX": 500,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -2814,7 +2989,8 @@
             "posX": 600,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -2830,7 +3006,8 @@
             "posX": 700,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -2846,7 +3023,8 @@
             "posX": 800,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -2862,7 +3040,8 @@
             "posX": 900,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -2878,7 +3057,8 @@
             "posX": 1000,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -2894,7 +3074,8 @@
             "posX": 1100,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -2910,7 +3091,8 @@
             "posX": 1200,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -2926,7 +3108,8 @@
             "posX": 1300,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -2942,7 +3125,8 @@
             "posX": 1400,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -2958,7 +3142,8 @@
             "posX": 1500,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -2974,15 +3159,16 @@
             "posX": 1600,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1139901474",
+            "id": "floor115",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -2990,15 +3176,16 @@
             "posX": 1700,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1626276121",
+            "id": "caveWall116",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3006,15 +3193,16 @@
             "posX": 1800,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "653468858",
+            "id": "floor117",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3022,7 +3210,8 @@
             "posX": 1900,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -3038,7 +3227,8 @@
             "posX": 2000,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -3054,7 +3244,8 @@
             "posX": 2100,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -3070,7 +3261,8 @@
             "posX": 2200,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -3086,7 +3278,8 @@
             "posX": 2300,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -3102,15 +3295,16 @@
             "posX": 100,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "76065818",
+            "id": "floor118",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3118,15 +3312,16 @@
             "posX": 200,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1605894428",
+            "id": "floor119",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3134,15 +3329,16 @@
             "posX": 300,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1789366143",
+            "id": "floor120",
             "isStatic": true,
-            "isStaticBaseFile": "sandPit.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3150,15 +3346,16 @@
             "posX": 400,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1987231011",
+            "id": "floor121",
             "isStatic": true,
-            "isStaticBaseFile": "sandPit.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3166,15 +3363,16 @@
             "posX": 500,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1875335928",
+            "id": "floor122",
             "isStatic": true,
-            "isStaticBaseFile": "sandPit.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3182,15 +3380,16 @@
             "posX": 600,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1784639529",
+            "id": "water123",
             "isStatic": true,
-            "isStaticBaseFile": "sandPit.png",
+            "isStaticBaseFile": "water.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3198,15 +3397,16 @@
             "posX": 700,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "2103318776",
+            "id": "floor124",
             "isStatic": true,
-            "isStaticBaseFile": "sandPit.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3214,15 +3414,16 @@
             "posX": 800,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1597322404",
+            "id": "floor125",
             "isStatic": true,
-            "isStaticBaseFile": "sandPit.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3230,15 +3431,16 @@
             "posX": 900,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1939964443",
+            "id": "floor126",
             "isStatic": true,
-            "isStaticBaseFile": "sandPit.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3246,15 +3448,16 @@
             "posX": 1000,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "2112255763",
+            "id": "floor127",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3262,31 +3465,33 @@
             "posX": 1100,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "valveLeft",
+            "id": "floor128",
             "isStatic": true,
-            "isStaticBaseFile": "valve.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
-            "parent": "",
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
-            "posX": 1100,
+            "posX": 1200,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 12
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1067854538",
+            "id": "shrub129",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "shrub.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3294,15 +3499,16 @@
             "posX": 1200,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "352118606",
+            "id": "floor130",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3310,15 +3516,16 @@
             "posX": 1300,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1782436840",
+            "id": "floor131",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3326,15 +3533,16 @@
             "posX": 1400,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1909002904",
+            "id": "floor132",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3342,15 +3550,16 @@
             "posX": 1500,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "165344818",
+            "id": "floor133",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3358,15 +3567,16 @@
             "posX": 1600,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1395235128",
+            "id": "floor134",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3374,15 +3584,16 @@
             "posX": 1700,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "532670688",
+            "id": "caveWall135",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3390,15 +3601,16 @@
             "posX": 1800,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1351797369",
+            "id": "floor136",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3406,7 +3618,8 @@
             "posX": 1900,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -3422,7 +3635,8 @@
             "posX": 2000,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -3438,7 +3652,8 @@
             "posX": 2100,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -3454,7 +3669,8 @@
             "posX": 2200,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -3470,7 +3686,8 @@
             "posX": 2300,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -3486,15 +3703,16 @@
             "posX": 100,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "159259470",
+            "id": "floor137",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3502,15 +3720,16 @@
             "posX": 200,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1359512183",
+            "id": "floor138",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3518,15 +3737,16 @@
             "posX": 300,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "480298490",
+            "id": "floor139",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3534,15 +3754,16 @@
             "posX": 400,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1398295499",
+            "id": "floor140",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3550,15 +3771,16 @@
             "posX": 500,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1096689772",
+            "id": "floor141",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3566,15 +3788,16 @@
             "posX": 600,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "2086206725",
+            "id": "water142",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "water.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3582,15 +3805,16 @@
             "posX": 700,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "601385644",
+            "id": "floor143",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3598,15 +3822,16 @@
             "posX": 800,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1172755590",
+            "id": "floor144",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3614,15 +3839,16 @@
             "posX": 900,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1544617505",
+            "id": "floor145",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3630,15 +3856,16 @@
             "posX": 1000,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "243268139",
+            "id": "floor146",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3646,15 +3873,16 @@
             "posX": 1100,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1012502954",
+            "id": "floor147",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3662,15 +3890,33 @@
             "posX": 1200,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1272469786",
+            "id": "shrub148",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "shrub.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 1200,
+            "posY": 500,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "floor149",
+            "isStatic": true,
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3678,15 +3924,16 @@
             "posX": 1300,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "2027907669",
+            "id": "floor150",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3694,15 +3941,16 @@
             "posX": 1400,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "968338082",
+            "id": "floor151",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3710,15 +3958,16 @@
             "posX": 1500,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "722308542",
+            "id": "floor152",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3726,15 +3975,16 @@
             "posX": 1600,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1820388464",
+            "id": "floor153",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3742,15 +3992,16 @@
             "posX": 1700,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "933110197",
+            "id": "caveWall154",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3758,31 +4009,16 @@
             "posX": 1800,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "6939507",
+            "id": "caveWall155",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 1900,
-            "posY": 500,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "740759355",
-            "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3790,7 +4026,8 @@
             "posX": 2000,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -3806,7 +4043,8 @@
             "posX": 2100,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -3822,7 +4060,8 @@
             "posX": 2200,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -3838,7 +4077,8 @@
             "posX": 2300,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -3854,15 +4094,16 @@
             "posX": 100,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1037127828",
+            "id": "bossToCampsite",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveFloor.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3870,15 +4111,16 @@
             "posX": 200,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1034949299",
+            "id": "caveWall156",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3886,15 +4128,16 @@
             "posX": 300,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "654887343",
+            "id": "caveWall157",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3902,15 +4145,16 @@
             "posX": 400,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1529195746",
+            "id": "caveWall158",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3918,15 +4162,16 @@
             "posX": 500,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "392035568",
+            "id": "caveWall159",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3934,15 +4179,16 @@
             "posX": 600,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1335354340",
+            "id": "caveWall160",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3950,15 +4196,16 @@
             "posX": 700,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "87755422",
+            "id": "caveWall161",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3966,31 +4213,16 @@
             "posX": 800,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "889023311",
+            "id": "caveWall163",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
-            "isVisible": true,
-            "parent": "",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 900,
-            "posY": 600,
-            "rotation": 0.0,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
-            "height": 100,
-            "id": "1494613810",
-            "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3998,15 +4230,33 @@
             "posX": 1000,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1447267605",
+            "id": "caveWall162",
             "isStatic": true,
-            "isStaticBaseFile": "ocean.png",
+            "isStaticBaseFile": "caveWall.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 900,
+            "posY": 600,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/forestTiles/",
+            "height": 100,
+            "id": "caveWall164",
+            "isStatic": true,
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -4014,15 +4264,16 @@
             "posX": 1100,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1369321801",
+            "id": "caveWall165",
             "isStatic": true,
-            "isStaticBaseFile": "sandSideRight.png",
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -4030,23 +4281,25 @@
             "posX": 1200,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "valveRight",
+            "id": "caveWall166",
             "isStatic": true,
-            "isStaticBaseFile": "valve.png",
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
-            "parent": "",
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1200,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 12
         },
         {
             "alpha": 255,
@@ -4062,15 +4315,16 @@
             "posX": 1300,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1308044878",
+            "id": "caveWall167",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -4078,15 +4332,16 @@
             "posX": 1400,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1346811305",
+            "id": "caveWall168",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -4094,15 +4349,16 @@
             "posX": 1500,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1569229320",
+            "id": "caveWall169",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -4110,15 +4366,16 @@
             "posX": 1600,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "705178736",
+            "id": "caveWall170",
             "isStatic": true,
-            "isStaticBaseFile": "sandPit.png",
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -4126,15 +4383,16 @@
             "posX": 1700,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/tiles/forestTiles/",
             "height": 100,
-            "id": "1590079444",
+            "id": "caveWall171",
             "isStatic": true,
-            "isStaticBaseFile": "sandTile.png",
+            "isStaticBaseFile": "caveWall.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -4142,7 +4400,8 @@
             "posX": 1800,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4158,7 +4417,8 @@
             "posX": 1900,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4174,7 +4434,8 @@
             "posX": 2000,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4190,7 +4451,8 @@
             "posX": 2100,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4206,7 +4468,8 @@
             "posX": 2200,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4216,13 +4479,14 @@
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
-            "parent": "",
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 2200,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 12
         },
         {
             "alpha": 255,
@@ -4238,7 +4502,8 @@
             "posX": 2300,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4254,7 +4519,8 @@
             "posX": 100,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4270,7 +4536,8 @@
             "posX": 200,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4286,7 +4553,8 @@
             "posX": 300,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4302,7 +4570,8 @@
             "posX": 400,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4318,7 +4587,8 @@
             "posX": 500,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4334,7 +4604,8 @@
             "posX": 600,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4350,7 +4621,8 @@
             "posX": 700,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4366,7 +4638,8 @@
             "posX": 800,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4382,7 +4655,8 @@
             "posX": 900,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4398,7 +4672,8 @@
             "posX": 1000,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4414,7 +4689,8 @@
             "posX": 1100,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4430,7 +4706,8 @@
             "posX": 2200,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4446,7 +4723,8 @@
             "posX": 1200,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4456,13 +4734,14 @@
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
-            "parent": "",
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1200,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 12
         },
         {
             "alpha": 255,
@@ -4478,7 +4757,8 @@
             "posX": 1300,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4494,7 +4774,8 @@
             "posX": 1400,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4510,7 +4791,8 @@
             "posX": 1500,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4526,7 +4808,8 @@
             "posX": 1600,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4542,7 +4825,8 @@
             "posX": 1700,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4558,7 +4842,8 @@
             "posX": 1800,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4574,7 +4859,8 @@
             "posX": 1900,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4590,7 +4876,8 @@
             "posX": 2000,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4606,7 +4893,8 @@
             "posX": 2100,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4616,13 +4904,14 @@
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
-            "parent": "",
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 2200,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 12
         },
         {
             "alpha": 255,
@@ -4638,7 +4927,8 @@
             "posX": 1000,
             "posY": 800,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4654,7 +4944,8 @@
             "posX": 1100,
             "posY": 800,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4670,7 +4961,8 @@
             "posX": 1200,
             "posY": 800,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4680,13 +4972,14 @@
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
-            "parent": "",
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1200,
             "posY": 800,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 12
         },
         {
             "alpha": 255,
@@ -4702,7 +4995,8 @@
             "posX": 1300,
             "posY": 800,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4718,7 +5012,8 @@
             "posX": 1400,
             "posY": 800,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4734,7 +5029,8 @@
             "posX": 1500,
             "posY": 800,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4750,7 +5046,8 @@
             "posX": 1600,
             "posY": 800,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4766,7 +5063,8 @@
             "posX": 1700,
             "posY": 800,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4782,7 +5080,8 @@
             "posX": 1800,
             "posY": 800,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4798,7 +5097,8 @@
             "posX": 1900,
             "posY": 800,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4814,7 +5114,8 @@
             "posX": 2000,
             "posY": 800,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4830,7 +5131,8 @@
             "posX": 2100,
             "posY": 800,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4846,7 +5148,8 @@
             "posX": 2200,
             "posY": 800,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4856,13 +5159,14 @@
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
-            "parent": "",
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 2200,
             "posY": 800,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 12
         },
         {
             "alpha": 255,
@@ -4878,7 +5182,8 @@
             "posX": 2300,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4894,7 +5199,8 @@
             "posX": 2300,
             "posY": 800,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4910,7 +5216,8 @@
             "posX": 1000,
             "posY": 900,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4926,7 +5233,8 @@
             "posX": 1100,
             "posY": 900,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4942,7 +5250,8 @@
             "posX": 1200,
             "posY": 900,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4952,13 +5261,14 @@
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
-            "parent": "",
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1200,
             "posY": 900,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 12
         },
         {
             "alpha": 255,
@@ -4974,7 +5284,8 @@
             "posX": 1300,
             "posY": 900,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4990,7 +5301,8 @@
             "posX": 1400,
             "posY": 900,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5006,7 +5318,8 @@
             "posX": 1500,
             "posY": 900,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5022,7 +5335,8 @@
             "posX": 1600,
             "posY": 900,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5038,7 +5352,8 @@
             "posX": 1700,
             "posY": 900,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5054,7 +5369,8 @@
             "posX": 1800,
             "posY": 900,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5070,7 +5386,8 @@
             "posX": 1900,
             "posY": 900,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5086,7 +5403,8 @@
             "posX": 2000,
             "posY": 900,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5102,7 +5420,8 @@
             "posX": 2100,
             "posY": 900,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5118,7 +5437,8 @@
             "posX": 2200,
             "posY": 900,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5128,13 +5448,14 @@
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
-            "parent": "",
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 2200,
             "posY": 900,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 12
         },
         {
             "alpha": 255,
@@ -5150,7 +5471,8 @@
             "posX": 2300,
             "posY": 900,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5166,7 +5488,8 @@
             "posX": 1000,
             "posY": 1000,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5182,7 +5505,8 @@
             "posX": 1100,
             "posY": 1000,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5198,7 +5522,8 @@
             "posX": 1200,
             "posY": 1000,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5208,13 +5533,14 @@
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
-            "parent": "",
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1200,
             "posY": 1000,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 12
         },
         {
             "alpha": 255,
@@ -5230,7 +5556,8 @@
             "posX": 1300,
             "posY": 1000,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5246,7 +5573,8 @@
             "posX": 1400,
             "posY": 1000,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5262,7 +5590,8 @@
             "posX": 1500,
             "posY": 1000,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5278,7 +5607,8 @@
             "posX": 1600,
             "posY": 1000,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5294,7 +5624,8 @@
             "posX": 1700,
             "posY": 1000,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5310,7 +5641,8 @@
             "posX": 1800,
             "posY": 1000,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5326,7 +5658,8 @@
             "posX": 1900,
             "posY": 1000,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5342,7 +5675,8 @@
             "posX": 2000,
             "posY": 1000,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5358,7 +5692,8 @@
             "posX": 2100,
             "posY": 1000,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5374,7 +5709,8 @@
             "posX": 2200,
             "posY": 1000,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5384,13 +5720,14 @@
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
-            "parent": "",
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 2200,
             "posY": 1000,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 12
         },
         {
             "alpha": 255,
@@ -5406,7 +5743,8 @@
             "posX": 2300,
             "posY": 1000,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5422,7 +5760,8 @@
             "posX": 1000,
             "posY": 1100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5438,7 +5777,8 @@
             "posX": 1100,
             "posY": 1100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5454,7 +5794,8 @@
             "posX": 1200,
             "posY": 1100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5464,13 +5805,14 @@
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
-            "parent": "",
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1200,
             "posY": 1100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 12
         },
         {
             "alpha": 255,
@@ -5486,7 +5828,8 @@
             "posX": 1300,
             "posY": 1100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5502,7 +5845,8 @@
             "posX": 1400,
             "posY": 1100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5518,7 +5862,8 @@
             "posX": 1500,
             "posY": 1100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5534,7 +5879,8 @@
             "posX": 1600,
             "posY": 1100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5550,7 +5896,8 @@
             "posX": 1700,
             "posY": 1100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5566,7 +5913,8 @@
             "posX": 1800,
             "posY": 1100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5582,7 +5930,8 @@
             "posX": 1900,
             "posY": 1100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5598,7 +5947,8 @@
             "posX": 2000,
             "posY": 1100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5614,7 +5964,8 @@
             "posX": 2100,
             "posY": 1100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5630,7 +5981,8 @@
             "posX": 2200,
             "posY": 1100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5640,13 +5992,14 @@
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
-            "parent": "",
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 2200,
             "posY": 1100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 12
         },
         {
             "alpha": 255,
@@ -5662,7 +6015,8 @@
             "posX": 2300,
             "posY": 1100,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5678,7 +6032,8 @@
             "posX": 1000,
             "posY": 1200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5694,7 +6049,8 @@
             "posX": 1100,
             "posY": 1200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5710,7 +6066,8 @@
             "posX": 1200,
             "posY": 1200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5726,7 +6083,8 @@
             "posX": 1300,
             "posY": 1200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5742,7 +6100,8 @@
             "posX": 1400,
             "posY": 1200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5752,13 +6111,14 @@
             "isStatic": true,
             "isStaticBaseFile": "sandSideRight.png",
             "isVisible": true,
-            "parent": "",
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1500,
             "posY": 1200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 12
         },
         {
             "alpha": 255,
@@ -5768,13 +6128,14 @@
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
-            "parent": "",
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1500,
             "posY": 1200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 12
         },
         {
             "alpha": 255,
@@ -5790,7 +6151,8 @@
             "posX": 1600,
             "posY": 1200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5806,7 +6168,8 @@
             "posX": 1700,
             "posY": 1200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5822,7 +6185,8 @@
             "posX": 1800,
             "posY": 1200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5838,7 +6202,8 @@
             "posX": 1900,
             "posY": 1200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5848,13 +6213,14 @@
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
-            "parent": "",
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1900,
             "posY": 1200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 12
         },
         {
             "alpha": 255,
@@ -5870,7 +6236,8 @@
             "posX": 2000,
             "posY": 1200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5886,7 +6253,8 @@
             "posX": 2100,
             "posY": 1200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5902,7 +6270,8 @@
             "posX": 2200,
             "posY": 1200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5918,7 +6287,8 @@
             "posX": 2300,
             "posY": 1200,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5934,7 +6304,8 @@
             "posX": 1000,
             "posY": 1300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5950,7 +6321,8 @@
             "posX": 1100,
             "posY": 1300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5966,7 +6338,8 @@
             "posX": 1200,
             "posY": 1300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5982,7 +6355,8 @@
             "posX": 1300,
             "posY": 1300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5998,7 +6372,8 @@
             "posX": 1400,
             "posY": 1300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6014,7 +6389,8 @@
             "posX": 1500,
             "posY": 1300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6024,13 +6400,14 @@
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
-            "parent": "",
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1500,
             "posY": 1300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 12
         },
         {
             "alpha": 255,
@@ -6046,7 +6423,8 @@
             "posX": 1600,
             "posY": 1300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6062,7 +6440,8 @@
             "posX": 1700,
             "posY": 1300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6078,7 +6457,8 @@
             "posX": 1800,
             "posY": 1300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6094,7 +6474,8 @@
             "posX": 1900,
             "posY": 1300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6104,13 +6485,14 @@
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
-            "parent": "",
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1900,
             "posY": 1300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 12
         },
         {
             "alpha": 255,
@@ -6126,7 +6508,8 @@
             "posX": 2000,
             "posY": 1300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6142,7 +6525,8 @@
             "posX": 2100,
             "posY": 1300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6158,7 +6542,8 @@
             "posX": 2200,
             "posY": 1300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6174,7 +6559,8 @@
             "posX": 2300,
             "posY": 1300,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6190,7 +6576,8 @@
             "posX": 1000,
             "posY": 1400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6206,7 +6593,8 @@
             "posX": 1100,
             "posY": 1400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6222,7 +6610,8 @@
             "posX": 1200,
             "posY": 1400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6238,7 +6627,8 @@
             "posX": 1300,
             "posY": 1400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6254,7 +6644,8 @@
             "posX": 1400,
             "posY": 1400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6270,7 +6661,8 @@
             "posX": 1500,
             "posY": 1400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6280,13 +6672,14 @@
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
-            "parent": "",
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1500,
             "posY": 1400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 12
         },
         {
             "alpha": 255,
@@ -6302,7 +6695,8 @@
             "posX": 1600,
             "posY": 1400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6318,7 +6712,8 @@
             "posX": 1700,
             "posY": 1400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6334,7 +6729,8 @@
             "posX": 1800,
             "posY": 1400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6350,7 +6746,8 @@
             "posX": 1900,
             "posY": 1400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6360,13 +6757,14 @@
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
-            "parent": "",
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1900,
             "posY": 1400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 12
         },
         {
             "alpha": 255,
@@ -6382,7 +6780,8 @@
             "posX": 2000,
             "posY": 1400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6398,7 +6797,8 @@
             "posX": 2100,
             "posY": 1400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6414,7 +6814,8 @@
             "posX": 2200,
             "posY": 1400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6430,7 +6831,8 @@
             "posX": 2300,
             "posY": 1400,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6446,7 +6848,8 @@
             "posX": 1000,
             "posY": 1500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6462,7 +6865,8 @@
             "posX": 1100,
             "posY": 1500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6478,7 +6882,8 @@
             "posX": 1200,
             "posY": 1500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6494,7 +6899,8 @@
             "posX": 1300,
             "posY": 1500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6510,7 +6916,8 @@
             "posX": 1400,
             "posY": 1500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6526,7 +6933,8 @@
             "posX": 1500,
             "posY": 1500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6542,7 +6950,8 @@
             "posX": 1600,
             "posY": 1500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6558,7 +6967,8 @@
             "posX": 1700,
             "posY": 1500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6568,13 +6978,14 @@
             "isStatic": true,
             "isStaticBaseFile": "item_pouch.png",
             "isVisible": true,
-            "parent": "",
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1700,
             "posY": 1500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 9
         },
         {
             "alpha": 255,
@@ -6590,7 +7001,8 @@
             "posX": 1800,
             "posY": 1500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6606,7 +7018,8 @@
             "posX": 1900,
             "posY": 1500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6622,7 +7035,8 @@
             "posX": 2000,
             "posY": 1500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6638,7 +7052,8 @@
             "posX": 2100,
             "posY": 1500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6654,7 +7069,8 @@
             "posX": 2200,
             "posY": 1500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6670,7 +7086,8 @@
             "posX": 2300,
             "posY": 1500,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6686,7 +7103,8 @@
             "posX": 1000,
             "posY": 1600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6702,7 +7120,8 @@
             "posX": 1100,
             "posY": 1600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6718,7 +7137,8 @@
             "posX": 1200,
             "posY": 1600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6734,7 +7154,8 @@
             "posX": 1300,
             "posY": 1600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6750,7 +7171,8 @@
             "posX": 1400,
             "posY": 1600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6766,7 +7188,8 @@
             "posX": 1500,
             "posY": 1600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6782,7 +7205,8 @@
             "posX": 1600,
             "posY": 1600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6798,7 +7222,8 @@
             "posX": 1700,
             "posY": 1600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6814,7 +7239,8 @@
             "posX": 1800,
             "posY": 1600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6830,7 +7256,8 @@
             "posX": 1900,
             "posY": 1600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6846,7 +7273,8 @@
             "posX": 2000,
             "posY": 1600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6862,7 +7290,8 @@
             "posX": 2100,
             "posY": 1600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6878,7 +7307,8 @@
             "posX": 2200,
             "posY": 1600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6894,7 +7324,8 @@
             "posX": 2300,
             "posY": 1600,
             "rotation": 0.0,
-            "width": 100
+            "width": 100,
+            "subtype": 2
         }
     ]
 }

@@ -1,0 +1,42 @@
+For referencing which number corresponds to each subtype of object due to C++ not supporting String switch statements (int comparison should run faster than comparing strings)
+
+0 : Display object
+1 : Display object container
+2 : Sprite
+3 : AnimatedSprite
+4 : Grendel / Ghost
+5 : Dragon
+6 : Pirate
+7 : Snake
+8 : Wolf
+9 : ItemPouch
+10: BreakableWall
+11: Shrub
+12: Valve
+13: WaterJet
+14: WaterStream
+15: Arrow
+16: Crab
+17: Fire
+18: NPCCollector
+19: NPCExcavator
+20: NPCOperator
+21: NPCLumberjack
+451: NPCPyromancer
+22: NPCArcher
+23: NPCSwordsman
+24: NPCVillager
+25: NPCCraftsman
+26: NPCStrongman
+27: NPCDoctor
+28: NPCFisherman
+29: NPCSkeleton
+30: HornFragment
+100: Gem
+101: Bridge
+102: Log
+103: GemHolder 
+104: Button
+105: Door
+106: Pit
+107: Rock

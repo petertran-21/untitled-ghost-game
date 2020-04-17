@@ -1,5 +1,6 @@
 #ifndef NPCPYROMANCER_H
 #define NPCPYROMANCER_H
+#define NPCPYROMANCER_SUBTYPE 451
 
 #include "MainNPC.h"
 #include "Fire.h"

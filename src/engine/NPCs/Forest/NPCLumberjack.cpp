@@ -50,9 +50,9 @@ void NPCLumberjack::resolve_collision(DisplayObject* obj){
 }
 
 void NPCLumberjack::resolve_adjacency(DisplayObject *obj, int status){
-    if (status != 0) cout << "HELLO" << endl;
+    //if (status != 0) cout << "HELLO" << endl;
 
-    if (obj->subtype=="log" && chopping == true){
+    if (obj->subtype==102 && chopping == true){
 
         if (status != 0){
             chopping = false;
@@ -64,7 +64,7 @@ void NPCLumberjack::resolve_adjacency(DisplayObject *obj, int status){
         
     }
 
-    if (obj->subtype=="bridge" && chopping == true){
+    if (obj->subtype==101 && chopping == true){
 
         if (status != 0){
             chopping = false;

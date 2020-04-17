@@ -1,5 +1,6 @@
 #ifndef WATER_STREAM_H
 #define WATER_STREAM_H
+#define WATERSTREAM_SUBTYPE 14
 
 #include "Controller.h"
 #include "MainEnvObj.h"

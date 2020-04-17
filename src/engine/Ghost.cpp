@@ -1,24 +1,9 @@
-#include <iostream>
-#include <cstdlib>
-#include <math.h>
-
-#include <set>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-
 #include "Ghost.h"
-#include "AnimatedSprite.h"
-#include "Sprite.h"
-#include "Controls.h"
-#include "Game.h"
-
-using namespace std;
-
 
 Ghost::Ghost() : AnimatedSprite("Ghost"){
 
 	this->type = "Ghost";
-
+	this->subtype = GHOST_SUBTYPE;
 	this->npc = NULL;
 	
 	this->position.x = 55;
@@ -37,6 +22,8 @@ Ghost::Ghost() : AnimatedSprite("Ghost"){
 	this->addAnimation("./resources/character/", "Dead", 30, 1, false);
 	this->play("Idle");
 }
+
+Ghost::~Ghost() {}
 
 //Called automatically by collision system when something collides with the player
 //our job is to simply react to that collision.
@@ -166,6 +153,7 @@ void Ghost::state_possessing(set<SDL_Scancode> pressedKeys, Controller::Joystick
 
 		if (npc == NULL){
 			state_switch(ghost_states::Idle);
+			cout << "Yuck" << endl;
 			return;
 		}
 

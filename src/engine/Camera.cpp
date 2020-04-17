@@ -1,6 +1,6 @@
 #include "Camera.h"
 
-Camera::Camera(){}
+Camera::Camera() : DisplayObjectContainer() {}
 
 Camera::~Camera(){}
 
@@ -11,6 +11,11 @@ void Camera::draw(AffineTransform &at){
             children[i]->draw(at);
         }
     }
+}
+
+void Camera::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState)
+{
+    DisplayObjectContainer::update(pressedKeys, currState);
 }
 
 void Camera::changeScene(Scene* old_scene, Scene* new_scene){

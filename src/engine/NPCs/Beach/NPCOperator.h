@@ -1,5 +1,6 @@
 #ifndef NPCOPERATOR_H
 #define NPCOPERATOR_H
+#define NPCOPERATOR_SUBTYPE 20
 
 #include "MainNPC.h"
 

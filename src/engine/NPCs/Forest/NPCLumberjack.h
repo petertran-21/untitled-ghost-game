@@ -18,6 +18,7 @@ class NPCLumberjack : public MainNPC{
 
         void resolve_collision(DisplayObject* obj);
         void resolve_adjacency(DisplayObject *obj, int status);
+        int subtype = 21;
 };
 
 

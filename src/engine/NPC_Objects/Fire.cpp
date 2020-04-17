@@ -8,7 +8,6 @@ using namespace std;
 
 Fire::Fire(SDL_Point pos, DisplayObjectContainer* npcParent) : MainNPCObj(){
     this->position = pos;
-    this->subtype = "fire";
 
     this->addAnimation("./resources/items/", "fire", 1, 1, false);
 	this->play("fire");

@@ -13,7 +13,7 @@ SceneTrigger::SceneTrigger(DisplayObjectContainer *container) : AnimatedSprite()
 	this->play("scene_trigger");
     this->collisionContainer = container;
 
-    this->scene_path = "./resources/scenes/beachRoom2.json";
+    this->scene_path = "./resources/scenes/beachRoom1.json";
 }
 
 void SceneTrigger::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){

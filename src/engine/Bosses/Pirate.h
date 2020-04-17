@@ -1,5 +1,6 @@
 #ifndef PIRATE_H
 #define PIRATE_H
+#define PIRATE_SUBTYPE 6
 
 #include "MainBoss.h"
 #include "Crab.h"

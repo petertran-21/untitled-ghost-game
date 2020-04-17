@@ -5,12 +5,12 @@
 using namespace std;
 
 NPCOperator::NPCOperator(DisplayObjectContainer* container, DisplayObjectContainer* allSprites) : MainNPC(){
-    this->position.x = 100;
-    this->position.y = 100;
 	this->addAnimation("./resources/npcs/", "npc_base", 2, 1, true);
 	this->play("npc_base");
     this->collisionContainer = container;
+    container->addChild(this);
     this->drawingContainer = allSprites;
+    this->subtype = NPCOPERATOR_SUBTYPE;
 }
 
 void NPCOperator::state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
@@ -45,7 +45,7 @@ void NPCOperator::resolve_collision(DisplayObject *obj){
 
 void NPCOperator::resolve_adjacency(DisplayObject *obj, int status){
 
-    if (obj->subtype=="valve" && operated == true){
+    if (obj->subtype==12 && operated == true){
 
         if (status != 0){
             operated = false;

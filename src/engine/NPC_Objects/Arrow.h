@@ -14,6 +14,7 @@ class Arrow : public MainNPCObj{
         
         int movespeed = 4;
         directions dir = S;
+        int subtype = 15;
 
         int timer = 0;
 

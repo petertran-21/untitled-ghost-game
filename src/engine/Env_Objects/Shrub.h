@@ -1,5 +1,6 @@
 #ifndef SHRUB_H
 #define SHRUB_H
+#define SHRUB_SUBTYPE 11
 
 #include "Controller.h"
 #include "MainEnvObj.h"

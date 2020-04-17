@@ -5,7 +5,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	//SFX team work
 	camera = new Camera();
 	scene_1 = new Scene();
-	scene_1->loadScene("./resources/scenes/beachEntrance.json");
+	
 	camera->addChild(scene_1);
 	this->addChild(camera);
 
@@ -17,16 +17,34 @@ MyGame::MyGame() : Game(1000, 1000)
 	//uncomment following line to check that collision boxes for objects are identical to drawing
 	//allSprites->addChild(container);
 
-	collisionSystem = new CollisionSystem(camera);
+	collisionSystem = new CollisionSystem(camera, container);
 	displayTreeDisp = new EventDispatcher();
 	DOAdded = new DOAddedEvent(displayTreeDisp, container);
 	DORemoved = new DORemovedEvent(displayTreeDisp, container);
 	displayTreeDisp->addEventListener(collisionSystem, DOAddedEvent::DO_ADDED);
 	displayTreeDisp->addEventListener(collisionSystem, DORemovedEvent::DO_REMOVED);
 
+	scene_1->loadScene("./resources/scenes/beachEntrance.json", container);
+
+	//---------------SCENE TRIGGER-------------------------
+	SceneTrigger* beachTrigger = new SceneTrigger(container);
+	beachTrigger->position.x = 200;
+	beachTrigger->position.y = 900;
+	cout<<"scene trigger location: "<<beachTrigger->position.x << " "<<beachTrigger->position.y<<endl;
+	container->addChild(beachTrigger);
+
+	//-----------------------------------------------------
+
 	// Shrub* s = new Shrub(container);
 	// allSprites->addChild(s);
 	// container->addChild(s);
+
+
+	// Gem* g = new Gem(container);
+	// g->position.x = 900;
+	// g->position.y = 400;
+	// allSprites->addChild(g);
+	// container->addChild(g);
 
 	// npc = new NPCPyromancer(container, allSprites);
 	// npc->position.x += 300;
@@ -44,67 +62,71 @@ MyGame::MyGame() : Game(1000, 1000)
 	// DOAdded->addChildCalled(container);
 	// DOAdded->checkCondition();
 
-	Valve * v = new Valve(container, S);
-	allSprites->addChild(v);
-	container->addChild(v);
-	v->position.x += 500;
-	v->position.y += 300;
 
-	WaterJet * w = new WaterJet(container, allSprites);
-	allSprites->addChild(w);
-	container->addChild(w);
-	v->add_jet(w);
-	w->position.x += 700;
-	w->position.y += 100;
+	// BreakableWall *b = new BreakableWall(container);
+	// allSprites->addChild(b);
+	// container->addChild(b);
+	// b->position.x += 200;
+	// b->position.y += 200;
 
-	NPCCollector* npc1 = new NPCCollector(container, allSprites);
-	npc1->position.x += 0;
-	npc1->position.y += 500;
-	allSprites->addChild(npc1);
-	container->addChild(npc1);
+	// Valve * v = new Valve(container);
+	// allSprites->addChild(v);
+	// container->addChild(v);
+	// v->position.x += 500;
+	// v->position.y += 300;
 
-	NPCOperator* npc2 = new NPCOperator(container, allSprites);
-	npc2->position.x += 300;
-	npc2->position.y += 500;
-	allSprites->addChild(npc2);
-	container->addChild(npc2);
+	// WaterJet * w = new WaterJet(container, allSprites);
+	// allSprites->addChild(w);
+	// container->addChild(w);
+	// v->add_jet(w);
+	// w->position.x += 700;
+	// w->position.y += 100;
 
-	Pirate * p = new Pirate();
-	allSprites->addChild(p);
-	container->addChild(p);
-	p->position.x += 600;
-	p->position.y += 400;
+	// Crab * c = new Crab();
+	// allSprites->addChild(c);
+	// container->addChild(c);
+	// c->position.y += 600;
+	// c->position.x += 600;
 
-	Wolf * wolf = new Wolf(container, allSprites);
-	allSprites->addChild(wolf);
-	container->addChild(wolf);
-	wolf->position.x += 100;
-	wolf->position.y += 100;
+	// npc = new NPCPyromancer(container, allSprites);
+	// npc->position.x += 300;
+	// allSprites->addChild(npc);
+	// container->addChild(npc);
 
-	Crab * c = new Crab();
-	allSprites->addChild(c);
-	container->addChild(c);
-	c->position.x += 600;
-	c->position.y += 100;
+	// NPCOperator* npc2 = new NPCOperator(container, scene_1);
+	// npc2->position.y += 500;
+	// scene_1->addChild(npc2);
+	// container->addChild(npc2);
+
+	// NPCExcavator* npc3 = new NPCExcavator(container, allSprites);
+	// allSprites->addChild(npc3);
+	// container->addChild(npc3);
+
+	// NPCCollector* npc4 = new NPCCollector(container, allSprites);
+	// npc4->position.x += 300;
+	// npc4->position.y += 500;
+	// allSprites->addChild(npc4);
+	// container->addChild(npc4);
 
 	player = new Ghost();
-	allSprites->addChild(player);
+	player->addChild( new ParticleEmitter() );
 	container->addChild(player);
-
-	DOAdded->addChildCalled(container);
+	scene_1->addChild(player);
+	//DOAdded->addChildCalled(container);
 	DOAdded->checkCondition();
 	//-----------------------------------------
 	// TODO, SFX will add later
 
-	// selectionMenuTest = new SelectionMenu();
-	// selectionMenuTest->addToMenu("Save");
-	// selectionMenuTest->addToMenu("Load");
-	// selectionMenuTest->addToMenu("Quit");
-	// container->addChild(selectionMenuTest);
+	UIContainer = new DisplayObjectContainer();
 
-	// checklistTest = new Checklist();
-	// checklistTest->addEntry("Change Scene");
-	// container->addChild(checklistTest);
+	selectionMenuTest = new SelectionMenu(0, 0);
+	selectionMenuTest->addToMenu("Save");
+	selectionMenuTest->addToMenu("Load");
+	selectionMenuTest->addToMenu("Quit");
+
+	textboxTest = new TextBox(0, 400);
+	UIContainer->addChild(selectionMenuTest);
+	UIContainer->addChild(textboxTest);
 }
 
 MyGame::~MyGame()
@@ -122,10 +144,31 @@ MyGame::~MyGame()
 }
 
 void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
-	DORemoved->checkCondition();
-	DOAdded->checkCondition();
-	collisionSystem->update();
-	Game::update(pressedKeys, currState);
+	if (!UIOpen){
+		DORemoved->checkCondition();
+		DOAdded->checkCondition();
+		collisionSystem->update();
+		Game::update(pressedKeys, currState);
+	}
+
+	if (pressedKeys.find(SDL_SCANCODE_DOWN) != pressedKeys.end() && UIOpen){
+		selectionMenuTest->incrementPosition();
+	}
+	if (pressedKeys.find(SDL_SCANCODE_UP) != pressedKeys.end() && UIOpen){
+		selectionMenuTest->decrementPosition();
+	}
+	if (pressedKeys.find(SDL_SCANCODE_RETURN) != pressedKeys.end() && UIOpen){
+		std::cout << selectionMenuTest->getCurrentlySelected() << std::endl;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end() && !UIOpen){
+		this->addChild(UIContainer);
+		textboxTest->setText("X-pos: " + std::to_string(player->position.x));
+		UIOpen = !UIOpen;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_Q) != pressedKeys.end() && UIOpen){
+		this->children.erase(std::remove(this->children.begin(), this->children.end(), UIContainer), this->children.end());
+		UIOpen = false;
+	}
 }
 
 void MyGame::draw(AffineTransform &at){

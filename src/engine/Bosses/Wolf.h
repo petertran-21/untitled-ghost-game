@@ -1,5 +1,6 @@
 #ifndef WOLF_H
 #define WOLF_H
+#define WOLF_SUBTYPE 8
 
 #include "MainBoss.h"
 #include "Ghost.h"
@@ -16,7 +17,6 @@ class Wolf : public MainBoss{
 
         virtual void state_idle(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
         void state_attack(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
-
    
 };
 

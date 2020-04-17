@@ -3,9 +3,6 @@
 
 #include "DisplayObjectContainer.h"
 #include "Scene.h"
-#include <vector>
-
-using namespace std;
 
 class Camera : public DisplayObjectContainer{ 
 
@@ -14,6 +11,7 @@ public:
 	~Camera();
 
 	virtual void draw(AffineTransform &at);
+	virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 	virtual void changeScene(Scene* old_scene, Scene* new_scene);
 private:
 	

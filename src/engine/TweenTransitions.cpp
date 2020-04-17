@@ -1,5 +1,4 @@
 #include "TweenTransitions.h"
-#include <math.h>
 
 TweenTransitions::TweenTransitions(){	// If no type set in constructor, use LINEAR by default.
 	this->type = TweenTransitionTypes::LINEAR;

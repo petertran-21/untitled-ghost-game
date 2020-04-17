@@ -1,12 +1,7 @@
 #ifndef GHOST_H
 #define GHOST_H
-
-#include <iostream>
+#define GHOST_SUBTYPE 4
 #include "AnimatedSprite.h"
-#include <vector>
-#include <string>
-#include <fstream>
-#include "Sprite.h"
 #include "Enemy.h"
 #include "Controls.h"
 #include "MainNPC.h"
@@ -19,6 +14,7 @@ class Ghost : public AnimatedSprite{
 
 public:
 	Ghost();
+	~Ghost();
 
 	virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 	virtual void draw(AffineTransform &at);

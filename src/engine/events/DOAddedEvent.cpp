@@ -35,6 +35,7 @@ void DOAddedEvent::checkCondition(){
     this->recentlyAdded = this->displayTree->children.at(i);
     this->getSource()->dispatchEvent(this);
     this->DTNumChildren = i+1;
+    cout << this->displayTree->children.at(i)->id << endl;
   }
   
 }

@@ -6,7 +6,6 @@
 using namespace std;
 
 Gem::Gem(DisplayObjectContainer* container):MainCollectibles(){
-    this->subtype = "gem";
     this->addAnimation("./resources/items/", "gem", 1, 1, false);
     this->play("gem");
     this->collisionContainer = container;

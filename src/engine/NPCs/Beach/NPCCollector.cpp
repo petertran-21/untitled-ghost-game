@@ -5,12 +5,18 @@
 using namespace std;
 
 NPCCollector::NPCCollector(DisplayObjectContainer* container, DisplayObjectContainer* allSprites) : MainNPC(){
-    this->position.x = 100;
-    this->position.y = 100;
-	this->addAnimation("./resources/npcs/", "npc_base", 2, 1, true);
+    this->position.x = 0;
+    this->position.y = 0;
+	this->addAnimation("./resources/npcs/", "npc_base", 1, 1, false);
+	// this->addAnimation("./resources/npcs/collector", "collector_forward", 30, 1, false, "forward");
+    // this->addAnimation("./resources/npcs/collector", "collector_back", 30, 1, false, "back");
+    // this->addAnimation("./resources/npcs/collector", "collector_left", 30, 1, false, "left");
+    // this->addAnimation("./resources/npcs/collector", "collector_right", 30, 1, false, "right");
 	this->play("npc_base");
     this->collisionContainer = container;
+    container->addChild(this);
     this->drawingContainer = allSprites;
+    this->subtype = NPCCOLLECTOR_SUBTYPE;
 }
 
 void NPCCollector::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
@@ -61,7 +67,7 @@ void NPCCollector::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joys
 void NPCCollector::resolve_collision(DisplayObject* obj){
     if (cooldown_timer > 0) return;
     
-    if (obj->subtype=="crab"){
+    if (obj->subtype==16){ // 16 == Crab
         //TODO: need to check for npc diagonal to crab. Cannot pick up in this situation
         //NOTE: crab is moved to position of NPC
         if (can_collect){

@@ -7,11 +7,11 @@ using namespace std;
 
 
 BreakableWall::BreakableWall(DisplayObjectContainer* container) : MainEnvObj(){
-    this->subtype="breakable wall";
     this->addAnimation("./resources/items/", "breakable_wall", 1, 1, false);
     
 	this->play("breakable_wall");
     this->collisionContainer = container;
+    container->addChild(this);
 }
 
 void BreakableWall::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){

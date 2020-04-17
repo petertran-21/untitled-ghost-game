@@ -2,17 +2,10 @@
 #define ANIMATEDSPRITE_H
 
 #include "Sprite.h"
-#include "Controller.h"
-#include <vector>
-#include <string>
-#include <stdlib.h>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <rapidxml-1.13/rapidxml.hpp> //--XML Parser for configuration files
-#include <rapidxml-1.13/rapidxml_utils.hpp>
+#include "Game.h"
 
-using namespace std;
-using namespace rapidxml;
+#include <stdlib.h>
+#include <rapidxml-1.13/rapidxml_utils.hpp>
 
 struct Frame {
 	SDL_Surface* image;
@@ -54,7 +47,7 @@ public:
 	//AnimatedSprite(string id, string spriteSheetPath, string xmlPath);
 	~AnimatedSprite();
 
-	void addAnimation(string basepath, string animName, int numFrames, int frameRate, bool loop);
+	void addAnimation(string basepath, string animName, int numFrames, int frameRate, bool loop, string newAnimName = "");
 	void addSpriteSheet(string spriteSheetPath, string xmlFilePath, string animName, int numLayers, int frameRate, bool loop);
 	Animation* getAnimation(string animName);
 	SpriteSheet* getSpriteSheet(string animName);

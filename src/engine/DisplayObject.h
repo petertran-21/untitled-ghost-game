@@ -1,18 +1,27 @@
 #ifndef DISPLAYOBJECT_H
 #define DISPLAYOBJECT_H
+#define DISPLAYOBJECT_SUBTYPE 0
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include <set>
 #include "AffineTransform.h"
 #include "Controller.h"
 #include <string>
 #include <fstream>
+#include <iostream>
+#include <algorithm>
+#include <cmath>
+#include <set>
 #include <vector>
 
+//XML Parser for configuration files
+#include "./rapidxml-1.13/rapidxml.hpp"
+
 enum directions {N, S, E, W, None};
+#define PI 3.14159265
 
 using namespace std;
+using namespace rapidxml;
 
 class DisplayObject{
 
@@ -21,7 +30,7 @@ public:
 	string imgPath = "";
 	int red, green, blue;
 	string type = "DisplayObject";
-	string subtype = "";
+	int subtype;
 
 	DisplayObject* parent = NULL;
 
