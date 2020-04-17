@@ -17,25 +17,34 @@ MyGame::MyGame() : Game(1000, 1000)
 	//uncomment following line to check that collision boxes for objects are identical to drawing
 	//allSprites->addChild(container);
 
-	collisionSystem = new CollisionSystem(camera);
+	collisionSystem = new CollisionSystem(camera, container);
 	displayTreeDisp = new EventDispatcher();
 	DOAdded = new DOAddedEvent(displayTreeDisp, container);
 	DORemoved = new DORemovedEvent(displayTreeDisp, container);
 	displayTreeDisp->addEventListener(collisionSystem, DOAddedEvent::DO_ADDED);
 	displayTreeDisp->addEventListener(collisionSystem, DORemovedEvent::DO_REMOVED);
 
-	scene_1->loadScene("./resources/scenes/beachBossD.json", container);
+	scene_1->loadScene("./resources/scenes/beachEntrance.json", container);
+
+	//---------------SCENE TRIGGER-------------------------
+	SceneTrigger* beachTrigger = new SceneTrigger(container);
+	beachTrigger->position.x = 200;
+	beachTrigger->position.y = 900;
+	cout<<"scene trigger location: "<<beachTrigger->position.x << " "<<beachTrigger->position.y<<endl;
+	container->addChild(beachTrigger);
+
+	//-----------------------------------------------------
 
 	// Shrub* s = new Shrub(container);
 	// allSprites->addChild(s);
 	// container->addChild(s);
 
 
-	Gem* g = new Gem(container);
-	g->position.x = 900;
-	g->position.y = 400;
-	allSprites->addChild(g);
-	container->addChild(g);
+	// Gem* g = new Gem(container);
+	// g->position.x = 900;
+	// g->position.y = 400;
+	// allSprites->addChild(g);
+	// container->addChild(g);
 
 	// npc = new NPCPyromancer(container, allSprites);
 	// npc->position.x += 300;

@@ -6,8 +6,9 @@
 
 #include <cmath>
 
-CollisionSystem::CollisionSystem(Camera *maincam){
+CollisionSystem::CollisionSystem(Camera *maincam, DisplayObjectContainer *collisionContainer){
   this->maincam = maincam;
+  this->collisionContainer = collisionContainer;
 }
 
 CollisionSystem::~CollisionSystem(){
@@ -647,16 +648,20 @@ void CollisionSystem::resolveCollision_SceneTrigger(DisplayObject* triggerObj){
   SceneTrigger *trigger = dynamic_cast<SceneTrigger*>(triggerObj);
 
   if (trigger->active){
-    next->loadScene(trigger->scene_path);
+    next->loadScene(trigger->scene_path, this->collisionContainer);
     maincam->changeScene(current, next);
 
     //REMOVING COLLISION BOXES?
-    // DisplayObject* obj;
-    // vector<DisplayObject*>::iterator itr = find(trigger->collisionContainer->children.begin(), trigger->collisionContainer->children.end(), obj);
-    // if (itr != trigger->collisionContainer->children.end()){
-        
-    //     trigger->collisionContainer->children.erase(itr);
-    // }
+    DisplayObject* obj;
+    vector<DisplayObject*>::iterator itr = find(collisionContainer->children.begin(), collisionContainer->children.end(), obj);
+    if (itr != collisionContainer->children.end())
+    {
+      collisionContainer->children.erase(itr);
+    }
+
+    //Fixes std::out_of_range vector issue when we were merging stuff
+    //Deletes Ghost
+    inView.clear();
 
     maincam->removeChild(0);
     maincam->addChild(next);

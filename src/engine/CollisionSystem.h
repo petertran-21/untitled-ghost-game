@@ -15,7 +15,7 @@ class CollisionSystem : public EventListener{
 
 public:
 
-	CollisionSystem(Camera *maincam);
+	CollisionSystem(Camera *maincam, DisplayObjectContainer *collisionContainer);
 	~CollisionSystem();
 
 	Camera *maincam;
@@ -68,6 +68,7 @@ public:
 
 private:
 	vector<DisplayObject*> inView;
+	DisplayObjectContainer* collisionContainer;
 
 };
 
