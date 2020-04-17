@@ -1,7 +1,5 @@
 #include "Sprite.h"
 
-using namespace std;
-
 Sprite::Sprite() : DisplayObjectContainer() {
     this->type = "Sprite";
 }

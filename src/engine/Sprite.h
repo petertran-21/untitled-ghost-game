@@ -2,9 +2,6 @@
 #define SPRITE_H
 
 #include "DisplayObjectContainer.h"
-#include "Controller.h"
-
-using namespace std;
 
 class Sprite : public DisplayObjectContainer{
 

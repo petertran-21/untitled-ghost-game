@@ -1,5 +1,4 @@
 #include "Tween.h"
-#include <iostream>
 
 Tween::Tween(){}
 

@@ -1,15 +1,7 @@
 #ifndef DISPLAYOBJECTCONTAINER_H
 #define DISPLAYOBJECTCONTAINER_H
 
-#include <vector>
 #include "DisplayObject.h"
-#include "AffineTransform.h"
-#include "Controller.h"
-#include <string>
-#include <fstream>
-#include <iostream>
-
-using namespace std;
 
 class DisplayObjectContainer : public DisplayObject{
 

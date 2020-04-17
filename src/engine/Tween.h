@@ -5,6 +5,7 @@
 #include "TweenTransitions.h"
 #include "TweenParam.h"
 #include <vector>
+#include <iostream>
 
 class Tween{
 public:

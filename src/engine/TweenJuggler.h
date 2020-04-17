@@ -3,6 +3,7 @@
 
 #include "Tween.h"
 #include <vector>
+#include <iostream>
 
 class TweenJuggler{
 

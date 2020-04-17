@@ -1,6 +1,9 @@
-#ifndef CONTROLS
-#define CONTROLS
+#ifndef CONTROLS_H
+#define CONTROLS_H
 
+#include <SDL2/SDL.h>
+#include <cstdlib>
+#include <set>
 #include "Controller.h"
 
 using namespace std;
