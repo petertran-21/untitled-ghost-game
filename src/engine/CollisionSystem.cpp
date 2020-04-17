@@ -83,7 +83,7 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
               resolveCollision_SceneTrigger(inView[j]);
             }
             else if ((type1 == "Boss" && type2 == "NPCObj")){
-              resolveCollision_SceneTrigger(inView[j]);
+              resolveCollision_Boss_NPCObj(inView[j], inView[i]);
             }
             else{
               // resolveCollision(inView[i], inView[j],

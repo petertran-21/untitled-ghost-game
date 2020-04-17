@@ -40,9 +40,8 @@ void MainBoss::state_execute(set<SDL_Scancode> pressedKeys, Controller::Joystick
 }
 
 void MainBoss::state_death(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
-    cout<<"runs"<<endl;
+    cout<<"Boss is dead"<<endl;
 }
 
 void MainBoss::state_attack(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
-    cout<<"runs"<<endl;
 }
