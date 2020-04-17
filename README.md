@@ -53,6 +53,7 @@ For PS4 controller:
 ### Movement w/ Keyboard
 - Press **WASD** to move character up, left, down, and right. Diagnoal movmeent for ghost is also supported but not for NPC. 
 - Press **IJKL** to move the camera.
+- Press **NM** to scale the camera.
 - Press **E** to possess NPC. 
 - Press **SPACE** to use ability of NPC.
 
