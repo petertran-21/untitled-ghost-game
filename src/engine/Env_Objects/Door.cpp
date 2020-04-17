@@ -7,7 +7,7 @@ using namespace std;
 
 
 Door::Door(DisplayObjectContainer* container) : MainEnvObj(){
-    this->subtype = "door";
+    this->subtype = 105;
     this->addAnimation("./resources/items/", "door", 1, 1, false);
 
 	this->play("door");

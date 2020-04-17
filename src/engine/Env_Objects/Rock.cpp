@@ -7,7 +7,7 @@ using namespace std;
 
 
 Rock::Rock(DisplayObjectContainer* container) : MainEnvObj(){
-    this->subtype = "rock";
+    this->subtype = 107;
     this->addAnimation("./resources/items/", "rock", 1, 1, false);
 
 	this->play("rock");

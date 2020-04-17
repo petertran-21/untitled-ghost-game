@@ -36,3 +36,7 @@ For referencing which number corresponds to each subtype of object due to C++ no
 101: Bridge
 102: Log
 103: GemHolder 
+104: Button
+105: Door
+106: Pit
+107: Rock

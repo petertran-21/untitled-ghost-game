@@ -7,7 +7,7 @@ using namespace std;
 
 
 Pit::Pit(DisplayObjectContainer* container) : MainEnvObj(){
-    this->subtype = "pit";
+    this->subtype = 106;
     this->addAnimation("./resources/items/", "pit", 1, 1, false);
 
 	this->play("pit");

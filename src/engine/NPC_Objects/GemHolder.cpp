@@ -7,7 +7,7 @@
 using namespace std;
 
 GemHolder::GemHolder() : MainNPCObj(){
-    this->subtype = "gem holder";
+    this->subtype = 103;
     this->addAnimation("./resources/items/", "gemholder", 1, 1, false);
 	this->play("gemholder");
 }

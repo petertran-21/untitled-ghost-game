@@ -7,7 +7,7 @@ using namespace std;
 
 
 Button::Button(DisplayObjectContainer* container) : MainEnvObj(){
-    this->subtype = "button";
+    this->subtype = 104;
     this->addAnimation("./resources/items/", "button_unpressed", 1, 1, false);
 
 	this->play("button_unpressed");
