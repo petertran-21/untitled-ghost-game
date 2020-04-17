@@ -21,6 +21,7 @@
 #include "TweenJuggler.h"
 #include "CollectiblesImports.h"
 #include "UIDefs.h"
+#include "particle_system/ParticleEmitter.h"
 
 class MyGame : public Game{
 	
