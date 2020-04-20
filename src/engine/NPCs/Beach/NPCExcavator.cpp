@@ -43,7 +43,7 @@ void NPCExcavator::resolve_collision(DisplayObject * obj){
     MainNPC::resolve_collision(obj);
     MainNPC::resolve_collectible_collision(obj, this->collisionContainer, this->drawingContainer);
 
-    if (obj->subtype==BREAKABLEWALL_SUBTYPE && excavate == true){
+    if (obj->getSubtype()==BREAKABLEWALL_SUBTYPE && excavate == true){
 
         BreakableWall* b = (BreakableWall*) obj;
         b->broken = true;

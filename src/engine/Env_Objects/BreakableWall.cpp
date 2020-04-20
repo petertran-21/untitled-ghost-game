@@ -9,7 +9,6 @@ using namespace std;
 BreakableWall::BreakableWall(DisplayObjectContainer* container) : MainEnvObj(){
     this->addAnimation("./resources/items/", "breakable_wall", 1, 1, false);
 	this->play("breakable_wall");
-    this->subtype=10;
     this->collisionContainer = container;
     container->addChild(this);
 }
