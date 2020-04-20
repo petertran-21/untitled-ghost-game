@@ -18,8 +18,7 @@ class MainEnvObj : public AnimatedSprite{
         MainEnvObj();
         MainEnvObj(DisplayObjectContainer* container);
         virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
-	    virtual void draw(AffineTransform &at);
-        
+	    virtual void draw(AffineTransform &at);       
         int timer_max = 10;
         int timer = 0;
 

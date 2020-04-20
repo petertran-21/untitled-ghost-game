@@ -68,7 +68,7 @@
             "parent": "foreground",
             "width": 100,
             "height": 100,
-            "subtype": 11
+            "subtype": 10
         },
         {
             "alpha": 255,

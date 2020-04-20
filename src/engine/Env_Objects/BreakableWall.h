@@ -18,6 +18,7 @@ class BreakableWall : public MainEnvObj{
         bool broken = false;
 
         void resolve_collision(DisplayObject *obj);
+        int getSubtype(){return this->subtype;};
 
 };
 

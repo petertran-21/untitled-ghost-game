@@ -69,7 +69,8 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
               resolveCollision_NPC_NPC(inView[i], inView[j]);
             }
             else if ((type1 == "NPC" && type2 == "EnvObj")){
-              resolveCollision_NPC_EnvObj(inView[i], inView[j]);
+              cout<<"SUBTYPE: "<<inView[j] -> getSubtype()<<endl;
+              resolveCollision_NPC_EnvObj(inView[i], inView[j], inView[j]->getSubtype());
             }
             else if ((type1 == "NPC") && (type2 == "NPCObj")){
               resolveCollision_NPC_NPCObj(inView[i], inView[j]);
@@ -626,7 +627,9 @@ void CollisionSystem::resolveCollision_NPC_NPC(DisplayObject* npc, DisplayObject
 
 }
 
-void CollisionSystem::resolveCollision_NPC_EnvObj(DisplayObject* npc, DisplayObject* envObj){
+void CollisionSystem::resolveCollision_NPC_EnvObj(DisplayObject* npc, DisplayObject* envObj, int subtype){
+  cout<<"RUNNING: "<<envObj->subtype<<" "<<subtype<<endl;
+  envObj->subtype=subtype;
   npc->resolve_collision(envObj);
   envObj->resolve_collision(npc);
 }

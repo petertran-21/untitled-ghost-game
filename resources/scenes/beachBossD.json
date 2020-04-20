@@ -16,7 +16,7 @@
             "parent": "foreground",
             "width": 100,
             "height": 100,
-            "subtype": 108
+            "subtype": 2
         },
         {
             "id": "SceneTrigger",
@@ -34,7 +34,7 @@
             "parent": "foreground",
             "width": 100,
             "height": 100,
-            "subtype": 108
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -221,7 +221,7 @@
             "posY": 400,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 19
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -255,7 +255,7 @@
             "posY": 300,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 16
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -629,7 +629,7 @@
             "posY": 300,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 13
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -731,7 +731,7 @@
             "posY": 500,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 13
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -867,7 +867,7 @@
             "posY": 500,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 13
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1071,7 +1071,7 @@
             "posY": 100,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 13
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1207,7 +1207,7 @@
             "posY": 100,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 13
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1258,7 +1258,7 @@
             "posY": 600,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 13
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1581,7 +1581,7 @@
             "posY": 100,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 6
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1870,7 +1870,7 @@
             "parent": "foreground",
             "width": 100,
             "height": 100,
-            "subtype": 4
-        }  
+            "subtype": 2
+        }
     ]
 }

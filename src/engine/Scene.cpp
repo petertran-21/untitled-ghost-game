@@ -189,6 +189,9 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             case WOLF_SUBTYPE:
                 unit = new Wolf(Collisioncontainer, foreground);
                 break;
+            case BREAKABLEWALL_SUBTYPE:
+                unit = new BreakableWall(Collisioncontainer);
+                break;
             /* Looking for...
             Gem Holder
             HornFragment
@@ -202,13 +205,12 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             case GHOST_SUBTYPE:
                 unit = new Ghost();
                 unit->addChild( new ParticleEmitter() );
-                Collisioncontainer->addChild(unit);
+                Collisioncontainer->addChild(unit);  
                 break;
             case SCENE_TRIGGER_SUBTYPE:
-                unit = new SceneTrigger(Collisioncontainer, sprite["scene_path"]);
-                Collisioncontainer->addChild(unit);               
+                unit = new SceneTrigger(Collisioncontainer, sprite["scene_path"]);     
+                Collisioncontainer->addChild(unit);        
                 break;
-
 
         }
 
@@ -238,7 +240,6 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 needsParent[unit] = sprite["parent"];
 
             }
-
             parents[unit->id] = unit;
 
         }
