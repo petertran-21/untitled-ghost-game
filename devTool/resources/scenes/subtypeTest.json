@@ -1,0 +1,38 @@
+{
+    "sprites": [
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/animals/",
+            "height": 100,
+            "id": "16807",
+            "isStatic": true,
+            "isStaticBaseFile": "snake.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 500,
+            "posY": 300,
+            "rotation": 0.0,
+            "subtype": 7,
+            "width": 100
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/grendel/",
+            "height": 100,
+            "id": "282475249",
+            "isStatic": true,
+            "isStaticBaseFile": "grendel_idle.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 380,
+            "posY": 300,
+            "rotation": 0.0,
+            "subtype": 4,
+            "width": 100
+        }
+    ]
+}

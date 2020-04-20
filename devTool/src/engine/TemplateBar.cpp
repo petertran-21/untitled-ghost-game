@@ -44,8 +44,10 @@ void TemplateBar::loadTemplateBar() {
 			s->rotation = spriteTemplate["rotation"];
 			s->width = spriteTemplate["width"];
 			s->height = spriteTemplate["height"];
+			s->subytpe = spriteTemplate["subtype"];
 			offset += 20 + s->width;
 			this->addChild(s);
+			cout << s->subytpe << endl;
 		} else {
 			AnimatedSprite* a = new AnimatedSprite(spriteTemplate["id"]);
 			for (auto animation : spriteTemplate["animationInfo"]["animations"]){
@@ -64,6 +66,7 @@ void TemplateBar::loadTemplateBar() {
 			a->width = spriteTemplate["width"];
 			a->height = spriteTemplate["height"];
 			offset += 20 + a->width;
+			a->subytpe = spriteTemplate["subtype"];
 			this->addChild(a);
 		}
 	}

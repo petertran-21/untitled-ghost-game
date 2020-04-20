@@ -45,6 +45,7 @@ public:
 	bool facingRight = true;
 	bool selected = false;
 	bool isBeingDragged = false;
+	int subytpe;
 
 	DisplayObject();
 	DisplayObject(string id, string path);
