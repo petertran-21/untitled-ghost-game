@@ -46,6 +46,9 @@ void Scene::loadScene(string sceneFilePath){
             this->addChild(unit);
             unit->parent = this;
             cout << unit->id << endl;
+        } else if (sprite["parent"] == "foreground") {
+            this->addChild(unit);
+            unit->parent = this;
         } else {
             // Need to find parent object
             needsParent[unit] = sprite["parent"];
@@ -91,6 +94,8 @@ void Scene::saveScene(string sceneFilePath){
         if (sprite->parent != this){
             parent = sprite->parent->id;
             //cout << parent << endl;
+        } else if (sprite->subytpe != 2) {
+            parent = "foreground";
         }
         
         jsonSprite["parent"] = parent;
