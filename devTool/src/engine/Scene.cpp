@@ -40,11 +40,15 @@ void Scene::loadScene(string sceneFilePath){
         unit->rotation = sprite["rotation"];
         unit->width = sprite["width"];
         unit->height = sprite["height"];
+        unit->subytpe = sprite["subtype"];
         
         if (sprite["parent"] == "") {
             this->addChild(unit);
             unit->parent = this;
             cout << unit->id << endl;
+        } else if (sprite["parent"] == "foreground") {
+            this->addChild(unit);
+            unit->parent = this;
         } else {
             // Need to find parent object
             needsParent[unit] = sprite["parent"];
@@ -83,13 +87,15 @@ void Scene::saveScene(string sceneFilePath){
             {"isVisible", sprite->visible},
             {"rotation", sprite->rotation},
             {"width", sprite->width},
-            {"height", sprite->height}, 
+            {"height", sprite->height},
+            {"subtype", sprite->subytpe}, 
         };
-
         string parent = "";
         if (sprite->parent != this){
             parent = sprite->parent->id;
             //cout << parent << endl;
+        } else if (sprite->subytpe != 2) {
+            parent = "foreground";
         }
         
         jsonSprite["parent"] = parent;
@@ -114,7 +120,7 @@ void Scene::saveScene(string sceneFilePath){
             jsonSprite["isStaticBaseFile"] = sprite->imgPath.substr(lastslash+1);
             jsonSprite["basePathFolder"] = sprite->imgPath.substr(0, lastslash+1);
         }
-        cout << sprite->id << endl;
+        cout << sprite->type << endl;
         j["sprites"].push_back(jsonSprite);
     }
     

@@ -8,7 +8,7 @@ DisplayObject::DisplayObject(){
 DisplayObject::DisplayObject(string id, string filepath){
 	this->id = id;
 	this->imgPath = filepath;
-
+	//this->subytpe = 0;
 	loadTexture(filepath);
 }
 
@@ -19,7 +19,7 @@ DisplayObject::DisplayObject(string id, int red, int green, int blue){
 	this->red = red;
 	this->blue = blue;
 	this->green = green;
-
+	//this->subytpe = 0;
 	loadRGBTexture(red, green, blue);
 }
 
