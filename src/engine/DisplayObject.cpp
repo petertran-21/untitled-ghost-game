@@ -50,9 +50,9 @@ void DisplayObject::loadTexture(string filepath){
 	{
 		printf( "SDL Error: %s\n", SDL_GetError() );
 	}
-	
-	width = image->w;
-	height = image->h;
+
+	// width = image->w;
+	// height = image->h;
 	setTexture(texture);
 }
 
@@ -159,7 +159,7 @@ void DisplayObject::createHitbox(){
 		hitBox = new DisplayObject();
 		hitBox->id = this->id + "HitBox";
 	}
-	
+
 	int w = (int)distance(hitBoxPoints.at(0), hitBoxPoints.at(1));
 	int h = (int)distance(hitBoxPoints.at(1), hitBoxPoints.at(2));
 	SDL_Rect rect = { hitBoxPoints.at(0).x, hitBoxPoints.at(0).y, w, h};
