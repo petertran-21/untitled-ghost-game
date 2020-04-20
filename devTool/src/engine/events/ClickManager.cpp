@@ -20,6 +20,7 @@ void ClickManager::handleEvent(Event* e) {
         std::cout << child->id << std::endl;
         if (child->type == "AnimatedSprite"){
           AnimatedSprite* duplicate = dynamic_cast<AnimatedSprite*>(child)->copy();
+          duplicate->subytpe = child->subytpe;
           duplicate->parent = event->scene;
           duplicate->position.x += child->parent->position.x - event->scene->parent->position.x;
           duplicate->position.y = child->parent->position.y - duplicate->height - event->scene->parent->position.y;
@@ -28,6 +29,7 @@ void ClickManager::handleEvent(Event* e) {
         }
         if (child->type == "Sprite"){
           Sprite* duplicate = dynamic_cast<Sprite*>(child)->copy();
+          duplicate->subytpe = child->subytpe;
           duplicate->parent = event->scene;
           duplicate->position.x += child->parent->position.x - event->scene->parent->position.x;
           duplicate->position.y = child->parent->position.y - duplicate->height - event->scene->parent->position.y;

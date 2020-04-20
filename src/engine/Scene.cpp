@@ -29,7 +29,7 @@ Scene::~Scene()
 //     this->addChild(background);
 //     this->addChild(midground);
 //     this->addChild(foreground);
-    
+
 //     for (auto sprite : j["sprites"]){
 //         // Get sprite type (static or animated?).
 //         bool isStatic = (sprite["isStatic"] == true);
@@ -106,7 +106,7 @@ void Scene::loadScene(string sceneFilePath){
         unit->rotation = sprite["rotation"];
         unit->width = sprite["width"];
         unit->height = sprite["height"];
-        
+
         if (sprite["parent"] == "") {
             this->addChild(unit);
             unit->parent = this;
@@ -118,7 +118,7 @@ void Scene::loadScene(string sceneFilePath){
         }
 
         parents[unit->id] = unit;
-        
+
     }
     // Setting up parents
     for (auto it : needsParent){
@@ -138,8 +138,13 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
 
     DisplayObjectContainer* foreground = new DisplayObjectContainer();
     DisplayObjectContainer* background = new DisplayObjectContainer();
+    DisplayObjectContainer* lightEmittingObjects = new DisplayObjectContainer();
+    DisplayObjectContainer* lightLayer = new DisplayObjectContainer();
+    DisplayObjectContainer* shadowLayer = new DisplayObjectContainer();
+
     background->parent = this;
     this->addChild(background);
+
     foreground->parent = this;
     this->addChild(foreground);
 
@@ -147,7 +152,7 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
         // Get sprite subtype
         DisplayObjectContainer* unit;
         std::string imgPath = ""; //Cannot declare variables in a switch
-        
+
         switch((int)sprite["subtype"]) {
             case SPRITE_SUBTYPE: // Sprites (usually tiles)
                 imgPath = sprite["basePathFolder"].get<std::string>() + sprite["isStaticBaseFile"].get<std::string>();
@@ -226,7 +231,7 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             unit->rotation = sprite["rotation"];
             unit->width = sprite["width"];
             unit->height = sprite["height"];
-            
+
             if (sprite["parent"] == "") {
                 background->addChild(unit);
                 unit->parent = background;
@@ -243,7 +248,7 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             parents[unit->id] = unit;
 
         }
-        
+
     }
     // Setting up parents
     for (auto it : needsParent){
