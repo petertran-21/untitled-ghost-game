@@ -36,7 +36,7 @@ void DOAddedEvent::checkCondition(){
     this->DTNumChildren = i+1;
     cout << this->displayTree->children.at(i)->id << endl;
   }
-  
+
 }
 
 void DOAddedEvent::addChildCalled(DisplayObject* childAdded) {

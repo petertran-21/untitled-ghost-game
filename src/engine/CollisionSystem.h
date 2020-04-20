@@ -15,6 +15,7 @@ class CollisionSystem : public EventListener{
 
 public:
 
+	CollisionSystem();
 	CollisionSystem(Camera *maincam, DisplayObjectContainer *collisionContainer);
 	~CollisionSystem();
 

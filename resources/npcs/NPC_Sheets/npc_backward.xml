@@ -1,0 +1,8 @@
+<backward name="backward_animation">
+  <layer0 x="0" y="0" width="32" height="32" />
+  <layer1 x="32" y="0" width="32" height="32" />
+  <layer2 x="64" y="0" width="32" height="32" />
+  <layer3 x="0" y="0" width="32" height="32" />
+  <layer4 x="96" y="0" width="32" height="32" />
+  <layer5 x="128" y="0" width="32" height="32" />
+</backward>

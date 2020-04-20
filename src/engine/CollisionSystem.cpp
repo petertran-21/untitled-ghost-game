@@ -6,6 +6,8 @@
 
 #include <cmath>
 
+CollisionSystem::CollisionSystem() { }
+
 CollisionSystem::CollisionSystem(Camera *maincam, DisplayObjectContainer *collisionContainer){
   this->maincam = maincam;
   this->collisionContainer = collisionContainer;
@@ -587,7 +589,7 @@ void CollisionSystem::resolveCollision(DisplayObject* d, DisplayObject* other, i
 
 void CollisionSystem::resolveCollision_Ghost_NPC(DisplayObject* ghost, DisplayObject* npc) {
   Ghost* g = dynamic_cast<Ghost*>(ghost);
-  
+
   g->npc = (MainNPC*)npc;
 }
 

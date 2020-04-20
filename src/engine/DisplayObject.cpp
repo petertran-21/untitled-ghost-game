@@ -162,7 +162,7 @@ void DisplayObject::createHitbox(){
 		hitBox = new DisplayObject();
 		hitBox->id = this->id + "HitBox";
 	}
-	
+
 	int w = (int)distance(hitBoxPoints.at(0), hitBoxPoints.at(1));
 	int h = (int)distance(hitBoxPoints.at(1), hitBoxPoints.at(2));
 	SDL_Rect rect = { hitBoxPoints.at(0).x, hitBoxPoints.at(0).y, w, h};
