@@ -6,7 +6,6 @@
 using namespace std;
 
 HornFragment::HornFragment(DisplayObjectContainer* container):MainCollectibles(){
-    this->subtype = 30;
     this->addAnimation("./resources/items/", "horn_fragment", 1, 1, false);
     this->play("horn_fragment");
     this->collisionContainer = container;

@@ -61,7 +61,7 @@ void NPCExcavator::resolve_collision(DisplayObject * obj){
 
 void NPCExcavator::resolve_adjacency(DisplayObject * obj, int status){
     
-    if (obj->subtype==10 && excavate == true){
+    if (obj->getSubtype()==10 && excavate == true){
 
         if (status != 0){
             excavate = false;

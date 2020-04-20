@@ -48,7 +48,7 @@ void NPCLumberjack::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joy
 void NPCLumberjack::resolve_adjacency(DisplayObject *obj, int status){
     //if (status != 0) cout << "HELLO" << endl;
     
-    if (obj->subtype==102 && chopping == true){
+    if (obj->getSubtype()==102 && chopping == true){
 
         if (status != 0){
             chopping = false;
@@ -59,7 +59,7 @@ void NPCLumberjack::resolve_adjacency(DisplayObject *obj, int status){
         
     }
 
-    if (obj->subtype==101 && chopping == true){
+    if (obj->getSubtype()==101 && chopping == true){
 
         if (status != 0){
             chopping = false;

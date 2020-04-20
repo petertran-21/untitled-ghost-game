@@ -6,8 +6,6 @@
 using namespace std;
 
 NPCArcher::NPCArcher(DisplayObjectContainer* container, DisplayObjectContainer* allSprites) : MainNPC(){
-    this->position.x = 100;
-    this->position.y = 100;
 	this->addAnimation("../resources/npcs/", "npc_base", 2, 1, true);
 	this->play("npc_base");
     this->collisionContainer = container;
