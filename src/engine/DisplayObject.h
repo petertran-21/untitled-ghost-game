@@ -69,7 +69,6 @@ public:
 	bool drawBox = false;
 
 	SDL_Surface* image = NULL;
-	void drawHitbox();
 	void createHitbox();
 	virtual void resolve_collision(DisplayObject *obj);
 	virtual void resolve_adjacency(DisplayObject* obj, int status);
