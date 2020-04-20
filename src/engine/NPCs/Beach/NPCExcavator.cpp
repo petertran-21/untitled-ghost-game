@@ -5,8 +5,13 @@
 using namespace std;
 
 NPCExcavator::NPCExcavator(DisplayObjectContainer* container, DisplayObjectContainer* allSprites) : MainNPC(){
-	this->addAnimation("./resources/npcs/", "npc_base", 2, 1, true);
-	this->play("npc_base");
+	this->addAnimation("./resources/npcs/excavator/", "excavator_idle", 1, 1, true, "idle");
+    this->addAnimation("./resources/npcs/excavator/", "excavator_forward", 6, 10, true, "forward");
+    this->addAnimation("./resources/npcs/excavator/", "excavator_left", 6, 10, true, "left'");
+    this->addAnimation("./resources/npcs/excavator/", "excavator_right", 6, 10, true, "right");
+    this->addAnimation("./resources/npcs/excavator/", "excavator_back", 6, 10, true, "back");
+
+	this->play("idle");
     this->collisionContainer = container;
     container->addChild(this);
     this->drawingContainer = allSprites;
@@ -42,11 +47,9 @@ void NPCExcavator::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joys
 void NPCExcavator::resolve_collision(DisplayObject * obj){
     MainNPC::resolve_collision(obj);
     MainNPC::resolve_collectible_collision(obj, this->collisionContainer, this->drawingContainer);
-    
 }
 
-void NPCExcavator::resolve_adjacency(DisplayObject * obj, int status){
-
+void NPCExcavator::resolve_adjacency(DisplayObject * obj, int status){  
     if (obj->subtype==10 && excavate == true){
 
         if (status != 0){
