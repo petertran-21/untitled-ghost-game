@@ -51,8 +51,11 @@ void DisplayObject::loadTexture(string filepath){
 		printf( "SDL Error: %s\n", SDL_GetError() );
 	}
 	
-	width = image->w;
-	height = image->h;
+	// *** setting width and height to image width and height interferes with spritesheet rendering ***
+	// width = image->w; 
+	// height = image->h;
+	// ***
+	
 	setTexture(texture);
 }
 
