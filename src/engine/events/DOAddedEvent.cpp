@@ -28,7 +28,6 @@ void DOAddedEvent::checkCondition(){
   }
 
   for (int i=DTNumChildren; i<displayTree->children.size(); i++){
-    this->displayTree->children.at(i) -> drawHitbox();
     this->displayTree->children.at(i) -> createHitbox();
     cout<<"TYPES: "<<this->displayTree->children.at(i)->type << " "<<this->displayTree->children.at(i)->subtype<<endl;
     DisplayObjectContainer* obj = (DisplayObjectContainer*) this->displayTree->children.at(i);
