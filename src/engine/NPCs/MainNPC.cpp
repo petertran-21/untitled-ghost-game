@@ -225,7 +225,7 @@ void MainNPC::resolve_collision(DisplayObject *obj){
     }
 
     // DEFAULT FOR COLLIDING WITH SOLIDS
-	if (obj && obj->type == "EnvObj"){
+	if (obj && (obj->type == "EnvObj" || obj->type == "Wall")){
         //check that npcs are overlapping
         if ((position.y == obj->position.y) && (position.x == obj->position.x)){
             switch (dir){
