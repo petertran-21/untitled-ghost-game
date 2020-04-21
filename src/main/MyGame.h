@@ -1,15 +1,10 @@
 #ifndef MYGAME_H
 #define MYGAME_H
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <iostream>
-#include <algorithm>
 #include "Game.h"
 #include "Sprite.h"
 #include "AnimatedSprite.h"
 #include "EventDispatcher.h"
-#include "Controller.h"
 #include "QuestManager.h"
 #include "PickedUpEvent.h"
 #include "Scene.h"
@@ -17,7 +12,6 @@
 #include "Camera.h"
 #include "Ghost.h"
 #include "NPCImports.h"
-#include "EnvObjImports.h"
 #include "EnvObjImports.h"
 #include "CollisionSystem.h"
 #include "DOAddedEvent.h"
@@ -27,13 +21,13 @@
 #include "TweenJuggler.h"
 #include "CollectiblesImports.h"
 #include "UIDefs.h"
-#include "Light.h"
-#include "Shadow.h"
+#include "BossImports.h"
+#include "particle_system/ParticleEmitter.h"
 
 using namespace std;
 
 class MyGame : public Game{
-
+	
 public:
 	MyGame();
 	~MyGame();
@@ -42,13 +36,16 @@ public:
 	virtual void draw(AffineTransform &at);
 
 private:
+	Camera* camera;
+	Scene* scene_1;
+	
 	DisplayObjectContainer* allSprites;
+	DisplayObjectContainer* environment;
 	EventDispatcher* controllerDisp;
 
 	AnimatedSprite* character;
-	AnimatedSprite* npc;
-	Light* light;
-	Shadow* shadow;
+	MainNPC* npc;
+	Ghost* player;
 
 	DisplayObjectContainer* container;
 
@@ -57,11 +54,20 @@ private:
 	DOAddedEvent* DOAdded;
 	DORemovedEvent* DORemoved;
 
+	//From UI_WORK
+	TweenJuggler* tweenJuggler;
+	Sprite* crocodile;
+	Scene* scene_2;
+	Sound* new_sound;
+	Checklist* checklistTest;
+	SelectionMenu* selectionMenuTest;
+	TextBox* textboxTest;
 
-	bool charWalking = false;
-	bool npcWalking = false;
-	int lastMoved = 3;
+	DisplayObjectContainer* UIContainer;		// Holds all UI elements as children.
+
+	bool walking = false;
 	bool transition = false;
+	bool UIOpen = false;
 
 };
 

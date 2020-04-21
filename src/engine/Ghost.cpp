@@ -17,11 +17,10 @@ Ghost::Ghost() : AnimatedSprite("Ghost"){
 	this->pivot.y = this->height / 2;
 
 	//eventually replace the following with "recourses/PlayerSprites/"
-	this->addAnimation("./resources/grendel/", "Idle", 1, 1, true);
-	this->addAnimation("./resources/grendel/", "Run", 1, 1, true);
-	this->addAnimation("./resources/character/", "Jump", 30, 1, false);
-	this->addAnimation("./resources/character/", "Dead", 30, 1, false);
-	this->play("Idle");
+	this->addSpriteSheet("./resources/grendel/Grendel_Idle_Sheet.png", "./resources/grendel/grendel_idle.xml", "idle", 3, 12, true);
+	this->addSpriteSheet("./resources/grendel/Grendel_Move_Sheet.png", "./resources/grendel/grendel_move.xml", "move", 4, 12, true);
+	
+	this->play("move");
 }
 
 Ghost::~Ghost() {}

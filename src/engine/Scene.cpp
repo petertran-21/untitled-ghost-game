@@ -152,6 +152,7 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
         // Get sprite subtype
         DisplayObjectContainer* unit;
         std::string imgPath = ""; //Cannot declare variables in a switch
+        ParticleEmitter* partEmit;
 
         switch((int)sprite["subtype"]) {
             case SPRITE_SUBTYPE: // Sprites (usually tiles)
@@ -209,7 +210,10 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 break;
             case GHOST_SUBTYPE:
                 unit = new Ghost();
-                unit->addChild( new ParticleEmitter() );
+                partEmit = new ParticleEmitter();
+                partEmit->scaleX = 0.25;
+                partEmit->scaleY = 0.25;
+                unit->addChild(partEmit);
                 Collisioncontainer->addChild(unit);  
                 break;
             case SCENE_TRIGGER_SUBTYPE:
