@@ -12,6 +12,7 @@ Bridge::Bridge(DisplayObjectContainer* container) : MainEnvObj(){
 
 	this->play("bridge_closed");
     this->collisionContainer = container;
+    container->addChild(this);
 }
 
 void Bridge::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
@@ -19,7 +20,6 @@ void Bridge::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 
     if (open){
         this->play("bridge_open");
-        this->scaleX = 2;
     }
 }
 

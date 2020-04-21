@@ -1,5 +1,6 @@
 #ifndef NPCArcher_H
 #define NPCArcher_H
+#define NPCARCHER_SUBTYPE 22
 
 #include "MainNPC.h"
 #include "Arrow.h"

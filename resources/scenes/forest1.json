@@ -2482,6 +2482,24 @@
             "height": 100, 
             "id": "pyromancer"
         }, 
+
+        {
+            "isStatic": true, 
+            "parent": "foreground", 
+            "subtype": 22, 
+            "pivotX": 0, 
+            "pivotY": 0, 
+            "basePathFolder": "./resources/npcs/", 
+            "isStaticBaseFile": "npc_base.png", 
+            "width": 100, 
+            "posY": 100, 
+            "posX": 900, 
+            "isVisible": true, 
+            "alpha": 255, 
+            "rotation": 0.0, 
+            "height": 100, 
+            "id": "archer"
+        }, 
         
         {
             "id": "SceneTrigger",

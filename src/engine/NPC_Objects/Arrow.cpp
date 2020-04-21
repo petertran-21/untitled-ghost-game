@@ -41,21 +41,25 @@ void Arrow::fly(){
             //check collision @ direction//
             rotation = -M_PI/2;
             position.y -= movespeed; 
+            if (col_arrow) col_arrow->position.y -= movespeed;
             break;
         case S:
             //check collision @ direction//
             rotation = M_PI/2;
             position.y += movespeed; 
+            if (col_arrow) col_arrow->position.y += movespeed;
             break;
         case E: 
             //check collision @ direction//
             rotation = 0;
             position.x += movespeed; 
+            if (col_arrow) col_arrow->position.x += movespeed;
             break;
         case W: 
             //check collision @ direction//
             rotation = M_PI;
             position.x -= movespeed; 
+            if (col_arrow) col_arrow->position.x -= movespeed;
             break;
         }
 

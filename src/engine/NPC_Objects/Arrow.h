@@ -17,6 +17,7 @@ class Arrow : public MainNPCObj{
         int subtype = 15;
 
         int timer = 0;
+        DisplayObject *col_arrow = NULL;
 
         void fly();
         virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);

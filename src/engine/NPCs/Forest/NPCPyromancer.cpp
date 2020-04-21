@@ -5,9 +5,13 @@
 using namespace std;
 
 NPCPyromancer::NPCPyromancer(DisplayObjectContainer* container, DisplayObjectContainer* allSprites) : MainNPC(){
-    //this->id = "pyro";
-	this->addAnimation("../resources/npcs/", "npc_base", 1, 1, true);
-	this->play("npc_base");
+	this->addAnimation("./resources/npcs/pyro/", "pyro_idle", 1, 1, true, "idle");
+    this->addAnimation("./resources/npcs/pyro/", "pyro_forward", 6, 10, true, "forward");
+    this->addAnimation("./resources/npcs/pyro/", "pyro_left", 6, 10, true, "left'");
+    this->addAnimation("./resources/npcs/pyro/", "pyro_right", 6, 10, true, "right");
+    this->addAnimation("./resources/npcs/pyro/", "pyro_back", 6, 10, true, "back");
+
+	this->play("idle");
     this->collisionContainer = container;
     container->addChild(this);
     this->drawingContainer = allSprites;

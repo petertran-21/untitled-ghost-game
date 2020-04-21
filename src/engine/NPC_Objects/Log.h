@@ -11,12 +11,14 @@ using namespace std;
 class Log : public MainNPCObj{
     
     public:
-        Log();
+        Log(DisplayObjectContainer* container);
         void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 
         bool sunk = false;
         bool chopped = false;
         int subtype = 102;
+
+        DisplayObjectContainer* collisionContainer;
 
         void resolve_collision(DisplayObject *obj);
         void resolve_adjacency(DisplayObject *obj, int status);

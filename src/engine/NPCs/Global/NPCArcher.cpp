@@ -15,7 +15,9 @@ NPCArcher::NPCArcher(DisplayObjectContainer* container, DisplayObjectContainer* 
 
 	this->play("idle");
     this->collisionContainer = container;
+    container->addChild(this);
     this->drawingContainer = allSprites;
+    this->subtype = NPCARCHER_SUBTYPE;
 }
 
 void NPCArcher::state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
@@ -25,6 +27,7 @@ void NPCArcher::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joystic
             Arrow *arr = new Arrow(abilityPt, dir, this);
             Arrow *arrCollision = new Arrow(abilityPt, dir, this);
             this->addChild(arr);
+            arr->col_arrow = arrCollision;
 
             //add to collision system container
             arrCollision->position.x = this->position.x + arr->position.x;
