@@ -9,3 +9,4 @@
 #include "Door.h"
 #include "Button.h"
 #include "Pit.h"
+#include "MainEnvObj.h"

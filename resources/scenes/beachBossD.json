@@ -1,6 +1,42 @@
 {
     "sprites": [
         {
+            "id": "SceneTrigger",
+            "basePathFolder": "./resources/items/",
+            "isStaticBaseFile": "scene_trigger",
+            "scene_path": "./resources/scenes/beachBossC.json",
+            "posX": 100,
+            "posY": 600,
+            "pivotX": 0,
+            "pivotY": 0,
+            "rotation": 0.0,
+            "alpha": 255,
+            "isVisible": true,
+            "isStatic": true,
+            "parent": "foreground",
+            "width": 100,
+            "height": 100,
+            "subtype": 2
+        },
+        {
+            "id": "SceneTrigger",
+            "basePathFolder": "./resources/items/",
+            "isStaticBaseFile": "scene_trigger",
+            "scene_path": "./resources/scenes/beachEntrance.json",
+            "posX": 1300,
+            "posY": 100,
+            "pivotX": 0,
+            "pivotY": 0,
+            "rotation": 0.0,
+            "alpha": 255,
+            "isVisible": true,
+            "isStatic": true,
+            "parent": "foreground",
+            "width": 100,
+            "height": 100,
+            "subtype": 2
+        },
+        {
             "alpha": 255,
             "basePathFolder": "./resources/tiles/beachTiles/",
             "height": 100,
@@ -185,7 +221,7 @@
             "posY": 400,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 19
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -219,7 +255,7 @@
             "posY": 300,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 16
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -593,7 +629,7 @@
             "posY": 300,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 13
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -695,7 +731,7 @@
             "posY": 500,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 13
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -831,7 +867,7 @@
             "posY": 500,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 13
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1035,7 +1071,7 @@
             "posY": 100,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 13
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1171,7 +1207,7 @@
             "posY": 100,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 13
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1222,7 +1258,7 @@
             "posY": 600,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 13
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1545,7 +1581,7 @@
             "posY": 100,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 6
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1817,6 +1853,23 @@
             "posY": 0,
             "rotation": 0.0,
             "width": 100,
+            "subtype": 2
+        },
+        {
+            "id": "Ghost",
+            "basePathFolder": "./resources/grendel/",
+            "isStaticBaseFile": "Idle",
+            "posX": 100,
+            "posY": 499,
+            "pivotX": 0,
+            "pivotY": 0,
+            "rotation": 0.0,
+            "alpha": 255,
+            "isVisible": true,
+            "isStatic": true,
+            "parent": "foreground",
+            "width": 100,
+            "height": 100,
             "subtype": 2
         }
     ]

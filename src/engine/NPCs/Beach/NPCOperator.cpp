@@ -50,7 +50,7 @@ void NPCOperator::resolve_collision(DisplayObject *obj){
 
 void NPCOperator::resolve_adjacency(DisplayObject *obj, int status){
 
-    if (obj->subtype==12 && operated == true){
+    if (obj->getSubtype()==12 && operated == true){
 
         if (status != 0){
             operated = false;

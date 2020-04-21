@@ -6,6 +6,7 @@
 using namespace std;
 
 NPCArcher::NPCArcher(DisplayObjectContainer* container, DisplayObjectContainer* allSprites) : MainNPC(){
+	this->addAnimation("../resources/npcs/", "npc_base", 2, 1, true);
     this->addAnimation("./resources/npcs/archer/", "archer_idle", 1, 1, true, "idle");
     this->addAnimation("./resources/npcs/archer/", "archer_forward", 6, 10, true, "forward");
     this->addAnimation("./resources/npcs/archer/", "archer_left", 6, 10, true, "left'");

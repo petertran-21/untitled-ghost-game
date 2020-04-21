@@ -12,7 +12,7 @@ using namespace std;
 class SceneTrigger : public AnimatedSprite{
     
     public:
-        SceneTrigger(DisplayObjectContainer *container);
+        SceneTrigger(DisplayObjectContainer *container, string scene_path);
         void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 
         string scene_path = "";

@@ -4,6 +4,8 @@
 #include "CollectiblesImports.h"
 #include "NPCObjImports.h"
 #include "NPCImports.h"
+#include "Ghost.h"
+#include "particle_system/ParticleEmitter.h"
 #include "BossImports.h"
 
 Scene::Scene() : DisplayObjectContainer()
@@ -150,6 +152,7 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
         // Get sprite subtype
         DisplayObjectContainer* unit;
         std::string imgPath = ""; //Cannot declare variables in a switch
+        ParticleEmitter* partEmit;
 
         switch((int)sprite["subtype"]) {
             case SPRITE_SUBTYPE: // Sprites (usually tiles)
@@ -192,6 +195,9 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             case WOLF_SUBTYPE:
                 unit = new Wolf(Collisioncontainer, foreground);
                 break;
+            case BREAKABLEWALL_SUBTYPE:
+                unit = new BreakableWall(Collisioncontainer);
+                break;
             /* Looking for...
             Gem Holder
             HornFragment
@@ -201,8 +207,19 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 break;
             case WATERJET_SUBTYPE:
                 unit = new WaterJet(Collisioncontainer, foreground);
-
-
+                break;
+            case GHOST_SUBTYPE:
+                unit = new Ghost();
+                partEmit = new ParticleEmitter();
+                partEmit->scaleX = 0.25;
+                partEmit->scaleY = 0.25;
+                unit->addChild(partEmit);
+                Collisioncontainer->addChild(unit);  
+                break;
+            case SCENE_TRIGGER_SUBTYPE:
+                unit = new SceneTrigger(Collisioncontainer, sprite["scene_path"]);     
+                Collisioncontainer->addChild(unit);        
+                break;
 
         }
 
@@ -232,7 +249,6 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 needsParent[unit] = sprite["parent"];
 
             }
-
             parents[unit->id] = unit;
 
         }

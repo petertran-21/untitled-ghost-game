@@ -1,5 +1,6 @@
 #ifndef SCENE_H
 #define SCENE_H
+#define SCENE_TRIGGER_SUBTYPE 108
 
 #include "DisplayObjectContainer.h"
 #include "Sprite.h"

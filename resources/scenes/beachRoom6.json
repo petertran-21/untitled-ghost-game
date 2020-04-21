@@ -1028,14 +1028,14 @@
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
-            "parent": "foreground",
+            "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 700,
             "posY": -300,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 12
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1385,14 +1385,14 @@
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
-            "parent": "foreground",
+            "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1200,
             "posY": -300,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 12
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -1725,14 +1725,14 @@
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
-            "parent": "foreground",
+            "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1700,
             "posY": -200,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 12
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -2065,14 +2065,14 @@
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
-            "parent": "foreground",
+            "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 2200,
             "posY": -100,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 12
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -3085,14 +3085,14 @@
             "isStatic": true,
             "isStaticBaseFile": "water_valve.png",
             "isVisible": true,
-            "parent": "foreground",
+            "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1500,
             "posY": 200,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 13
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4632,14 +4632,14 @@
             "isStatic": true,
             "isStaticBaseFile": "water_valve.png",
             "isVisible": true,
-            "parent": "foreground",
+            "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 500,
             "posY": 600,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 13
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4819,14 +4819,14 @@
             "isStatic": true,
             "isStaticBaseFile": "water_valve.png",
             "isVisible": true,
-            "parent": "foreground",
+            "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1500,
             "posY": 600,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 13
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6128,14 +6128,14 @@
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
-            "parent": "foreground",
+            "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 1500,
             "posY": 900,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 12
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -6689,14 +6689,14 @@
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
-            "parent": "foreground",
+            "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 2000,
             "posY": 1000,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 12
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -7573,14 +7573,14 @@
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
-            "parent": "foreground",
+            "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 2300,
             "posY": 1200,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 12
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -7675,14 +7675,14 @@
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
-            "parent": "foreground",
+            "parent": "",
             "pivotX": 0,
             "pivotY": 0,
             "posX": 300,
             "posY": 1300,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 12
+            "subtype": 2
         },
         {
             "alpha": 255,

@@ -52,6 +52,8 @@ For PS4 controller:
 
 ### Movement w/ Keyboard
 - Press **WASD** to move character up, left, down, and right. Diagnoal movmeent for ghost is also supported but not for NPC. 
+- Press **IJKL** to move the camera.
+- Press **NM** to scale the camera.
 - Press **E** to possess NPC. 
 - Press **SPACE** to use ability of NPC.
 
@@ -63,13 +65,9 @@ Implemented some NPC and object interactions. You can do the following with the 
 - Operators can turn on/off valves by standing next to them and pressing space. The corresponding water jets linked to the valve will turn on and create a stream of water. If an npc or crab steps into the water, they get pushed to the end of the stream. 
 - Excavators can dig up rocks by standing next to them and pressing space. This will allow npcs to pass through that space
 
-### NPC Locations
-For your reference and easy demo understanding, the following locations are their respective NPCS:
-- top-left: excavatar
-- top-right: pyromancer
-- bottom-left: operator
-- bottom-right: collector
 
 
-### General Comments from Design Team
-For enemy programming assignment, we separated objects into three types: environmental objects (EnvObj), collectibles (Collectibles), and NPC Objects (NPCObj). We mostly worked on collision resolution functions between NPCs and Objects and show an interaction between NPC and at least one object of each category for this demo. 
+### Notes
+- We connected the beach and forest areas directly for the sake of this demo.
+- The forest area is currently not interactive, but you can navigate the area freely.
+- The beach is mostly interactive but some of the object collisions may not be working.

@@ -1,150 +1,195 @@
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_opengl.h>
-#include <iostream>
-#include <algorithm>
 #include "MyGame.h"
-
-using namespace std;
 
 MyGame::MyGame() : Game(1000, 1000)
 {
+	//SFX team work
+	camera = new Camera();
+	scene_1 = new Scene();
+	
+	camera->addChild(scene_1);
+	this->addChild(camera);
 
+	//Character demo work
 	allSprites = new DisplayObjectContainer();
-	instance->addChild(allSprites);
 	container = new DisplayObjectContainer();
-	allSprites->addChild(container);
+	instance->addChild(allSprites);
 
-	collisionSystem = new CollisionSystem();
+	//uncomment following line to check that collision boxes for objects are identical to drawing
+	//allSprites->addChild(container);
+
+	collisionSystem = new CollisionSystem(camera, container);
 	displayTreeDisp = new EventDispatcher();
 	DOAdded = new DOAddedEvent(displayTreeDisp, container);
 	DORemoved = new DORemovedEvent(displayTreeDisp, container);
 	displayTreeDisp->addEventListener(collisionSystem, DOAddedEvent::DO_ADDED);
 	displayTreeDisp->addEventListener(collisionSystem, DORemovedEvent::DO_REMOVED);
 
+	scene_1->loadScene("./resources/scenes/beachRoom1.json", container);
 
-	character = new AnimatedSprite("character");
-	character->addSpriteSheet("./resources/grendel/Grendel_Idle_Sheet.png", "./resources/grendel/grendel_idle.xml", "idle", 3, 12, true);
-	character->addSpriteSheet("./resources/grendel/Grendel_Move_Sheet.png", "./resources/grendel/grendel_move.xml", "move", 4, 12, true);
-	//character->drawBox = true;
-	container->addChild(character);
-	character->play("idle");
+	//---------------SCENE TRIGGER-------------------------
+	// SceneTrigger* beachTrigger = new SceneTrigger(container);
+	// beachTrigger->position.x = 200;
+	// beachTrigger->position.y = 900;
+	// cout<<"scene trigger location: "<<beachTrigger->position.x << " "<<beachTrigger->position.y<<endl;
+	// container->addChild(beachTrigger);
 
-	light = new Light("WHITE", "white");
-	character->addChild(light);
+	//-----------------------------------------------------
 
-	DOAdded->addChildCalled(character);
+	// Shrub* s = new Shrub(container);
+	// allSprites->addChild(s);
+	// container->addChild(s);
 
 
-	npc = new AnimatedSprite("NPC");
-	npc->addSpriteSheet("./resources/npcs/NPC_Sheets/NPC_Backward_Sheet.png", "./resources/npcs/NPC_Sheets/npc_backward.xml", "back", 6, 12, true);
-	npc->addSpriteSheet("./resources/npcs/NPC_Sheets/NPC_Forward_Sheet.png", "./resources/npcs/NPC_Sheets/npc_forward.xml", "front", 6, 12, true);
-	npc->addSpriteSheet("./resources/npcs/NPC_Sheets/NPC_Left_Sheet.png", "./resources/npcs/NPC_Sheets/npc_left.xml", "left", 6, 12, true);
-	npc->addSpriteSheet("./resources/npcs/NPC_Sheets/NPC_Right_Sheet.png", "./resources/npcs/NPC_Sheets/npc_right.xml", "right", 6, 12, true);
-	npc->addSpriteSheet("./resources/npcs/NPC_Sheets/NPC_Backward_Sheet.png", "./resources/npcs/NPC_Sheets/npc_idle.xml", "idle_back", 6, 12, true);
-	npc->addSpriteSheet("./resources/npcs/NPC_Sheets/NPC_Forward_Sheet.png", "./resources/npcs/NPC_Sheets/npc_idle.xml", "idle_front", 6, 12, true);
-	npc->addSpriteSheet("./resources/npcs/NPC_Sheets/NPC_Left_Sheet.png", "./resources/npcs/NPC_Sheets/npc_idle.xml", "idle_left", 6, 12, true);
-	npc->addSpriteSheet("./resources/npcs/NPC_Sheets/NPC_Right_Sheet.png", "./resources/npcs/NPC_Sheets/npc_idle.xml", "idle_right", 6, 12, true);
-	container->addChild(npc);
+	// Gem* g = new Gem(container);
+	// g->position.x = 900;
+	// g->position.y = 400;
+	// allSprites->addChild(g);
+	// container->addChild(g);
 
-	shadow = new Shadow("CIRCLE", "circle", 0);
-	npc->addChild(shadow);
-	shadow->position.y = 50;
+	// npc = new NPCPyromancer(container, allSprites);
+	// npc->position.x += 300;
+	// allSprites->addChild(npc);
+	// container->addChild(npc);
 
-	DOAdded->addChildCalled(npc);
+	// NPCArcher* npc2 = new NPCArcher(container, allSprites);
+	// allSprites->addChild(npc2);
+	// container->addChild(npc2);
 
+	// player = new Ghost();
+	// allSprites->addChild(player);
+	// container->addChild(player);
+
+	// DOAdded->addChildCalled(container);
+	// DOAdded->checkCondition();
+
+
+	// BreakableWall *b = new BreakableWall(container);
+	// allSprites->addChild(b);
+	// container->addChild(b);
+	// b->position.x += 200;
+	// b->position.y += 200;
+
+	// Valve * v = new Valve(container);
+	// allSprites->addChild(v);
+	// container->addChild(v);
+	// v->position.x += 500;
+	// v->position.y += 300;
+
+	// WaterJet * w = new WaterJet(container, allSprites);
+	// allSprites->addChild(w);
+	// container->addChild(w);
+	// v->add_jet(w);
+	// w->position.x += 700;
+	// w->position.y += 100;
+
+	// Crab * c = new Crab();
+	// allSprites->addChild(c);
+	// container->addChild(c);
+	// c->position.y += 600;
+	// c->position.x += 600;
+
+	// npc = new NPCPyromancer(container, allSprites);
+	// npc->position.x += 300;
+	// allSprites->addChild(npc);
+	// container->addChild(npc);
+
+	// NPCOperator* npc2 = new NPCOperator(container, scene_1);
+	// npc2->position.y += 500;
+	// scene_1->addChild(npc2);
+	// container->addChild(npc2);
+
+	// NPCExcavator* npc3 = new NPCExcavator(container, allSprites);
+	// allSprites->addChild(npc3);
+	// container->addChild(npc3);
+
+	// NPCCollector* npc4 = new NPCCollector(container, allSprites);
+	// npc4->position.x += 300;
+	// npc4->position.y += 500;
+	// allSprites->addChild(npc4);
+	// container->addChild(npc4);
+
+	// // player = new Ghost();
+	// // player->addChild( new ParticleEmitter() );
+	// // container->addChild(player);
+	// // scene_1->addChild(player);
+	//DOAdded->addChildCalled(container);
+	DOAdded->checkCondition();
+	//-----------------------------------------
+	// TODO, SFX will add later
+
+	UIContainer = new DisplayObjectContainer();
+
+	selectionMenuTest = new SelectionMenu(0, 0);
+	selectionMenuTest->addToMenu("Save");
+	selectionMenuTest->addToMenu("Load");
+	selectionMenuTest->addToMenu("Quit");
+
+	textboxTest = new TextBox(0, 400);
+	UIContainer->addChild(selectionMenuTest);
+	UIContainer->addChild(textboxTest);
 }
 
-MyGame::~MyGame(){
+MyGame::~MyGame()
+{
+	/**
+	 * Don't delete children of "this"
+	 * because it's handled automatically through
+	 * Game's superclass, DisplayObjectContainer.
+	 */
 
+	delete displayTreeDisp;
+	delete collisionSystem;
+	delete DOAdded;
+	delete DORemoved;
 }
 
 void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
-	int origPosX = character->position.x;
-	int origPosXNPC = npc->position.x;
-	int origPosYNPC = npc->position.y;
+	if (!UIOpen){
+		DORemoved->checkCondition();
+		DOAdded->checkCondition();
+		collisionSystem->update();
+		Game::update(pressedKeys, currState);
 
-	if (pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end()) {
-		character->position.x += 1;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_A) != pressedKeys.end()) {
-		character->position.x -= 1;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end()) {
-		character->position.y += 1;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end()) {
-		character->position.y -= 1;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {
-		npc->position.x += 1;
-		if(!npcWalking) {
-			npc->play("right");
-			npcWalking = true;
-			lastMoved = 2;
+		if (pressedKeys.find(SDL_SCANCODE_N) != pressedKeys.end()){
+			camera->getChild(0)->scaleX /= 1.1;
+			camera->getChild(0)->scaleY /= 1.1;
 		}
-	}
-	if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end()) {
-		npc->position.x -= 1;
-		if(!npcWalking) {
-			npc->play("left");
-			npcWalking = true;
-			lastMoved = 4;
+		if (pressedKeys.find(SDL_SCANCODE_M) != pressedKeys.end()){
+			camera->getChild(0)->scaleX *= 1.1;
+			camera->getChild(0)->scaleY *= 1.1;
 		}
-	}
-	if (pressedKeys.find(SDL_SCANCODE_DOWN) != pressedKeys.end()) {
-		npc->position.y += 1;
-		if(!npcWalking) {
-			npc->play("front");
-			npcWalking = true;
-			lastMoved = 3;
+		if (pressedKeys.find(SDL_SCANCODE_J) != pressedKeys.end()){
+			camera->getChild(0)->position.x += 10;
 		}
-	}
-	if (pressedKeys.find(SDL_SCANCODE_UP) != pressedKeys.end()) {
-		npc->position.y -= 1;
-		if(!npcWalking) {
-			npc->play("back");
-			npcWalking = true;
-			lastMoved = 1;
+		if (pressedKeys.find(SDL_SCANCODE_L) != pressedKeys.end()){
+			camera->getChild(0)->position.x -= 10;
+		}
+		if (pressedKeys.find(SDL_SCANCODE_I) != pressedKeys.end()){
+			camera->getChild(0)->position.y += 10;
+		}
+		if (pressedKeys.find(SDL_SCANCODE_K) != pressedKeys.end()){
+			camera->getChild(0)->position.y -= 10;
 		}
 	}
 
-	if(!(npc->position.x != origPosXNPC || npc->position.y != origPosYNPC)) {
-		if(npcWalking) {
-			npcWalking = false;
-		}
-		if(!npcWalking) {
-			if(lastMoved == 1) {
-				npc->play("idle_back");
-			} else if(lastMoved == 2) {
-				npc->play("idle_right");
-			} else if(lastMoved == 3) {
-				npc->play("idle_front");
-			} else if(lastMoved == 4) {
-				npc->play("idle_left");
-			}
-		}
+	if (pressedKeys.find(SDL_SCANCODE_DOWN) != pressedKeys.end() && UIOpen){
+		selectionMenuTest->incrementPosition();
 	}
-
-
-	if (character->position.x != origPosX){
-		if (!charWalking){
-			character->play("move");
-			charWalking = true;
-		}
-	} else {
-		if (charWalking){
-			character->play("idle");
-			charWalking = false;
-		}
+	if (pressedKeys.find(SDL_SCANCODE_UP) != pressedKeys.end() && UIOpen){
+		selectionMenuTest->decrementPosition();
 	}
-
-
-	DORemoved->checkCondition();
-	DOAdded->checkCondition();
-	collisionSystem->update();
-
-	Game::update(pressedKeys, currState);
+	if (pressedKeys.find(SDL_SCANCODE_RETURN) != pressedKeys.end() && UIOpen){
+		std::cout << selectionMenuTest->getCurrentlySelected() << std::endl;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end() && !UIOpen){
+		this->addChild(UIContainer);
+		textboxTest->setText("X-pos: " + std::to_string(player->position.x));
+		UIOpen = !UIOpen;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_Q) != pressedKeys.end() && UIOpen){
+		this->children.erase(std::remove(this->children.begin(), this->children.end(), UIContainer), this->children.end());
+		UIOpen = false;
+	}
 }
 
 void MyGame::draw(AffineTransform &at){

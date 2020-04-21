@@ -6,8 +6,6 @@ using namespace std;
 
 NPCSkeleton::NPCSkeleton(DisplayObjectContainer* container, DisplayObjectContainer* allSprites) : MainNPC(){
     //this->id = "pyro";
-    this->position.x = 100;
-    this->position.y = 100;
 	this->addAnimation("../resources/npcs/", "npc_base", 1, 1, true);
 	this->play("npc_base");
     this->collisionContainer = container;
