@@ -84,7 +84,7 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
               resolveCollision_NPCObj_EnvObj(inView[i], inView[j]);
             }
             else if ((type1 == "Ghost" && type2 == "SceneTrigger")){
-              resolveCollision_SceneTrigger(inView[j]);
+              resolveCollision_SceneTrigger(inView[j], inView[i]);
             }
             else if ((type1 == "Boss" && type2 == "NPCObj")){
               resolveCollision_Boss_NPCObj(inView[j], inView[i]);
@@ -651,11 +651,12 @@ void CollisionSystem::resolveCollision_NPCObj_EnvObj(DisplayObject* NPCObj, Disp
   envObj->resolve_collision(NPCObj);
 }
 
-void CollisionSystem::resolveCollision_SceneTrigger(DisplayObject* triggerObj){
+void CollisionSystem::resolveCollision_SceneTrigger(DisplayObject* triggerObj, DisplayObject* ghostObj){
   Scene *current = dynamic_cast<Scene*>(maincam->getChild(0));
   Scene *next = new Scene();
 
   SceneTrigger *trigger = dynamic_cast<SceneTrigger*>(triggerObj);
+  Ghost *ghost = dynamic_cast<Ghost*>(ghostObj);
 
   if (trigger->active){
     next->loadScene(trigger->scene_path, this->collisionContainer);

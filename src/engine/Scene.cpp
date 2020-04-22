@@ -158,6 +158,42 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
 
 }
 
+void Scene::SaveScene(string sceneFilePath){
+    json j;
+    j["sprites"] = {json::array()};
+    DisplayObjectContainer* foreground = dynamic_cast<DisplayObjectContainer*>(this->getChild(0));
+    for (int i = 0; i < foreground->numChildren(); i++) {
+        DisplayObject* sprite = foreground->getChild(i);
+        json jsonSprite = {
+            {"id", sprite->id},
+            {"basePathFolder", sprite->imgPath},
+            {"isStatic", true},
+            {"posX", sprite->position.x},
+            {"posY", sprite->position.y},
+            {"pivotX", sprite->pivot.x},
+            {"pivotY", sprite->pivot.y},
+            {"alpha", sprite->alpha},
+            {"isVisible", sprite->visible},
+            {"rotation", sprite->rotation},
+            {"width", sprite->width},
+            {"height", sprite->height},
+            {"subtype", sprite->subtype}, 
+        };
+        string parent = "";
+        if (sprite->parent != this){
+            parent = sprite->parent->id;
+            //cout << parent << endl;
+        } else if (sprite->subtype != 2) {
+            parent = "foreground";
+        }
+        j["sprites"].push_back(jsonSprite);
+    }
+
+
+    std::ofstream o(sceneFilePath + ".json");
+    o << std::setw(4) << j << std::endl;
+}
+
 void Scene::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
     DisplayObjectContainer::update(pressedKeys, currState);
 }

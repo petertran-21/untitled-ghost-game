@@ -6,6 +6,7 @@
 #include "Sprite.h"
 #include "AnimatedSprite.h"
 #include "json.hpp"
+#include <iomanip>
 
 using json = nlohmann::json;
 
@@ -16,6 +17,7 @@ public:
 	~Scene();
 
 	void loadScene(string sceneFilePath, DisplayObjectContainer* collisionContainer);
+	void SaveScene(string sceneFilePath);
 
 	virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 	virtual void draw(AffineTransform &at);
