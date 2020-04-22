@@ -1,5 +1,6 @@
 #ifndef DOOR_H
 #define DOOR_H
+#define DOOR_SUBTYPE 105
 
 #include "Controller.h"
 #include "MainEnvObj.h"

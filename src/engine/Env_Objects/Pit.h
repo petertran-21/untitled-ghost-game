@@ -1,5 +1,6 @@
 #ifndef PIT_H
 #define PIT_H
+#define PIT_SUBTYPE 106
 
 #include "Controller.h"
 #include "MainEnvObj.h"

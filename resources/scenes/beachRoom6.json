@@ -6973,7 +6973,7 @@
         {
             "isStatic": true, 
             "parent": "", 
-            "subtype": 2, 
+            "subtype": 9, 
             "pivotX": 0, 
             "pivotY": 0, 
             "basePathFolder": "./resources/items/", 

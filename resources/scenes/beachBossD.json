@@ -16,7 +16,7 @@
             "parent": "foreground",
             "width": 100,
             "height": 100,
-            "subtype": 2
+            "subtype": 108
         },
         {
             "id": "SceneTrigger",
@@ -34,7 +34,7 @@
             "parent": "foreground",
             "width": 100,
             "height": 100,
-            "subtype": 2
+            "subtype": 108
         },
         {
             "alpha": 255,
@@ -1904,7 +1904,7 @@
             "parent": "foreground",
             "width": 100,
             "height": 100,
-            "subtype": 2
-        }
+            "subtype": 4
+        } 
     ]
 }

@@ -1,5 +1,6 @@
 #ifndef BUTTON_H
 #define BUTTON_H
+#define BUTTON_SUBTYPE 104
 
 #include "Controller.h"
 #include "MainEnvObj.h"

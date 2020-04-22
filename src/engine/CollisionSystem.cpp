@@ -28,8 +28,8 @@ void CollisionSystem::update(){
   watchForCollisions("NPC", "Collectible");
   watchForCollisions("Ghost", "SceneTrigger");
   watchForCollisions("Boss", "NPCObj");
-  // watchForCollisions("NPC", "Wall");
-  // watchForCollisions("NPCObj", "Wall");
+  watchForCollisions("NPC", "Wall");
+  watchForCollisions("NPCObj", "Wall");
 
   watchForAdjacency("NPC", "EnvObj");
   watchForAdjacency("NPC", "NPCObj");

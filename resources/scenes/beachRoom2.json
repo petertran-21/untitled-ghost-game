@@ -3561,7 +3561,7 @@
             "height": 100,
             "id": "ItemPouch",
             "isStatic": true,
-            "isStaticBaseFile": "item_pouch.png",
+            "isStaticBaseFile": "item_pouch_1.png",
             "isVisible": true,
             "parent": "foreground",
             "pivotX": 0,

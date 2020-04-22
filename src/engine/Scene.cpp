@@ -57,19 +57,27 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 }
 
                 break;
+            /*--------------------------Collectibles--------------------------*/
             case ITEMPOUCH_SUBTYPE: // Item Pouch
                 unit = new ItemPouch(Collisioncontainer);
                 cout<<"foreground address: "<<foreground<<endl;
                 cout<<"SPRIET PARENT: "<<sprite["parent"]<<endl;
                 break;
+            case GEM_SUBTYPE:
+                unit = new Gem(Collisioncontainer);
+                break;
+            /*--------------------------Forest--------------------------*/
             case SHRUB_SUBTYPE:
                 unit = new Shrub(Collisioncontainer);
                 break;
-            case VALVE_SUBTYPE:
-                unit = new Valve(Collisioncontainer, E);
+            case LOG_SUBTYPE:
+                unit = new Log(Collisioncontainer);
                 break;
-            case CRAB_SUBTYPE:
-                unit = new Crab(Collisioncontainer);
+            case BRIDGE_SUBTYPE:
+                unit = new Bridge(Collisioncontainer);
+                break;
+            case WOLF_SUBTYPE:
+                unit = new Wolf(Collisioncontainer, foreground);
                 break;
             case NPCPYROMANCER_SUBTYPE:
                 unit = new NPCPyromancer(Collisioncontainer, foreground);
@@ -83,6 +91,28 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             case NPCSKELETON_SUBTYPE:
                 unit = new NPCSkeleton(Collisioncontainer, foreground);
                 break;
+            /*--------------------------Beach--------------------------*/
+            case VALVE_SUBTYPE:
+                unit = new Valve(Collisioncontainer, E);
+                break;
+            case BUTTON_SUBTYPE:
+                unit = new Button(Collisioncontainer);
+                break;
+            case DOOR_SUBTYPE:
+                unit = new Door(Collisioncontainer);
+                break;
+            case PIT_SUBTYPE:
+                unit = new Pit(Collisioncontainer);
+                break;
+            case CRAB_SUBTYPE:
+                unit = new Crab(Collisioncontainer);
+                break;
+            case BREAKABLEWALL_SUBTYPE:
+                unit = new BreakableWall(Collisioncontainer);
+                break;
+            case WATERJET_SUBTYPE:
+                unit = new WaterJet(Collisioncontainer, foreground);
+                break;
             case NPCOPERATOR_SUBTYPE:
                 unit = new NPCOperator(Collisioncontainer, foreground);
                 break;
@@ -93,31 +123,10 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             case NPCCOLLECTOR_SUBTYPE:
                 unit = new NPCCollector(Collisioncontainer, foreground);
                 break;
-            case LOG_SUBTYPE:
-                unit = new Log(Collisioncontainer);
-                break;
-            case BRIDGE_SUBTYPE:
-                unit = new Bridge(Collisioncontainer);
-                break;
-            case GEM_SUBTYPE:
-                unit = new Gem(Collisioncontainer);
-                break;
-            case WOLF_SUBTYPE:
-                unit = new Wolf(Collisioncontainer, foreground);
-                break;
-            case BREAKABLEWALL_SUBTYPE:
-                unit = new BreakableWall(Collisioncontainer);
-                break;
-            /* Looking for...
-            Gem Holder
-            HornFragment
-            */
             case PIRATE_SUBTYPE:
                 unit = new Pirate();
                 break;
-            case WATERJET_SUBTYPE:
-                unit = new WaterJet(Collisioncontainer, foreground);
-                break;
+            /*--------------------------Universal--------------------------*/
             case GHOST_SUBTYPE:
                 unit = new Ghost();
                 partEmit = new ParticleEmitter();

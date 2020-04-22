@@ -24,7 +24,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	displayTreeDisp->addEventListener(collisionSystem, DOAddedEvent::DO_ADDED);
 	displayTreeDisp->addEventListener(collisionSystem, DORemovedEvent::DO_REMOVED);
 
-	scene_1->loadScene("./resources/scenes/beachRoom1.json", container);
+	scene_1->loadScene("./resources/scenes/beachRoom6.json", container);
 
 	//---------------SCENE TRIGGER-------------------------
 	// SceneTrigger* beachTrigger = new SceneTrigger(container);
