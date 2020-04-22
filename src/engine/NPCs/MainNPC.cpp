@@ -15,6 +15,11 @@ MainNPC::MainNPC(DisplayObjectContainer* container, DisplayObjectContainer* allS
     this->drawingContainer = allSprites;
 }
 
+MainNPC::MainNPC(Scene* currScene) : AnimatedSprite("NPC"){
+    this->type = "NPC";
+    this->currScene = currScene;
+}
+
 void MainNPC::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
 	AnimatedSprite::update(pressedKeys, currState);
 
@@ -257,17 +262,23 @@ void MainNPC::resolve_adjacency(DisplayObject *obj, int status){
 
 void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectContainer* collideContainer, DisplayObjectContainer* drawContainer){
     //COLLISIONS WITH COLLECTIBLES
-    for (DisplayObject* child: drawContainer->children){
-        if (child->type == "Collectible"){
-            if ((obj->position.x == child->position.x) && (obj->position.y == child->position.y) && (this->position.x == obj->position.x) && (this->position.y == obj->position.y)){
-                vector<DisplayObject*>::iterator collideItr = find(collideContainer->children.begin(), collideContainer->children.end(), obj);
-                vector<DisplayObject*>::iterator drawItr = find(drawContainer->children.begin(), drawContainer->children.end(), obj);
-                if (collideItr != collideContainer->children.end() && drawItr != drawContainer->children.end()){
-                    collideContainer->children.erase(collideItr);
-                    drawContainer->children.erase(drawItr);
-                }
+    // cout<<"foreground NPC address: "<<drawingContainer<<endl;
+    // cout << "TYPE: "<<obj->type<<", subtype:  "<<obj->subtype<<", "<<(obj->type=="Collectible")<<endl;
+    // cout<<"NUM COLLIDE CHILDREN: "<<collideContainer->children.size()<<endl;
+    // cout<<"NUM DRAW CHILDREN: "<<drawContainer->children.size()<<endl;
+    if (obj->type == "Collectible"){
+        if ((obj->position.x == this->position.x) && (obj->position.y == this->position.y)){
+            switch(obj->getSubtype()){
+                case 9: //item pouch
+                    ItemPouch* collect = (ItemPouch*) obj;
+                    vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), collect);
+                    vector<DisplayObject*>::iterator drawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), collect);
+                    if (collideItr != this->collisionContainer->children.end() && collideItr != this->drawingContainer->children.end()){
+                        this->collisionContainer->children.erase(collideItr);
+                        this->drawingContainer->children.erase(drawItr);
+                    } 
             }
-        }
+        } 
     }
 }
 

@@ -701,11 +701,11 @@
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/items/",
             "height": 100,
-            "id": "1656478042",
+            "id": "Button4",
             "isStatic": true,
-            "isStaticBaseFile": "buttonUnpressed.png",
+            "isStaticBaseFile": "button_unpressed_1.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -714,7 +714,7 @@
             "posY": 100,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 2
+            "subtype": 104
         },
         {
             "alpha": 255,
@@ -1126,11 +1126,11 @@
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/items/",
             "height": 100,
-            "id": "572660336",
+            "id": "Door1",
             "isStatic": true,
-            "isStaticBaseFile": "doorSide.png",
+            "isStaticBaseFile": "door_1.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -1139,7 +1139,7 @@
             "posY": 200,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 2
+            "subtype": 105
         },
         {
             "alpha": 255,
@@ -1160,11 +1160,11 @@
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/items/",
             "height": 100,
-            "id": "805750846",
+            "id": "Door2",
             "isStatic": true,
-            "isStaticBaseFile": "doorSide.png",
+            "isStaticBaseFile": "door_1.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -1173,7 +1173,7 @@
             "posY": 200,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 2
+            "subtype": 105
         },
         {
             "alpha": 255,
@@ -1194,11 +1194,11 @@
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/items/",
             "height": 100,
-            "id": "1100661313",
+            "id": "Door3",
             "isStatic": true,
-            "isStaticBaseFile": "doorSideOpen.png",
+            "isStaticBaseFile": "door_1.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -1207,7 +1207,7 @@
             "posY": 200,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 2
+            "subtype": 105
         },
         {
             "alpha": 255,
@@ -1687,11 +1687,11 @@
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/items/",
             "height": 100,
-            "id": "278722862",
+            "id": "Button1",
             "isStatic": true,
-            "isStaticBaseFile": "buttonUnpressed.png",
+            "isStaticBaseFile": "button_unpressed_1.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -1700,7 +1700,24 @@
             "posY": 400,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 2
+            "subtype": 104
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/items/",
+            "height": 100,
+            "id": "BreakableWall",
+            "isStatic": true,
+            "isStaticBaseFile": "breakable_wall_1.png",
+            "isVisible": true,
+            "parent": "foreground",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 400,
+            "posY": 400,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 10
         },
         {
             "alpha": 255,
@@ -1708,7 +1725,7 @@
             "height": 100,
             "id": "233665123",
             "isStatic": true,
-            "isStaticBaseFile": "rock1.png",
+            "isStaticBaseFile": "sandTile.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -1723,9 +1740,26 @@
             "alpha": 255,
             "basePathFolder": "./resources/tiles/beachTiles/",
             "height": 100,
-            "id": "2145174067",
+            "id": "233665123",
             "isStatic": true,
-            "isStaticBaseFile": "buttonUnpressed.png",
+            "isStaticBaseFile": "sandTile.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 400,
+            "posY": 400,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 2
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/items/",
+            "height": 100,
+            "id": "Button2",
+            "isStatic": true,
+            "isStaticBaseFile": "button_unpressed_1.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -1734,7 +1768,24 @@
             "posY": 400,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 2
+            "subtype": 104
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/items/",
+            "height": 100,
+            "id": "BreakableWall",
+            "isStatic": true,
+            "isStaticBaseFile": "breakable_wall_1.png",
+            "isVisible": true,
+            "parent": "foreground",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 600,
+            "posY": 400,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 10
         },
         {
             "alpha": 255,
@@ -1742,7 +1793,7 @@
             "height": 100,
             "id": "468703135",
             "isStatic": true,
-            "isStaticBaseFile": "rock1.png",
+            "isStaticBaseFile": "sandTile.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -1755,11 +1806,11 @@
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/items/",
             "height": 100,
-            "id": "1101513929",
+            "id": "Button3",
             "isStatic": true,
-            "isStaticBaseFile": "buttonUnpressed.png",
+            "isStaticBaseFile": "button_unpressed_1.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -1768,7 +1819,7 @@
             "posY": 400,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 2
+            "subtype": 104
         },
         {
             "alpha": 255,
@@ -1874,11 +1925,11 @@
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/items/",
             "height": 100,
-            "id": "2089018456",
+            "id": "Door4",
             "isStatic": true,
-            "isStaticBaseFile": "doorVert.png",
+            "isStaticBaseFile": "door_1.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -1887,7 +1938,7 @@
             "posY": 400,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 2
+            "subtype": 105
         },
         {
             "alpha": 255,
@@ -2284,7 +2335,7 @@
             "alpha": 255,
             "basePathFolder": "./resources/npcs/",
             "height": 100,
-            "id": "excavator",
+            "id": "NPCExcavator",
             "isStatic": true,
             "isStaticBaseFile": "npc_base.png",
             "isVisible": true,

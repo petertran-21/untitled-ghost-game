@@ -59,6 +59,8 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 break;
             case ITEMPOUCH_SUBTYPE: // Item Pouch
                 unit = new ItemPouch(Collisioncontainer);
+                cout<<"foreground address: "<<foreground<<endl;
+                cout<<"SPRIET PARENT: "<<sprite["parent"]<<endl;
                 break;
             case SHRUB_SUBTYPE:
                 unit = new Shrub(Collisioncontainer);
@@ -86,6 +88,7 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 break;
             case NPCEXCAVATOR_SUBTYPE:
                 unit = new NPCExcavator(Collisioncontainer, foreground);
+                cout<<"foreground exc address: "<<foreground<<endl;
                 break;
             case NPCCOLLECTOR_SUBTYPE:
                 unit = new NPCCollector(Collisioncontainer, foreground);
@@ -147,9 +150,10 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 background->addChild(unit);
                 unit->parent = background;
             }   else if (sprite["parent"] == "foreground") {
-                //foreground->addChild(unit);
-                this->addChild(unit);
-                unit->parent = this;
+                foreground->addChild(unit);
+                unit->parent = foreground;
+                // this->addChild(unit);
+                // unit->parent = this;
                 cout << unit->subtype << endl;
             } else {
                 // Need to find parent object
