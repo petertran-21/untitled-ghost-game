@@ -26,11 +26,12 @@ void Log::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currSt
 }
 
 void Log::resolve_collision(DisplayObject *obj){
-    //on collide w/water --> sink
     
+    if (sunk || !chopped) return;
     if (obj->type == "Wall"){
         sunk = true;
-        cout << "SUNK" << endl;
+        position = obj->position;
+        obj->type = "";
     }
     
 }

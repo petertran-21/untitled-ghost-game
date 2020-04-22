@@ -11,7 +11,7 @@ class Arrow : public MainNPCObj{
     public:
         Arrow(SDL_Point pos, directions direction, DisplayObjectContainer* container, DisplayObjectContainer* allSprites);
         
-        int movespeed = 4;
+        int movespeed = 8;
         directions dir = S;
         int subtype = 15;
 

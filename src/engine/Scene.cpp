@@ -78,6 +78,9 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             case NPCARCHER_SUBTYPE:
                 unit = new NPCArcher(Collisioncontainer, foreground);
                 break;
+            case NPCSKELETON_SUBTYPE:
+                unit = new NPCSkeleton(Collisioncontainer, foreground);
+                break;
             case NPCOPERATOR_SUBTYPE:
                 unit = new NPCOperator(Collisioncontainer, foreground);
                 break;

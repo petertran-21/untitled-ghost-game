@@ -63,6 +63,7 @@ public:
 	void resolveCollision_SceneTrigger(DisplayObject* triggerObj);
 	void resolveCollision_Boss_NPCObj(DisplayObject* bossObj, DisplayObject* npcObj);
 	void resolveCollision_NPC_Wall(DisplayObject* npc, DisplayObject* wall);
+	void resolveCollision_NPCObj_Wall(DisplayObject* npcObj, DisplayObject* wall);
 
 	void resolveAdjacency_NPC_EnvObj(DisplayObject* npc, DisplayObject* envObj, int status);
 	void resolveAdjacency_NPC_NPCObj(DisplayObject* npc, DisplayObject* npcObj, int status);

@@ -5,7 +5,6 @@
 #include "Controller.h"
 #include "MainNPCObj.h"
 
-
 using namespace std;
 
 class Log : public MainNPCObj{
@@ -16,6 +15,7 @@ class Log : public MainNPCObj{
 
         bool sunk = false;
         bool chopped = false;
+        bool done = false;
         int subtype = 102;
 
         DisplayObjectContainer* collisionContainer;
