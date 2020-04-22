@@ -39,15 +39,6 @@ void Bridge::resolve_collision(DisplayObject *obj){
 
     Arrow *a = dynamic_cast<Arrow*>(obj);
     if (a){
-        cout << "HIT BY ARROW" << endl;
-        vector<DisplayObject*>::iterator arrowItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), obj);
-        if (arrowItr != this->collisionContainer->children.end()){
-
-            DisplayObjectContainer* npc = a->parent;
-            npc->removeImmediateChild(npc->children.at(0));
-            
-            this->collisionContainer->children.erase(arrowItr);
-        }
         open = true;
     }
     

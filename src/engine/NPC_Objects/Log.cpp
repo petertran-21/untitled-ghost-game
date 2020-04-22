@@ -27,12 +27,12 @@ void Log::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currSt
 
 void Log::resolve_collision(DisplayObject *obj){
     //on collide w/water --> sink
-    /*
-    if (obj->type == "Water"){
+    
+    if (obj->type == "Wall"){
         sunk = true;
         cout << "SUNK" << endl;
     }
-    */
+    
 }
 
 void Log::resolve_adjacency(DisplayObject *obj, int status){

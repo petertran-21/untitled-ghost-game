@@ -119,9 +119,9 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
 
 void CollisionSystem::watchForAdjacency(string type1, string type2) {
   for(int i = 0; i < inView.size(); i++) {
-    if (inView[i]->id == type1){
+    if (inView[i]->type == type1){
       for(int j = 0; j < inView.size(); j++) {
-        if (inView[j]->id == type2) {
+        if (inView[j]->type == type2) {
           int status = isAdjacentTo(inView[i], inView[j]);
           if ((type1 == "NPC" && type2 == "EnvObj")){
               resolveAdjacency_NPC_EnvObj(inView[i], inView[j], status);
