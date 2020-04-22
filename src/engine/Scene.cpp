@@ -47,7 +47,11 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 imgPath = sprite["basePathFolder"].get<std::string>() + sprite["isStaticBaseFile"].get<std::string>();
                 unit = new Sprite(sprite["id"].get<std::string>(), imgPath);
 
-                if (sprite["isStaticBaseFile"] == "ocean.png") {
+                if (sprite["isStaticBaseFile"] == "ocean.png" ||
+                    sprite["isStaticBaseFile"] == "water.png" ||
+                    sprite["isStaticBaseFile"] == "caveWall.png" ||
+                    sprite["isStaticBaseFile"] == "treeTop.png"
+                ){
                     unit->type = "Wall";
                     Collisioncontainer->addChild(unit);
                 }
@@ -68,6 +72,15 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             case NPCPYROMANCER_SUBTYPE:
                 unit = new NPCPyromancer(Collisioncontainer, foreground);
                 break;
+            case NPCLUMBERJACK_SUBTYPE:
+                unit = new NPCLumberjack(Collisioncontainer, foreground);
+                break;
+            case NPCARCHER_SUBTYPE:
+                unit = new NPCArcher(Collisioncontainer, foreground);
+                break;
+            case NPCSKELETON_SUBTYPE:
+                unit = new NPCSkeleton(Collisioncontainer, foreground);
+                break;
             case NPCOPERATOR_SUBTYPE:
                 unit = new NPCOperator(Collisioncontainer, foreground);
                 break;
@@ -78,7 +91,7 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 unit = new NPCCollector(Collisioncontainer, foreground);
                 break;
             case LOG_SUBTYPE:
-                unit = new Log();
+                unit = new Log(Collisioncontainer);
                 break;
             case BRIDGE_SUBTYPE:
                 unit = new Bridge(Collisioncontainer);

@@ -5,8 +5,13 @@
 using namespace std;
 
 NPCLumberjack::NPCLumberjack(DisplayObjectContainer* container, DisplayObjectContainer* allSprites) : MainNPC(){
-	this->addAnimation("../resources/npcs/", "npc_base", 1, 1, true);
-	this->play("npc_base");
+	this->addAnimation("./resources/npcs/lumberjack/", "lumberjack_idle", 1, 1, true, "idle");
+    this->addAnimation("./resources/npcs/lumberjack/", "lumberjack_forward", 6, 10, true, "forward");
+    this->addAnimation("./resources/npcs/lumberjack/", "lumberjack_left", 6, 10, true, "left'");
+    this->addAnimation("./resources/npcs/lumberjack/", "lumberjack_right", 6, 10, true, "right");
+    this->addAnimation("./resources/npcs/lumberjack/", "lumberjack_back", 6, 10, true, "back");
+
+	this->play("idle");
     this->collisionContainer = container;
     container->addChild(this);
     this->drawingContainer = allSprites;
@@ -46,24 +51,23 @@ void NPCLumberjack::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joy
 }
 
 void NPCLumberjack::resolve_adjacency(DisplayObject *obj, int status){
-    //if (status != 0) cout << "HELLO" << endl;
+    Log * l = dynamic_cast<Log*>(obj);
+    Bridge *b = dynamic_cast<Bridge*>(obj);
     
-    if (obj->getSubtype()==102 && chopping == true){
+    if (l && chopping == true){
 
         if (status != 0){
             chopping = false;
-            Log* l = (Log*) obj;
             l->chopped = true;
             return;
         }
         
     }
 
-    if (obj->getSubtype()==101 && chopping == true){
+    if (b && chopping == true){
 
         if (status != 0){
             chopping = false;
-            Bridge* b = (Bridge*) obj;
             b->open = true;
             return;
         }

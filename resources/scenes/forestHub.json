@@ -2063,6 +2063,23 @@
             "id": "pyromancer"
         },
         {
+            "isStatic": true, 
+            "parent": "foreground", 
+            "subtype": 21, 
+            "pivotX": 0, 
+            "pivotY": 0, 
+            "basePathFolder": "./resources/npcs/", 
+            "isStaticBaseFile": "npc_base.png", 
+            "width": 100, 
+            "posY": 400, 
+            "posX": 300, 
+            "isVisible": true, 
+            "alpha": 255, 
+            "rotation": 0.0, 
+            "height": 100, 
+            "id": "lumberjack"
+        }, 
+        {
             "id": "Ghost",
             "basePathFolder": "./resources/grendel/",
             "isStaticBaseFile": "Idle",

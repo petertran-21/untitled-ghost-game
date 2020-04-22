@@ -15,24 +15,16 @@ NPCArcher::NPCArcher(DisplayObjectContainer* container, DisplayObjectContainer* 
 
 	this->play("idle");
     this->collisionContainer = container;
+    container->addChild(this);
     this->drawingContainer = allSprites;
+    this->subtype = NPCARCHER_SUBTYPE;
 }
 
 void NPCArcher::state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
     if (state_new){
         cout << "STATE: ABILITY" << endl;
-        if (abilityPt.x != 0 || abilityPt.y != 0){
-            Arrow *arr = new Arrow(abilityPt, dir, this);
-            Arrow *arrCollision = new Arrow(abilityPt, dir, this);
-            this->addChild(arr);
-
-            //add to collision system container
-            arrCollision->position.x = this->position.x + arr->position.x;
-            arrCollision->position.y = this->position.y + arr->position.y;
-            arrCollision->movespeed = arr->movespeed*2;
-            this->collisionContainer->addChild(arrCollision);
-
-        }
+       
+        Arrow *arr = new Arrow(position, dir, this->collisionContainer, this->drawingContainer);
     }
     state_switch(npc_states::Possessed);
 }

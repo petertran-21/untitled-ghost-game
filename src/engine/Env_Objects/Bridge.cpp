@@ -12,6 +12,7 @@ Bridge::Bridge(DisplayObjectContainer* container) : MainEnvObj(){
 
 	this->play("bridge_closed");
     this->collisionContainer = container;
+    container->addChild(this);
 }
 
 void Bridge::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
@@ -19,7 +20,6 @@ void Bridge::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 
     if (open){
         this->play("bridge_open");
-        this->scaleX = 2;
     }
 }
 
@@ -39,15 +39,6 @@ void Bridge::resolve_collision(DisplayObject *obj){
 
     Arrow *a = dynamic_cast<Arrow*>(obj);
     if (a){
-        cout << "HIT BY ARROW" << endl;
-        vector<DisplayObject*>::iterator arrowItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), obj);
-        if (arrowItr != this->collisionContainer->children.end()){
-
-            DisplayObjectContainer* npc = a->parent;
-            npc->removeImmediateChild(npc->children.at(0));
-            
-            this->collisionContainer->children.erase(arrowItr);
-        }
         open = true;
     }
     

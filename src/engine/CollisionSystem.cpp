@@ -29,6 +29,7 @@ void CollisionSystem::update(){
   watchForCollisions("Ghost", "SceneTrigger");
   watchForCollisions("Boss", "NPCObj");
   watchForCollisions("NPC", "Wall");
+  watchForCollisions("NPCObj", "Wall");
 
   watchForAdjacency("NPC", "EnvObj");
   watchForAdjacency("NPC", "NPCObj");
@@ -92,6 +93,9 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
             else if ((type1 == "NPC") && (type2 == "Wall")){
               resolveCollision_NPC_Wall(inView[i], inView[j]);
             }
+            else if ((type1 == "NPCObj") && (type2 == "Wall")){
+              resolveCollision_NPCObj_Wall(inView[i], inView[j]);
+            }
             else{
               // resolveCollision(inView[i], inView[j],
               // inView[i]->position.x - inView[i]->lastNonCollidedPos.x + inView[i]->parent->position.x,
@@ -119,9 +123,9 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
 
 void CollisionSystem::watchForAdjacency(string type1, string type2) {
   for(int i = 0; i < inView.size(); i++) {
-    if (inView[i]->id == type1){
+    if (inView[i]->type == type1){
       for(int j = 0; j < inView.size(); j++) {
-        if (inView[j]->id == type2) {
+        if (inView[j]->type == type2) {
           int status = isAdjacentTo(inView[i], inView[j]);
           if ((type1 == "NPC" && type2 == "EnvObj")){
               resolveAdjacency_NPC_EnvObj(inView[i], inView[j], status);
@@ -685,6 +689,18 @@ void CollisionSystem::resolveCollision_Boss_NPCObj(DisplayObject* bossObj, Displ
   NPCObj->resolve_collision(bossObj);
 }
 
+void CollisionSystem::resolveCollision_NPC_Wall(DisplayObject* npc, DisplayObject* wall){
+  npc->resolve_collision(wall);
+}
+
+void CollisionSystem::resolveCollision_NPCObj_Wall(DisplayObject* npcObj, DisplayObject* wall){
+  npcObj->resolve_collision(wall);
+}
+
+
+
+//===============ADJACENCY
+
 void CollisionSystem::resolveAdjacency_NPC_EnvObj(DisplayObject* npc, DisplayObject* envObj, int status){
   npc->resolve_adjacency(envObj, status);
   envObj->resolve_adjacency(npc, status);
@@ -703,7 +719,4 @@ void CollisionSystem::resolveAdjacency_NPCObj_EnvObj(DisplayObject* NPCObj, Disp
 void CollisionSystem::resolveAdjacency_EnvObj_EnvObj(DisplayObject* envObj1, DisplayObject* envObj2, int status){
   envObj1->resolve_adjacency(envObj2, status);
   envObj2->resolve_adjacency(envObj1, status);
-}
-void CollisionSystem::resolveCollision_NPC_Wall(DisplayObject* npc, DisplayObject* wall){
-  npc->resolve_collision(wall);
 }

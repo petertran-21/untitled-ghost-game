@@ -2108,6 +2108,23 @@
             "height": 100, 
             "id": "questItem3"
         }, 
+        {
+            "isStatic": true, 
+            "parent": "foreground", 
+            "subtype": 29, 
+            "pivotX": 0, 
+            "pivotY": 0, 
+            "basePathFolder": "./resources/npcs/", 
+            "isStaticBaseFile": "npc_base.png", 
+            "width": 100, 
+            "posY": 200, 
+            "posX": 800, 
+            "isVisible": true, 
+            "alpha": 255, 
+            "rotation": 0.0, 
+            "height": 100, 
+            "id": "skeleton"
+        }, 
 
         {
             "id": "Ghost",
