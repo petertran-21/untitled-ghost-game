@@ -95,13 +95,14 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             /*--------------------------Beach--------------------------*/
             case VALVE_SUBTYPE:
                 cout<<"VALVE WAS MADE"<<endl;
-                unit = new Valve(Collisioncontainer, E);
+                unit = new Valve(Collisioncontainer, S);
                 break;
             case BUTTON_SUBTYPE:
                 unit = new Button(Collisioncontainer);
                 break;
             case DOOR_SUBTYPE:
                 unit = new Door(Collisioncontainer, background);
+                Collisioncontainer->addChild(unit);
                 pairedItems.push_back(unit);
                 break;
             case PIT_SUBTYPE:
@@ -122,7 +123,6 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 break;
             case NPCEXCAVATOR_SUBTYPE:
                 unit = new NPCExcavator(Collisioncontainer, foreground);
-                cout<<"foreground exc address: "<<foreground<<endl;
                 break;
             case NPCCOLLECTOR_SUBTYPE:
                 unit = new NPCCollector(Collisioncontainer, foreground);
@@ -148,7 +148,6 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
 
         if (unit != NULL) {
             unit->id = (string) sprite["id"];
-            cout<<"PLS "<<unit->id<<endl;
             unit->imgPath = sprite["basePathFolder"];
             unit->position.x = sprite["posX"];
             unit->position.y = sprite["posY"];
@@ -193,10 +192,10 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                     Door* door = (Door*) child;
                     button->add_door(door);
                     door->parent = button;
-                    cout<<"BUTTON SIZE NOW: "<<button->children.size()<<endl;
+                    cout<<"BUTTON SIZE NOW: "<<button->doors.size()<<endl;
                 }
             }
-            //remove door from background container
+            //remove door from original container
             vector<DisplayObject*>::iterator itr = find(background->children.begin(), background->children.end(), child);
             if (itr != background->children.end()){
                 background->children.erase(itr);
@@ -215,16 +214,21 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                     valve->add_jet(waterjet);
                     waterjet->parent = valve;
                     cout<<"VALVE SIZE NOW: "<<valve->jets.size()<<endl;
+                    break;
                 }
             }
-            //remove door from background container
+            //remove door from original container
             vector<DisplayObject*>::iterator itr = find(foreground->children.begin(), foreground->children.end(), child);
-            if (itr != background->children.end()){
+            if (itr != foreground->children.end()){
                 foreground->children.erase(itr);
             }
         }
     }
     pairedItems.clear();
+    // for (DisplayObject* obj: foreground->children){
+    //         string objID = obj->id;
+    //         cout<<"THAT: "<<obj->id<<" "<<obj->getSubtype()<<endl;
+    // }
 
     // Setting up parents
     for (auto it : needsParent){

@@ -229,8 +229,18 @@ void MainNPC::resolve_collision(DisplayObject *obj){
         if (br->open) return;
     }
 
+    //COLLIDES WITH DOOR
+    if (obj->getSubtype() == DOOR_SUBTYPE){
+        Door* d = dynamic_cast<Door*>(d);
+        cout<<"DORR EXISTS: "<<d->position.x<<" "<<d->position.y<<endl;
+        cout<<"NPC AT: "<<position.x<<" "<<position.y<<endl;
+        if (d->open) cout<<"IS OPEN"<<endl;
+    }
+
     // DEFAULT FOR COLLIDING WITH SOLIDS
+    // cout<<"Colliing wiht envObj"<<(obj&&(obj->type == "EnvObj"))<< " "<<(obj->type == "EnvObj")<<endl;
 	if (obj && (obj->type == "EnvObj" || obj->type == "Wall")){
+        // cout<<"COLLIDING WITH ENV"<<endl;
         //check that npcs are overlapping
         if ((position.y == obj->position.y) && (position.x == obj->position.x)){
             switch (dir){

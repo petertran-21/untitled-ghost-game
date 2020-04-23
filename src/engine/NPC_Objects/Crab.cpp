@@ -25,7 +25,7 @@ void Crab::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currS
         crab_timer++;
         walk();
         //reset timer and put crab at it's original location if timer maxed
-        if (crab_timer == crab_time_max){
+        if (crab_timer >= crab_time_max && (this->position.x == this->targetLoc.x) && (this->position.y == this->targetLoc.y)){
             touching_button = false;
             crab_timer = 0;
         }
@@ -74,12 +74,10 @@ void Crab::resolve_collision(DisplayObject *obj){
     // cout<<"Locations: "<<this->position.x<<"vs"<< (obj->position.x) <<" "<< this->position.y << "vs"<<(obj->position.y)<<" "<<(this->collected==false)<<endl;
     if (obj->getSubtype()==104 && (obj->position.x == this->position.x) && (obj->position.y == this->position.y)){
         if (this->collected==false){
-            cout<<"hit a button with the crab"<<endl;
             touching_button = true;
             Button* button = (Button*) obj;
             button->pressed = true;
         }
-
     }
 
 }

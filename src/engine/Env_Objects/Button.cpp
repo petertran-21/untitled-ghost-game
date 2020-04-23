@@ -29,18 +29,18 @@ void Button::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 void Button::resolve_collision(DisplayObject *obj){
     if (obj->getSubtype() == 16 && (pressed == true) && (obj->position.x == this->position.x) && (obj->position.x == this->position.x)){
         this->play("button_pressed");
-        cout<<"PRESSED BUTTON: "<<this->children.size()<<endl;
-        for (DisplayObject* obj: this->children){
+        cout<<"BUTTON AHS BEEN PRESSED YOLOO"<<this->doors.size()<<endl;
+        for (DisplayObject* obj: this->doors){
+            cout<<"door has been set to open"<<endl;
             Door* door = (Door*) obj;
             door->open = true;
         }
     }
     else{
         this->play("button_unpressed");
-        for (DisplayObject* obj: this->children){
+        for (DisplayObject* obj: this->doors){
             Door* door = (Door*) obj;
             door->open = false;
         }
     }
-    // cout<<<<endl;
 }
