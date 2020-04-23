@@ -40,7 +40,7 @@ class Particle : public DisplayObject
         static const int UPDATE_RATE = 10;
 
         //Effects the particle trail length when Ghost moves
-        static const int TRAIL_LENGTH = UPDATE_RATE * 4;
+        static const int TRAIL_LENGTH = UPDATE_RATE;
 };
 
 #endif

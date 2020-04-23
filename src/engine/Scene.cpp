@@ -118,8 +118,6 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             case GHOST_SUBTYPE:
                 unit = new Ghost();
                 partEmit = new ParticleEmitter();
-                partEmit->scaleX = 0.25;
-                partEmit->scaleY = 0.25;
                 unit->addChild(partEmit);
                 Collisioncontainer->addChild(unit);  
                 break;
