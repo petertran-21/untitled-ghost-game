@@ -30,7 +30,7 @@ class ParticleEmitter : public DisplayObjectContainer
         static const int TOTAL_PARTICLES = 20;
 
         //ParticleEmitter to parent ratio
-        const double PARENT_TO_EMITTER_RATIO = 0.7;
+        const double PARENT_TO_EMITTER_RATIO = 0.5;
 };
 
 #endif
