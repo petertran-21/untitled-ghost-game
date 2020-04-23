@@ -661,6 +661,7 @@ void CollisionSystem::resolveCollision_SceneTrigger(DisplayObject* triggerObj, D
   if (trigger->active){
     next->loadScene(trigger->scene_path, this->collisionContainer);
     maincam->changeScene(current, next);
+    
 
     //REMOVING COLLISION BOXES?
     DisplayObject* obj;
@@ -671,10 +672,15 @@ void CollisionSystem::resolveCollision_SceneTrigger(DisplayObject* triggerObj, D
     }
 
     //Fixes std::out_of_range vector issue when we were merging stuff
-    //Deletes Ghost
     inView.clear();
+    current->SaveScene();
 
     maincam->removeChild(0);
+
+    // Add Grendel to new scene
+    //next->addChild(ghost);
+    //ghost->position.x = 0;
+    //ghost->position.y = 0;
     maincam->addChild(next);
   }
 

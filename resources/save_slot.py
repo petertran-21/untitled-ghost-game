@@ -1,6 +1,6 @@
 import json
 
-filepath = 'Saves/Slot1/forestHub.json'
+filepath = 'Saves/Slot1/beachRoom1.json'
 with open(filepath, 'r') as json_file:
     data = json.load(json_file)
     for gameObject in data["sprites"]:

@@ -88,7 +88,7 @@ void Scene::saveScene(string sceneFilePath){
             {"rotation", sprite->rotation},
             {"width", sprite->width},
             {"height", sprite->height},
-            {"subtype", sprite->subtype}, 
+            {"subtype", sprite->subytpe}, 
         };
         string parent = "";
         if (sprite->parent != this){

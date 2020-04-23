@@ -40,6 +40,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	textboxTest = new TextBox(0, 400);
 	UIContainer->addChild(selectionMenuTest);
 	UIContainer->addChild(textboxTest);
+	
 }
 
 MyGame::~MyGame()

@@ -13,7 +13,6 @@ class BreakableWall : public MainEnvObj{
     public:
         BreakableWall(DisplayObjectContainer* container);
         void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
-        int subtype = 10;
 
         bool broken = false;
 
