@@ -52,8 +52,8 @@ void DisplayObject::loadTexture(string filepath){
 	}
 	
 	// *** setting width and height to image width and height interferes with spritesheet rendering ***
-	// width = image->w; 
-	// height = image->h;
+	width = image->w; 
+	height = image->h;
 	// ***
 	
 	setTexture(texture);
