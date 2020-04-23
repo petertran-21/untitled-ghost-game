@@ -36,13 +36,13 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
     foreground->parent = this;
     this->addChild(foreground);
 
+    vector<DisplayObject*> pairedItems;
     for (auto sprite : j["sprites"]){
         // Get sprite subtype
         DisplayObjectContainer* unit;
         std::string imgPath = ""; //Cannot declare variables in a switch
         ParticleEmitter* partEmit;
 
-        vector<DisplayObject*> pairedItems;
         switch((int)sprite["subtype"]) {
             case SPRITE_SUBTYPE: // Sprites (usually tiles)
                 imgPath = sprite["basePathFolder"].get<std::string>() + sprite["isStaticBaseFile"].get<std::string>();
@@ -94,8 +94,8 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 break;
             /*--------------------------Beach--------------------------*/
             case VALVE_SUBTYPE:
+                cout<<"VALVE WAS MADE"<<endl;
                 unit = new Valve(Collisioncontainer, E);
-                pairedItems.push_back(unit);
                 break;
             case BUTTON_SUBTYPE:
                 unit = new Button(Collisioncontainer);
@@ -115,6 +115,7 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 break;
             case WATERJET_SUBTYPE:
                 unit = new WaterJet(Collisioncontainer, foreground);
+                pairedItems.push_back(unit);
                 break;
             case NPCOPERATOR_SUBTYPE:
                 unit = new NPCOperator(Collisioncontainer, foreground);
@@ -146,7 +147,8 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
         }
 
         if (unit != NULL) {
-            unit->id = sprite["id"];
+            unit->id = (string) sprite["id"];
+            cout<<"PLS "<<unit->id<<endl;
             unit->imgPath = sprite["basePathFolder"];
             unit->position.x = sprite["posX"];
             unit->position.y = sprite["posY"];
@@ -157,6 +159,7 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             unit->rotation = sprite["rotation"];
             unit->width = sprite["width"];
             unit->height = sprite["height"];
+            unit->subtype = sprite["subtype"];
 
             if (sprite["parent"] == "") {
                 background->addChild(unit);
@@ -175,16 +178,21 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             parents[unit->id] = unit;
 
         }
+    }
+    cout<<"NUM IN PAIRED ITEMS: "<<pairedItems.size()<<endl;
     for (DisplayObject* child: pairedItems){
         string childID = child->id;
         if (childID.find("Door") != std::string::npos){
+            // cout<<"THIS: "<<childID<<endl;
             for (DisplayObject* obj: background->children){
                 string objID = obj->id;
+                // cout<<"THAT: "<<objID<<endl;
                 if (obj->getSubtype()==104 && (objID.back() == childID.back())){
+                    cout<<"RUNNING THROUGH THIS: "<<childID<<" "<<objID<<endl;
                     Button* button = (Button*) obj;
                     button->addChild(child);
                     child->parent = button;
-                    break;
+                    cout<<"BUTTON SIZE NOW: "<<button->children.size()<<endl;
                 }
             }
             //remove door from background container
@@ -193,10 +201,30 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 background->children.erase(itr);
             }
         }
+        cout<<"IDENTIFICATION: "<<childID<<endl;
+        if (childID.find("WaterJet") != std::string::npos){
+            // cout<<"THIS: "<<childID<<endl;
+            for (DisplayObject* obj: foreground->children){
+                string objID = obj->id;
+                // cout<<"THAT: "<<obj->id<<" "<<obj->getSubtype()<<" "<<(objID.back() == childID.back()) <<endl;
+                if ((obj->getSubtype()==12) && (objID.back() == childID.back())){
+                    cout<<"RUNNING THROUGH THIS: "<<childID<<" "<<objID<<endl;
+                    Valve* valve = (Valve*) obj;
+                    WaterJet* waterjet = (WaterJet*) child;
+                    valve->add_jet(waterjet);
+                    waterjet->parent = valve;
+                    cout<<"VALVE SIZE NOW: "<<valve->jets.size()<<endl;
+                }
+            }
+            //remove door from background container
+            vector<DisplayObject*>::iterator itr = find(foreground->children.begin(), foreground->children.end(), child);
+            if (itr != background->children.end()){
+                foreground->children.erase(itr);
+            }
+        }
     }
     pairedItems.clear();
 
-    }
     // Setting up parents
     for (auto it : needsParent){
         it.first->parent = parents[it.second];

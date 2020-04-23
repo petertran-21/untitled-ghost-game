@@ -25,6 +25,7 @@ void Button::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 void Button::resolve_collision(DisplayObject *obj){
     if (obj->getSubtype() == 16 && (pressed == true) && (obj->position.x == this->position.x) && (obj->position.x == this->position.x)){
         this->play("button_pressed");
+        cout<<"PRESSED BUTTON: "<<this->children.size()<<endl;
         for (DisplayObject* obj: this->children){
             Door* door = (Door*) obj;
             door->open = true;
@@ -37,4 +38,5 @@ void Button::resolve_collision(DisplayObject *obj){
             door->open = false;
         }
     }
+    // cout<<<<endl;
 }

@@ -27,12 +27,9 @@ void Crab::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currS
         //reset timer and put crab at it's original location if timer maxed
         if (crab_timer == crab_time_max){
             touching_button = false;
-            this->position = this->targetLoc;
             crab_timer = 0;
         }
     }
-    crab_timer = 0;
-    walk();
 }
 void Crab::walk(){
     if ((crab_timer % walk_speed == 0) && (this->position.x != this->targetLoc.x) && (this->position.y != this->targetLoc.y)){
@@ -75,16 +72,14 @@ void Crab::walk(){
 
 void Crab::resolve_collision(DisplayObject *obj){
     // cout<<"Locations: "<<this->position.x<<"vs"<< (obj->position.x) <<" "<< this->position.y << "vs"<<(obj->position.y)<<" "<<(this->collected==false)<<endl;
-    if (obj->getSubtype()==104){
-        //is a button
+    if (obj->getSubtype()==104 && (obj->position.x == this->position.x) && (obj->position.y == this->position.y)){
         if (this->collected==false){
+            cout<<"hit a button with the crab"<<endl;
             touching_button = true;
             Button* button = (Button*) obj;
             button->pressed = true;
         }
-        //will need to give button a door attribute
-        //change the door to be open 
-        //start a time for when crab starts moving to it's original X, Y location 
+
     }
 
 }
