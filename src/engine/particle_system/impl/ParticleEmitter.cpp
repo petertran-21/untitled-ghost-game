@@ -25,6 +25,10 @@ void ParticleEmitter::update( set<SDL_Scancode> pressedKeys, Controller::Joystic
     //Match parent dimensions
     if( parent != NULL )
     {
+        //Center with parent
+        position.x = (0 + parent->width) / 2;
+        position.y = (0 + parent->height) / 2;
+        
         width = parent->width * PARENT_TO_EMITTER_RATIO;
         height = parent->height * PARENT_TO_EMITTER_RATIO;
     }
