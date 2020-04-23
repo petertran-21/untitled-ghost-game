@@ -101,7 +101,7 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 unit = new Button(Collisioncontainer);
                 break;
             case DOOR_SUBTYPE:
-                unit = new Door(Collisioncontainer);
+                unit = new Door(Collisioncontainer, background);
                 pairedItems.push_back(unit);
                 break;
             case PIT_SUBTYPE:
@@ -190,8 +190,9 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 if (obj->getSubtype()==104 && (objID.back() == childID.back())){
                     cout<<"RUNNING THROUGH THIS: "<<childID<<" "<<objID<<endl;
                     Button* button = (Button*) obj;
-                    button->addChild(child);
-                    child->parent = button;
+                    Door* door = (Door*) child;
+                    button->add_door(door);
+                    door->parent = button;
                     cout<<"BUTTON SIZE NOW: "<<button->children.size()<<endl;
                 }
             }

@@ -24,7 +24,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	displayTreeDisp->addEventListener(collisionSystem, DOAddedEvent::DO_ADDED);
 	displayTreeDisp->addEventListener(collisionSystem, DORemovedEvent::DO_REMOVED);
 
-	scene_1->loadScene("./resources/scenes/beachBossC.json", container);
+	scene_1->loadScene("./resources/scenes/beachRoom3.json", container);
 
 	//---------------SCENE TRIGGER-------------------------
 	// SceneTrigger* beachTrigger = new SceneTrigger(container);
@@ -68,19 +68,6 @@ MyGame::MyGame() : Game(1000, 1000)
 	// container->addChild(b);
 	// b->position.x += 200;
 	// b->position.y += 200;
-
-	// Valve * v = new Valve(container);
-	// allSprites->addChild(v);
-	// container->addChild(v);
-	// v->position.x += 500;
-	// v->position.y += 300;
-
-	// WaterJet * w = new WaterJet(container, allSprites);
-	// allSprites->addChild(w);
-	// container->addChild(w);
-	// v->add_jet(w);
-	// w->position.x += 700;
-	// w->position.y += 100;
 
 	// Crab * c = new Crab();
 	// allSprites->addChild(c);

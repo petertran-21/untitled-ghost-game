@@ -12,7 +12,9 @@ WaterJet::WaterJet(DisplayObjectContainer *container, DisplayObjectContainer* dr
     this->addAnimation("./resources/items/", "water_jet", 1, 1, false);
 	this->play("water_jet");
     this->collisionContainer = container;
+    container->addChild(this);
     this->drawingContainer = drawContainer;
+    drawContainer->addChild(this);
     this->subtype = WATERJET_SUBTYPE;
 }
 

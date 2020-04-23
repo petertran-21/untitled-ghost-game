@@ -17,6 +17,10 @@ Button::Button(DisplayObjectContainer* container) : MainEnvObj(){
     container->addChild(this);
 }
 
+void Button::add_door(Door* d){
+    doors.push_back(d);
+}
+
 void Button::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
     MainEnvObj::update(pressedKeys, currState);
     this->play("button_unpressed");

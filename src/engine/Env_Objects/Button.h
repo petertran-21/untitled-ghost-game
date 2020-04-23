@@ -14,7 +14,9 @@ class Button : public MainEnvObj{
     public:
         Button(DisplayObjectContainer* container);
         void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
+        void add_door(Door* d);
         bool pressed = false;
+        vector<Door*> doors;
 
         void resolve_collision(DisplayObject *obj);
 
