@@ -36,5 +36,6 @@ void NPCPyromancer::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joy
 }
 
 void NPCPyromancer::resolve_collision(DisplayObject *obj){
+    MainNPC::resolve_collision(obj);
     MainNPC::resolve_collectible_collision(obj, this->collisionContainer, this->drawingContainer);
 }

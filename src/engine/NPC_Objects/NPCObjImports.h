@@ -3,3 +3,4 @@
 #include "Crab.h"
 #include "Log.h"
 #include "GemHolder.h"
+#include "Bark.h"

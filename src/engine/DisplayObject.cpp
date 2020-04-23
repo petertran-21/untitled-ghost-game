@@ -201,7 +201,6 @@ AffineTransform* DisplayObject::getGlobalTransform(AffineTransform* at){
 
 void DisplayObject::resolve_collision(DisplayObject *obj){
 	//implement in children
-	cout << "HELLO FROM DISPLAY OBJ COLLISION RESOLVE" << endl;
 }
 
 void DisplayObject::resolve_adjacency(DisplayObject* obj, int status){

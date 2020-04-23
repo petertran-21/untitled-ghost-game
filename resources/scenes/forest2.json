@@ -1022,23 +1022,6 @@
         }, 
         {
             "isStatic": true, 
-            "parent": "foreground", 
-            "subtype": 102, 
-            "pivotX": 0, 
-            "pivotY": 0, 
-            "basePathFolder": "./resources/tiles/forestTiles/", 
-            "isStaticBaseFile": "tree.png", 
-            "width": 300, 
-            "posY": 100, 
-            "posX": 800, 
-            "isVisible": true, 
-            "alpha": 255, 
-            "rotation": 0.0, 
-            "height": 300, 
-            "id": "tree59"
-        }, 
-        {
-            "isStatic": true, 
             "parent": "", 
             "subtype": 2, 
             "pivotX": 0, 
