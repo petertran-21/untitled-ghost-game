@@ -103,6 +103,8 @@ void DisplayObject::draw(AffineTransform &at){
 			flip = SDL_FLIP_HORIZONTAL;
 		}
 
+		SDL_SetTextureAlphaMod(curTexture, alpha);
+
 		if (sourceIsSet) {
 			SDL_RenderCopyEx(Game::renderer, curTexture, &srcrect, &dstrect, calculateRotation(origin, upperRight), &corner, flip);
 		} else {
