@@ -20,16 +20,16 @@ CollisionSystem::~CollisionSystem(){
 //checks collisions between pairs of DOs where the corresponding types have been requested
 //to be checked (via a single call to watchForCollisions) below.
 void CollisionSystem::update(){
-  watchForCollisions("NPC", "NPC");
   watchForCollisions("Ghost", "NPC");
-  watchForCollisions("NPCObj", "EnvObj");
+  watchForCollisions("Ghost", "SceneTrigger");
+  watchForCollisions("NPC", "NPC");
   watchForCollisions("NPC", "NPCObj");
   watchForCollisions("NPC", "EnvObj");
   watchForCollisions("NPC", "Collectible");
-  watchForCollisions("Ghost", "SceneTrigger");
-  watchForCollisions("Boss", "NPCObj");
   watchForCollisions("NPC", "Wall");
+  watchForCollisions("NPCObj", "EnvObj");
   watchForCollisions("NPCObj", "Wall");
+  watchForCollisions("Boss", "NPCObj");
 
   watchForAdjacency("NPC", "EnvObj");
   watchForAdjacency("NPC", "NPCObj");

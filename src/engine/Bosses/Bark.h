@@ -3,6 +3,7 @@
 #define BARK_SUBTYPE 109
 
 #include "MainNPCObj.h"
+#include "MainNPC.h"
 
 using namespace std;
 
@@ -16,6 +17,8 @@ class Bark : public MainNPCObj{
         DisplayObjectContainer* drawingContainer;
 
         int movespeed = 16;
+
+        void resolve_collision(DisplayObject* obj);
    
 };
 

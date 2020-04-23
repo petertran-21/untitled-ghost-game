@@ -5,7 +5,7 @@
 using namespace std;
 
 MainBoss::MainBoss() : AnimatedSprite("Boss"){
-    this->type = "boss";
+    this->type = "Boss";
 }
 
 void MainBoss::draw(AffineTransform &at){

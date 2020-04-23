@@ -18,6 +18,8 @@ MainNPC::MainNPC(DisplayObjectContainer* container, DisplayObjectContainer* allS
 void MainNPC::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
 	AnimatedSprite::update(pressedKeys, currState);
 
+    if (!is_possessed) state_switch(npc_states::Idle);
+
     MainNPC::state_execute(pressedKeys, currState);
 
     //cooldown on ability usage

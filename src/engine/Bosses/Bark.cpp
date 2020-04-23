@@ -22,7 +22,14 @@ Bark::Bark(SDL_Point pos, int angle, DisplayObjectContainer* container, DisplayO
 }
 
 void Bark::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
-    AnimatedSprite::update(pressedKeys, currState);
-    position.x = cos(rotation) * movespeed;
-    position.y = sin(rotation) * movespeed;
+    MainNPCObj::update(pressedKeys, currState);
+    position.x += cos(rotation) * movespeed;
+    position.y += sin(rotation) * movespeed;
+}
+
+void Bark::resolve_collision(DisplayObject* obj){
+    MainNPC * npc = dynamic_cast<MainNPC*>(obj);
+    if (npc){
+        npc->is_possessed = false;
+    }
 }
