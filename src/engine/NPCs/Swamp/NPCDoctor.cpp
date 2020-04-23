@@ -5,8 +5,13 @@
 using namespace std;
 
 NPCDoctor::NPCDoctor(DisplayObjectContainer* container, DisplayObjectContainer* allSprites) : MainNPC(){
-    this->addAnimation("../resources/npcs/", "npc_base", 2, 1, true);
-	this->play("npc_base");
+    this->addAnimation("./resources/npcs/doctor/", "doctor_idle", 1, 1, true, "idle");
+    this->addAnimation("./resources/npcs/doctor/", "doctor_forward", 6, 10, true, "forward");
+    this->addAnimation("./resources/npcs/doctor/", "doctor_left", 6, 10, true, "left'");
+    this->addAnimation("./resources/npcs/doctor/", "doctor_right", 6, 10, true, "right");
+    this->addAnimation("./resources/npcs/doctor/", "doctor_back", 6, 10, true, "back");
+
+	this->play("idle");
     this->collisionContainer = container;
     this->drawingContainer = allSprites;
 }

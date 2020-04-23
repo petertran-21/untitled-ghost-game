@@ -42,3 +42,7 @@ For referencing which number corresponds to each subtype of object due to C++ no
 107: Rock
 108: SceneTrigger
 109: Bark
+120: PoisonGas
+121: Boat
+122: Herb
+123: CraftStation
