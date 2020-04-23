@@ -41,3 +41,4 @@ For referencing which number corresponds to each subtype of object due to C++ no
 106: Pit
 107: Rock
 108: SceneTrigger
+109: Bark

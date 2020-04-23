@@ -35,7 +35,11 @@ void Wolf::state_attack(set<SDL_Scancode> pressedKeys, Controller::JoystickState
     if (state_new){
 		//anything that should happen once, right at the start of the state
 		cout << "WOLF STATE: ATTACK" << endl;
-
+        
+        //BARK
+        for (int i=0; i < 8; i++){
+            Bark *b = new Bark(position, (M_PI/4)*i, collisionContainer, drawingContainer);
+        }
         
 	}
 	//anything that should always run while in this state

@@ -27,6 +27,10 @@ void NPCSkeleton::update(set<SDL_Scancode> pressedKeys, Controller::JoystickStat
             alive = false;
             this->play("bones");
             this->grid_size = 0;
+
+            //eject ghost from  NPC
+            state_switch(npc_states::Idle);
+            is_possessed = false;
         }
         else life_timer++;
     }
