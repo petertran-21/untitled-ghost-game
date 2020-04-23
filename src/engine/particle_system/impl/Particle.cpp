@@ -8,23 +8,12 @@ Particle::Particle() : DisplayObject()
     horizontal_domain = 0;
     vertical_domain = 0;
     alpha = 120;
+    scaleX = 0.55;
+    scaleY = 0.55;
+    isTextureSet = false;
 
     //Randomize age so deaths occur async
     age = rand() % LIFE_SPAN;
-
-    //Load Ghost texture
-    this->loadTexture("./resources/particles/grendel_particle.png" );
-    scaleX = 0.55;
-    scaleY = 0.55;
-
-    //Randomly assign texture
-    // switch( rand() % 4 )
-    // {
-    //     case 0: this->loadTexture( "./resources/particles/red.bmp" ); break;
-    //     case 1: this->loadTexture( "./resources/particles/blue.bmp" ); break;
-    //     case 2: this->loadTexture( "./resources/particles/green.bmp" ); break;
-    //     case 3: this->loadTexture( "./resources/particles/shimmer.bmp" ); break;
-    // }
 }
 
 Particle::~Particle() 
@@ -78,5 +67,15 @@ void Particle::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState 
 
 void Particle::draw( AffineTransform &at )
 {
+    if( isTextureSet == false )
+    {
+        //Assign texture by type of grandparent
+        switch( parent->parent->subtype )
+        {
+            case GHOST_SUBTYPE: this->loadTexture("./resources/particles/grendel_particle.png" ); break;
+        }
+        isTextureSet = true;
+    }
+
     DisplayObject::draw( at );
 }

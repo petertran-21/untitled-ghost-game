@@ -42,6 +42,9 @@ class Particle : public DisplayObject
 
         //Effects the particle trail length when Ghost moves
         static const int TRAIL_LENGTH = UPDATE_RATE;
+
+        //Allows us to check before loading texture
+        bool isTextureSet;
 };
 
 #endif
