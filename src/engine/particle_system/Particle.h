@@ -3,6 +3,7 @@
 
 #include "DisplayObject.h"
 #include "Controls.h"
+#include "Ghost.h"
 
 using namespace std;
 

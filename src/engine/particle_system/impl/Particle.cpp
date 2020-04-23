@@ -39,29 +39,25 @@ void Particle::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState 
     //Update age
     age++;
 
-    /**
-     * SUFFICIENT FOR DEMO
-     * 
-     * Creates a trailing effect when the Ghost moves.
-     * It works great but need to find a better way b/c
-     * this would move all particles on the screen, not
-     * just the ones on the Ghost.
-     */
-    if( Controls::holdLeft( pressedKeys, currState ) )
+    //Creates a trailing effect when the Ghost moves.
+    if( parent->parent->subtype == GHOST_SUBTYPE )
     {
-        position.x += TRAIL_LENGTH;
-    }
-    if( Controls::holdRight( pressedKeys, currState ) )
-    {
-        position.x -= TRAIL_LENGTH;
-    }
-    if ( Controls::holdUp( pressedKeys, currState ) )
-    {
-        position.y += TRAIL_LENGTH;
-    }
-    if ( Controls::holdDown( pressedKeys, currState ) )
-    {
-        position.y -= TRAIL_LENGTH;
+        if( Controls::holdLeft( pressedKeys, currState ) )
+        {
+            position.x += TRAIL_LENGTH;
+        }
+        if( Controls::holdRight( pressedKeys, currState ) )
+        {
+            position.x -= TRAIL_LENGTH;
+        }
+        if ( Controls::holdUp( pressedKeys, currState ) )
+        {
+            position.y += TRAIL_LENGTH;
+        }
+        if ( Controls::holdDown( pressedKeys, currState ) )
+        {
+            position.y -= TRAIL_LENGTH;
+        }
     }
 
     //Frequency of updates
