@@ -42,6 +42,7 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
         std::string imgPath = ""; //Cannot declare variables in a switch
         ParticleEmitter* partEmit;
 
+        vector<DisplayObject*> pairedItems;
         switch((int)sprite["subtype"]) {
             case SPRITE_SUBTYPE: // Sprites (usually tiles)
                 imgPath = sprite["basePathFolder"].get<std::string>() + sprite["isStaticBaseFile"].get<std::string>();
@@ -94,18 +95,20 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             /*--------------------------Beach--------------------------*/
             case VALVE_SUBTYPE:
                 unit = new Valve(Collisioncontainer, E);
+                pairedItems.push_back(unit);
                 break;
             case BUTTON_SUBTYPE:
                 unit = new Button(Collisioncontainer);
                 break;
             case DOOR_SUBTYPE:
                 unit = new Door(Collisioncontainer);
+                pairedItems.push_back(unit);
                 break;
             case PIT_SUBTYPE:
                 unit = new Pit(Collisioncontainer);
                 break;
             case CRAB_SUBTYPE:
-                unit = new Crab(Collisioncontainer);
+                unit = new Crab(Collisioncontainer, sprite["posX"], sprite["posY"]);
                 break;
             case BREAKABLEWALL_SUBTYPE:
                 unit = new BreakableWall(Collisioncontainer);
@@ -163,7 +166,7 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 unit->parent = foreground;
                 // this->addChild(unit);
                 // unit->parent = this;
-                cout << unit->subtype << endl;
+                // cout << unit->subtype << endl;
             } else {
                 // Need to find parent object
                 needsParent[unit] = sprite["parent"];
@@ -172,6 +175,26 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             parents[unit->id] = unit;
 
         }
+    for (DisplayObject* child: pairedItems){
+        string childID = child->id;
+        if (childID.find("Door") != std::string::npos){
+            for (DisplayObject* obj: background->children){
+                string objID = obj->id;
+                if (obj->getSubtype()==104 && (objID.back() == childID.back())){
+                    Button* button = (Button*) obj;
+                    button->addChild(child);
+                    child->parent = button;
+                    break;
+                }
+            }
+            //remove door from background container
+            vector<DisplayObject*>::iterator itr = find(background->children.begin(), background->children.end(), child);
+            if (itr != background->children.end()){
+                background->children.erase(itr);
+            }
+        }
+    }
+    pairedItems.clear();
 
     }
     // Setting up parents
