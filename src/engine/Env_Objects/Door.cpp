@@ -14,7 +14,9 @@ Door::Door(DisplayObjectContainer* container, DisplayObjectContainer* drawContai
     this->collisionContainer = container;
     container->addChild(this);
     this->drawingContainer = drawContainer;
-    drawContainer->addChild(this);
+    //drawContainer->addChild(this);
+
+    this->drawBox = true;
 }
 
 void Door::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){

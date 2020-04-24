@@ -101,8 +101,8 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 unit = new Button(Collisioncontainer);
                 break;
             case DOOR_SUBTYPE:
-                unit = new Door(Collisioncontainer, background);
-                Collisioncontainer->addChild(unit);
+                unit = new Door(Collisioncontainer, foreground);
+                //Collisioncontainer->addChild(unit);
                 pairedItems.push_back(unit);
                 break;
             case PIT_SUBTYPE:
@@ -183,7 +183,7 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
         string childID = child->id;
         if (childID.find("Door") != std::string::npos){
             // cout<<"THIS: "<<childID<<endl;
-            for (DisplayObject* obj: background->children){
+            for (DisplayObject* obj: foreground->children){
                 string objID = obj->id;
                 // cout<<"THAT: "<<objID<<endl;
                 if (obj->getSubtype()==104 && (objID.back() == childID.back())){
@@ -191,14 +191,9 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                     Button* button = (Button*) obj;
                     Door* door = (Door*) child;
                     button->add_door(door);
-                    door->parent = button;
+                    //door->parent = button;
                     cout<<"BUTTON SIZE NOW: "<<button->doors.size()<<endl;
                 }
-            }
-            //remove door from original container
-            vector<DisplayObject*>::iterator itr = find(background->children.begin(), background->children.end(), child);
-            if (itr != background->children.end()){
-                background->children.erase(itr);
             }
         }
         cout<<"IDENTIFICATION: "<<childID<<endl;
@@ -212,16 +207,16 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                     Valve* valve = (Valve*) obj;
                     WaterJet* waterjet = (WaterJet*) child;
                     valve->add_jet(waterjet);
-                    waterjet->parent = valve;
+                    //waterjet->parent = valve;
                     cout<<"VALVE SIZE NOW: "<<valve->jets.size()<<endl;
                     break;
                 }
             }
-            //remove door from original container
-            vector<DisplayObject*>::iterator itr = find(foreground->children.begin(), foreground->children.end(), child);
-            if (itr != foreground->children.end()){
-                foreground->children.erase(itr);
-            }
+            // //remove door from original container
+            // vector<DisplayObject*>::iterator itr = find(foreground->children.begin(), foreground->children.end(), child);
+            // if (itr != foreground->children.end()){
+            //     foreground->children.erase(itr);
+            // }
         }
     }
     pairedItems.clear();
