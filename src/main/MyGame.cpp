@@ -128,16 +128,6 @@ MyGame::MyGame() : Game(1000, 1000)
 	UIContainer->addChild(selectionMenuTest);
 	UIContainer->addChild(textboxTest);
 
-	// FOR CAMERA WORK
-	// Identify player from the devtool.
-	for (auto child: static_cast<DisplayObjectContainer*>(camera->getChild(0))->children){
-		if (child->getSubtype() == 4){
-			player = static_cast<Ghost*>(child);
-			camera->getChild(0)->position.x = player->position.x;
-			camera->getChild(0)->position.y = player->position.y + 200;
-			break;
-		}
-	}
 }
 
 MyGame::~MyGame()
@@ -168,18 +158,6 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 		if (pressedKeys.find(SDL_SCANCODE_M) != pressedKeys.end()){
 			camera->getChild(0)->scaleX *= 1.1;
 			camera->getChild(0)->scaleY *= 1.1;
-		}
-		if (pressedKeys.find(SDL_SCANCODE_A) != pressedKeys.end()){
-			camera->getChild(0)->position.x += 12;
-		}
-		if (pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end()){
-			camera->getChild(0)->position.x -= 12;
-		}
-		if (pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end()){
-			camera->getChild(0)->position.y += 12;
-		}
-		if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end()){
-			camera->getChild(0)->position.y -= 12;
 		}
 	}
 

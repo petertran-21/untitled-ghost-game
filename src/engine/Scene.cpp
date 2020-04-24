@@ -7,14 +7,21 @@
 #include "Ghost.h"
 #include "particle_system/ParticleEmitter.h"
 #include "BossImports.h"
+#include "Camera.h"
 
 Scene::Scene() : DisplayObjectContainer()
 {
+    type = "Scene";
+    ghost = NULL;
+    isGhostSentToCamera = false;
     isActive = true;
 }
 
 Scene::~Scene()
 {
+    type = "Scene";
+    ghost = NULL;
+    isGhostSentToCamera = false;
     isActive = false;
 }
 
@@ -119,7 +126,11 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 unit = new Ghost();
                 partEmit = new ParticleEmitter();
                 unit->addChild(partEmit);
-                Collisioncontainer->addChild(unit);  
+                Collisioncontainer->addChild(unit);
+
+                //Part of Camera tracking Ghost pipeline
+                this->ghost = (Ghost*) unit;
+
                 break;
             case SCENE_TRIGGER_SUBTYPE:
                 unit = new SceneTrigger(Collisioncontainer, sprite["scene_path"]);     
@@ -169,7 +180,22 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
 
 }
 
-void Scene::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
+void Scene::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState)
+{
+    //Part of Camera tracking Ghost pipeline
+    if (isGhostSentToCamera == false )
+    {
+        if (this->parent != NULL) 
+        {
+            if (this->parent->type == "Camera")
+            {
+                Camera* camera = (Camera*) this->parent;
+                camera->setGhost(this->ghost);
+                isGhostSentToCamera = true;
+            }
+        }
+    }
+
     DisplayObjectContainer::update(pressedKeys, currState);
 }
 
