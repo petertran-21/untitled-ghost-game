@@ -12,12 +12,16 @@
 Scene::Scene() : DisplayObjectContainer()
 {
     type = "Scene";
+    ghost = NULL;
+    isGhostSentToCamera = false;
     isActive = true;
 }
 
 Scene::~Scene()
 {
     type = "Scene";
+    ghost = NULL;
+    isGhostSentToCamera = false;
     isActive = false;
 }
 
@@ -126,12 +130,9 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 unit->addChild(partEmit);
                 Collisioncontainer->addChild(unit);
 
-                //Allows the camera to track the Ghost
-                if (this->parent->type == "Camera") 
-                {
-                    Camera* camera = (Camera*) this->parent;
-                    camera->setGhost((Ghost*) unit);
-                }
+                //Part of Camera tracking Ghost pipeline
+                this->ghost = (Ghost*) unit;
+
                 break;
             case SCENE_TRIGGER_SUBTYPE:
                 unit = new SceneTrigger(Collisioncontainer, sprite["scene_path"]);     
@@ -181,7 +182,22 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
 
 }
 
-void Scene::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
+void Scene::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState)
+{
+    //Part of Camera tracking Ghost pipeline
+    if (isGhostSentToCamera == false )
+    {
+        if (this->parent != NULL) 
+        {
+            if (this->parent->type == "Camera")
+            {
+                Camera* camera = (Camera*) this->parent;
+                camera->setGhost(this->ghost);
+                isGhostSentToCamera = true;
+            }
+        }
+    }
+
     DisplayObjectContainer::update(pressedKeys, currState);
 }
 

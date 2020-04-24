@@ -26,25 +26,27 @@ void Camera::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
     if( this->getChild(0)->type == "Scene" )
     {
         Scene* scene = (Scene*) this->getChild(0);
-        float velocity = this->ghost->movespeed;
-        int windowWidth = 1000;
-        int windowHeight = 1000;
-        int minDist = 200;
         if( this->ghost != NULL )
         {
+            float velocity = this->ghost->movespeed;
+            int windowWidth = 1000;
+            int windowHeight = 1000;
+            int minDistWidth = windowWidth / 2;
+            int minDistHeight = windowHeight / 2;
+
             int xDiff = abs(abs(scene->position.x)-abs(this->ghost->position.x));
             int xTotal = abs(abs(scene->position.x + this->ghost->position.x) - windowWidth);
 
             if (pressedKeys.find(SDL_SCANCODE_A) != pressedKeys.end())
             {
-                if(xDiff <= minDist)
+                if(xDiff <= minDistWidth)
                 {
                     scene->position.x += velocity;
                 }
             }
             if (pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end())
             {
-                if (xTotal <= minDist + 100)
+                if (xTotal <= minDistWidth + 100)
                 {
                     scene->position.x -= velocity;
                 }
@@ -55,14 +57,14 @@ void Camera::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
             
             if (pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end())
             {
-                if(yDiff <= minDist)
+                if(yDiff <= minDistHeight)
                 {
                     scene->position.y += velocity;
                 }
             }
             if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end())
             {
-                if (yTotal <= minDist + 250)
+                if (yTotal <= minDistHeight + 250)
                 {
                     scene->position.y -= velocity;
                 }
