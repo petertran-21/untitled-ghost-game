@@ -127,6 +127,9 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 unit = new SceneTrigger(Collisioncontainer, sprite["scene_path"]);     
                 Collisioncontainer->addChild(unit);        
                 break;
+            case SNAKE_SUBTYPE:
+                unit = new Snake(Collisioncontainer, foreground);
+                break;
 
         }
 

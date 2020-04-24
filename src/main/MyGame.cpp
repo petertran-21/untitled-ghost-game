@@ -36,12 +36,11 @@ MyGame::MyGame() : Game(1000, 1000)
 	//-----------------------------------------------------
 
 	//----------------------SNAKE BOSS-----------0---------
-	Snake* s = new Snake(container, allSprites);
-	s->position.x = 700;
-	s->position.y = 200;
-	allSprites->addChild(s);
-	container->addChild(s);
-
+	// Snake* s = new Snake(container, allSprites);
+	// s->position.x = 700;
+	// s->position.y = 200;
+	// allSprites->addChild(s);
+	// container->addChild(s);
 	//-----------------------------------------------------
 
 
