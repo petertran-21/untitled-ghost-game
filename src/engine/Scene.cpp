@@ -7,14 +7,17 @@
 #include "Ghost.h"
 #include "particle_system/ParticleEmitter.h"
 #include "BossImports.h"
+#include "Camera.h"
 
 Scene::Scene() : DisplayObjectContainer()
 {
+    type = "Scene";
     isActive = true;
 }
 
 Scene::~Scene()
 {
+    type = "Scene";
     isActive = false;
 }
 
@@ -121,7 +124,14 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 partEmit->scaleX = 0.25;
                 partEmit->scaleY = 0.25;
                 unit->addChild(partEmit);
-                Collisioncontainer->addChild(unit);  
+                Collisioncontainer->addChild(unit);
+
+                //Allows the camera to track the Ghost
+                if (this->parent->type == "Camera") 
+                {
+                    Camera* camera = (Camera*) this->parent;
+                    camera->setGhost((Ghost*) unit);
+                }
                 break;
             case SCENE_TRIGGER_SUBTYPE:
                 unit = new SceneTrigger(Collisioncontainer, sprite["scene_path"]);     
