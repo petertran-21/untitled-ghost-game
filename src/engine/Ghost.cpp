@@ -207,6 +207,7 @@ void Ghost::draw(AffineTransform &at){
 //STATE MACHINE METHODS
 void Ghost::state_switch(ghost_states new_state){
     if (state != new_state){
+		cout << "Switching State" << endl;
         state_new = true;
         state = new_state;
         state_updated = true;

@@ -4400,7 +4400,7 @@
             "pivotX": 0,
             "pivotY": 0,
             "posX": 200,
-            "posY": 101,
+            "posY": 200,
             "rotation": 0.0,
             "subtype": 4,
             "width": 100
@@ -4431,7 +4431,7 @@
             "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
-            "posX": -400,
+            "posX": -100,
             "posY": 200,
             "rotation": 0.0,
             "subtype": 19,

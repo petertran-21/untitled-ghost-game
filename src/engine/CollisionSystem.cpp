@@ -673,14 +673,34 @@ void CollisionSystem::resolveCollision_SceneTrigger(DisplayObject* triggerObj, D
 
     //Fixes std::out_of_range vector issue when we were merging stuff
     inView.clear();
+    
+    if (ghost->getIsPosessing() && ghost->npc != NULL) {
+      MainNPC* npc = ghost->npc;
+      for (int i = 0; i < current->numChildren(); i++){
+        if (npc->id == current->getChild(i)->id){
+          cout << "erasing " + npc->id << endl;
+          current->children.erase(current->children.begin() + i);
+        }
+      }
+      npc->parent = next;
+      next->addChild(npc);
+      collisionContainer->addChild(npc);
+      cout << "Crossing NPC:" << npc->getSubtype() << endl;
+      
+      for (int i = 0; i < next->numChildren(); i++){
+        if (next->getChild(i)->getSubtype() == GHOST_SUBTYPE){
+          npc->position = next->getChild(i)->position;
+          Ghost* new_ghost = dynamic_cast<Ghost*>(next->getChild(i));
+          new_ghost->npc = npc;
+          new_ghost->npc->is_possessed = true;
+          new_ghost->setIsPossessing(true);
+          new_ghost->state_switch(ghost_states::Possessing);
+        }
+      }
+    }
     current->SaveScene();
 
     maincam->removeChild(0);
-
-    // Add Grendel to new scene
-    //next->addChild(ghost);
-    //ghost->position.x = 0;
-    //ghost->position.y = 0;
     maincam->addChild(next);
   }
 

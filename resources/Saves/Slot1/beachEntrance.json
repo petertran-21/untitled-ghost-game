@@ -1772,6 +1772,22 @@
         },
         {
             "alpha": 255,
+            "basePathFolder": "./resources/items/",
+            "height": 100,
+            "id": "BreakableWall",
+            "isStatic": true,
+            "isVisible": true,
+            "parent": "foreground",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 200,
+            "posY": 200,
+            "rotation": 0.0,
+            "subtype": 10,
+            "width": 100
+        },
+        {
+            "alpha": 255,
             "basePathFolder": "./resources/npcs/",
             "height": 100,
             "id": "NPCExcavator",
@@ -1781,7 +1797,7 @@
             "pivotX": 0,
             "pivotY": 0,
             "posX": 500,
-            "posY": 400,
+            "posY": 300,
             "rotation": 0.0,
             "subtype": 19,
             "width": 100

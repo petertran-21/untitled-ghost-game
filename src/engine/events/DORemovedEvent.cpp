@@ -25,6 +25,7 @@ void DORemovedEvent::checkCondition(){
   //TODO: check that it removed
   // cout<<"RUNNING REMOVE EVENT CONDITION"<<endl;
   if (this->DTNumChildren > displayTree->children.size()) {
+    cout << "Removing " << this->recentlyRemoved->id << endl; 
     this->getSource()->dispatchEvent(this);
     this->DTNumChildren = displayTree->children.size();
   }

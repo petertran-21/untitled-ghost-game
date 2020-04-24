@@ -35,6 +35,7 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
     this->addChild(background);
 
     foreground->parent = this;
+    foreground->id = "foreground";
     this->addChild(foreground);
 
     for (auto sprite : j["sprites"]){
@@ -136,6 +137,7 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 unit->parent = background;
             }   else if (sprite["parent"] == "foreground") {
                 //foreground->addChild(unit);
+                //unit->parent = foreground;
                 this->addChild(unit);
                 unit->parent = this;
                 cout << unit->subtype << endl;
@@ -156,7 +158,7 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
         //cout << it.second << endl;
         parents[it.second]->addChild(it.first);
     }
-
+    cout << "Scene Loaded" << endl;
 }
 
 void Scene::SaveScene(){
@@ -168,8 +170,8 @@ void Scene::SaveScene(){
         int subtype = j["sprites"].at(index)["subtype"];
         
         if (subtype != SPRITE_SUBTYPE && subtype != SCENE_TRIGGER_SUBTYPE && subtype != DISPLAYOBJECTCONTAINER_SUBTYPE && subtype != GHOST_SUBTYPE){
+            cout << "Save Scene Erasing" << j["sprites"].at(index)["id"] << endl;
             j["sprites"].erase(j["sprites"].begin() + index);
-            cout << index << endl;
             index--;
         }
     }

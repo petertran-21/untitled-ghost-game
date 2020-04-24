@@ -2023,6 +2023,22 @@
             "rotation": 0.0,
             "subtype": 451,
             "width": 100
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/npcs/",
+            "height": 100,
+            "id": "861021530",
+            "isStatic": true,
+            "isVisible": true,
+            "parent": "foreground",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 100,
+            "posY": 300,
+            "rotation": 0.0,
+            "subtype": 19,
+            "width": 100
         }
     ]
 }
