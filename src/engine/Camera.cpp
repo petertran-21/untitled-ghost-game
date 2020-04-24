@@ -31,8 +31,10 @@ void Camera::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
             float velocity = this->ghost->movespeed;
             int windowWidth = 1000;
             int windowHeight = 1000;
-            int minDistWidth = windowWidth / 2;
-            int minDistHeight = windowHeight / 2;
+            // int minDistWidth = windowWidth / 2;
+            // int minDistHeight = windowHeight / 2;
+            int minDistWidth = 250;
+            int minDistHeight = 250;
 
             int xDiff = abs(abs(scene->position.x)-abs(this->ghost->position.x));
             int xTotal = abs(abs(scene->position.x + this->ghost->position.x) - windowWidth);
