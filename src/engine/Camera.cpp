@@ -55,7 +55,7 @@ void Camera::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
                 }
             }
 
-            int yDiff = abs(abs(scene->position.y)-abs(this->ghost->position.y));
+            int yDiff = abs(scene->position.y + this->ghost->position.y);
             int yTotal = abs(abs(scene->position.y + this->ghost->position.y) - windowHeight);
             
             if (pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end())
