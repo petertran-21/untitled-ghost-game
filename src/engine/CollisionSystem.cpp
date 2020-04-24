@@ -684,7 +684,6 @@ void CollisionSystem::resolveCollision_SceneTrigger(DisplayObject* triggerObj, D
       }
       npc->parent = next;
       next->addChild(npc);
-      collisionContainer->addChild(npc);
       cout << "Crossing NPC:" << npc->getSubtype() << endl;
       
       for (int i = 0; i < next->numChildren(); i++){
@@ -698,6 +697,7 @@ void CollisionSystem::resolveCollision_SceneTrigger(DisplayObject* triggerObj, D
         }
       }
     }
+    cout << "Saving Scene" << endl;
     current->SaveScene();
 
     maincam->removeChild(0);
