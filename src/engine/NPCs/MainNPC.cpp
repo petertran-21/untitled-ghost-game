@@ -15,11 +15,6 @@ MainNPC::MainNPC(DisplayObjectContainer* container, DisplayObjectContainer* allS
     this->drawingContainer = allSprites;
 }
 
-MainNPC::MainNPC(Scene* currScene) : AnimatedSprite("NPC"){
-    this->type = "NPC";
-    this->currScene = currScene;
-}
-
 void MainNPC::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
 	AnimatedSprite::update(pressedKeys, currState);
 

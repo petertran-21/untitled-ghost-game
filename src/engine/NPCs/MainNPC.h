@@ -8,7 +8,6 @@
 #include "EnvObjImports.h"
 #include "CollectiblesImports.h"
 #include "NPCObjImports.h"
-#include "Scene.h"
 
 using namespace std;
 
@@ -19,7 +18,6 @@ class MainNPC : public AnimatedSprite{
     public:
         MainNPC();
         MainNPC(DisplayObjectContainer* container, DisplayObjectContainer* allSprites);
-        MainNPC(Scene* currScene);
         virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 	    virtual void draw(AffineTransform &at);
         //virtual void onCollision(DisplayObject* other);
@@ -54,7 +52,6 @@ class MainNPC : public AnimatedSprite{
         virtual void resolve_collectible_collision(DisplayObject *obj, DisplayObjectContainer* collideContainer, DisplayObjectContainer* drawContainer);
         DisplayObjectContainer* collisionContainer;
         DisplayObjectContainer* drawingContainer;
-        Scene* currScene;
    
 };
 
