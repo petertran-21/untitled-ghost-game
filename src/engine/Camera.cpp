@@ -29,12 +29,13 @@ void Camera::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
         if( this->ghost != NULL )
         {
             float velocity = this->ghost->movespeed;
+            bool reversed = this->ghost->reverse_controls;
             int windowWidth = 1000;
             int windowHeight = 1000;
             // int minDistWidth = windowWidth / 2;
             // int minDistHeight = windowHeight / 2;
-            int minDistWidth = 250;
-            int minDistHeight = 250;
+            int minDistWidth = 100;
+            int minDistHeight = 100;
 
             int xDiff = abs(abs(scene->position.x)-abs(this->ghost->position.x));
             int xTotal = abs(abs(scene->position.x + this->ghost->position.x) - windowWidth);
@@ -48,7 +49,7 @@ void Camera::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
             }
             if (pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end())
             {
-                if (xTotal <= minDistWidth + 50)
+                if (xTotal <= minDistWidth + 100)
                 {
                     scene->position.x -= velocity;
                 }
@@ -66,7 +67,7 @@ void Camera::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
             }
             if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end())
             {
-                if (yTotal <= minDistHeight + 100)
+                if (yTotal <= minDistHeight + 250)
                 {
                     scene->position.y -= velocity;
                 }
