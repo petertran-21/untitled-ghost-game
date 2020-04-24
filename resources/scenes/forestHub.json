@@ -2080,6 +2080,23 @@
             "id": "lumberjack"
         }, 
         {
+            "isStatic": true, 
+            "parent": "foreground", 
+            "subtype": 5, 
+            "pivotX": 0, 
+            "pivotY": 0, 
+            "basePathFolder": "./resources/bosses/", 
+            "isStaticBaseFile": "dragon_idle.png", 
+            "width": 100, 
+            "posY": 0, 
+            "posX": 700, 
+            "isVisible": true, 
+            "alpha": 255, 
+            "rotation": 0.0, 
+            "height": 100, 
+            "id": "dragon"
+        }, 
+        {
             "id": "Ghost",
             "basePathFolder": "./resources/grendel/",
             "isStaticBaseFile": "Idle",
