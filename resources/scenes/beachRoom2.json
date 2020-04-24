@@ -958,7 +958,7 @@
             "alpha": 255,
             "basePathFolder": "./resources/animals/",
             "height": 100,
-            "id": "1911759956",
+            "id": "Crab",
             "isStatic": true,
             "isStaticBaseFile": "crab.png",
             "isVisible": true,
@@ -1009,7 +1009,7 @@
             "alpha": 255,
             "basePathFolder": "./resources/npcs/",
             "height": 100,
-            "id": "collector",
+            "id": "NPCCollector",
             "isStatic": true,
             "isStaticBaseFile": "npc_base.png",
             "isVisible": true,
@@ -1704,11 +1704,11 @@
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/items/",
             "height": 100,
-            "id": "1469348094",
+            "id": "Button1A",
             "isStatic": true,
-            "isStaticBaseFile": "buttonUnpressed.png",
+            "isStaticBaseFile": "button_unpressed_1.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -1717,7 +1717,7 @@
             "posY": 400,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 2
+            "subtype": 104
         },
         {
             "alpha": 255,
@@ -3013,11 +3013,11 @@
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/items/",
             "height": 100,
-            "id": "387346491",
+            "id": "Button2A",
             "isStatic": true,
-            "isStaticBaseFile": "buttonUnpressed.png",
+            "isStaticBaseFile": "button_unpressed_1.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3026,7 +3026,7 @@
             "posY": 800,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 2
+            "subtype": 104
         },
         {
             "alpha": 255,
@@ -3559,9 +3559,9 @@
             "alpha": 255,
             "basePathFolder": "./resources/items/",
             "height": 100,
-            "id": "questItem2",
+            "id": "ItemPouch",
             "isStatic": true,
-            "isStaticBaseFile": "item_pouch.png",
+            "isStaticBaseFile": "item_pouch_1.png",
             "isVisible": true,
             "parent": "foreground",
             "pivotX": 0,
@@ -3591,11 +3591,11 @@
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/items/",
             "height": 100,
-            "id": "165344818",
+            "id": "Door1A",
             "isStatic": true,
-            "isStaticBaseFile": "doorSide.png",
+            "isStaticBaseFile": "door_1.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3604,7 +3604,7 @@
             "posY": 1000,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 2
+            "subtype": 105
         },
         {
             "alpha": 255,
