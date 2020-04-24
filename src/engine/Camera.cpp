@@ -26,14 +26,14 @@ void Camera::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
     if( this->getChild(0)->type == "Scene" )
     {
         Scene* scene = (Scene*) this->getChild(0);
-        float velocity = this->ghost->movespeed / 4;
+        float velocity = this->ghost->movespeed;
         if( this->ghost != NULL )
         {
             if (pressedKeys.find(SDL_SCANCODE_A) != pressedKeys.end()){
-            	scene->position.x -= velocity;
+            	scene->position.x += velocity;
             }
             if (pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end()){
-            	scene->position.x += velocity;
+            	scene->position.x -= velocity;
             }
             if (pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end()){
             	scene->position.y += velocity;
