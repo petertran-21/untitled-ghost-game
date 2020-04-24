@@ -24,7 +24,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	displayTreeDisp->addEventListener(collisionSystem, DOAddedEvent::DO_ADDED);
 	displayTreeDisp->addEventListener(collisionSystem, DORemovedEvent::DO_REMOVED);
 
-	scene_1->loadScene("./resources/scenes/beachRoom1.json", container);
+	scene_1->loadScene("./resources/scenes/beachEntrance.json", container);
 
 	//---------------SCENE TRIGGER-------------------------
 	// SceneTrigger* beachTrigger = new SceneTrigger(container);
@@ -34,6 +34,15 @@ MyGame::MyGame() : Game(1000, 1000)
 	// container->addChild(beachTrigger);
 
 	//-----------------------------------------------------
+
+	//----------------------SNAKE BOSS-----------0---------
+	// Snake* s = new Snake(container, allSprites);
+	// s->position.x = 700;
+	// s->position.y = 200;
+	// allSprites->addChild(s);
+	// container->addChild(s);
+	//-----------------------------------------------------
+
 
 	// Shrub* s = new Shrub(container);
 	// allSprites->addChild(s);
