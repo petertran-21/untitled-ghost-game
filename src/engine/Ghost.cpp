@@ -175,6 +175,7 @@ void Ghost::state_possessing(set<SDL_Scancode> pressedKeys, Controller::Joystick
 	if (npc->is_possessed == false){
 		isPossessing = false;
 		npc = NULL;
+		alpha = 255;
 		state_switch(ghost_states::Idle);
 	}
 
