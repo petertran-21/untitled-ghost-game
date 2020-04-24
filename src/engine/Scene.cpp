@@ -119,6 +119,11 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             case PIRATE_SUBTYPE:
                 unit = new Pirate();
                 break;
+
+            case DRAGON_SUBTYPE:
+                unit = new Dragon(Collisioncontainer, foreground);
+                break;
+
             case WATERJET_SUBTYPE:
                 unit = new WaterJet(Collisioncontainer, foreground);
                 break;
