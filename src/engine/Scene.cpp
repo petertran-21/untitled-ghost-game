@@ -94,8 +94,12 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 break;
             /*--------------------------Beach--------------------------*/
             case VALVE_SUBTYPE:
-                cout<<"VALVE WAS MADE"<<endl;
-                unit = new Valve(Collisioncontainer, S);
+                //check which dir from the id
+                if (((string) sprite["id"]).find("Left") != std::string::npos) { cout<<"MADE LEFT VALVE"<<endl; unit = new Valve(Collisioncontainer, W);}
+                else if (((string) sprite["id"]).find("Right") != std::string::npos) { cout<<"MADE RIGHT VALVE"<<endl; unit = new Valve(Collisioncontainer, E);}
+                else if (((string) sprite["id"]).find("Up") != std::string::npos) { cout<<"MADE UP VALVE"<<endl; unit = new Valve(Collisioncontainer, N);}
+                else { cout<<"MADE DOWN VALVE"<<endl; unit = new Valve(Collisioncontainer, S);}
+                
                 break;
             case BUTTON_SUBTYPE:
                 unit = new Button(Collisioncontainer);
