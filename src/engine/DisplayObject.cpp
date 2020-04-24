@@ -52,8 +52,8 @@ void DisplayObject::loadTexture(string filepath){
 	}
 	
 	// *** setting width and height to image width and height interferes with spritesheet rendering ***
-	// width = image->w; 
-	// height = image->h;
+	width = image->w; 
+	height = image->h;
 	// ***
 	
 	setTexture(texture);
@@ -102,6 +102,8 @@ void DisplayObject::draw(AffineTransform &at){
 		else {
 			flip = SDL_FLIP_HORIZONTAL;
 		}
+
+		SDL_SetTextureAlphaMod(curTexture, alpha);
 
 		if (sourceIsSet) {
 			SDL_RenderCopyEx(Game::renderer, curTexture, &srcrect, &dstrect, calculateRotation(origin, upperRight), &corner, flip);
