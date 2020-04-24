@@ -1,6 +1,24 @@
 {
     "sprites": [
         {
+            "id": "SceneTrigger",
+            "basePathFolder": "./resources/items/",
+            "isStaticBaseFile": "scene_trigger",
+            "scene_path": "./resources/scenes/beachEntrance.json",
+            "posX": 900,
+            "posY": 0,
+            "pivotX": 0,
+            "pivotY": 0,
+            "rotation": 0.0,
+            "alpha": 255,
+            "isVisible": true,
+            "isStatic": true,
+            "parent": "foreground",
+            "width": 100,
+            "height": 100,
+            "subtype": 108
+        },
+        {
             "alpha": 255,
             "basePathFolder": "./resources/tiles/swampTiles/",
             "height": 100,
@@ -3229,6 +3247,23 @@
             "rotation": 0.0,
             "subtype": 2,
             "width": 100
-        }
+        },
+        {
+            "id": "Ghost",
+            "basePathFolder": "./resources/grendel/",
+            "isStaticBaseFile": "Idle",
+            "posX": 200,
+            "posY": 200,
+            "pivotX": 0,
+            "pivotY": 0,
+            "rotation": 0.0,
+            "alpha": 255,
+            "isVisible": true,
+            "isStatic": true,
+            "parent": "foreground",
+            "width": 100,
+            "height": 100,
+            "subtype": 4
+        }  
     ]
 }
