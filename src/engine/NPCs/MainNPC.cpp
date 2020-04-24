@@ -24,6 +24,7 @@ void MainNPC::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cu
 
     //cooldown on ability usage
     if (cooldown_timer > 0) cooldown_timer--;
+    if (reverse_controls) {reverse_controls_timer++; if(reverse_controls_timer==reverse_controls_max){ reverse_controls=false; reverse_controls_timer=0;}}
 
 }
 
@@ -67,17 +68,17 @@ void MainNPC::state_moving(set<SDL_Scancode> pressedKeys, Controller::JoystickSt
 
     bool is_moving = false;
     //check for movement on controller
-    if (currState.leftStickY < 0){ is_moving = true; dir = N;}
-    else if (currState.leftStickX < 0){ is_moving = true; dir = W;}
-    else if (currState.leftStickY > 0){ is_moving = true; dir = S;}
-    else if (currState.leftStickX > 0){ is_moving = true; dir = E;}
+    if (currState.leftStickY < 0){ is_moving = true; dir = N; if(reverse_controls){dir=S;}}
+    else if (currState.leftStickX < 0){ is_moving = true; dir = W; if(reverse_controls){dir=E;}}
+    else if (currState.leftStickY > 0){ is_moving = true; dir = S; if(reverse_controls){dir=N;}}
+    else if (currState.leftStickX > 0){ is_moving = true; dir = E; if(reverse_controls){dir=W;}}
 
     //check for movement on keyboard
     for(int code:pressedKeys){
-        if      (code == SDL_SCANCODE_W || currState.leftStickY < 0){ is_moving = true; dir = N;}
-        else if (code == SDL_SCANCODE_A || currState.leftStickX < 0){ is_moving = true; dir = W;}
-        else if (code == SDL_SCANCODE_S || currState.leftStickY > 0){ is_moving = true; dir = S;}
-        else if (code == SDL_SCANCODE_D || currState.leftStickY > 0){ is_moving = true; dir = E;}
+        if      (code == SDL_SCANCODE_W || currState.leftStickY < 0){ is_moving = true; dir = N; if(reverse_controls){dir=S;}}
+        else if (code == SDL_SCANCODE_A || currState.leftStickX < 0){ is_moving = true; dir = W; if(reverse_controls){dir=E;}}
+        else if (code == SDL_SCANCODE_S || currState.leftStickY > 0){ is_moving = true; dir = S; if(reverse_controls){dir=N;}}
+        else if (code == SDL_SCANCODE_D || currState.leftStickY > 0){ is_moving = true; dir = E; if(reverse_controls){dir=W;}}
     }
 
     //move npc along grid

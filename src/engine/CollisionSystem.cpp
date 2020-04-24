@@ -25,6 +25,7 @@ void CollisionSystem::update(){
   watchForCollisions("NPC", "NPC");
   watchForCollisions("NPC", "NPCObj");
   watchForCollisions("NPC", "EnvObj");
+  watchForCollisions("Ghost", "NPCObj");
   watchForCollisions("NPC", "Collectible");
   watchForCollisions("NPC", "Wall");
   watchForCollisions("NPCObj", "EnvObj");
@@ -74,6 +75,9 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
             }
             else if ((type1 == "NPC" && type2 == "EnvObj")){
               resolveCollision_NPC_EnvObj(inView[i], inView[j]);
+            }
+            else if ((type1 == "Ghost" && type2 == "NPCObj")){
+              resolveCollision_Ghost_NPCObj(inView[i], inView[j]);
             }
             else if ((type1 == "NPC") && (type2 == "NPCObj")){
               resolveCollision_NPC_NPCObj(inView[i], inView[j]);
@@ -640,6 +644,13 @@ void CollisionSystem::resolveCollision_NPC_EnvObj(DisplayObject* npc, DisplayObj
   npc->resolve_collision(envObj);
   envObj->resolve_collision(npc);
 }
+
+void CollisionSystem::resolveCollision_Ghost_NPCObj(DisplayObject* ghost, DisplayObject* npcObj){
+  ghost->resolve_collision(npcObj);
+  npcObj->resolve_collision(ghost);
+}
+
+
 void CollisionSystem::resolveCollision_NPC_NPCObj(DisplayObject* npc, DisplayObject* npcObj){
   npc->resolve_collision(npcObj);
   npcObj->resolve_collision(npc);

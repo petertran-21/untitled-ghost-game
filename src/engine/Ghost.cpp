@@ -60,6 +60,7 @@ void Ghost::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState curr
 			this->visible = true;
 		}
 	}
+	if (reverse_controls) {reverse_controls_timer++; if(reverse_controls_timer==reverse_controls_max){ reverse_controls=false; reverse_controls_timer=0;}}
 
 	//not in a state bc you should be able to do this ALWAYS to your heart's content :D
 	if(Controls::pressBoo(pressedKeys, currState)) boo();
@@ -100,28 +101,30 @@ void Ghost::state_moving(set<SDL_Scancode> pressedKeys, Controller::JoystickStat
 
 	// Movement arrow keys
 	// Controls is a class we wrote that just checks the SDL Scancode values and game controller values in one check
-	if(Controls::holdRight(pressedKeys, currState)){
+	if((Controls::holdRight(pressedKeys, currState) && !reverse_controls) || (reverse_controls && Controls::holdLeft(pressedKeys, currState))){
 		this->position.x += movespeed;
 		this->facingRight = true;
+		if (reverse_controls) this->facingRight = false;
 		if(_standing){
 			this->play("Run");
 		}
 	}
-	else if(Controls::holdLeft(pressedKeys, currState)){
+	else if((Controls::holdLeft(pressedKeys, currState) && !reverse_controls) || (reverse_controls && Controls::holdRight(pressedKeys, currState))){
 		this->position.x -= movespeed;
 		this->facingRight = false;
+		if (reverse_controls) this->facingRight = true;
 		if(_standing){
 			this->play("Run");
 		}
 	}
 
-	if (Controls::holdUp(pressedKeys, currState)){
+	if ((Controls::holdUp(pressedKeys, currState) && !reverse_controls) || (reverse_controls && Controls::holdDown(pressedKeys, currState))){
 		this->position.y -= movespeed;
 		if(_standing){
 			this->play("Run");
 		}
 	}
-	else if (Controls::holdDown(pressedKeys, currState)){
+	else if ((Controls::holdDown(pressedKeys, currState) && !reverse_controls) || (reverse_controls && Controls::holdUp(pressedKeys, currState))){
 		this->position.y += movespeed;
 		if(_standing){
 			this->play("Run");
