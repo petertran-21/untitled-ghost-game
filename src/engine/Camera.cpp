@@ -48,7 +48,7 @@ void Camera::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
             }
             if (pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end())
             {
-                if (xTotal <= minDistWidth + 100)
+                if (xTotal <= minDistWidth + 50)
                 {
                     scene->position.x -= velocity;
                 }
@@ -66,7 +66,7 @@ void Camera::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
             }
             if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end())
             {
-                if (yTotal <= minDistHeight + 250)
+                if (yTotal <= minDistHeight + 100)
                 {
                     scene->position.y -= velocity;
                 }
