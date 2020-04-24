@@ -159,6 +159,9 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 this->ghost = (Ghost*) unit;
 
                 break;
+            case HORNFRAGMENT_SUBTYPE:
+                unit = new HornFragment(Collisioncontainer);
+                break;
             case SCENE_TRIGGER_SUBTYPE:
                 unit = new SceneTrigger(Collisioncontainer, sprite["scene_path"]);     
                 Collisioncontainer->addChild(unit);        
