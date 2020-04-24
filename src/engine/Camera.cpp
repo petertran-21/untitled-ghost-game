@@ -27,19 +27,45 @@ void Camera::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
     {
         Scene* scene = (Scene*) this->getChild(0);
         float velocity = this->ghost->movespeed;
+        int windowWidth = 1000;
+        int windowHeight = 1000;
+        int minDist = 200;
         if( this->ghost != NULL )
         {
-            if (pressedKeys.find(SDL_SCANCODE_A) != pressedKeys.end()){
-            	scene->position.x += velocity;
+            int xDiff = abs(abs(scene->position.x)-abs(this->ghost->position.x));
+            int xTotal = abs(abs(scene->position.x + this->ghost->position.x) - windowWidth);
+
+            if (pressedKeys.find(SDL_SCANCODE_A) != pressedKeys.end())
+            {
+                if(xDiff <= minDist)
+                {
+                    scene->position.x += velocity;
+                }
             }
-            if (pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end()){
-            	scene->position.x -= velocity;
+            if (pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end())
+            {
+                if (xTotal <= minDist + 100)
+                {
+                    scene->position.x -= velocity;
+                }
             }
-            if (pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end()){
-            	scene->position.y += velocity;
+
+            int yDiff = abs(abs(scene->position.y)-abs(this->ghost->position.y));
+            int yTotal = abs(abs(scene->position.y + this->ghost->position.y) - windowHeight);
+            
+            if (pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end())
+            {
+                if(yDiff <= minDist)
+                {
+                    scene->position.y += velocity;
+                }
             }
-            if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end()){
-            	scene->position.y -= velocity;
+            if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end())
+            {
+                if (yTotal <= minDist + 250)
+                {
+                    scene->position.y -= velocity;
+                }
             }
         }
     }
