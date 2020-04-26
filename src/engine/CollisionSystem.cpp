@@ -8,9 +8,10 @@
 
 CollisionSystem::CollisionSystem() { }
 
-CollisionSystem::CollisionSystem(Camera *maincam, DisplayObjectContainer *collisionContainer){
+CollisionSystem::CollisionSystem(Camera *maincam, DisplayObjectContainer *collisionContainer, vector<DisplayObject*> passedInventory){
   this->maincam = maincam;
   this->collisionContainer = collisionContainer;
+  this->inventory = passedInventory;
 }
 
 CollisionSystem::~CollisionSystem(){
@@ -672,8 +673,8 @@ void CollisionSystem::resolveCollision_SceneTrigger(DisplayObject* triggerObj){
 
   SceneTrigger *trigger = dynamic_cast<SceneTrigger*>(triggerObj);
 
-  if (trigger->active){ //How would I grab inventory here?
-    next->loadScene(trigger->scene_path, this->collisionContainer,);
+  if (trigger->active){ 
+    next->loadScene(trigger->scene_path, this->collisionContainer, inventory);
     maincam->changeScene(current, next);
 
     //REMOVING COLLISION BOXES?

@@ -97,7 +97,7 @@ public:
     ~Inventory();
 
     bool active;        // The selection menu should not start checking tasks off unless it's active
-    std::vector<DisplayObject> entries;   // The actual reference to object images are added to the 'children' attribute inherited from DOC.
+    std::vector<DisplayObject*> entries;   // The actual reference to object images are added to the 'children' attribute inherited from DOC.
 
     virtual void draw(AffineTransform &at);
 };

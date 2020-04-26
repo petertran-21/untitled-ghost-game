@@ -8,6 +8,9 @@ Inventory::Inventory(int posX, int posY, int width, int height) : DisplayObjectC
     this->position.y = posY;
     this->width = width;
     this->height = height;
+    // DisplayObject* a = new DisplayObject();
+    // this->entries.push_back(a);
+
 }
 
 Inventory::~Inventory(){

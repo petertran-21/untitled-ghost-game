@@ -17,13 +17,14 @@ MyGame::MyGame() : Game(1000, 1000)
 	//uncomment following line to check that collision boxes for objects are identical to drawing
 	//allSprites->addChild(container);
 
-	collisionSystem = new CollisionSystem(camera, container);
+	vector<DisplayObject*> inventory;
+	collisionSystem = new CollisionSystem(camera, container, inventory);
 	displayTreeDisp = new EventDispatcher();
 	DOAdded = new DOAddedEvent(displayTreeDisp, container);
 	DORemoved = new DORemovedEvent(displayTreeDisp, container);
 	displayTreeDisp->addEventListener(collisionSystem, DOAddedEvent::DO_ADDED);
 	displayTreeDisp->addEventListener(collisionSystem, DORemovedEvent::DO_REMOVED);
-	vector<DisplayObject*> inventory;
+	
 
 	scene_1->loadScene("./resources/scenes/beachEntrance.json", container, inventory);
 
@@ -77,8 +78,9 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 		}
 	}
 
-	if(inventoryUI->entries.size()!=inventory.size()){
-		inventoryUI->entries=inventory; //not sure if I even need to do this in update..
+	cout << inventoryUI->entries.size() << endl;
+	if(inventoryUI->entries.size()==inventory.size()){
+		inventoryUI->entries=inventory; 
 	}
 
 	if (pressedKeys.find(SDL_SCANCODE_DOWN) != pressedKeys.end() && UIOpen){
