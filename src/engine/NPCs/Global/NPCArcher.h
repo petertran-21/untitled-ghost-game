@@ -11,7 +11,7 @@ using namespace std;
 class NPCArcher : public MainNPC{
     
     public:
-        NPCArcher(DisplayObjectContainer* container, DisplayObjectContainer* allSprites);
+        NPCArcher(DisplayObjectContainer* container, DisplayObjectContainer* allSprites, vector<DisplayObject*> passedInventory);
         void state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
         DisplayObjectContainer* collisionContainer;
 

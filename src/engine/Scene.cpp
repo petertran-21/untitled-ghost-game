@@ -25,7 +25,7 @@ Scene::~Scene()
     isActive = false;
 }
 
-void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncontainer){
+void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncontainer, vector<DisplayObject*> inventory){
     std::ifstream i(sceneFilePath);
     json j = json::parse(i);
     unordered_map<string, DisplayObjectContainer*> parents = {};
@@ -43,6 +43,7 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
     foreground->parent = this;
     this->addChild(foreground);
 
+    vector<DisplayObject*> updatedInv=inventory;
     vector<DisplayObject*> pairedItems;
     for (auto sprite : j["sprites"]){
         // Get sprite subtype
@@ -88,16 +89,16 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 unit = new Wolf(Collisioncontainer, foreground);
                 break;
             case NPCPYROMANCER_SUBTYPE:
-                unit = new NPCPyromancer(Collisioncontainer, foreground);
+                unit = new NPCPyromancer(Collisioncontainer, foreground, updatedInv);
                 break;
             case NPCLUMBERJACK_SUBTYPE:
-                unit = new NPCLumberjack(Collisioncontainer, foreground);
+                unit = new NPCLumberjack(Collisioncontainer, foreground, updatedInv);
                 break;
             case NPCARCHER_SUBTYPE:
-                unit = new NPCArcher(Collisioncontainer, foreground);
+                unit = new NPCArcher(Collisioncontainer, foreground, updatedInv);
                 break;
             case NPCSKELETON_SUBTYPE:
-                unit = new NPCSkeleton(Collisioncontainer, foreground);
+                unit = new NPCSkeleton(Collisioncontainer, foreground, updatedInv);
                 break;
             /*--------------------------Beach--------------------------*/
             case VALVE_SUBTYPE:
@@ -130,13 +131,13 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 pairedItems.push_back(unit);
                 break;
             case NPCOPERATOR_SUBTYPE:
-                unit = new NPCOperator(Collisioncontainer, foreground);
+                unit = new NPCOperator(Collisioncontainer, foreground, updatedInv);
                 break;
             case NPCEXCAVATOR_SUBTYPE:
-                unit = new NPCExcavator(Collisioncontainer, foreground);
+                unit = new NPCExcavator(Collisioncontainer, foreground, updatedInv);
                 break;
             case NPCCOLLECTOR_SUBTYPE:
-                unit = new NPCCollector(Collisioncontainer, foreground);
+                unit = new NPCCollector(Collisioncontainer, foreground, updatedInv);
                 break;
             case PIRATE_SUBTYPE:
                 unit = new Pirate();

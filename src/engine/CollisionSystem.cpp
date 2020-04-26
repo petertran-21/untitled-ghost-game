@@ -672,8 +672,8 @@ void CollisionSystem::resolveCollision_SceneTrigger(DisplayObject* triggerObj){
 
   SceneTrigger *trigger = dynamic_cast<SceneTrigger*>(triggerObj);
 
-  if (trigger->active){
-    next->loadScene(trigger->scene_path, this->collisionContainer);
+  if (trigger->active){ //How would I grab inventory here?
+    next->loadScene(trigger->scene_path, this->collisionContainer,);
     maincam->changeScene(current, next);
 
     //REMOVING COLLISION BOXES?

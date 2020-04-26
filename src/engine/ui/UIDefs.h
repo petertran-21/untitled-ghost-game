@@ -87,4 +87,19 @@ public:
     virtual void draw(AffineTransform &at);
 };
 
+class Inventory : public DisplayObjectContainer{
+public:
+    Inventory(int posX = 1025, int posY = 525, int width = 400, int height = 200);
+    
+    void addEntry(std::string id,std::string path);
+    void removeEntry(std::string entry);
+
+    ~Inventory();
+
+    bool active;        // The selection menu should not start checking tasks off unless it's active
+    std::vector<DisplayObject> entries;   // The actual reference to object images are added to the 'children' attribute inherited from DOC.
+
+    virtual void draw(AffineTransform &at);
+};
+
 #endif

@@ -9,10 +9,16 @@ MainNPC::MainNPC() : AnimatedSprite("NPC"){
     this->type = "NPC";
 }
 
-MainNPC::MainNPC(DisplayObjectContainer* container, DisplayObjectContainer* allSprites) : AnimatedSprite("NPC"){
+// MainNPC::MainNPC(vector<DisplayObject*> passedInventory) : AnimatedSprite("NPC"){
+//     this->type = "NPC";
+//     this->inventory=passedInventory;
+// }
+
+MainNPC::MainNPC(DisplayObjectContainer* container, DisplayObjectContainer* allSprites, vector<DisplayObject*> passedInventory) : AnimatedSprite("NPC"){
     this->type = "NPC";
     this->collisionContainer = container;
     this->drawingContainer = allSprites;
+    // this->inventory=passedInventory;
 }
 
 void MainNPC::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
@@ -230,7 +236,7 @@ void MainNPC::resolve_collision(DisplayObject *obj){
     //COLLIDES WITH DOOR
     if (obj->getSubtype() == DOOR_SUBTYPE){
         Door* d = dynamic_cast<Door*>(d);
-        cout<<"DORR EXISTS: "<<d->position.x<<" "<<d->position.y<<endl;
+        cout<<"DOOR EXISTS: "<<d->position.x<<" "<<d->position.y<<endl;
         cout<<"NPC AT: "<<position.x<<" "<<position.y<<endl;
         if (d->open) cout<<"IS OPEN"<<endl;
     }
@@ -277,7 +283,10 @@ void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectCon
     if (obj->type == "Collectible"){
         if ((obj->position.x == this->position.x) && (obj->position.y == this->position.y)){
             switch(obj->getSubtype()){
-                case 9: //item pouch
+                case 9: //item pouch  
+                    DisplayObject* item = new DisplayObject(obj->id,obj->imgPath);
+                    inventory.push_back(item);
+
                     ItemPouch* collect = (ItemPouch*) obj;
                     vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), collect);
                     vector<DisplayObject*>::iterator drawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), collect);

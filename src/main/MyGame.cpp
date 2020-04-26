@@ -23,14 +23,17 @@ MyGame::MyGame() : Game(1000, 1000)
 	DORemoved = new DORemovedEvent(displayTreeDisp, container);
 	displayTreeDisp->addEventListener(collisionSystem, DOAddedEvent::DO_ADDED);
 	displayTreeDisp->addEventListener(collisionSystem, DORemovedEvent::DO_REMOVED);
+	vector<DisplayObject*> inventory;
 
-	scene_1->loadScene("./resources/scenes/beachEntrance.json", container);
+	scene_1->loadScene("./resources/scenes/beachEntrance.json", container, inventory);
 
 	DOAdded->checkCondition();
 	//-----------------------------------------
 	// TODO, SFX will add later
 
 	UIContainer = new DisplayObjectContainer();
+
+	inventoryUI = new Inventory(0,0,300,300);
 
 	selectionMenuTest = new SelectionMenu(0, 0);
 	selectionMenuTest->addToMenu("Save");
@@ -72,6 +75,10 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 			camera->getChild(0)->scaleX *= 1.1;
 			camera->getChild(0)->scaleY *= 1.1;
 		}
+	}
+
+	if(inventoryUI->entries.size()!=inventory.size()){
+		inventoryUI->entries=inventory; //not sure if I even need to do this in update..
 	}
 
 	if (pressedKeys.find(SDL_SCANCODE_DOWN) != pressedKeys.end() && UIOpen){
