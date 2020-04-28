@@ -4,11 +4,11 @@
 
 using namespace std;
 
-NPCSkeleton::NPCSkeleton(DisplayObjectContainer* container, DisplayObjectContainer* allSprites, vector<DisplayObject*> passedInventory) : MainNPC(){
+NPCSkeleton::NPCSkeleton(DisplayObjectContainer* container, DisplayObjectContainer* allSprites, vector<DisplayObject*> &passedInventory) : MainNPC(){
 	this->addAnimation("./resources/npcs/skeleton/", "bones", 1, 1, true);
     this->addAnimation("./resources/npcs/skeleton/", "skeleton", 1, 1, true);
 
-    this->inventory = passedInventory;
+    this->inventory = &passedInventory;
 	this->play("bones");
     this->collisionContainer = container;
     container->addChild(this);

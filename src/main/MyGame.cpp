@@ -17,7 +17,6 @@ MyGame::MyGame() : Game(1000, 1000)
 	//uncomment following line to check that collision boxes for objects are identical to drawing
 	//allSprites->addChild(container);
 
-	vector<DisplayObject*> inventory;
 	collisionSystem = new CollisionSystem(camera, container, inventory);
 	displayTreeDisp = new EventDispatcher();
 	DOAdded = new DOAddedEvent(displayTreeDisp, container);
@@ -77,9 +76,9 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 			camera->getChild(0)->scaleY *= 1.1;
 		}
 	}
-
-	cout << inventoryUI->entries.size() << endl;
-	if(inventoryUI->entries.size()==inventory.size()){
+	cout << "MyGame: Inventory: "<< inventory.size() << endl;
+	cout << "InventoryUI" << inventoryUI->entries.size() << endl;
+	if(inventoryUI->entries.size()!=inventory.size()){
 		inventoryUI->entries=inventory; 
 	}
 

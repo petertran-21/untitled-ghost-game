@@ -14,11 +14,11 @@ MainNPC::MainNPC() : AnimatedSprite("NPC"){
 //     this->inventory=passedInventory;
 // }
 
-MainNPC::MainNPC(DisplayObjectContainer* container, DisplayObjectContainer* allSprites, vector<DisplayObject*> passedInventory) : AnimatedSprite("NPC"){
+MainNPC::MainNPC(DisplayObjectContainer* container, DisplayObjectContainer* allSprites, vector<DisplayObject*> &passedInventory) : AnimatedSprite("NPC"){
     this->type = "NPC";
     this->collisionContainer = container;
     this->drawingContainer = allSprites;
-    // this->inventory=passedInventory;
+    //this->inventory=passedInventory;
 }
 
 void MainNPC::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
@@ -284,9 +284,9 @@ void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectCon
         if ((obj->position.x == this->position.x) && (obj->position.y == this->position.y)){
             switch(obj->getSubtype()){
                 case 9: //item pouch  
-                    DisplayObject* item = new DisplayObject(obj->id,obj->imgPath);
-                    inventory.push_back(item);
-
+                    DisplayObject* item = new DisplayObject(obj->id,obj->imgPath+"item_pouch_1.png");     
+                    inventory->push_back(item);
+                    cout << "MainNPC: After Push Inventory: "<< inventory->size() << endl;
                     ItemPouch* collect = (ItemPouch*) obj;
                     vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), collect);
                     vector<DisplayObject*>::iterator drawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), collect);

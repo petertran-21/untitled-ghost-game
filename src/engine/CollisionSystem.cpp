@@ -8,10 +8,10 @@
 
 CollisionSystem::CollisionSystem() { }
 
-CollisionSystem::CollisionSystem(Camera *maincam, DisplayObjectContainer *collisionContainer, vector<DisplayObject*> passedInventory){
+CollisionSystem::CollisionSystem(Camera *maincam, DisplayObjectContainer *collisionContainer, vector<DisplayObject*> &passedInventory){
   this->maincam = maincam;
   this->collisionContainer = collisionContainer;
-  this->inventory = passedInventory;
+  this->inventory = &passedInventory;
 }
 
 CollisionSystem::~CollisionSystem(){
@@ -45,7 +45,7 @@ void CollisionSystem::handleEvent(Event* e){
   if (e->getType() == DOAddedEvent::DO_ADDED) {
     DOAddedEvent* event = (DOAddedEvent*) e;
     inView.push_back(event->recentlyAdded);
-    std::cout << "DO added to the game. " << event->recentlyAdded->type << std::endl;
+    //std::cout << "DO added to the game. " << event->recentlyAdded->type << std::endl;
   }
   if (e->getType() == DORemovedEvent::DO_REMOVED) {
     DORemovedEvent* event = (DORemovedEvent*) e;
@@ -674,7 +674,10 @@ void CollisionSystem::resolveCollision_SceneTrigger(DisplayObject* triggerObj){
   SceneTrigger *trigger = dynamic_cast<SceneTrigger*>(triggerObj);
 
   if (trigger->active){ 
-    next->loadScene(trigger->scene_path, this->collisionContainer, inventory);
+    DisplayObject* filler = new DisplayObject();
+    inventory->push_back(filler); 
+    cout << "CollisionSystem Inventory: "<< inventory->size() << endl;
+    next->loadScene(trigger->scene_path, this->collisionContainer, *inventory);
     maincam->changeScene(current, next);
 
     //REMOVING COLLISION BOXES?
