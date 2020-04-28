@@ -10,7 +10,7 @@ using namespace std;
 class NPCCollector : public MainNPC{
     
     public:
-        NPCCollector(DisplayObjectContainer* container, DisplayObjectContainer* allSprites);
+        NPCCollector(DisplayObjectContainer* container, DisplayObjectContainer* allSprites, vector<DisplayObject*> passedInventory);
         void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 
         void state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);

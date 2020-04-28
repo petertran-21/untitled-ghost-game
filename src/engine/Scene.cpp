@@ -25,7 +25,7 @@ Scene::~Scene()
     isActive = false;
 }
 
-void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncontainer){
+void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncontainer, vector<DisplayObject*> &inventory){
     std::ifstream i(sceneFilePath);
     json j = json::parse(i);
     unordered_map<string, DisplayObjectContainer*> parents = {};
@@ -36,16 +36,18 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
     DisplayObjectContainer* lightEmittingObjects = new DisplayObjectContainer();
     DisplayObjectContainer* lightLayer = new DisplayObjectContainer();
     DisplayObjectContainer* shadowLayer = new DisplayObjectContainer();
-
+   
     background->parent = this;
     this->addChild(background);
 
     foreground->parent = this;
     this->addChild(foreground);
 
+    // vector<DisplayObject*> updatedInv=inventory;
     vector<DisplayObject*> pairedItems;
     for (auto sprite : j["sprites"]){
         // Get sprite subtype
+        DisplayObject* filler = new DisplayObject();
         DisplayObjectContainer* unit;
         std::string imgPath = ""; //Cannot declare variables in a switch
         ParticleEmitter* partEmit;
@@ -87,18 +89,18 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             case WOLF_SUBTYPE:
                 unit = new Wolf(Collisioncontainer, foreground);
                 break;
-            case NPCPYROMANCER_SUBTYPE:
-                unit = new NPCPyromancer(Collisioncontainer, foreground);
-                break;
-            case NPCLUMBERJACK_SUBTYPE:
-                unit = new NPCLumberjack(Collisioncontainer, foreground);
-                break;
-            case NPCARCHER_SUBTYPE:
-                unit = new NPCArcher(Collisioncontainer, foreground);
-                break;
-            case NPCSKELETON_SUBTYPE:
-                unit = new NPCSkeleton(Collisioncontainer, foreground);
-                break;
+            // case NPCPYROMANCER_SUBTYPE:
+            //     unit = new NPCPyromancer(Collisioncontainer, foreground, inventory);
+            //     break;
+            // case NPCLUMBERJACK_SUBTYPE:
+            //     unit = new NPCLumberjack(Collisioncontainer, foreground, updatedInv);
+            //     break;
+            // case NPCARCHER_SUBTYPE:
+            //     unit = new NPCArcher(Collisioncontainer, foreground, updatedInv);
+            //     break;
+            // case NPCSKELETON_SUBTYPE:
+            //     unit = new NPCSkeleton(Collisioncontainer, foreground, updatedInv);
+            //     break;
             /*--------------------------Beach--------------------------*/
             case VALVE_SUBTYPE:
                 //check which dir from the id
@@ -129,15 +131,16 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 unit = new WaterJet(Collisioncontainer, foreground);
                 pairedItems.push_back(unit);
                 break;
-            case NPCOPERATOR_SUBTYPE:
-                unit = new NPCOperator(Collisioncontainer, foreground);
-                break;
+            // case NPCOPERATOR_SUBTYPE:
+            //     unit = new NPCOperator(Collisioncontainer, foreground, inventory);
+            //     break;
             case NPCEXCAVATOR_SUBTYPE:
-                unit = new NPCExcavator(Collisioncontainer, foreground);
+                unit = new NPCExcavator(Collisioncontainer, foreground, inventory);
+                cout << "Scene - Regular Inv - Inventory: "<< inventory.size() << endl;
                 break;
-            case NPCCOLLECTOR_SUBTYPE:
-                unit = new NPCCollector(Collisioncontainer, foreground);
-                break;
+            // case NPCCOLLECTOR_SUBTYPE:
+            //     unit = new NPCCollector(Collisioncontainer, foreground, inventory);
+            //     break;
             case PIRATE_SUBTYPE:
                 unit = new Pirate();
                 break;

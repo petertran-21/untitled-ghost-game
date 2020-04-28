@@ -62,6 +62,8 @@ private:
 	Checklist* checklistTest;
 	SelectionMenu* selectionMenuTest;
 	TextBox* textboxTest;
+	vector<DisplayObject*> inventory;
+	Inventory* inventoryUI;
 
 	DisplayObjectContainer* UIContainer;		// Holds all UI elements as children.
 

@@ -16,9 +16,10 @@ class CollisionSystem : public EventListener{
 public:
 
 	CollisionSystem();
-	CollisionSystem(Camera *maincam, DisplayObjectContainer *collisionContainer);
+	CollisionSystem(Camera *maincam, DisplayObjectContainer *collisionContainer, vector<DisplayObject*> &passedInventory);
 	~CollisionSystem();
 
+	vector<DisplayObject*> *inventory;
 	Camera *maincam;
 
 	//checks collisions between pairs of DOs where the corresponding types have been requested

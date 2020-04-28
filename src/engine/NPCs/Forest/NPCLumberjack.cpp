@@ -4,13 +4,14 @@
 
 using namespace std;
 
-NPCLumberjack::NPCLumberjack(DisplayObjectContainer* container, DisplayObjectContainer* allSprites) : MainNPC(){
+NPCLumberjack::NPCLumberjack(DisplayObjectContainer* container, DisplayObjectContainer* allSprites, vector<DisplayObject*> &passedInventory) : MainNPC(){
 	this->addAnimation("./resources/npcs/lumberjack/", "lumberjack_idle", 1, 1, true, "idle");
     this->addAnimation("./resources/npcs/lumberjack/", "lumberjack_forward", 6, 10, true, "forward");
     this->addAnimation("./resources/npcs/lumberjack/", "lumberjack_left", 6, 10, true, "left'");
     this->addAnimation("./resources/npcs/lumberjack/", "lumberjack_right", 6, 10, true, "right");
     this->addAnimation("./resources/npcs/lumberjack/", "lumberjack_back", 6, 10, true, "back");
 
+    this->inventory = &passedInventory;
 	this->play("idle");
     this->collisionContainer = container;
     container->addChild(this);
