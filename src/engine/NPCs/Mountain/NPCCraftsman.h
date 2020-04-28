@@ -1,8 +1,9 @@
-#ifndef NPCArcher_H
-#define NPCArcher_H
+#ifndef NPCCRAFTSMAN_H
+#define NPCCRAFTSMAN_H
+#define NPCCRAFTSMAN_SUBTYPE 25
 
 #include "MainNPC.h"
-#include "Arrow.h"
+#include "Mineral.h"
 
 using namespace std;
 
@@ -12,7 +13,10 @@ class NPCCraftsman : public MainNPC{
         NPCCraftsman(DisplayObjectContainer* container, DisplayObjectContainer* allSprites);
         void state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
         DisplayObjectContainer* collisionContainer;
-        int subtype = 25;
+
+        bool ability = false;
+
+        void resolve_adjacency(DisplayObject *obj, int status);
 };
 
 

@@ -148,6 +148,27 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 unit = new Dragon(Collisioncontainer, foreground);
                 break;
 
+            /*--------------------------Mountain--------------------------*/
+            case NPCSTRONGMAN_SUBTYPE:
+                unit = new NPCStrongman(Collisioncontainer, foreground);
+                break;
+
+            case NPCCRAFTSMAN_SUBTYPE:
+                unit = new NPCCraftsman(Collisioncontainer, foreground);
+                break;
+
+            case BOULDER_SUBTYPE:
+                unit = new Boulder(Collisioncontainer);
+                break;
+            
+            case MINERAL_SUBTYPE:
+                unit = new Mineral(Collisioncontainer);
+                break;
+
+            case CAVELAKE_SUBTYPE:
+                unit = new CaveLake(Collisioncontainer);
+                break;
+
             /*--------------------------Universal--------------------------*/
             case GHOST_SUBTYPE:
                 unit = new Ghost();

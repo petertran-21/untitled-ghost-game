@@ -9,4 +9,7 @@
 #include "Door.h"
 #include "Button.h"
 #include "Pit.h"
+#include "Boulder.h"
+#include "Mineral.h"
+#include "CaveLake.h"
 #include "MainEnvObj.h"
