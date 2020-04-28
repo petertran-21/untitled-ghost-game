@@ -312,7 +312,7 @@
             "alpha": 255,
             "basePathFolder": "./resources/npcs/",
             "height": 100,
-            "id": "excavator",
+            "id": "NPCExcavator",
             "isStatic": true,
             "isStaticBaseFile": "npc_base.png",
             "isVisible": true,
@@ -1060,7 +1060,7 @@
             "alpha": 255,
             "basePathFolder": "./resources/tiles/beachTiles/",
             "height": 100,
-            "id": "jetDownA",
+            "id": "WaterJetDownA",
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
@@ -1071,7 +1071,7 @@
             "posY": -300,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 12
+            "subtype": 13
         },
         {
             "alpha": 255,
@@ -1417,7 +1417,7 @@
             "alpha": 255,
             "basePathFolder": "./resources/tiles/beachTiles/",
             "height": 100,
-            "id": "jetDownB",
+            "id": "WaterJetDownB",
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
@@ -1428,7 +1428,7 @@
             "posY": -300,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 12
+            "subtype": 13
         },
         {
             "alpha": 255,
@@ -1757,7 +1757,7 @@
             "alpha": 255,
             "basePathFolder": "./resources/tiles/beachTiles/",
             "height": 100,
-            "id": "jetDownC",
+            "id": "WaterJetDownC",
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
@@ -1768,7 +1768,7 @@
             "posY": -200,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 12
+            "subtype": 13
         },
         {
             "alpha": 255,
@@ -1959,11 +1959,11 @@
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/tiles/beachTiles/",
+            "basePathFolder": "./resources/items/",
             "height": 100,
-            "id": "button",
+            "id": "Button",
             "isStatic": true,
-            "isStaticBaseFile": "buttonUnpressed.png",
+            "isStaticBaseFile": "button_unpressed_1.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -1972,7 +1972,7 @@
             "posY": -200,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 2
+            "subtype": 104
         },
         {
             "alpha": 255,
@@ -2046,7 +2046,7 @@
             "alpha": 255,
             "basePathFolder": "./resources/items/",
             "height": 100,
-            "id": "questItem5",
+            "id": "ItemPouch",
             "isStatic": true,
             "isStaticBaseFile": "item_pouch.png",
             "isVisible": true,
@@ -2097,7 +2097,7 @@
             "alpha": 255,
             "basePathFolder": "./resources/tiles/beachTiles/",
             "height": 100,
-            "id": "jetDown1",
+            "id": "WaterJetDown1",
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
@@ -2108,7 +2108,7 @@
             "posY": -100,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 12
+            "subtype": 13
         },
         {
             "alpha": 255,
@@ -2248,11 +2248,29 @@
         },
         {
             "alpha": 255,
+            "basePathFolder": "./resources/items/",
+            "height": 100,
+            "id": "BreakableWall",
+            "isStatic": true,
+            "isStaticBaseFile": "breakable_wall_1.png",
+            "isVisible": true,
+            "parent": "foreground",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 2400,
+            "posY": -100,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 10
+        },
+        
+        {
+            "alpha": 255,
             "basePathFolder": "./resources/tiles/beachTiles/",
             "height": 100,
-            "id": "wall631704567",
+            "id": "sand631704567",
             "isStatic": true,
-            "isStaticBaseFile": "rock1.png",
+            "isStaticBaseFile": "sandTile.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -2726,7 +2744,7 @@
             "alpha": 255,
             "basePathFolder": "./resources/animals/",
             "height": 100,
-            "id": "crab",
+            "id": "Crab",
             "isStatic": true,
             "isStaticBaseFile": "crab.png",
             "isVisible": true,
@@ -2741,11 +2759,28 @@
         },
         {
             "alpha": 255,
+            "basePathFolder": "./resources/items/",
+            "height": 100,
+            "id": "BreakableWall",
+            "isStatic": true,
+            "isStaticBaseFile": "breakable_wall_1.png",
+            "isVisible": true,
+            "parent": "foreground",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 1900,
+            "posY": 100,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 10
+        },
+        {
+            "alpha": 255,
             "basePathFolder": "./resources/tiles/beachTiles/",
             "height": 100,
-            "id": "wall1760243555",
+            "id": "1760243555",
             "isStatic": true,
-            "isStaticBaseFile": "rock1.png",
+            "isStaticBaseFile": "sandTile.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3117,7 +3152,7 @@
             "alpha": 255,
             "basePathFolder": "./resources/tiles/beachTiles/",
             "height": 100,
-            "id": "waterValveB",
+            "id": "ValveDownB",
             "isStatic": true,
             "isStaticBaseFile": "water_valve.png",
             "isVisible": true,
@@ -3128,7 +3163,7 @@
             "posY": 200,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 13
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -3338,7 +3373,7 @@
             "alpha": 255,
             "basePathFolder": "./resources/npcs/",
             "height": 100,
-            "id": "collector",
+            "id": "NPCOperator",
             "isStatic": true,
             "isStaticBaseFile": "npc_base.png",
             "isVisible": true,
@@ -3349,7 +3384,7 @@
             "posY": 300,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 18
+            "subtype": 20
         },
         {
             "alpha": 255,
@@ -3404,11 +3439,28 @@
         },
         {
             "alpha": 255,
+            "basePathFolder": "./resources/items/",
+            "height": 100,
+            "id": "BreakableWall",
+            "isStatic": true,
+            "isStaticBaseFile": "breakable_wall_1.png",
+            "isVisible": true,
+            "parent": "foreground",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 800,
+            "posY": 300,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 10
+        },
+        {
+            "alpha": 255,
             "basePathFolder": "./resources/tiles/beachTiles/",
             "height": 100,
-            "id": "wall1875335928",
+            "id": "1875335928",
             "isStatic": true,
-            "isStaticBaseFile": "rock1.png",
+            "isStaticBaseFile": "sandTile.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -3472,11 +3524,28 @@
         },
         {
             "alpha": 255,
+            "basePathFolder": "./resources/items/",
+            "height": 100,
+            "id": "BreakableWall",
+            "isStatic": true,
+            "isStaticBaseFile": "breakable_wall_1.png",
+            "isVisible": true,
+            "parent": "foreground",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 1100,
+            "posY": 300,
+            "rotation": 0.0,
+            "width": 100,
+            "subtype": 10
+        },
+        {
+            "alpha": 255,
             "basePathFolder": "./resources/tiles/beachTiles/",
             "height": 100,
-            "id": "wall1939964443",
+            "id": "1939964443",
             "isStatic": true,
-            "isStaticBaseFile": "rock1.png",
+            "isStaticBaseFile": "sandTile.png",
             "isVisible": true,
             "parent": "",
             "pivotX": 0,
@@ -4664,7 +4733,7 @@
             "alpha": 255,
             "basePathFolder": "./resources/tiles/beachTiles/",
             "height": 100,
-            "id": "waterValveA",
+            "id": "ValveDownA",
             "isStatic": true,
             "isStaticBaseFile": "water_valve.png",
             "isVisible": true,
@@ -4675,7 +4744,7 @@
             "posY": 600,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 13
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -4851,7 +4920,7 @@
             "alpha": 255,
             "basePathFolder": "./resources/tiles/beachTiles/",
             "height": 100,
-            "id": "waterValveC",
+            "id": "ValveDownC",
             "isStatic": true,
             "isStaticBaseFile": "water_valve.png",
             "isVisible": true,
@@ -4862,7 +4931,7 @@
             "posY": 600,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 13
+            "subtype": 2
         },
         {
             "alpha": 255,
@@ -5259,7 +5328,7 @@
             "alpha": 255,
             "basePathFolder": "./resources/npcs/",
             "height": 100,
-            "id": "collector",
+            "id": "NPCCollector",
             "isStatic": true,
             "isStaticBaseFile": "npc_base.png",
             "isVisible": true,
@@ -6092,7 +6161,7 @@
             "alpha": 255,
             "basePathFolder": "./resources/tiles/beachTiles/",
             "height": 100,
-            "id": "pit1896306640",
+            "id": "Pit",
             "isStatic": true,
             "isStaticBaseFile": "sandPit.png",
             "isVisible": true,
@@ -6103,7 +6172,7 @@
             "posY": 900,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 2
+            "subtype": 106
         },
         {
             "alpha": 255,
@@ -6160,7 +6229,7 @@
             "alpha": 255,
             "basePathFolder": "./resources/tiles/beachTiles/",
             "height": 100,
-            "id": "jetRight1",
+            "id": "WaterJetRight1",
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
@@ -6171,7 +6240,7 @@
             "posY": 900,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 12
+            "subtype": 13
         },
         {
             "alpha": 255,
@@ -6721,7 +6790,7 @@
             "alpha": 255,
             "basePathFolder": "./resources/tiles/beachTiles/",
             "height": 100,
-            "id": "jetUp1",
+            "id": "WaterJetUp1",
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
@@ -6732,7 +6801,7 @@
             "posY": 1000,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 12
+            "subtype": 13
         },
         {
             "alpha": 255,
@@ -7605,7 +7674,7 @@
             "alpha": 255,
             "basePathFolder": "./resources/tiles/beachTiles/",
             "height": 100,
-            "id": "jetLeft1",
+            "id": "WaterJetLeft1",
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
@@ -7616,7 +7685,7 @@
             "posY": 1200,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 12
+            "subtype": 13
         },
         {
             "alpha": 255,
@@ -7707,7 +7776,7 @@
             "alpha": 255,
             "basePathFolder": "./resources/tiles/beachTiles/",
             "height": 100,
-            "id": "jetUp2",
+            "id": "WaterJetUp2",
             "isStatic": true,
             "isStaticBaseFile": "valve.png",
             "isVisible": true,
@@ -7718,7 +7787,7 @@
             "posY": 1300,
             "rotation": 0.0,
             "width": 100,
-            "subtype": 12
+            "subtype": 13
         },
         {
             "alpha": 255,

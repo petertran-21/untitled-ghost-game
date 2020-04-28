@@ -3,6 +3,7 @@
 
 #include "DisplayObject.h"
 #include "Controls.h"
+#include "Ghost.h"
 
 using namespace std;
 
@@ -40,7 +41,10 @@ class Particle : public DisplayObject
         static const int UPDATE_RATE = 10;
 
         //Effects the particle trail length when Ghost moves
-        static const int TRAIL_LENGTH = UPDATE_RATE * 4;
+        static const int TRAIL_LENGTH = UPDATE_RATE;
+
+        //Allows us to check before loading texture
+        bool isTextureSet;
 };
 
 #endif

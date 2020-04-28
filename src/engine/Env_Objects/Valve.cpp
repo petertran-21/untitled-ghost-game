@@ -24,6 +24,7 @@ void Valve::toggle(){
         w->active = on;
         w->dir = this->dir;
     }
+    cout<<"VALVE IS TOGGLED"<<endl;
 }
 
 void Valve::add_jet(WaterJet* w){

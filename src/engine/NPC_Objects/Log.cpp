@@ -6,27 +6,34 @@
 using namespace std;
 
 
-Log::Log() : MainNPCObj(){
+Log::Log(DisplayObjectContainer* container) : MainNPCObj(){
     this->addAnimation("./resources/items/", "tree", 1, 1, false);
     this->addAnimation("./resources/items/", "log", 1, 1, false);
 
 	this->play("tree");
+    this->subtype = LOG_SUBTYPE;
+
+    this->collisionContainer = container;
+    container->addChild(this);
 }
 
 void Log::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
     AnimatedSprite::update(pressedKeys, currState);
 
-    if (chopped) this->play("log");
+    if (chopped) {
+        this->play("log");
+    }
 }
 
 void Log::resolve_collision(DisplayObject *obj){
-    //on collide w/water --> sink
-    /*
-    if (obj->type == "Water"){
+    
+    if (sunk || !chopped) return;
+    if (obj->type == "Wall"){
         sunk = true;
-        cout << "SUNK" << endl;
+        position = obj->position;
+        obj->type = "";
     }
-    */
+    
 }
 
 void Log::resolve_adjacency(DisplayObject *obj, int status){

@@ -32,6 +32,9 @@ class MainNPC : public AnimatedSprite{
         
         int cooldown_max = 30;
         int cooldown_timer = 0;
+        bool reverse_controls = false;
+        int reverse_controls_timer = 0;
+        int reverse_controls_max = 400;
 
         npc_states state = npc_states::Idle;
         bool state_new = true;

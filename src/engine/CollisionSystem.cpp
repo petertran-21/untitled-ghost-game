@@ -20,15 +20,17 @@ CollisionSystem::~CollisionSystem(){
 //checks collisions between pairs of DOs where the corresponding types have been requested
 //to be checked (via a single call to watchForCollisions) below.
 void CollisionSystem::update(){
-  watchForCollisions("NPC", "NPC");
   watchForCollisions("Ghost", "NPC");
-  watchForCollisions("NPCObj", "EnvObj");
+  watchForCollisions("Ghost", "SceneTrigger");
+  watchForCollisions("NPC", "NPC");
   watchForCollisions("NPC", "NPCObj");
   watchForCollisions("NPC", "EnvObj");
+  watchForCollisions("Ghost", "NPCObj");
   watchForCollisions("NPC", "Collectible");
-  watchForCollisions("Ghost", "SceneTrigger");
-  watchForCollisions("Boss", "NPCObj");
   watchForCollisions("NPC", "Wall");
+  watchForCollisions("NPCObj", "EnvObj");
+  watchForCollisions("NPCObj", "Wall");
+  watchForCollisions("Boss", "NPCObj");
 
   watchForAdjacency("NPC", "EnvObj");
   watchForAdjacency("NPC", "NPCObj");
@@ -74,6 +76,9 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
             else if ((type1 == "NPC" && type2 == "EnvObj")){
               resolveCollision_NPC_EnvObj(inView[i], inView[j]);
             }
+            else if ((type1 == "Ghost" && type2 == "NPCObj")){
+              resolveCollision_Ghost_NPCObj(inView[i], inView[j]);
+            }
             else if ((type1 == "NPC") && (type2 == "NPCObj")){
               resolveCollision_NPC_NPCObj(inView[i], inView[j]);
             }
@@ -91,6 +96,9 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
             }
             else if ((type1 == "NPC") && (type2 == "Wall")){
               resolveCollision_NPC_Wall(inView[i], inView[j]);
+            }
+            else if ((type1 == "NPCObj") && (type2 == "Wall")){
+              resolveCollision_NPCObj_Wall(inView[i], inView[j]);
             }
             else{
               // resolveCollision(inView[i], inView[j],
@@ -119,9 +127,9 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
 
 void CollisionSystem::watchForAdjacency(string type1, string type2) {
   for(int i = 0; i < inView.size(); i++) {
-    if (inView[i]->id == type1){
+    if (inView[i]->type == type1){
       for(int j = 0; j < inView.size(); j++) {
-        if (inView[j]->id == type2) {
+        if (inView[j]->type == type2) {
           int status = isAdjacentTo(inView[i], inView[j]);
           if ((type1 == "NPC" && type2 == "EnvObj")){
               resolveAdjacency_NPC_EnvObj(inView[i], inView[j], status);
@@ -636,6 +644,13 @@ void CollisionSystem::resolveCollision_NPC_EnvObj(DisplayObject* npc, DisplayObj
   npc->resolve_collision(envObj);
   envObj->resolve_collision(npc);
 }
+
+void CollisionSystem::resolveCollision_Ghost_NPCObj(DisplayObject* ghost, DisplayObject* npcObj){
+  ghost->resolve_collision(npcObj);
+  npcObj->resolve_collision(ghost);
+}
+
+
 void CollisionSystem::resolveCollision_NPC_NPCObj(DisplayObject* npc, DisplayObject* npcObj){
   npc->resolve_collision(npcObj);
   npcObj->resolve_collision(npc);
@@ -726,6 +741,18 @@ void CollisionSystem::resolveCollision_Boss_NPCObj(DisplayObject* bossObj, Displ
   NPCObj->resolve_collision(bossObj);
 }
 
+void CollisionSystem::resolveCollision_NPC_Wall(DisplayObject* npc, DisplayObject* wall){
+  npc->resolve_collision(wall);
+}
+
+void CollisionSystem::resolveCollision_NPCObj_Wall(DisplayObject* npcObj, DisplayObject* wall){
+  npcObj->resolve_collision(wall);
+}
+
+
+
+//===============ADJACENCY
+
 void CollisionSystem::resolveAdjacency_NPC_EnvObj(DisplayObject* npc, DisplayObject* envObj, int status){
   npc->resolve_adjacency(envObj, status);
   envObj->resolve_adjacency(npc, status);
@@ -744,7 +771,4 @@ void CollisionSystem::resolveAdjacency_NPCObj_EnvObj(DisplayObject* NPCObj, Disp
 void CollisionSystem::resolveAdjacency_EnvObj_EnvObj(DisplayObject* envObj1, DisplayObject* envObj2, int status){
   envObj1->resolve_adjacency(envObj2, status);
   envObj2->resolve_adjacency(envObj1, status);
-}
-void CollisionSystem::resolveCollision_NPC_Wall(DisplayObject* npc, DisplayObject* wall){
-  npc->resolve_collision(wall);
 }

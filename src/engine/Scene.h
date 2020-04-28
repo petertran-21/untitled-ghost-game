@@ -5,6 +5,7 @@
 #include "DisplayObjectContainer.h"
 #include "Sprite.h"
 #include "AnimatedSprite.h"
+#include "Ghost.h"
 #include "json.hpp"
 #include <iomanip>
 
@@ -29,6 +30,9 @@ public:
 	bool isActive = false;
 private:
 
+	//Intermediate step used in giving Ghost to the Camera
+	Ghost* ghost;
+	bool isGhostSentToCamera;
 };
 
 #endif

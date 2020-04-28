@@ -12,7 +12,9 @@ WaterJet::WaterJet(DisplayObjectContainer *container, DisplayObjectContainer* dr
     this->addAnimation("./resources/items/", "water_jet", 1, 1, false);
 	this->play("water_jet");
     this->collisionContainer = container;
+    container->addChild(this);
     this->drawingContainer = drawContainer;
+    //drawContainer->addChild(this);
     this->subtype = WATERJET_SUBTYPE;
 }
 
@@ -43,13 +45,6 @@ void WaterJet::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState c
             } 
             init = false;
             cout << "STREAM SPAWNED" << endl;
-            for (int i =0; i <this->collisionContainer->children.size(); i++){
-                DisplayObject* child = this->collisionContainer->children[i];
-                if ((child->type == "EnvObj") && (child->subtype == WATERSTREAM_SUBTYPE)){ // 14 == WaterStream
-                    WaterStream* ws = (WaterStream*) child;
-                    cout<<"POSITION CC: "<<ws->position.x<<", "<<ws->position.y<<endl;
-                }
-            }
         }
     }
     else{

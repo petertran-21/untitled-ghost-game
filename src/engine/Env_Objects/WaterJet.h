@@ -19,7 +19,7 @@ class WaterJet : public MainEnvObj{
         bool active = false;
         bool init = true;
         directions dir = S;
-        int tile_range = 5;
+        int tile_range = 12;
 
         vector<WaterStream*> streams;
         // vector<DisplayObject*> streams;

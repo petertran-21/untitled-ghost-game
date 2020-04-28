@@ -57,12 +57,14 @@ public:
 	void resolveCollision_Ghost_NPC(DisplayObject* ghost, DisplayObject* npc);
 	void resolveCollision_NPC_NPC(DisplayObject* npc, DisplayObject* npc1);
 	void resolveCollision_NPC_EnvObj(DisplayObject* npc, DisplayObject* envObj);
+	void resolveCollision_Ghost_NPCObj(DisplayObject* ghost, DisplayObject* npcObj);
 	void resolveCollision_NPC_NPCObj(DisplayObject* npc, DisplayObject* npcObj);
 	void resolveCollision_NPC_Collectible(DisplayObject* npc, DisplayObject* collectible);
 	void resolveCollision_NPCObj_EnvObj(DisplayObject* NPCObj, DisplayObject* envObj);
 	void resolveCollision_SceneTrigger(DisplayObject* triggerObj, DisplayObject* ghostObj);
 	void resolveCollision_Boss_NPCObj(DisplayObject* bossObj, DisplayObject* npcObj);
 	void resolveCollision_NPC_Wall(DisplayObject* npc, DisplayObject* wall);
+	void resolveCollision_NPCObj_Wall(DisplayObject* npcObj, DisplayObject* wall);
 
 	void resolveAdjacency_NPC_EnvObj(DisplayObject* npc, DisplayObject* envObj, int status);
 	void resolveAdjacency_NPC_NPCObj(DisplayObject* npc, DisplayObject* npcObj, int status);

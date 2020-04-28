@@ -7,6 +7,7 @@
 #include "NPCOperator.h"
 #include "NPCLumberjack.h"
 #include "NPCPyromancer.h"
+#include "NPCSkeleton.h"
 #include "NPCCraftsman.h"
 #include "NPCStrongman.h"
 #include "NPCDoctor.h"

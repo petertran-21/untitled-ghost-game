@@ -8,7 +8,7 @@ using namespace std;
 
 Pit::Pit(DisplayObjectContainer* container) : MainEnvObj(){
     this->subtype = 106;
-    this->addAnimation("./resources/items/", "pit", 1, 1, false);
+    this->addAnimation("./resources/items/", "stone", 1, 1, false);
 
 	this->play("pit");
     this->collisionContainer = container;

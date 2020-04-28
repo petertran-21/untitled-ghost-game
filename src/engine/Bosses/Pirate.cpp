@@ -37,6 +37,7 @@ void Pirate::state_attack(set<SDL_Scancode> pressedKeys, Controller::JoystickSta
 
 void Pirate::resolve_collision(DisplayObject *obj){
         cout << "PIRATE WAS HIT BY A CRAB" << endl;
-        this->state = boss_states::Death;
+        Crab *c = dynamic_cast<Crab*>(obj);
+        if (c) state_switch(boss_states::Death);
 
 }

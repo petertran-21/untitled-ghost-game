@@ -45,14 +45,22 @@ void NPCOperator::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joyst
 void NPCOperator::resolve_collision(DisplayObject *obj){
     MainNPC::resolve_collectible_collision(obj, this->collisionContainer, this->drawingContainer);
     MainNPC::resolve_collision(obj);
+    if (obj->getSubtype()==12 && operated == true){
+        cout<<"OPERATOR RESOLVE HIT IF STATEMENT"<<endl;
+        operated = false;
+        Valve* v = (Valve*) obj;
+        v->toggle();
+        return;
+	}
 
 }
 
 void NPCOperator::resolve_adjacency(DisplayObject *obj, int status){
 
     if (obj->getSubtype()==12 && operated == true){
-
+        cout<<"OPERATOR RESOLVE HIT: "<<status<<endl;
         if (status != 0){
+            cout<<"OPERATOR RESOLVE HIT IF STATEMENT"<<endl;
             operated = false;
             Valve* v = (Valve*) obj;
             v->toggle();

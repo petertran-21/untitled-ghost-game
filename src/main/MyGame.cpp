@@ -40,7 +40,6 @@ MyGame::MyGame() : Game(1000, 1000)
 	textboxTest = new TextBox(0, 400);
 	UIContainer->addChild(selectionMenuTest);
 	UIContainer->addChild(textboxTest);
-	
 }
 
 MyGame::~MyGame()
@@ -72,18 +71,6 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 			camera->getChild(0)->scaleX *= 1.1;
 			camera->getChild(0)->scaleY *= 1.1;
 		}
-		if (pressedKeys.find(SDL_SCANCODE_J) != pressedKeys.end()){
-			camera->getChild(0)->position.x += 10;
-		}
-		if (pressedKeys.find(SDL_SCANCODE_L) != pressedKeys.end()){
-			camera->getChild(0)->position.x -= 10;
-		}
-		if (pressedKeys.find(SDL_SCANCODE_I) != pressedKeys.end()){
-			camera->getChild(0)->position.y += 10;
-		}
-		if (pressedKeys.find(SDL_SCANCODE_K) != pressedKeys.end()){
-			camera->getChild(0)->position.y -= 10;
-		}
 	}
 
 	if (pressedKeys.find(SDL_SCANCODE_DOWN) != pressedKeys.end() && UIOpen){
@@ -97,7 +84,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 	}
 	if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end() && !UIOpen){
 		this->addChild(UIContainer);
-		textboxTest->setText("X-pos: " + std::to_string(player->position.x));
+		textboxTest->setText("Press Q to exit the pause menu.");
 		UIOpen = !UIOpen;
 	}
 	if (pressedKeys.find(SDL_SCANCODE_Q) != pressedKeys.end() && UIOpen){

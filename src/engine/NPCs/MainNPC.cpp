@@ -18,10 +18,13 @@ MainNPC::MainNPC(DisplayObjectContainer* container, DisplayObjectContainer* allS
 void MainNPC::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
 	AnimatedSprite::update(pressedKeys, currState);
 
+    if (!is_possessed) state_switch(npc_states::Idle);
+
     MainNPC::state_execute(pressedKeys, currState);
 
     //cooldown on ability usage
     if (cooldown_timer > 0) cooldown_timer--;
+    if (reverse_controls) {reverse_controls_timer++; if(reverse_controls_timer==reverse_controls_max){ reverse_controls=false; reverse_controls_timer=0;}}
 
 }
 
@@ -65,17 +68,17 @@ void MainNPC::state_moving(set<SDL_Scancode> pressedKeys, Controller::JoystickSt
 
     bool is_moving = false;
     //check for movement on controller
-    if (currState.leftStickY < 0){ is_moving = true; dir = N;}
-    else if (currState.leftStickX < 0){ is_moving = true; dir = W;}
-    else if (currState.leftStickY > 0){ is_moving = true; dir = S;}
-    else if (currState.leftStickX > 0){ is_moving = true; dir = E;}
+    if (currState.leftStickY < 0){ is_moving = true; dir = N; if(reverse_controls){dir=S;}}
+    else if (currState.leftStickX < 0){ is_moving = true; dir = W; if(reverse_controls){dir=E;}}
+    else if (currState.leftStickY > 0){ is_moving = true; dir = S; if(reverse_controls){dir=N;}}
+    else if (currState.leftStickX > 0){ is_moving = true; dir = E; if(reverse_controls){dir=W;}}
 
     //check for movement on keyboard
     for(int code:pressedKeys){
-        if      (code == SDL_SCANCODE_W || currState.leftStickY < 0){ is_moving = true; dir = N;}
-        else if (code == SDL_SCANCODE_A || currState.leftStickX < 0){ is_moving = true; dir = W;}
-        else if (code == SDL_SCANCODE_S || currState.leftStickY > 0){ is_moving = true; dir = S;}
-        else if (code == SDL_SCANCODE_D || currState.leftStickY > 0){ is_moving = true; dir = E;}
+        if      (code == SDL_SCANCODE_W || currState.leftStickY < 0){ is_moving = true; dir = N; if(reverse_controls){dir=S;}}
+        else if (code == SDL_SCANCODE_A || currState.leftStickX < 0){ is_moving = true; dir = W; if(reverse_controls){dir=E;}}
+        else if (code == SDL_SCANCODE_S || currState.leftStickY > 0){ is_moving = true; dir = S; if(reverse_controls){dir=N;}}
+        else if (code == SDL_SCANCODE_D || currState.leftStickY > 0){ is_moving = true; dir = E; if(reverse_controls){dir=W;}}
     }
 
     //move npc along grid
@@ -224,8 +227,18 @@ void MainNPC::resolve_collision(DisplayObject *obj){
         if (br->open) return;
     }
 
+    //COLLIDES WITH DOOR
+    if (obj->getSubtype() == DOOR_SUBTYPE){
+        Door* d = dynamic_cast<Door*>(d);
+        cout<<"DORR EXISTS: "<<d->position.x<<" "<<d->position.y<<endl;
+        cout<<"NPC AT: "<<position.x<<" "<<position.y<<endl;
+        if (d->open) cout<<"IS OPEN"<<endl;
+    }
+
     // DEFAULT FOR COLLIDING WITH SOLIDS
+    // cout<<"Colliing wiht envObj"<<(obj&&(obj->type == "EnvObj"))<< " "<<(obj->type == "EnvObj")<<endl;
 	if (obj && (obj->type == "EnvObj" || obj->type == "Wall")){
+        // cout<<"COLLIDING WITH ENV"<<endl;
         //check that npcs are overlapping
         if ((position.y == obj->position.y) && (position.x == obj->position.x)){
             switch (dir){
@@ -257,17 +270,23 @@ void MainNPC::resolve_adjacency(DisplayObject *obj, int status){
 
 void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectContainer* collideContainer, DisplayObjectContainer* drawContainer){
     //COLLISIONS WITH COLLECTIBLES
-    for (DisplayObject* child: drawContainer->children){
-        if (child->type == "Collectible"){
-            if ((obj->position.x == child->position.x) && (obj->position.y == child->position.y) && (this->position.x == obj->position.x) && (this->position.y == obj->position.y)){
-                vector<DisplayObject*>::iterator collideItr = find(collideContainer->children.begin(), collideContainer->children.end(), obj);
-                vector<DisplayObject*>::iterator drawItr = find(drawContainer->children.begin(), drawContainer->children.end(), obj);
-                if (collideItr != collideContainer->children.end() && drawItr != drawContainer->children.end()){
-                    collideContainer->children.erase(collideItr);
-                    drawContainer->children.erase(drawItr);
-                }
+    // cout<<"foreground NPC address: "<<drawingContainer<<endl;
+    // cout << "TYPE: "<<obj->type<<", subtype:  "<<obj->subtype<<", "<<(obj->type=="Collectible")<<endl;
+    // cout<<"NUM COLLIDE CHILDREN: "<<collideContainer->children.size()<<endl;
+    // cout<<"NUM DRAW CHILDREN: "<<drawContainer->children.size()<<endl;
+    if (obj->type == "Collectible"){
+        if ((obj->position.x == this->position.x) && (obj->position.y == this->position.y)){
+            switch(obj->getSubtype()){
+                case 9: //item pouch
+                    ItemPouch* collect = (ItemPouch*) obj;
+                    vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), collect);
+                    vector<DisplayObject*>::iterator drawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), collect);
+                    if (collideItr != this->collisionContainer->children.end() && collideItr != this->drawingContainer->children.end()){
+                        this->collisionContainer->children.erase(collideItr);
+                        this->drawingContainer->children.erase(drawItr);
+                    } 
             }
-        }
+        } 
     }
 }
 
