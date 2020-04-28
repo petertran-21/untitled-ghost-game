@@ -17,21 +17,23 @@ MyGame::MyGame() : Game(1000, 1000)
 	//uncomment following line to check that collision boxes for objects are identical to drawing
 	//allSprites->addChild(container);
 
-	collisionSystem = new CollisionSystem(camera, container);
+	collisionSystem = new CollisionSystem(camera, container, inventory);
 	displayTreeDisp = new EventDispatcher();
 	DOAdded = new DOAddedEvent(displayTreeDisp, container);
 	DORemoved = new DORemovedEvent(displayTreeDisp, container);
 	displayTreeDisp->addEventListener(collisionSystem, DOAddedEvent::DO_ADDED);
 	displayTreeDisp->addEventListener(collisionSystem, DORemovedEvent::DO_REMOVED);
+	
 
-	//scene_1->loadScene("./resources/scenes/beachEntrance.json", container);
-	scene_1->loadScene("./resources/scenes/swampHub.json", container);
+	scene_1->loadScene("./resources/scenes/beachEntrance.json", container, inventory);
 
 	DOAdded->checkCondition();
 	//-----------------------------------------
 	// TODO, SFX will add later
 
 	UIContainer = new DisplayObjectContainer();
+
+	inventoryUI = new Inventory(0,0,300,300);
 
 	selectionMenuTest = new SelectionMenu(0, 0);
 	selectionMenuTest->addToMenu("Save");
@@ -73,6 +75,11 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 			camera->getChild(0)->scaleX *= 1.1;
 			camera->getChild(0)->scaleY *= 1.1;
 		}
+	}
+	cout << "MyGame: Inventory: "<< inventory.size() << endl;
+	cout << "InventoryUI" << inventoryUI->entries.size() << endl;
+	if(inventoryUI->entries.size()!=inventory.size()){
+		inventoryUI->entries=inventory; 
 	}
 
 	if (pressedKeys.find(SDL_SCANCODE_DOWN) != pressedKeys.end() && UIOpen){

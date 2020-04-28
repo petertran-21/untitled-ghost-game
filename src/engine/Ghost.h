@@ -5,6 +5,7 @@
 #include "Enemy.h"
 #include "Controls.h"
 #include "MainNPC.h"
+#include "UIDefs.h"
 
 using namespace std;
 
@@ -24,6 +25,8 @@ public:
 	void boo();
 
 	MainNPC* npc;
+
+	Inventory inv;
 
 	/* Health and such */
 	int health = 100;

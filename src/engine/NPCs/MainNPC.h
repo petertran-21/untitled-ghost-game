@@ -17,10 +17,13 @@ class MainNPC : public AnimatedSprite{
     
     public:
         MainNPC();
-        MainNPC(DisplayObjectContainer* container, DisplayObjectContainer* allSprites);
+        //MainNPC(vector<DisplayObject*> passedInventory);
+        MainNPC(DisplayObjectContainer* container, DisplayObjectContainer* allSprites,vector<DisplayObject*> &passedInventory);
         virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 	    virtual void draw(AffineTransform &at);
         //virtual void onCollision(DisplayObject* other);
+
+        vector<DisplayObject*> *inventory;
 
         bool is_possessed = false;
         bool can_move = true;
