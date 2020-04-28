@@ -1764,8 +1764,8 @@
             "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
-            "posX": 200,
-            "posY": 200,
+            "posX": 300,
+            "posY": 300,
             "rotation": 0.0,
             "subtype": 4,
             "width": 100
@@ -1796,8 +1796,8 @@
             "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
-            "posX": 500,
-            "posY": 300,
+            "posX": 700,
+            "posY": 200,
             "rotation": 0.0,
             "subtype": 19,
             "width": 100

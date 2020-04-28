@@ -672,7 +672,7 @@ void CollisionSystem::resolveCollision_SceneTrigger(DisplayObject* triggerObj, D
     }
 
     //Fixes std::out_of_range vector issue when we were merging stuff
-    inView.clear();
+    //inView.clear();
     
     if (ghost->getIsPosessing() && ghost->npc != NULL) {
       MainNPC* npc = ghost->npc;
@@ -683,6 +683,7 @@ void CollisionSystem::resolveCollision_SceneTrigger(DisplayObject* triggerObj, D
         }
       }
       npc->parent = next;
+      npc->drawingContainer = next;
       next->addChild(npc);
       cout << "Crossing NPC:" << npc->getSubtype() << endl;
       
@@ -694,8 +695,21 @@ void CollisionSystem::resolveCollision_SceneTrigger(DisplayObject* triggerObj, D
           new_ghost->npc->is_possessed = true;
           new_ghost->setIsPossessing(true);
           new_ghost->state_switch(ghost_states::Possessing);
+          collisionContainer->addChild(npc);
         }
       }
+
+      
+      for (int i = 0; i < inView.size(); i++){
+        if (inView.at(i) != ghost->npc){
+          inView.erase(inView.begin() + i);
+          i--;
+        } else {cout << "Not Clearing NPC" << endl;}
+      }
+      cout << npc->id << endl;
+
+    } else {
+      inView.clear();
     }
     cout << "Saving Scene" << endl;
     current->SaveScene();

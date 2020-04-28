@@ -131,7 +131,6 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             unit->rotation = sprite["rotation"];
             unit->width = sprite["width"];
             unit->height = sprite["height"];
-
             if (sprite["parent"] == "") {
                 background->addChild(unit);
                 unit->parent = background;
@@ -196,13 +195,14 @@ void Scene::SaveScene(){
                 {"height", sprite->height},
                 {"subtype", sprite->subtype}, 
             };
-            string parent = "";
+            string parent = "foreground";
+            /*
             if (sprite->parent != this){
                 parent = sprite->parent->id;
                 //cout << parent << endl;
             } else if (sprite->subtype != 2) {
                 parent = "foreground";
-            }
+            } */
             
             jsonSprite["parent"] = parent;
             j["sprites"].push_back(jsonSprite);

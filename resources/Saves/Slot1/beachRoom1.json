@@ -4420,22 +4420,6 @@
             "rotation": 0.0,
             "subtype": 9,
             "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/npcs/",
-            "height": 100,
-            "id": "861021530",
-            "isStatic": true,
-            "isVisible": true,
-            "parent": "foreground",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": -400,
-            "posY": 200,
-            "rotation": 0.0,
-            "subtype": 19,
-            "width": 100
         }
     ]
 }
