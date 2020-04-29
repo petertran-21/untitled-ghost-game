@@ -23,6 +23,8 @@
 #include "UIDefs.h"
 #include "BossImports.h"
 #include "particle_system/ParticleEmitter.h"
+#include <iostream>
+#include <fstream>
 
 using namespace std;
 

@@ -28,14 +28,11 @@ MyGame::MyGame() : Game(1000, 1000)
 	scene_1->loadScene("./resources/scenes/beachEntrance.json", container);
 
 	DOAdded->checkCondition();
-	//-----------------------------------------
-	// TODO, SFX will add later
 
+	// SFX Menu stuff
 	UIContainer = new DisplayObjectContainer();
 
 	selectionMenuTest = new SelectionMenu(0, 0);
-	selectionMenuTest->addToMenu("Save");
-	selectionMenuTest->addToMenu("Load");
 	selectionMenuTest->addToMenu("Quit");
 
 	textboxTest = new TextBox(0, 400);
