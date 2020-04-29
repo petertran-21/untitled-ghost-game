@@ -5,7 +5,7 @@
 using namespace std;
 
 NPCStrongman::NPCStrongman(DisplayObjectContainer* container, DisplayObjectContainer* allSprites, vector<DisplayObject*> &passedInventory) : MainNPC(){
-    this->addAnimation("./resources/npcs/strongman/", "strongman_idle", 2, 1, true);
+    this->addAnimation("./resources/npcs/strongman/", "strongman_idle", 1, 1, true);
 	this->play("strongman_idle");
     this->collisionContainer = container;
     container->addChild(this);
@@ -33,4 +33,33 @@ void NPCStrongman::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joys
         }
     }
     state_switch(npc_states::Possessed);
+}
+
+void NPCStrongman::resolve_adjacency(DisplayObject *obj, int status){
+    Sign * s = dynamic_cast<Sign*>(obj);
+
+    //POST SIGN
+    if (s && strongmode){
+
+        if (status != 0 && !s->posted){
+
+            vector<DisplayObject*> inv = *inventory;
+            DisplayObject* temp = NULL;
+
+            //LOOK FOR SIGN IN INVENTORY
+            for (int i = 0; i < inv.size(); i++){
+                if (inv[i]->id == "Sign") temp = inv[i];
+            }
+
+            //IF YOU HAVE A SIGN, POST IT AND REMOVE FROM INV
+            if (temp){
+                s->posted = true;
+                std::vector<DisplayObject*>::iterator position = std::find(inventory->begin(), inventory->end(), temp);
+                if (position != inventory->end()){
+                    inventory->erase(position);
+                }
+            }
+            return;
+        }
+    }
 }

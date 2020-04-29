@@ -175,6 +175,10 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 unit = new Workbench(Collisioncontainer);
                 break;
 
+            case SIGN_SUBTYPE:
+                unit = new Sign(Collisioncontainer);
+                break;
+
             /*--------------------------Universal--------------------------*/
             case GHOST_SUBTYPE:
                 unit = new Ghost();

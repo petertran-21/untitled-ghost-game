@@ -31,7 +31,7 @@ void NPCCraftsman::resolve_adjacency(DisplayObject *obj, int status){
 
         if (status != 0 && !m->mined){
             //ADD ITEM TO INVENTORY
-            DisplayObject* item = new DisplayObject(m->id,m->imgPath+"mineral_1.png");     
+            DisplayObject* item = new DisplayObject(m->id,"./resources/items/mineral_1.png");     
             inventory->push_back(item);
 
             ability = false;
@@ -45,7 +45,7 @@ void NPCCraftsman::resolve_adjacency(DisplayObject *obj, int status){
 
         if (status != 0 && !c->mined){
             //ADD ITEM TO INVENTORY
-            DisplayObject* item = new DisplayObject(c->id,c->imgPath+"cavelake_1.png");     
+            DisplayObject* item = new DisplayObject(c->id,"./resources/items/cavelake_1.png");     
             inventory->push_back(item);
 
             ability = false;

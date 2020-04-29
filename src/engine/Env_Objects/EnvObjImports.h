@@ -13,4 +13,5 @@
 #include "Mineral.h"
 #include "CaveLake.h"
 #include "Workbench.h"
+#include "Sign.h"
 #include "MainEnvObj.h"

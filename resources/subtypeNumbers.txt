@@ -47,3 +47,4 @@ For referencing which number corresponds to each subtype of object due to C++ no
 301: Mineral
 302: CaveLake
 303: Workbench
+304: Sign

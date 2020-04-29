@@ -3,6 +3,7 @@
 #define NPCSTRONGMAN_SUBTYPE 26
 
 #include "MainNPC.h"
+#include "Sign.h"
 
 using namespace std;
 
@@ -17,6 +18,8 @@ class NPCStrongman : public MainNPC{
         bool strongmode = false;
         int strongmode_timer = 0;
         int strongmode_timer_max = 20;
+
+        void resolve_adjacency(DisplayObject *obj, int status);
 
 };
 
