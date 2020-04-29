@@ -74,11 +74,29 @@ void MainNPC::state_moving(set<SDL_Scancode> pressedKeys, Controller::JoystickSt
     else if (currState.leftStickX > 0){ is_moving = true; dir = E; if(reverse_controls){dir=W;}}
 
     //check for movement on keyboard
-    for(int code:pressedKeys){
-        if      (code == SDL_SCANCODE_W || currState.leftStickY < 0){ is_moving = true; dir = N; if(reverse_controls){dir=S;}}
-        else if (code == SDL_SCANCODE_A || currState.leftStickX < 0){ is_moving = true; dir = W; if(reverse_controls){dir=E;}}
-        else if (code == SDL_SCANCODE_S || currState.leftStickY > 0){ is_moving = true; dir = S; if(reverse_controls){dir=N;}}
-        else if (code == SDL_SCANCODE_D || currState.leftStickY > 0){ is_moving = true; dir = E; if(reverse_controls){dir=W;}}
+    if(pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end())
+    {
+        is_moving = true;
+        dir = N;
+        if(reverse_controls){dir=S;}  
+    }
+    else if(pressedKeys.find(SDL_SCANCODE_A) != pressedKeys.end())
+    {
+        is_moving = true;
+        dir = W;
+        if(reverse_controls){dir=E;}  
+    }
+    else if(pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end())
+    {
+        is_moving = true;
+        dir = S;
+        if(reverse_controls){dir=N;}  
+    }
+    else if(pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end())
+    {
+        is_moving = true;
+        dir = E;
+        if(reverse_controls){dir=W;}  
     }
 
     //move npc along grid
