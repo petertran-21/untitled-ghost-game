@@ -7,7 +7,7 @@ Particle::Particle() : DisplayObject()
     position.y = 0;
     horizontal_domain = 0;
     vertical_domain = 0;
-    alpha = 120;
+    alpha = 140;
     scaleX = 0.55;
     scaleY = 0.55;
     isTextureSet = false;
@@ -67,8 +67,8 @@ void Particle::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState 
     if( age % UPDATE_RATE == 0 )
     {
         //Simulate random movement
-        position.x = (rand() % horizontal_domain) - ((int) horizontal_domain / 2);
-        position.y = (rand() % vertical_domain) - ((int) vertical_domain / 2);
+        position.x = (rand() % horizontal_domain) - ((int) horizontal_domain / 2) - 5;
+        position.y = (rand() % vertical_domain) - ((int) vertical_domain / 2) + 13;
     }
     
     DisplayObject::update( pressedKeys, currState );
