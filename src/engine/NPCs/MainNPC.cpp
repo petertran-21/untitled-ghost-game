@@ -94,27 +94,27 @@ void MainNPC::state_moving(set<SDL_Scancode> pressedKeys, Controller::JoystickSt
                 //check collision @ direction//
                 position.y -= grid_size; 
                 abilityPt = {0, -100};
-                this->play("back");
+                if (this->changeAnim){this->play("back");}
                 break;
             case S:
                 //check collision @ direction//
                 position.y += grid_size;
                 abilityPt = {0, 100};
-                this->play("forward");
+                if (this->changeAnim){this->play("forward");}
                 break;
             case E: 
                 //check collision @ direction//
                 position.x += grid_size; 
                 abilityPt = {100, 0};
                 this->facingRight = true;
-                this->play("right");
+                if (this->changeAnim){this->play("right");}
                 break;
             case W: 
                 //check collision @ direction//
                 position.x -= grid_size; 
                 abilityPt = {-100, 0};
                 this->facingRight = false;
-                this->play("left");
+                if (this->changeAnim){this->play("left");}
                 break;
         }
         // this->play("idle");
@@ -290,13 +290,14 @@ void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectCon
                     inventory->push_back(item);
                     cout << "MainNPC: After Push Inventory: "<< inventory->size() << endl;
                     ItemPouch* collect = (ItemPouch*) obj;
-                    vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), collect);
-                    vector<DisplayObject*>::iterator drawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), collect);
-                    if (collideItr != this->collisionContainer->children.end() && drawItr != this->drawingContainer->children.end()){
-                        cout<<"DLETE IT"<<endl;
-                        this->collisionContainer->children.erase(collideItr);
-                        this->drawingContainer->children.erase(drawItr);
-                    } 
+                    //doesn't work in certain rooms (swampIsland)
+                    // vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), collect);
+                    // vector<DisplayObject*>::iterator drawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), collect);
+                    // if (collideItr != this->collisionContainer->children.end() && drawItr != this->drawingContainer->children.end()){
+                    //     cout<<"DELETE IT"<<endl;
+                    //     this->collisionContainer->children.erase(collideItr);
+                    //     this->drawingContainer->children.erase(drawItr);
+                    // } 
                     break;
                 }
                 case 122:{ //herb
@@ -311,7 +312,7 @@ void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectCon
                     } 
                     break;
                 }
-                case 126:{ //herb
+                case 126:{ //wood
                     DisplayObject* wood = new DisplayObject(obj->id,obj->imgPath+"wood_1.png");     
                     inventory->push_back(wood);
                     Wood* wood_collect = (Wood*) obj;

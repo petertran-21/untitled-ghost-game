@@ -11,7 +11,7 @@ class Boat : public MainNPCObj{
     
     public:
 
-        Boat();
+        Boat(DisplayObjectContainer* container);
 
         void resolve_collision(DisplayObject *obj);
 };

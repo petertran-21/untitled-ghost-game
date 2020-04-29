@@ -38,6 +38,7 @@ class MainNPC : public AnimatedSprite{
         bool reverse_controls = false;
         int reverse_controls_timer = 0;
         int reverse_controls_max = 400;
+        bool changeAnim = true;
 
         npc_states state = npc_states::Idle;
         bool state_new = true;

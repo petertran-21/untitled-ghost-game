@@ -149,6 +149,9 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             case HERB_SUBTYPE:
                 unit = new Herb(Collisioncontainer);
                 break;
+            case BOAT_SUBTYPE:
+                unit = new Boat(Collisioncontainer);
+                break;
             case SWAMPTREE_SUBTYPE:
                 unit = new SwampTree(Collisioncontainer, foreground);
                 break;
@@ -160,6 +163,9 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 break;
             case NPCDOCTOR_SUBTYPE:
                 unit = new NPCDoctor(Collisioncontainer, foreground, inventory);
+                break;
+            case NPCFISHERMAN_SUBTYPE:
+                unit = new NPCFisherman(Collisioncontainer, foreground, inventory);
                 break;
 
             /*--------------------------Mountain--------------------------*/

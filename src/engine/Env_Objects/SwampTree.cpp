@@ -15,11 +15,6 @@ SwampTree::SwampTree(DisplayObjectContainer* container, DisplayObjectContainer* 
     this->drawingContainer = drawContainer;
 }
 
-void SwampTree::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
-
-}
-
-
 void SwampTree::resolve_collision(DisplayObject *obj){
     cout<<"HELLO from SWAMPTREE RESOLVE"<<endl;
 }
