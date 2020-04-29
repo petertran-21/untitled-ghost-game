@@ -277,13 +277,15 @@ void MainNPC::resolve_adjacency(DisplayObject *obj, int status){
 void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectContainer* collideContainer, DisplayObjectContainer* drawContainer){
     //COLLISIONS WITH COLLECTIBLES
     // cout<<"foreground NPC address: "<<drawingContainer<<endl;
-    cout << "TYPE: "<<obj->type<<", subtype:  "<<obj->getSubtype()<<", "<<(obj->type=="Collectible")<<" HERE:"<<obj->imgPath<<"herb_1.png"<<endl;
-    cout<<"NUM COLLIDE CHILDREN: "<<collideContainer->children.size()<<endl;
-    cout<<"NUM DRAW CHILDREN: "<<drawContainer->children.size()<<endl;
+    cout << "TYPE: "<<obj->type<<", subtype:  "<<obj->getSubtype()<<", "<<(obj->type=="Collectible")<<" HERE:"<<obj->imgPath<<endl;
+    // cout<<"NUM COLLIDE CHILDREN: "<<collideContainer->children.size()<<endl;
+    // cout<<"NUM DRAW CHILDREN: "<<drawContainer->children.size()<<endl;
     if (obj->type == "Collectible"){
         if ((obj->position.x == this->position.x) && (obj->position.y == this->position.y)){
             switch(obj->getSubtype()){
                 case 9:{//item pouch  
+                    cout<<"MADE IT"<<endl;
+
                     DisplayObject* item = new DisplayObject(obj->id,obj->imgPath+"item_pouch_1.png");     
                     inventory->push_back(item);
                     cout << "MainNPC: After Push Inventory: "<< inventory->size() << endl;
@@ -291,6 +293,7 @@ void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectCon
                     vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), collect);
                     vector<DisplayObject*>::iterator drawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), collect);
                     if (collideItr != this->collisionContainer->children.end() && drawItr != this->drawingContainer->children.end()){
+                        cout<<"DLETE IT"<<endl;
                         this->collisionContainer->children.erase(collideItr);
                         this->drawingContainer->children.erase(drawItr);
                     } 
@@ -305,6 +308,18 @@ void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectCon
                     if (herbcollideItr != this->collisionContainer->children.end() && herbdrawItr != this->drawingContainer->children.end()){
                         this->collisionContainer->children.erase(herbcollideItr);
                         this->drawingContainer->children.erase(herbdrawItr);
+                    } 
+                    break;
+                }
+                case 126:{ //herb
+                    DisplayObject* wood = new DisplayObject(obj->id,obj->imgPath+"wood_1.png");     
+                    inventory->push_back(wood);
+                    Wood* wood_collect = (Wood*) obj;
+                    vector<DisplayObject*>::iterator woodcollideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), wood_collect);
+                    vector<DisplayObject*>::iterator wooddrawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), wood_collect);
+                    if (woodcollideItr != this->collisionContainer->children.end() && wooddrawItr != this->drawingContainer->children.end()){
+                        this->collisionContainer->children.erase(woodcollideItr);
+                        this->drawingContainer->children.erase(wooddrawItr);
                     } 
                     break;
                 }

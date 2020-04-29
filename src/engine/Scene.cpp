@@ -146,14 +146,20 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 break;
 
             /*--------------------------Swamp--------------------------*/
+            case HERB_SUBTYPE:
+                unit = new Herb(Collisioncontainer);
+                break;
+            case SWAMPTREE_SUBTYPE:
+                unit = new SwampTree(Collisioncontainer, foreground);
+                break;
             case SNAKE_SUBTYPE:
                 unit = new Snake(Collisioncontainer, foreground);
                 break;
+            case NPCCROC_SUBTYPE:
+                unit = new NPCCroc(Collisioncontainer, foreground, inventory);
+                break;
             case NPCDOCTOR_SUBTYPE:
                 unit = new NPCDoctor(Collisioncontainer, foreground, inventory);
-                break;
-            case HERB_SUBTYPE:
-                unit = new Herb(Collisioncontainer);
                 break;
 
             /*--------------------------Mountain--------------------------*/

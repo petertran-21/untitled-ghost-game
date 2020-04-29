@@ -47,3 +47,6 @@ For referencing which number corresponds to each subtype of object due to C++ no
 121: Boat
 122: Herb
 123: CraftStation
+124: NPCCroc
+125: SwampTree
+126: Wood

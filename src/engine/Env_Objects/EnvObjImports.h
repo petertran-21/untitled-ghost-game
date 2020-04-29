@@ -10,4 +10,5 @@
 #include "Button.h"
 #include "Pit.h"
 #include "PoisonGas.h"
+#include "SwampTree.h"
 #include "MainEnvObj.h"

@@ -328,7 +328,7 @@
         {
             "isStatic": true, 
             "parent": "foreground", 
-            "subtype": 2, 
+            "subtype": 124, 
             "pivotX": 0, 
             "pivotY": 0, 
             "basePathFolder": "./resources/animals/", 
@@ -634,7 +634,7 @@
         {
             "isStatic": true, 
             "parent": "foreground", 
-            "subtype": 2, 
+            "subtype": 124, 
             "pivotX": 0, 
             "pivotY": 0, 
             "basePathFolder": "./resources/animals/", 
@@ -770,7 +770,7 @@
         {
             "isStatic": true, 
             "parent": "foreground", 
-            "subtype": 2, 
+            "subtype": 124, 
             "pivotX": 0, 
             "pivotY": 0, 
             "basePathFolder": "./resources/animals/", 
@@ -855,7 +855,7 @@
         {
             "isStatic": true, 
             "parent": "foreground", 
-            "subtype": 2, 
+            "subtype": 124, 
             "pivotX": 0, 
             "pivotY": 0, 
             "basePathFolder": "./resources/animals/", 
@@ -1144,7 +1144,7 @@
         {
             "isStatic": true, 
             "parent": "foreground", 
-            "subtype": 2, 
+            "subtype": 124, 
             "pivotX": 0, 
             "pivotY": 0, 
             "basePathFolder": "./resources/animals/", 
@@ -1262,7 +1262,7 @@
         }, 
         {
             "isStatic": true, 
-            "parent": "", 
+            "parent": "foreground", 
             "subtype": 9, 
             "pivotX": 0, 
             "pivotY": 0, 
