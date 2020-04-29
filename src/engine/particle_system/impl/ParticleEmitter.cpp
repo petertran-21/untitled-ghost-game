@@ -41,3 +41,19 @@ void ParticleEmitter::draw( AffineTransform &at )
 {
     DisplayObjectContainer::draw( at );
 }
+
+void ParticleEmitter::setBiome( string sceneFilePath )
+{
+    if( sceneFilePath.find("beach") != string::npos )
+    {
+        this->biome = Beach;
+    }
+    else if( sceneFilePath.find("forest") != string::npos )
+    {
+        this->biome = Forest;
+    }
+    else
+    {
+        this->biome = DEFAULT;
+    }
+}
