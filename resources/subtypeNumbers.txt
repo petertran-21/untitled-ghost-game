@@ -43,6 +43,13 @@ For referencing which number corresponds to each subtype of object due to C++ no
 108: SceneTrigger
 109: Bark
 110: Poison
+120: PoisonGas
+121: Boat
+122: Herb
+123: CraftStation
+124: NPCCroc
+125: SwampTree
+126: Wood
 300: Boulder
 301: Mineral
 302: CaveLake

@@ -94,27 +94,27 @@ void MainNPC::state_moving(set<SDL_Scancode> pressedKeys, Controller::JoystickSt
                 //check collision @ direction//
                 position.y -= grid_size; 
                 abilityPt = {0, -100};
-                this->play("back");
+                if (this->changeAnim){this->play("back");}
                 break;
             case S:
                 //check collision @ direction//
                 position.y += grid_size;
                 abilityPt = {0, 100};
-                this->play("forward");
+                if (this->changeAnim){this->play("forward");}
                 break;
             case E: 
                 //check collision @ direction//
                 position.x += grid_size; 
                 abilityPt = {100, 0};
                 this->facingRight = true;
-                this->play("right");
+                if (this->changeAnim){this->play("right");}
                 break;
             case W: 
                 //check collision @ direction//
                 position.x -= grid_size; 
                 abilityPt = {-100, 0};
                 this->facingRight = false;
-                this->play("left");
+                if (this->changeAnim){this->play("left");}
                 break;
         }
         // this->play("idle");
@@ -243,9 +243,37 @@ void MainNPC::resolve_collision(DisplayObject *obj){
 
     // DEFAULT FOR COLLIDING WITH SOLIDS
     // cout<<"Colliing wiht envObj"<<(obj&&(obj->type == "EnvObj"))<< " "<<(obj->type == "EnvObj")<<endl;
-	if (obj && (obj->type == "EnvObj" || obj->type == "Wall")){
+	if (reverseCollisions){
+        if (obj && (obj->type == "Land")){
+        cout<<"COLLIDING WITH REVERSE ENV: "<<obj->type<<" "<<obj->getSubtype()<<endl;
+        //check that npcs are overlapping
+        if ((position.y == obj->position.y) && (position.x == obj->position.x)){
+            switch (dir){
+            //reset possessed npc's location to previous based on location it came from
+            case N:
+                position.y = position.y + 100;
+                dir = None;
+                break;
+            case E:
+                position.x = position.x - 100;
+                dir = None;
+                break;
+            case S: 
+                position.y = position.y - 100;
+                dir = None;
+                break;
+            case W:
+                position.x = position.x + 100;
+                dir = None;
+                break;
+                }
+            }
+        }
+	}
+    else if (obj && (obj->type == "EnvObj" || obj->type == "Wall")){
         // cout<<"COLLIDING WITH ENV"<<endl;
         //check that npcs are overlapping
+        cout<<"COLLIDING ENV: "<<obj->type<<" "<<obj->getSubtype()<<endl;
         if ((position.y == obj->position.y) && (position.x == obj->position.x)){
             switch (dir){
             //reset possessed npc's location to previous based on location it came from
@@ -277,23 +305,53 @@ void MainNPC::resolve_adjacency(DisplayObject *obj, int status){
 void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectContainer* collideContainer, DisplayObjectContainer* drawContainer){
     //COLLISIONS WITH COLLECTIBLES
     // cout<<"foreground NPC address: "<<drawingContainer<<endl;
-    // cout << "TYPE: "<<obj->type<<", subtype:  "<<obj->subtype<<", "<<(obj->type=="Collectible")<<endl;
+    // cout << "TYPE: "<<obj->type<<", subtype:  "<<obj->getSubtype()<<", "<<(obj->type=="Collectible")<<" HERE:"<<obj->imgPath<<endl;
     // cout<<"NUM COLLIDE CHILDREN: "<<collideContainer->children.size()<<endl;
     // cout<<"NUM DRAW CHILDREN: "<<drawContainer->children.size()<<endl;
     if (obj->type == "Collectible"){
         if ((obj->position.x == this->position.x) && (obj->position.y == this->position.y)){
             switch(obj->getSubtype()){
-                case 9: //item pouch  
+                case 9:{//item pouch  
+                    cout<<"MADE IT"<<endl;
+
                     DisplayObject* item = new DisplayObject(obj->id,obj->imgPath+"item_pouch_1.png");     
                     inventory->push_back(item);
                     cout << "MainNPC: After Push Inventory: "<< inventory->size() << endl;
                     ItemPouch* collect = (ItemPouch*) obj;
+                    //doesn't work in certain rooms (swampIsland)
                     vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), collect);
                     vector<DisplayObject*>::iterator drawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), collect);
-                    if (collideItr != this->collisionContainer->children.end() && collideItr != this->drawingContainer->children.end()){
+                    if (collideItr != this->collisionContainer->children.end() && drawItr != this->drawingContainer->children.end()){
+                        cout<<"DELETE IT"<<endl;
                         this->collisionContainer->children.erase(collideItr);
                         this->drawingContainer->children.erase(drawItr);
                     } 
+                    break;
+                }
+                case 122:{ //herb
+                    DisplayObject* herb = new DisplayObject(obj->id,obj->imgPath+"herb_1.png");     
+                    inventory->push_back(herb);
+                    Herb* herb_collect = (Herb*) obj;
+                    vector<DisplayObject*>::iterator herbcollideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), herb_collect);
+                    vector<DisplayObject*>::iterator herbdrawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), herb_collect);
+                    if (herbcollideItr != this->collisionContainer->children.end() && herbdrawItr != this->drawingContainer->children.end()){
+                        this->collisionContainer->children.erase(herbcollideItr);
+                        this->drawingContainer->children.erase(herbdrawItr);
+                    } 
+                    break;
+                }
+                // case 126:{ //wood
+                //     DisplayObject* wood = new DisplayObject(obj->id,obj->imgPath+"wood_1.png");     
+                //     inventory->push_back(wood);
+                //     Wood* wood_collect = (Wood*) obj;
+                //     vector<DisplayObject*>::iterator woodcollideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), wood_collect);
+                //     vector<DisplayObject*>::iterator wooddrawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), wood_collect);
+                //     if (woodcollideItr != this->collisionContainer->children.end() && wooddrawItr != this->drawingContainer->children.end()){
+                //         this->collisionContainer->children.erase(woodcollideItr);
+                //         this->drawingContainer->children.erase(wooddrawItr);
+                //     } 
+                //     break;
+                // }
             }
         } 
     }

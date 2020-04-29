@@ -14,4 +14,6 @@
 #include "CaveLake.h"
 #include "Workbench.h"
 #include "Sign.h"
+#include "PoisonGas.h"
+#include "SwampTree.h"
 #include "MainEnvObj.h"
