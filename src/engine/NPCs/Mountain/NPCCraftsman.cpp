@@ -59,9 +59,11 @@ void NPCCraftsman::resolve_adjacency(DisplayObject *obj, int status){
         vector<DisplayObject*> inv = *inventory;
         vector<DisplayObject*> minerals_to_spend;
         vector<DisplayObject*> cavelakes_to_spend;
+        vector<DisplayObject*> wood_to_spend;
 
         int recipe_minerals_max = 2;
         int recipe_cavelakes_max = 1;
+        int recipe_wood_max = 3;
         int counter = 0;
 
         //CHECK THAT YOU HAVE ENOUGH SUPPLIES
@@ -72,10 +74,13 @@ void NPCCraftsman::resolve_adjacency(DisplayObject *obj, int status){
             if (inv[i]->id == "CaveLake"){
                 cavelakes_to_spend.push_back(inv[i]);
             }
+            if (inv[i]->id == "Wood"){
+                wood_to_spend.push_back(inv[i]);
+            }
         }
 
         //BUILD THE THING
-        if (minerals_to_spend.size() >= recipe_minerals_max && cavelakes_to_spend.size() >= recipe_cavelakes_max){
+        if (minerals_to_spend.size() >= recipe_minerals_max && cavelakes_to_spend.size() >= recipe_cavelakes_max && wood_to_spend.size() >= recipe_wood_max){
 
             DisplayObject* sign = new DisplayObject("Sign","./resources/items/sign_1.png");     
             inventory->push_back(sign);
@@ -104,7 +109,19 @@ void NPCCraftsman::resolve_adjacency(DisplayObject *obj, int status){
                 }
                 counter++;
                 //exit loop if spent enough
-                if (counter == recipe_minerals_max) break;
+                if (counter == recipe_cavelakes_max) break;
+            }
+
+            counter = 0;
+            for (DisplayObject* item : wood_to_spend){
+                std::vector<DisplayObject*>::iterator position = std::find(inventory->begin(), inventory->end(), item);
+                if (position != inventory->end()){
+                    inventory->erase(position);
+                    cout << "SPENT WOOD" << endl;
+                }
+                counter++;
+                //exit loop if spent enough
+                if (counter == recipe_wood_max) break;
             }
 
             ability = false;
