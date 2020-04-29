@@ -319,13 +319,13 @@ void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectCon
                     cout << "MainNPC: After Push Inventory: "<< inventory->size() << endl;
                     ItemPouch* collect = (ItemPouch*) obj;
                     //doesn't work in certain rooms (swampIsland)
-                    // vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), collect);
-                    // vector<DisplayObject*>::iterator drawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), collect);
-                    // if (collideItr != this->collisionContainer->children.end() && drawItr != this->drawingContainer->children.end()){
-                    //     cout<<"DELETE IT"<<endl;
-                    //     this->collisionContainer->children.erase(collideItr);
-                    //     this->drawingContainer->children.erase(drawItr);
-                    // } 
+                    vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), collect);
+                    vector<DisplayObject*>::iterator drawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), collect);
+                    if (collideItr != this->collisionContainer->children.end() && drawItr != this->drawingContainer->children.end()){
+                        cout<<"DELETE IT"<<endl;
+                        this->collisionContainer->children.erase(collideItr);
+                        this->drawingContainer->children.erase(drawItr);
+                    } 
                     break;
                 }
                 case 122:{ //herb
@@ -340,18 +340,18 @@ void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectCon
                     } 
                     break;
                 }
-                case 126:{ //wood
-                    DisplayObject* wood = new DisplayObject(obj->id,obj->imgPath+"wood_1.png");     
-                    inventory->push_back(wood);
-                    Wood* wood_collect = (Wood*) obj;
-                    vector<DisplayObject*>::iterator woodcollideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), wood_collect);
-                    vector<DisplayObject*>::iterator wooddrawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), wood_collect);
-                    if (woodcollideItr != this->collisionContainer->children.end() && wooddrawItr != this->drawingContainer->children.end()){
-                        this->collisionContainer->children.erase(woodcollideItr);
-                        this->drawingContainer->children.erase(wooddrawItr);
-                    } 
-                    break;
-                }
+                // case 126:{ //wood
+                //     DisplayObject* wood = new DisplayObject(obj->id,obj->imgPath+"wood_1.png");     
+                //     inventory->push_back(wood);
+                //     Wood* wood_collect = (Wood*) obj;
+                //     vector<DisplayObject*>::iterator woodcollideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), wood_collect);
+                //     vector<DisplayObject*>::iterator wooddrawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), wood_collect);
+                //     if (woodcollideItr != this->collisionContainer->children.end() && wooddrawItr != this->drawingContainer->children.end()){
+                //         this->collisionContainer->children.erase(woodcollideItr);
+                //         this->drawingContainer->children.erase(wooddrawItr);
+                //     } 
+                //     break;
+                // }
             }
         } 
     }

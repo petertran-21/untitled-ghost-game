@@ -46,18 +46,16 @@ void NPCFisherman::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joys
 void NPCFisherman::resolve_collision(DisplayObject * obj){ 
     MainNPC::resolve_collectible_collision(obj, this->collisionContainer, this->drawingContainer);
     MainNPC::resolve_collision(obj);   
-    //TODO: need to add resolve adjanceny with land tiles
     if (obj->getSubtype() == 121 && hitBoat==true){
         this->hasBoat=true;
         this->position.x = obj->position.x;
         this->position.y = obj->position.y;
         Boat* b  = (Boat*) obj;
-        //TODO: delete boat??? not working
-        vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), b);
-        vector<DisplayObject*>::iterator drawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), b);
-        if (collideItr != this->collisionContainer->children.end() && drawItr != this->drawingContainer->children.end()){
-            this->collisionContainer->children.erase(collideItr);
-            this->drawingContainer->children.erase(drawItr);
+        vector<DisplayObject*>::iterator bcollideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), b);
+        vector<DisplayObject*>::iterator bdrawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), b);
+        if (bcollideItr != this->collisionContainer->children.end() && bdrawItr != this->drawingContainer->children.end()){
+            this->collisionContainer->children.erase(bcollideItr);
+            this->drawingContainer->children.erase(bdrawItr);
         } 
         this->changeAnim = false;
         this->play("onboat");
