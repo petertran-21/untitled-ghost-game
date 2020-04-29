@@ -65,6 +65,11 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                     unit->type = "Wall";
                     Collisioncontainer->addChild(unit);
                 }
+                else{
+                    unit->type = "Land";
+                    cout<<sprite["isStaticBaseFile"]<<" "<<unit->type<<endl;
+                    Collisioncontainer->addChild(unit);
+                }
 
                 break;
             /*--------------------------Collectibles--------------------------*/

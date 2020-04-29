@@ -243,9 +243,37 @@ void MainNPC::resolve_collision(DisplayObject *obj){
 
     // DEFAULT FOR COLLIDING WITH SOLIDS
     // cout<<"Colliing wiht envObj"<<(obj&&(obj->type == "EnvObj"))<< " "<<(obj->type == "EnvObj")<<endl;
-	if (obj && (obj->type == "EnvObj" || obj->type == "Wall")){
+	if (reverseCollisions){
+        if (obj && (obj->type == "Land")){
+        cout<<"COLLIDING WITH REVERSE ENV: "<<obj->type<<" "<<obj->getSubtype()<<endl;
+        //check that npcs are overlapping
+        if ((position.y == obj->position.y) && (position.x == obj->position.x)){
+            switch (dir){
+            //reset possessed npc's location to previous based on location it came from
+            case N:
+                position.y = position.y + 100;
+                dir = None;
+                break;
+            case E:
+                position.x = position.x - 100;
+                dir = None;
+                break;
+            case S: 
+                position.y = position.y - 100;
+                dir = None;
+                break;
+            case W:
+                position.x = position.x + 100;
+                dir = None;
+                break;
+                }
+            }
+        }
+	}
+    else if (obj && (obj->type == "EnvObj" || obj->type == "Wall")){
         // cout<<"COLLIDING WITH ENV"<<endl;
         //check that npcs are overlapping
+        cout<<"COLLIDING ENV: "<<obj->type<<" "<<obj->getSubtype()<<endl;
         if ((position.y == obj->position.y) && (position.x == obj->position.x)){
             switch (dir){
             //reset possessed npc's location to previous based on location it came from
@@ -277,7 +305,7 @@ void MainNPC::resolve_adjacency(DisplayObject *obj, int status){
 void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectContainer* collideContainer, DisplayObjectContainer* drawContainer){
     //COLLISIONS WITH COLLECTIBLES
     // cout<<"foreground NPC address: "<<drawingContainer<<endl;
-    cout << "TYPE: "<<obj->type<<", subtype:  "<<obj->getSubtype()<<", "<<(obj->type=="Collectible")<<" HERE:"<<obj->imgPath<<endl;
+    // cout << "TYPE: "<<obj->type<<", subtype:  "<<obj->getSubtype()<<", "<<(obj->type=="Collectible")<<" HERE:"<<obj->imgPath<<endl;
     // cout<<"NUM COLLIDE CHILDREN: "<<collideContainer->children.size()<<endl;
     // cout<<"NUM DRAW CHILDREN: "<<drawContainer->children.size()<<endl;
     if (obj->type == "Collectible"){

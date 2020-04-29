@@ -45,9 +45,7 @@ void NPCFisherman::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joys
 
 void NPCFisherman::resolve_collision(DisplayObject * obj){ 
     MainNPC::resolve_collectible_collision(obj, this->collisionContainer, this->drawingContainer);
-    if (hasBoat == false){
-        MainNPC::resolve_collision(obj);    
-    }
+    MainNPC::resolve_collision(obj);   
     //TODO: need to add resolve adjanceny with land tiles
     if (obj->getSubtype() == 121 && hitBoat==true){
         this->hasBoat=true;
@@ -61,9 +59,10 @@ void NPCFisherman::resolve_collision(DisplayObject * obj){
             this->collisionContainer->children.erase(collideItr);
             this->drawingContainer->children.erase(drawItr);
         } 
-        this->changeAnim=false;
+        this->changeAnim = false;
         this->play("onboat");
-        this->hitBoat=false;
+        this->hitBoat = false;
+        this->reverseCollisions = true;
     }
 
 }
