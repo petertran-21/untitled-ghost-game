@@ -22,7 +22,7 @@ NPCFisherman::NPCFisherman(DisplayObjectContainer* container, DisplayObjectConta
 }
 
 void NPCFisherman::state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
-            if (state_new){
+        if (state_new){
         cout << "STATE: ABILITY" << endl;
 
         switch(dir){
