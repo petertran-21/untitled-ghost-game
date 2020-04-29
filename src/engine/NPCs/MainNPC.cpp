@@ -128,6 +128,8 @@ void MainNPC::state_moving(set<SDL_Scancode> pressedKeys, Controller::JoystickSt
                 this->facingRight = false;
                 this->play("left");
                 break;
+            default:
+                break;
         }
         // this->play("idle");
 
@@ -148,6 +150,8 @@ void MainNPC::state_moving(set<SDL_Scancode> pressedKeys, Controller::JoystickSt
             case W: 
                 //check collision @ direction//
                 child->position.x += grid_size; 
+                break;
+            default:
                 break;
             }
         }        
@@ -225,6 +229,8 @@ void MainNPC::resolve_collision(DisplayObject *obj){
                 position.x = position.x + 100;
                 dir = None;
                 break;
+            default:
+                break;
             }
         }
     }
@@ -276,6 +282,8 @@ void MainNPC::resolve_collision(DisplayObject *obj){
             case W:
                 position.x = position.x + 100;
                 dir = None;
+                break;
+            default:
                 break;
             }
         }
