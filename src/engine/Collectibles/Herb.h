@@ -12,7 +12,6 @@ class Herb: public MainCollectibles{
     
     public:
         Herb(DisplayObjectContainer* container);
-        int subtype = 100;
         void resolve_collision(DisplayObject *obj);
 
 };

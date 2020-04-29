@@ -144,9 +144,19 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             case PIRATE_SUBTYPE:
                 unit = new Pirate();
                 break;
+
+            /*--------------------------Swamp--------------------------*/
             case SNAKE_SUBTYPE:
                 unit = new Snake(Collisioncontainer, foreground);
                 break;
+            case NPCDOCTOR_SUBTYPE:
+                unit = new NPCDoctor(Collisioncontainer, foreground, inventory);
+                break;
+            case HERB_SUBTYPE:
+                unit = new Herb(Collisioncontainer);
+                break;
+
+            /*--------------------------Mountain--------------------------*/
             case DRAGON_SUBTYPE:
                 unit = new Dragon(Collisioncontainer, foreground);
                 break;

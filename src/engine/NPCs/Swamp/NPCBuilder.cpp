@@ -17,3 +17,8 @@ void NPCBuilder::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joysti
     }
     state_switch(npc_states::Possessed);
 }
+
+void NPCBuilder::resolve_collision(DisplayObject * obj){ 
+    MainNPC::resolve_collectible_collision(obj, this->collisionContainer, this->drawingContainer);
+
+}
