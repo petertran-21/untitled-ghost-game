@@ -7,6 +7,8 @@
 
 using namespace std;
 
+enum biomes { DEFAULT, Beach, Forest };
+
 /**
  * Author: Bradley Knaysi
  * File: Particle.h
@@ -25,6 +27,8 @@ class Particle : public DisplayObject
         virtual void update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState );
 	    virtual void draw( AffineTransform &at );
 
+        void setBiome( string sceneFilePath );
+        
     private:
 
         //Range that particles can spawn within
@@ -38,13 +42,18 @@ class Particle : public DisplayObject
         static const int LIFE_SPAN = 100;
 
         //Effects the speed of particles
-        static const int UPDATE_RATE = 10;
+        static const int UPDATE_RATE = 15;
 
         //Effects the particle trail length when Ghost moves
-        static const int TRAIL_LENGTH = UPDATE_RATE + 5;
+        static const int TRAIL_LENGTH = 8;
 
         //Allows us to check before loading texture
         bool isTextureSet;
+
+        //Biome determines particle texture
+        biomes biome = DEFAULT;
+        bool biomeChanged;
+        void loadParticleTexture();
 };
 
 #endif

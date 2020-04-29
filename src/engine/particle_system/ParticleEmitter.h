@@ -6,8 +6,6 @@
 
 using namespace std;
 
-enum biomes { DEFAULT, Beach, Forest };
-
 /**
  * Author: Bradley Knaysi
  * File: ParticleEmitter.h
@@ -26,9 +24,8 @@ class ParticleEmitter : public DisplayObjectContainer
         virtual void update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState );
 	    virtual void draw( AffineTransform &at );
 
-        //Biome determines particle look
+        //Passes biome to particles
         void setBiome( string sceneFilePath );
-        biomes biome = DEFAULT;
 
     private:
 
