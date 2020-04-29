@@ -24,30 +24,34 @@ NPCFisherman::NPCFisherman(DisplayObjectContainer* container, DisplayObjectConta
 void NPCFisherman::state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
         if (state_new){
         cout << "STATE: ABILITY" << endl;
-
         switch(dir){
             case N: 
-                    hitBoat = true;
+                hitBoat = true;
                 break;
             case S: 
-                    hitBoat = true;
+                hitBoat = true;
                 break;
             case E: 
-                    hitBoat = true;
+                hitBoat = true;
                 break;
             case W: 
-                    hitBoat = true;
+                 hitBoat = true;
                 break;
         }
     }
+    cout<<hitBoat;
     state_switch(npc_states::Possessed);
 }
 
 void NPCFisherman::resolve_collision(DisplayObject * obj){ 
     MainNPC::resolve_collectible_collision(obj, this->collisionContainer, this->drawingContainer);
     MainNPC::resolve_collision(obj);   
-    if (obj->getSubtype() == 121 && hitBoat==true){
-        this->hasBoat=true;
+    cout<<" offboat: "<<(offBoat)<< " hasboat: "<<
+        hasBoat<<" hitboat: "<<(hitBoat == true)<<"land? "<<(obj->type == "Land")<<endl;
+    cout<<"THIS: "<<((obj->type == "Land") && (offBoat == false) && (hasBoat == true) && (hitBoat == true))<<endl;
+
+    if (obj->getSubtype() == 121 && hasBoat==false && offBoat == true && hitBoat == true){
+        //get on boat
         this->position.x = obj->position.x;
         this->position.y = obj->position.y;
         Boat* b  = (Boat*) obj;
@@ -59,8 +63,21 @@ void NPCFisherman::resolve_collision(DisplayObject * obj){
         } 
         this->changeAnim = false;
         this->play("onboat");
-        this->hitBoat = false;
         this->reverseCollisions = true;
+        this->offBoat = false;
+        this->hasBoat=true;
     }
+    else if ((obj->type == "Land") && (offBoat == false) && (hasBoat == true) && (hitBoat == true)){        
+        //get off boat
+        this->changeAnim = true;
+        this->reverseCollisions = false;
+        this->offBoat = true;
+        this->hasBoat = false;
 
+        //physically get back onto land
+        this->position.x = obj->position.x;
+        this->position.y = obj->position.y;
+        this->play("idle");
+    }
+    this->hitBoat = false;
 }

@@ -15,6 +15,7 @@ class NPCFisherman : public MainNPC{
 
         bool hasBoat = false;
         bool hitBoat = false;
+        bool offBoat = true;
 };
 
 
