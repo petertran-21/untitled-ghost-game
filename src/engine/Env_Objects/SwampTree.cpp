@@ -16,5 +16,5 @@ SwampTree::SwampTree(DisplayObjectContainer* container, DisplayObjectContainer* 
 }
 
 void SwampTree::resolve_collision(DisplayObject *obj){
-    cout<<"HELLO from SWAMPTREE RESOLVE"<<endl;
+    // cout<<"HELLO from SWAMPTREE RESOLVE"<<endl;
 }

@@ -42,15 +42,14 @@ void NPCCroc::resolve_collision(DisplayObject * obj){
     MainNPC::resolve_collectible_collision(obj, this->collisionContainer, this->drawingContainer);
     if (obj->getSubtype()==SWAMPTREE_SUBTYPE && hitTree == true){
 
-        cout<<"TREE IS NOW HIT"<<endl; 
-        cout<<this->drawingContainer->children.size()<<endl;
+        //add wood
         Wood* wood = new Wood(this->collisionContainer, this->drawingContainer);
         wood->position.x = obj->position.x;
-        wood->position.y = obj->position.y+100;
+        wood->position.y = obj->position.y;
         this->drawingContainer->addChild(wood);
-        cout<<this->drawingContainer->children.size()<<endl;
-        vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), wood);
-        vector<DisplayObject*>::iterator drawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), wood);
+        //delete swamp tree
+        vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), obj);
+        vector<DisplayObject*>::iterator drawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), obj);
         if (collideItr != this->collisionContainer->children.end() && drawItr != this->drawingContainer->children.end()){
             this->collisionContainer->children.erase(collideItr);
             this->drawingContainer->children.erase(drawItr);
