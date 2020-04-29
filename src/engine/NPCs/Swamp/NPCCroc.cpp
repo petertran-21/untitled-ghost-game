@@ -46,7 +46,7 @@ void NPCCroc::resolve_collision(DisplayObject * obj){
         cout<<this->drawingContainer->children.size()<<endl;
         Wood* wood = new Wood(this->collisionContainer, this->drawingContainer);
         wood->position.x = obj->position.x;
-        wood->position.y = obj->position.y+100;
+        wood->position.y = obj->position.y;
         this->drawingContainer->addChild(wood);
         cout<<this->drawingContainer->children.size()<<endl;
         vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), obj);
