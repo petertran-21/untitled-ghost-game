@@ -7,7 +7,7 @@ Particle::Particle() : DisplayObject()
     position.y = 0;
     horizontal_domain = 0;
     vertical_domain = 0;
-    alpha = 140;
+    alpha = 110;
     scaleX = 0.55;
     scaleY = 0.55;
     isTextureSet = false;
