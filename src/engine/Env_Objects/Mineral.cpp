@@ -7,6 +7,7 @@ using namespace std;
 
 
 Mineral::Mineral(DisplayObjectContainer* container) : MainEnvObj(){
+    this->id = "Mineral";
     this->addAnimation("./resources/items/", "mineral", 1, 1, false);
     this->addAnimation("./resources/items/", "mineral_mined", 1, 1, false);
 	this->play("mineral");

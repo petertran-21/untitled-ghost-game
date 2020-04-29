@@ -4,12 +4,14 @@
 
 using namespace std;
 
-NPCStrongman::NPCStrongman(DisplayObjectContainer* container, DisplayObjectContainer* allSprites) : MainNPC(){
-    this->addAnimation("./resources/npcs/", "npc_base", 2, 1, true);
-	this->play("npc_base");
+NPCStrongman::NPCStrongman(DisplayObjectContainer* container, DisplayObjectContainer* allSprites, vector<DisplayObject*> &passedInventory) : MainNPC(){
+    this->addAnimation("./resources/npcs/strongman/", "strongman_idle", 2, 1, true);
+	this->play("strongman_idle");
     this->collisionContainer = container;
     container->addChild(this);
     this->drawingContainer = allSprites;
+
+    this->inventory = &passedInventory;
 }
 
 

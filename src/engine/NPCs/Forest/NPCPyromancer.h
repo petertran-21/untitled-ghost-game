@@ -11,7 +11,7 @@ using namespace std;
 class NPCPyromancer : public MainNPC{
     
     public:
-        NPCPyromancer(DisplayObjectContainer* container, DisplayObjectContainer* allSprites, vector<DisplayObject*> *passedInventory);
+        NPCPyromancer(DisplayObjectContainer* container, DisplayObjectContainer* allSprites, vector<DisplayObject*> &passedInventory);
         void state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
         DisplayObjectContainer* collisionContainer;
         void resolve_collision(DisplayObject *obj);

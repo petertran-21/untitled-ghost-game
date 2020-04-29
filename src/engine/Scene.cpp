@@ -89,18 +89,18 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             case WOLF_SUBTYPE:
                 unit = new Wolf(Collisioncontainer, foreground);
                 break;
-            // case NPCPYROMANCER_SUBTYPE:
-            //     unit = new NPCPyromancer(Collisioncontainer, foreground, inventory);
-            //     break;
-            // case NPCLUMBERJACK_SUBTYPE:
-            //     unit = new NPCLumberjack(Collisioncontainer, foreground, updatedInv);
-            //     break;
-            // case NPCARCHER_SUBTYPE:
-            //     unit = new NPCArcher(Collisioncontainer, foreground, updatedInv);
-            //     break;
-            // case NPCSKELETON_SUBTYPE:
-            //     unit = new NPCSkeleton(Collisioncontainer, foreground, updatedInv);
-            //     break;
+            case NPCPYROMANCER_SUBTYPE:
+                unit = new NPCPyromancer(Collisioncontainer, foreground, inventory);
+                break;
+            case NPCLUMBERJACK_SUBTYPE:
+                unit = new NPCLumberjack(Collisioncontainer, foreground, inventory);
+                break;
+            case NPCARCHER_SUBTYPE:
+                unit = new NPCArcher(Collisioncontainer, foreground, inventory);
+                break;
+            case NPCSKELETON_SUBTYPE:
+                unit = new NPCSkeleton(Collisioncontainer, foreground, inventory);
+                break;
             /*--------------------------Beach--------------------------*/
             case VALVE_SUBTYPE:
                 //check which dir from the id
@@ -131,16 +131,15 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 unit = new WaterJet(Collisioncontainer, foreground);
                 pairedItems.push_back(unit);
                 break;
-            // case NPCOPERATOR_SUBTYPE:
-            //     unit = new NPCOperator(Collisioncontainer, foreground, inventory);
-            //     break;
+            case NPCOPERATOR_SUBTYPE:
+                unit = new NPCOperator(Collisioncontainer, foreground, inventory);
+                break;
             case NPCEXCAVATOR_SUBTYPE:
                 unit = new NPCExcavator(Collisioncontainer, foreground, inventory);
-                cout << "Scene - Regular Inv - Inventory: "<< inventory.size() << endl;
                 break;
-            // case NPCCOLLECTOR_SUBTYPE:
-            //     unit = new NPCCollector(Collisioncontainer, foreground, inventory);
-            //     break;
+            case NPCCOLLECTOR_SUBTYPE:
+                unit = new NPCCollector(Collisioncontainer, foreground, inventory);
+                break;
             case PIRATE_SUBTYPE:
                 unit = new Pirate();
                 break;
@@ -153,11 +152,11 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
 
             /*--------------------------Mountain--------------------------*/
             case NPCSTRONGMAN_SUBTYPE:
-                unit = new NPCStrongman(Collisioncontainer, foreground);
+                unit = new NPCStrongman(Collisioncontainer, foreground, inventory);
                 break;
 
             case NPCCRAFTSMAN_SUBTYPE:
-                unit = new NPCCraftsman(Collisioncontainer, foreground);
+                unit = new NPCCraftsman(Collisioncontainer, foreground, inventory);
                 break;
 
             case BOULDER_SUBTYPE:
@@ -170,6 +169,10 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
 
             case CAVELAKE_SUBTYPE:
                 unit = new CaveLake(Collisioncontainer);
+                break;
+
+            case WORKBENCH_SUBTYPE:
+                unit = new Workbench(Collisioncontainer);
                 break;
 
             /*--------------------------Universal--------------------------*/

@@ -674,9 +674,6 @@ void CollisionSystem::resolveCollision_SceneTrigger(DisplayObject* triggerObj){
   SceneTrigger *trigger = dynamic_cast<SceneTrigger*>(triggerObj);
 
   if (trigger->active){ 
-    DisplayObject* filler = new DisplayObject();
-    inventory->push_back(filler); 
-    cout << "CollisionSystem Inventory: "<< inventory->size() << endl;
     next->loadScene(trigger->scene_path, this->collisionContainer, *inventory);
     maincam->changeScene(current, next);
 

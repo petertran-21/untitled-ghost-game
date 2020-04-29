@@ -46,3 +46,4 @@ For referencing which number corresponds to each subtype of object due to C++ no
 300: Boulder
 301: Mineral
 302: CaveLake
+303: Workbench

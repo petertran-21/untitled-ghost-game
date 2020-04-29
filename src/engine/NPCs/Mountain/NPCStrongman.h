@@ -9,7 +9,7 @@ using namespace std;
 class NPCStrongman : public MainNPC{
     
     public:
-        NPCStrongman(DisplayObjectContainer* container, DisplayObjectContainer* allSprites);
+        NPCStrongman(DisplayObjectContainer* container, DisplayObjectContainer* allSprites, vector<DisplayObject*> &passedInventory);
         void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
         void state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
         DisplayObjectContainer* collisionContainer;

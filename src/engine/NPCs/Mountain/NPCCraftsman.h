@@ -4,13 +4,15 @@
 
 #include "MainNPC.h"
 #include "Mineral.h"
+#include "CaveLake.h"
+#include "Workbench.h"
 
 using namespace std;
 
 class NPCCraftsman : public MainNPC{
     
     public:
-        NPCCraftsman(DisplayObjectContainer* container, DisplayObjectContainer* allSprites);
+        NPCCraftsman(DisplayObjectContainer* container, DisplayObjectContainer* allSprites, vector<DisplayObject*> &passedInventory);
         void state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
         DisplayObjectContainer* collisionContainer;
 
