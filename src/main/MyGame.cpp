@@ -5,6 +5,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	//SFX team work
 	camera = new Camera();
 	scene_1 = new Scene();
+	soundManager = new Sound();
 	
 	camera->addChild(scene_1);
 	this->addChild(camera);
@@ -45,12 +46,6 @@ MyGame::MyGame() : Game(1000, 1000)
 
 MyGame::~MyGame()
 {
-	/**
-	 * Don't delete children of "this"
-	 * because it's handled automatically through
-	 * Game's superclass, DisplayObjectContainer.
-	 */
-
 	delete displayTreeDisp;
 	delete collisionSystem;
 	delete DOAdded;
@@ -81,14 +76,19 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 		selectionMenuTest->decrementPosition();
 	}
 	if (pressedKeys.find(SDL_SCANCODE_RETURN) != pressedKeys.end() && UIOpen){
-		std::cout << selectionMenuTest->getCurrentlySelected() << std::endl;
+		std::string result = selectionMenuTest->getCurrentlySelected();
+		if (result == "Save");
+		if (result == "Load");
+		if (result == "Quit") delete this;		// It *does* quit, yes, but segfaults.
 	}
 	if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end() && !UIOpen){
+		soundManager->playSFX("./resources/sfx/pauseOn.ogg");
 		this->addChild(UIContainer);
 		textboxTest->setText("Press Q to exit the pause menu.");
 		UIOpen = !UIOpen;
 	}
 	if (pressedKeys.find(SDL_SCANCODE_Q) != pressedKeys.end() && UIOpen){
+		soundManager->playSFX("./resources/sfx/pauseOff.ogg");
 		this->children.erase(std::remove(this->children.begin(), this->children.end(), UIContainer), this->children.end());
 		UIOpen = false;
 	}

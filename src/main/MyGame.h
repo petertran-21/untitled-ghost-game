@@ -58,7 +58,7 @@ private:
 	TweenJuggler* tweenJuggler;
 	Sprite* crocodile;
 	Scene* scene_2;
-	Sound* new_sound;
+	Sound* soundManager;
 	Checklist* checklistTest;
 	SelectionMenu* selectionMenuTest;
 	TextBox* textboxTest;
