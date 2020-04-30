@@ -91,6 +91,14 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 	if (pressedKeys.find(SDL_SCANCODE_RETURN) != pressedKeys.end() && UIOpen){
 		std::cout << selectionMenuTest->getCurrentlySelected() << std::endl;
 	}
+	if (pressedKeys.find(SDL_SCANCODE_I) != pressedKeys.end() && !UIOpen){
+		this->addChild(inventoryUI);
+		UIOpen = !UIOpen;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_T) != pressedKeys.end() && UIOpen){
+		this->children.erase(std::remove(this->children.begin(), this->children.end(), inventoryUI), this->children.end());
+		UIOpen = !UIOpen;
+	}
 	if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end() && !UIOpen){
 		this->addChild(UIContainer);
 		textboxTest->setText("Press Q to exit the pause menu.");

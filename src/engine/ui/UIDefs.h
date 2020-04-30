@@ -90,9 +90,6 @@ public:
 class Inventory : public DisplayObjectContainer{
 public:
     Inventory(int posX = 1025, int posY = 525, int width = 400, int height = 200);
-    
-    void addEntry(std::string id,std::string path);
-    void removeEntry(std::string entry);
 
     ~Inventory();
 
