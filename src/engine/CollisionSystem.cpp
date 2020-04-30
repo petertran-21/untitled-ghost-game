@@ -29,6 +29,7 @@ void CollisionSystem::update(){
   watchForCollisions("Ghost", "NPCObj");
   watchForCollisions("NPC", "Collectible");
   watchForCollisions("NPC", "Wall");
+  watchForCollisions("NPC", "Land");
   watchForCollisions("NPCObj", "EnvObj");
   watchForCollisions("NPCObj", "Wall");
   watchForCollisions("Boss", "NPCObj");
@@ -100,6 +101,9 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
             }
             else if ((type1 == "NPCObj") && (type2 == "Wall")){
               resolveCollision_NPCObj_Wall(inView[i], inView[j]);
+            }
+            else if ((type1 == "NPC") && (type2 == "Land")){
+              resolveCollision_NPC_Land(inView[i], inView[j]);
             }
             else{
               // resolveCollision(inView[i], inView[j],
@@ -709,6 +713,9 @@ void CollisionSystem::resolveCollision_NPCObj_Wall(DisplayObject* npcObj, Displa
   npcObj->resolve_collision(wall);
 }
 
+void CollisionSystem::resolveCollision_NPC_Land(DisplayObject* npc, DisplayObject* land){
+  npc->resolve_collision(land);
+}
 
 
 //===============ADJACENCY

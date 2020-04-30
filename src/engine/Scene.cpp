@@ -65,6 +65,11 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                     unit->type = "Wall";
                     Collisioncontainer->addChild(unit);
                 }
+                else{
+                    unit->type = "Land";
+                    cout<<sprite["isStaticBaseFile"]<<" "<<unit->type<<endl;
+                    Collisioncontainer->addChild(unit);
+                }
 
                 break;
             /*--------------------------Collectibles--------------------------*/
@@ -143,9 +148,31 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             case PIRATE_SUBTYPE:
                 unit = new Pirate();
                 break;
+
+            /*--------------------------Swamp--------------------------*/
+            case HERB_SUBTYPE:
+                unit = new Herb(Collisioncontainer);
+                break;
+            case BOAT_SUBTYPE:
+                unit = new Boat(Collisioncontainer);
+                break;
+            case SWAMPTREE_SUBTYPE:
+                unit = new SwampTree(Collisioncontainer, foreground);
+                break;
             case SNAKE_SUBTYPE:
                 unit = new Snake(Collisioncontainer, foreground);
                 break;
+            case NPCCROC_SUBTYPE:
+                unit = new NPCCroc(Collisioncontainer, foreground, inventory);
+                break;
+            case NPCDOCTOR_SUBTYPE:
+                unit = new NPCDoctor(Collisioncontainer, foreground, inventory);
+                break;
+            case NPCFISHERMAN_SUBTYPE:
+                unit = new NPCFisherman(Collisioncontainer, foreground, inventory);
+                break;
+
+            /*--------------------------Mountain--------------------------*/
             case DRAGON_SUBTYPE:
                 unit = new Dragon(Collisioncontainer, foreground);
                 break;
@@ -193,6 +220,9 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 //Part of Camera tracking Ghost pipeline
                 this->ghost = (Ghost*) unit;
 
+                break;
+            case HORNFRAGMENT_SUBTYPE:
+                unit = new HornFragment(Collisioncontainer);
                 break;
             case SCENE_TRIGGER_SUBTYPE:
                 unit = new SceneTrigger(Collisioncontainer, sprite["scene_path"]);     
