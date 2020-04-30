@@ -106,6 +106,9 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             case NPCSKELETON_SUBTYPE:
                 unit = new NPCSkeleton(Collisioncontainer, foreground, inventory);
                 break;
+            case FORESTDOOR_SUBTYPE:
+                unit = new ForestDoor(Collisioncontainer, inventory);
+                break;
             /*--------------------------Beach--------------------------*/
             case VALVE_SUBTYPE:
                 //check which dir from the id

@@ -59,3 +59,4 @@ For referencing which number corresponds to each subtype of object due to C++ no
 304: Sign
 305: Bucket
 306: MountainTree
+400: ForestDoor

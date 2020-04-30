@@ -280,6 +280,14 @@ void MainNPC::resolve_collision(DisplayObject *obj){
         if (d->open) cout<<"IS OPEN"<<endl;
     }
 
+    Gem* g = dynamic_cast<Gem*>(obj);
+    if (g){
+        DisplayObject* gem = new DisplayObject("Gem","./resources/items/gem_1.png");     
+        inventory->push_back(gem);
+        g->position.x = -100000;
+        g->position.y = -100000;
+    }
+
     // DEFAULT FOR COLLIDING WITH SOLIDS
     // cout<<"Colliing wiht envObj"<<(obj&&(obj->type == "EnvObj"))<< " "<<(obj->type == "EnvObj")<<endl;
 	if (reverseCollisions){
