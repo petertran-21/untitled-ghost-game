@@ -38,6 +38,7 @@ void CollisionSystem::update(){
   watchForAdjacency("NPC", "NPCObj");
   watchForAdjacency("NPCObj", "EnvObj");
   watchForAdjacency("EnvObj", "EnvObj");
+  watchForAdjacency("NPC", "Land");
 }
 
 //This system watches the game's display tree and is notified whenever a display object is placed onto
@@ -147,6 +148,9 @@ void CollisionSystem::watchForAdjacency(string type1, string type2) {
           }
           else if ((type1 == "EnvObj" && type2 == "EnvObj")){
               resolveAdjacency_EnvObj_EnvObj(inView[i], inView[j], status);
+          }
+          else if ((type1 == "NPC" && type2 == "Land")){
+            resolve_adjacency_NPC_Land(inView[i], inView[j], status);
           }
         }
       }
@@ -715,6 +719,10 @@ void CollisionSystem::resolveCollision_NPCObj_Wall(DisplayObject* npcObj, Displa
 
 void CollisionSystem::resolveCollision_NPC_Land(DisplayObject* npc, DisplayObject* land){
   npc->resolve_collision(land);
+}
+
+void CollisionSystem::resolve_adjacency_NPC_Land(DisplayObject* npc, DisplayObject* land, int status){
+  npc->resolve_adjacency(land, status);
 }
 
 

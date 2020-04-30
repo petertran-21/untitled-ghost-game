@@ -11,6 +11,7 @@ class NPCFisherman : public MainNPC{
     public:
         NPCFisherman(DisplayObjectContainer* container, DisplayObjectContainer* allSprites, vector<DisplayObject*> &passedInventory);
         void resolve_collision(DisplayObject * obj);
+        void resolve_adjacency (DisplayObject* obj, int status);
         void state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 
         bool hasBoat = false;

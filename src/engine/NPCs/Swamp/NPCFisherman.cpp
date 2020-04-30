@@ -39,22 +39,22 @@ void NPCFisherman::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joys
                 break;
         }
     }
-    cout<<hitBoat;
     state_switch(npc_states::Possessed);
 }
 
 void NPCFisherman::resolve_collision(DisplayObject * obj){ 
     MainNPC::resolve_collectible_collision(obj, this->collisionContainer, this->drawingContainer);
     MainNPC::resolve_collision(obj);   
-    cout<<" offboat: "<<(offBoat)<< " hasboat: "<<
-        hasBoat<<" hitboat: "<<(hitBoat == true)<<"land? "<<(obj->type == "Land")<<endl;
-    cout<<"THIS: "<<((obj->type == "Land") && (offBoat == false) && (hasBoat == true) && (hitBoat == true))<<endl;
+    // cout<<" offboat: "<<(offBoat)<< " hasboat: "<<
+    //     hasBoat<<" hitboat: "<<(hitBoat == true)<<"land? "<<(obj->type == "Land")<<endl;
+    // cout<<"THIS: "<<((obj->type == "Land") && (offBoat == false) && (hasBoat == true) && (hitBoat == true))<<endl;
 
-    if (obj->getSubtype() == 121 && hasBoat==false && offBoat == true && hitBoat == true){
+    if (obj->getSubtype() == 121 && hasBoat==false && hitBoat == true){
         //get on boat
         this->position.x = obj->position.x;
         this->position.y = obj->position.y;
         Boat* b  = (Boat*) obj;
+        //TODO: fix boat bug: make boat disappear (play diff animation) and then bring it back --> prob add boat as child to this npc
         vector<DisplayObject*>::iterator bcollideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), b);
         vector<DisplayObject*>::iterator bdrawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), b);
         if (bcollideItr != this->collisionContainer->children.end() && bdrawItr != this->drawingContainer->children.end()){
@@ -66,18 +66,32 @@ void NPCFisherman::resolve_collision(DisplayObject * obj){
         this->reverseCollisions = true;
         this->offBoat = false;
         this->hasBoat=true;
+        this->hitBoat = false;
     }
-    else if ((obj->type == "Land") && (offBoat == false) && (hasBoat == true) && (hitBoat == true)){        
+}
+
+void NPCFisherman::resolve_adjacency(DisplayObject * obj, int status){
+    cout << "ADJACENCY STATUS :" << status << endl;
+    cout<<" offboat: "<<(offBoat)<< " hasboat: "<<
+        hasBoat<<" hitboat: "<<(hitBoat == true)<<"land? "<<(obj->type == "Land")<<endl;
+    
+    if (status && (hasBoat == true) && (hitBoat == true)){        
         //get off boat
         this->changeAnim = true;
         this->reverseCollisions = false;
         this->offBoat = true;
         this->hasBoat = false;
 
+        Boat* boat = new Boat(this->collisionContainer);
+        this->drawingContainer->addChild(boat);
+        boat->position.x = this->position.x;
+        boat->position.y = this->position.y;
+
         //physically get back onto land
         this->position.x = obj->position.x;
         this->position.y = obj->position.y;
-        this->play("idle");
+        this->play("idle"); 
+        this->hitBoat = false;
+
     }
-    this->hitBoat = false;
 }
