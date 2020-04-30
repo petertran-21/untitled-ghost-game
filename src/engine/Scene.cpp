@@ -25,7 +25,7 @@ Scene::~Scene()
     isActive = false;
 }
 
-void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncontainer){
+void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncontainer, vector<DisplayObject*> &inventory){
     std::ifstream i(sceneFilePath);
     json j = json::parse(i);
     unordered_map<string, DisplayObjectContainer*> parents = {};
@@ -36,16 +36,18 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
     DisplayObjectContainer* lightEmittingObjects = new DisplayObjectContainer();
     DisplayObjectContainer* lightLayer = new DisplayObjectContainer();
     DisplayObjectContainer* shadowLayer = new DisplayObjectContainer();
-
+   
     background->parent = this;
     this->addChild(background);
 
     foreground->parent = this;
     this->addChild(foreground);
 
+    // vector<DisplayObject*> updatedInv=inventory;
     vector<DisplayObject*> pairedItems;
     for (auto sprite : j["sprites"]){
         // Get sprite subtype
+        DisplayObject* filler = new DisplayObject();
         DisplayObjectContainer* unit;
         std::string imgPath = ""; //Cannot declare variables in a switch
         ParticleEmitter* partEmit;
@@ -61,6 +63,11 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                     sprite["isStaticBaseFile"] == "treeTop.png"
                 ){
                     unit->type = "Wall";
+                    Collisioncontainer->addChild(unit);
+                }
+                else{
+                    unit->type = "Land";
+                    cout<<sprite["isStaticBaseFile"]<<" "<<unit->type<<endl;
                     Collisioncontainer->addChild(unit);
                 }
 
@@ -88,16 +95,16 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 unit = new Wolf(Collisioncontainer, foreground);
                 break;
             case NPCPYROMANCER_SUBTYPE:
-                unit = new NPCPyromancer(Collisioncontainer, foreground);
+                unit = new NPCPyromancer(Collisioncontainer, foreground, inventory);
                 break;
             case NPCLUMBERJACK_SUBTYPE:
-                unit = new NPCLumberjack(Collisioncontainer, foreground);
+                unit = new NPCLumberjack(Collisioncontainer, foreground, inventory);
                 break;
             case NPCARCHER_SUBTYPE:
-                unit = new NPCArcher(Collisioncontainer, foreground);
+                unit = new NPCArcher(Collisioncontainer, foreground, inventory);
                 break;
             case NPCSKELETON_SUBTYPE:
-                unit = new NPCSkeleton(Collisioncontainer, foreground);
+                unit = new NPCSkeleton(Collisioncontainer, foreground, inventory);
                 break;
             /*--------------------------Beach--------------------------*/
             case VALVE_SUBTYPE:
@@ -130,22 +137,85 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 pairedItems.push_back(unit);
                 break;
             case NPCOPERATOR_SUBTYPE:
-                unit = new NPCOperator(Collisioncontainer, foreground);
+                unit = new NPCOperator(Collisioncontainer, foreground, inventory);
                 break;
             case NPCEXCAVATOR_SUBTYPE:
-                unit = new NPCExcavator(Collisioncontainer, foreground);
+                unit = new NPCExcavator(Collisioncontainer, foreground, inventory);
                 break;
             case NPCCOLLECTOR_SUBTYPE:
-                unit = new NPCCollector(Collisioncontainer, foreground);
+                unit = new NPCCollector(Collisioncontainer, foreground, inventory);
                 break;
             case PIRATE_SUBTYPE:
                 unit = new Pirate();
                 break;
+
+            /*--------------------------Swamp--------------------------*/
+            case HERB_SUBTYPE:
+                unit = new Herb(Collisioncontainer);
+                break;
+            case BOAT_SUBTYPE:
+                unit = new Boat(Collisioncontainer);
+                break;
+            case SWAMPTREE_SUBTYPE:
+                unit = new SwampTree(Collisioncontainer, foreground);
+                break;
+            case CRAFTSTATION_SUBTYPE:
+                unit = new CraftStation(Collisioncontainer);
+                break;
             case SNAKE_SUBTYPE:
                 unit = new Snake(Collisioncontainer, foreground);
                 break;
+            case NPCCROC_SUBTYPE:
+                unit = new NPCCroc(Collisioncontainer, foreground, inventory);
+                break;
+            case NPCDOCTOR_SUBTYPE:
+                unit = new NPCDoctor(Collisioncontainer, foreground, inventory);
+                break;
+            case NPCFISHERMAN_SUBTYPE:
+                unit = new NPCFisherman(Collisioncontainer, foreground, inventory);
+                break;
+            case NPCBUILDER_SUBTYPE:
+                unit = new NPCBuilder(Collisioncontainer, foreground, inventory);
+                break;
+
+            /*--------------------------Mountain--------------------------*/
             case DRAGON_SUBTYPE:
                 unit = new Dragon(Collisioncontainer, foreground);
+                break;
+            case NPCSTRONGMAN_SUBTYPE:
+                unit = new NPCStrongman(Collisioncontainer, foreground, inventory);
+                break;
+
+            case NPCCRAFTSMAN_SUBTYPE:
+                unit = new NPCCraftsman(Collisioncontainer, foreground, inventory);
+                break;
+
+            case BOULDER_SUBTYPE:
+                unit = new Boulder(Collisioncontainer);
+                break;
+            
+            case MINERAL_SUBTYPE:
+                unit = new Mineral(Collisioncontainer);
+                break;
+
+            case CAVELAKE_SUBTYPE:
+                unit = new CaveLake(Collisioncontainer);
+                break;
+
+            case WORKBENCH_SUBTYPE:
+                unit = new Workbench(Collisioncontainer);
+                break;
+
+            case SIGN_SUBTYPE:
+                unit = new Sign(Collisioncontainer);
+                break;
+
+            case BUCKET_SUBTYPE:
+                unit = new Bucket(Collisioncontainer);
+                break;
+
+            case MOUNTAINTREE_SUBTYPE:
+                unit = new MountainTree(Collisioncontainer);
                 break;
 
             /*--------------------------Universal--------------------------*/
@@ -161,6 +231,9 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 //Allows Ghost particles to change by biome
                 partEmit->setBiome(sceneFilePath);
 
+                break;
+            case HORNFRAGMENT_SUBTYPE:
+                unit = new HornFragment(Collisioncontainer);
                 break;
             case SCENE_TRIGGER_SUBTYPE:
                 unit = new SceneTrigger(Collisioncontainer, sprite["scene_path"]);     

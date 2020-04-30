@@ -1076,23 +1076,6 @@
         },
         {
             "alpha": 255,
-            "basePathFolder": "./resources/items/",
-            "height": 100,
-            "id": "BreakableWall",
-            "isStatic": true,
-            "isStaticBaseFile": "breakable_wall_1.png",
-            "isVisible": true,
-            "parent": "foreground",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 100,
-            "posY": 500,
-            "rotation": 0.0,
-            "width": 100,
-            "subtype": 10
-        },
-        {
-            "alpha": 255,
             "basePathFolder": "./resources/tiles/beachTiles/",
             "height": 100,
             "id": "2084420925",
@@ -1141,23 +1124,6 @@
             "rotation": 0.0,
             "width": 100,
             "subtype": 2
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/items/",
-            "height": 100,
-            "id": "BreakableWall",
-            "isStatic": true,
-            "isStaticBaseFile": "breakable_wall_1.png",
-            "isVisible": true,
-            "parent": "foreground",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 200,
-            "posY": 500,
-            "rotation": 0.0,
-            "width": 100,
-            "subtype": 10
         },
         {
             "alpha": 255,

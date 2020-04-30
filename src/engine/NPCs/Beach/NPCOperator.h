@@ -9,7 +9,7 @@ using namespace std;
 class NPCOperator : public MainNPC{
     
     public:
-        NPCOperator(DisplayObjectContainer* container, DisplayObjectContainer* allSprites);
+        NPCOperator(DisplayObjectContainer* container, DisplayObjectContainer* allSprites, vector<DisplayObject*> &passedInventory);
         void state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
         DisplayObjectContainer* collisionContainer;
 

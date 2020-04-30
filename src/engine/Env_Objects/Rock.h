@@ -1,5 +1,5 @@
-#ifndef BRIDGE_H
-#define BRIDGE_H
+#ifndef ROCK_H
+#define ROCK_H
 
 #include "Controller.h"
 #include "MainEnvObj.h"
