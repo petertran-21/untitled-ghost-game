@@ -26,7 +26,7 @@ Game::Game(int windowWidth, int windowHeight) : DisplayObjectContainer()
 	Game::instance = this;
 	this->windowWidth = windowWidth;
 	this->windowHeight = windowHeight;
-	init();	
+	init();
 }
 
 void Game::initSDL()

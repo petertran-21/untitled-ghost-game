@@ -32,7 +32,7 @@ public:
 	string type = "DisplayObject";
 	int subtype;
 	virtual int getSubtype(){return this->subtype;};
-	
+
 	DisplayObject* parent = NULL;
 
 	bool isRGB = false;

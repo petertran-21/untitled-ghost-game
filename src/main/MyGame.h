@@ -27,7 +27,7 @@
 using namespace std;
 
 class MyGame : public Game{
-	
+
 public:
 	MyGame();
 	~MyGame();
@@ -38,12 +38,15 @@ public:
 	Camera* camera;
 private:
 	Scene* scene_1;
-	
+
 	DisplayObjectContainer* allSprites;
 	DisplayObjectContainer* environment;
 	EventDispatcher* controllerDisp;
 
 	AnimatedSprite* character;
+	AnimatedSprite* startScreen;
+	AnimatedSprite* loreScreen;
+	AnimatedSprite* mapTutorial;
 	MainNPC* npc;
 	Ghost* player;
 
@@ -68,6 +71,15 @@ private:
 	bool walking = false;
 	bool transition = false;
 	bool UIOpen = false;
+	bool mapOpen = false;
+	bool playStartSequence = true;
+	bool startScreenVisible = true;
+	bool fadeStart = false;
+	bool loreScreenVisible = false;
+	bool fadeLoreIn = false;
+	bool fadeLoreOut = false;
+	bool mapScreenVisible = false;
+	bool townHighlighted = false;
 
 };
 
