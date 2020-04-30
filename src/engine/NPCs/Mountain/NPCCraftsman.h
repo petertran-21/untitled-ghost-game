@@ -6,6 +6,7 @@
 #include "Mineral.h"
 #include "CaveLake.h"
 #include "Workbench.h"
+#include "Bucket.h"
 
 using namespace std;
 
