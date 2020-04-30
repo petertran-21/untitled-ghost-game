@@ -32,6 +32,7 @@ For referencing which number corresponds to each subtype of object due to C++ no
 28: NPCFisherman
 29: NPCSkeleton
 30: HornFragment
+31: NPCBuilder
 100: Gem
 101: Bridge
 102: Log

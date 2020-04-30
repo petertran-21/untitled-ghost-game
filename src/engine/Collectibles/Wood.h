@@ -11,7 +11,7 @@ using namespace std;
 class Wood: public MainCollectibles{
     
     public:
-        Wood(DisplayObjectContainer* container, DisplayObjectContainer* allSprites, int positionx, int positiony);
+        Wood(DisplayObjectContainer* container, DisplayObjectContainer* allSprites);
         void resolve_collision(DisplayObject *obj);
 
 };

@@ -48,12 +48,16 @@ void NPCCroc::resolve_collision(DisplayObject * obj){
         // wood->position.y = obj->position.y+100;
         // this->drawingContainer->addChild(wood);
 
-        //add wood to inventory
-        DisplayObject* wood = new DisplayObject(obj->id,obj->imgPath+"wood_1.png");     
-        inventory->push_back(wood);
+        SwampTree* tree = (SwampTree*) obj;
+
+        if (!tree->mined){
+            //add wood to inventory
+            DisplayObject* wood = new DisplayObject("Wood","./resources/items/wood_1.png");     
+            inventory->push_back(wood);
+            tree->mined = true;
+        }
 
         //delete swamp tree
-        SwampTree* tree = (SwampTree*) obj;
         vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), tree);
         vector<DisplayObject*>::iterator drawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), obj);
         if (collideItr != this->collisionContainer->children.end() && drawItr != this->drawingContainer->children.end()){

@@ -23,21 +23,7 @@ void NPCBuilder::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joysti
 }
 
 void NPCBuilder::resolve_adjacency(DisplayObject *obj, int status){
-    SwampTree * t = dynamic_cast<SwampTree*>(obj);
     Workbench * w = dynamic_cast<Workbench*>(obj);
-
-    if (t && ability){
-
-        if (status != 0 && !t->mined){
-            //ADD ITEM TO INVENTORY
-            DisplayObject* item = new DisplayObject(t->id,"./resources/items/swamptree_1.png");     
-            inventory->push_back(item);
-
-            ability = false;
-            t->mined = true;
-            return;
-        }
-    }
 
     if (w && ability){
         vector<DisplayObject*> inv = *inventory;
@@ -56,8 +42,6 @@ void NPCBuilder::resolve_adjacency(DisplayObject *obj, int status){
         //BUILD THE THING
         if (wood_to_spend.size() >= recipe_wood_max){
 
-            // DisplayObject* sign = new DisplayObject("Sign","./resources/items/sign_1.png");     
-            // inventory->push_back(sign);
             cout << "THING CRAFTED" << endl;
 
             counter = 0;

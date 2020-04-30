@@ -75,7 +75,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 			camera->getChild(0)->scaleY *= 1.1;
 		}
 	}
-	// cout << "MyGame: Inventory: "<< inventory.size() << endl;
+	cout << "MyGame: Inventory: "<< inventory.size() << endl;
 	// cout << "InventoryUI" << inventoryUI->entries.size() << endl;
 	if(inventoryUI->entries.size()!=inventory.size()){
 		inventoryUI->entries=inventory; 

@@ -171,6 +171,9 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             case NPCFISHERMAN_SUBTYPE:
                 unit = new NPCFisherman(Collisioncontainer, foreground, inventory);
                 break;
+            case NPCBUILDER_SUBTYPE:
+                unit = new NPCBuilder(Collisioncontainer, foreground, inventory);
+                break;
 
             /*--------------------------Mountain--------------------------*/
             case DRAGON_SUBTYPE:
