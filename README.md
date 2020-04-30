@@ -53,9 +53,11 @@ For PS4 controller:
 ### Movement w/ Keyboard
 - Press **WASD** to move character up, left, down, and right. Diagnoal movmeent for ghost is also supported but not for NPC. 
 - Press **IJKL** to move the camera.
-- Press **NM** to scale the camera.
+- Press **ZX** to scale the camera.
 - Press **E** to possess NPC. 
 - Press **SPACE** to use ability of NPC.
+- Press **P** to pause the game and open the menu.
+- Press **M** to open the game map.
 
 ### Enemy Programming Demo
 Implemented some NPC and object interactions. You can do the following with the NPCs present:
