@@ -33,7 +33,7 @@ MyGame::MyGame() : Game(1000, 1000)
 
 	UIContainer = new DisplayObjectContainer();
 
-	inventoryUI = new Inventory(0,0,300,300);
+	inventoryUI = new Inventory(500,500,300,300);
 
 	selectionMenuTest = new SelectionMenu(0, 0);
 	selectionMenuTest->addToMenu("Save");
@@ -65,8 +65,15 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 		DORemoved->checkCondition();
 		DOAdded->checkCondition();
 		collisionSystem->update();
+		if (pressedKeys.find(SDL_SCANCODE_I) != pressedKeys.end() && !InvOpen){
+			this->addChild(inventoryUI);
+			InvOpen = !InvOpen;
+		}
+		if (pressedKeys.find(SDL_SCANCODE_T) != pressedKeys.end() && InvOpen){
+			this->children.erase(std::remove(this->children.begin(), this->children.end(), inventoryUI), this->children.end());
+			InvOpen = !InvOpen;
+		}
 		Game::update(pressedKeys, currState);
-
 		if (pressedKeys.find(SDL_SCANCODE_N) != pressedKeys.end()){
 			camera->getChild(0)->scaleX /= 1.1;
 			camera->getChild(0)->scaleY /= 1.1;
@@ -91,14 +98,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 	if (pressedKeys.find(SDL_SCANCODE_RETURN) != pressedKeys.end() && UIOpen){
 		std::cout << selectionMenuTest->getCurrentlySelected() << std::endl;
 	}
-	if (pressedKeys.find(SDL_SCANCODE_I) != pressedKeys.end() && !UIOpen){
-		this->addChild(inventoryUI);
-		UIOpen = !UIOpen;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_T) != pressedKeys.end() && UIOpen){
-		this->children.erase(std::remove(this->children.begin(), this->children.end(), inventoryUI), this->children.end());
-		UIOpen = !UIOpen;
-	}
+
 	if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end() && !UIOpen){
 		this->addChild(UIContainer);
 		textboxTest->setText("Press Q to exit the pause menu.");
