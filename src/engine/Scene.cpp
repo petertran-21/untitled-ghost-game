@@ -8,6 +8,7 @@
 #include "particle_system/ParticleEmitter.h"
 #include "BossImports.h"
 #include "Camera.h"
+#include <iomanip>
 
 Scene::Scene() : DisplayObjectContainer()
 {
@@ -26,6 +27,7 @@ Scene::~Scene()
 }
 
 void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncontainer){
+    this->FilePath = sceneFilePath;
     std::ifstream i(sceneFilePath);
     json j = json::parse(i);
     unordered_map<string, DisplayObjectContainer*> parents = {};
@@ -270,9 +272,61 @@ void Scene::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState curr
             }
         }
     }
-
     DisplayObjectContainer::update(pressedKeys, currState);
 }
+
+void Scene::SaveScene(){
+    std::ifstream i(this->FilePath);
+    json j = json::parse(i);
+
+    // Clear out foreground with exceptions like scene triggers and other objects
+    for (int index = 0; index < j["sprites"].size(); index++){
+        int subtype = j["sprites"].at(index)["subtype"];
+        
+        if (subtype != SPRITE_SUBTYPE && subtype != SCENE_TRIGGER_SUBTYPE && subtype != DISPLAYOBJECTCONTAINER_SUBTYPE && subtype != GHOST_SUBTYPE){
+            cout << "Save Scene Erasing" << j["sprites"].at(index)["id"] << endl;
+            j["sprites"].erase(j["sprites"].begin() + index);
+            index--;
+        }
+    }
+    DisplayObjectContainer* foreground = static_cast<DisplayObjectContainer*>(this->getChild(1));
+    for (int i = 0; i < foreground->numChildren(); i++) {
+        DisplayObject* sprite = foreground->getChild(i);
+        int subtype = sprite->getSubtype();
+        if (subtype != SPRITE_SUBTYPE && subtype != SCENE_TRIGGER_SUBTYPE && subtype != DISPLAYOBJECTCONTAINER_SUBTYPE && subtype != GHOST_SUBTYPE && sprite->id != "EnvObj") {
+            json jsonSprite = {
+                {"id", sprite->id},
+                {"basePathFolder", sprite->imgPath},
+                {"isStatic", true},
+                {"posX", sprite->position.x},
+                {"posY", sprite->position.y},
+                {"pivotX", sprite->pivot.x},
+                {"pivotY", sprite->pivot.y},
+                {"alpha", sprite->alpha},
+                {"isVisible", sprite->visible},
+                {"rotation", sprite->rotation},
+                {"width", sprite->width},
+                {"height", sprite->height},
+                {"subtype", sprite->subtype}, 
+            };
+            string parent = "foreground";
+            /*
+            if (sprite->parent != this){
+                parent = sprite->parent->id;
+                //cout << parent << endl;
+            } else if (sprite->subtype != 2) {
+                parent = "foreground";
+            } */
+            
+            jsonSprite["parent"] = parent;
+            j["sprites"].push_back(jsonSprite);
+        }
+    }
+    
+    // Save the scene
+    std::ofstream o(this->FilePath);
+    o << std::setw(4) << j << std::endl;
+    }
 
 void Scene::draw(AffineTransform &at){
     DisplayObjectContainer::draw(at);

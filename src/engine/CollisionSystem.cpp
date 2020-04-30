@@ -89,7 +89,7 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
               resolveCollision_NPCObj_EnvObj(inView[i], inView[j]);
             }
             else if ((type1 == "Ghost" && type2 == "SceneTrigger")){
-              resolveCollision_SceneTrigger(inView[j]);
+              resolveCollision_SceneTrigger(inView[j], inView[i]);
             }
             else if ((type1 == "Boss" && type2 == "NPCObj")){
               resolveCollision_Boss_NPCObj(inView[j], inView[i]);
@@ -666,11 +666,12 @@ void CollisionSystem::resolveCollision_NPCObj_EnvObj(DisplayObject* NPCObj, Disp
   envObj->resolve_collision(NPCObj);
 }
 
-void CollisionSystem::resolveCollision_SceneTrigger(DisplayObject* triggerObj){
+void CollisionSystem::resolveCollision_SceneTrigger(DisplayObject* triggerObj, DisplayObject* ghostObj){
   Scene *current = dynamic_cast<Scene*>(maincam->getChild(0));
   Scene *next = new Scene();
 
   SceneTrigger *trigger = dynamic_cast<SceneTrigger*>(triggerObj);
+  Ghost *ghost = dynamic_cast<Ghost*>(ghostObj);
 
   if (trigger->active){
     next->loadScene(trigger->scene_path, this->collisionContainer);
@@ -684,9 +685,51 @@ void CollisionSystem::resolveCollision_SceneTrigger(DisplayObject* triggerObj){
       collisionContainer->children.erase(itr);
     }
 
+    if (ghost->getIsPosessing() && ghost->npc != NULL) {
+      MainNPC* npc = ghost->npc;
+      DisplayObjectContainer* curForeground = static_cast<DisplayObjectContainer*>(current->getChild(1));
+      for (int i = 0; i < curForeground->numChildren(); i++){
+        if (npc->id == curForeground->getChild(i)->id){
+          cout << "erasing " + npc->id << endl;
+          curForeground->children.erase(curForeground->children.begin() + i);
+        }
+      }
+      DisplayObjectContainer* nextForeground = static_cast<DisplayObjectContainer*>(next->getChild(1));
+      npc->parent = nextForeground;
+      npc->drawingContainer = nextForeground;
+      nextForeground->addChild(npc);
+      cout << "Crossing NPC:" << npc->getSubtype() << endl;
+      
+      for (int i = 0; i < next->numChildren(); i++){
+        if (nextForeground->getChild(i)->getSubtype() == GHOST_SUBTYPE){
+          npc->position = nextForeground->getChild(i)->position;
+          Ghost* new_ghost = dynamic_cast<Ghost*>(nextForeground->getChild(i));
+          new_ghost->npc = npc;
+          new_ghost->npc->is_possessed = true;
+          new_ghost->setIsPossessing(true);
+          new_ghost->state_switch(ghost_states::Possessing);
+          collisionContainer->addChild(npc);
+        }
+      }
+
+      
+      for (int i = 0; i < inView.size(); i++){
+        if (inView.at(i) != ghost->npc){
+          inView.erase(inView.begin() + i);
+          i--;
+        } else {cout << "Not Clearing NPC" << endl;}
+      }
+      cout << npc->id << endl;
+
+    } else {
+      inView.clear();
+    }
+
     //Fixes std::out_of_range vector issue when we were merging stuff
     //Deletes Ghost
-    inView.clear();
+    //inView.clear();
+    cout << "Saving Scene" << endl;
+    current->SaveScene();
 
     maincam->removeChild(0);
     maincam->addChild(next);
