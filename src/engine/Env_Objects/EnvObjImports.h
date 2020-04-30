@@ -14,4 +14,5 @@
 #include "CaveLake.h"
 #include "Workbench.h"
 #include "Sign.h"
+#include "Bucket.h"
 #include "MainEnvObj.h"

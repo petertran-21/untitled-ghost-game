@@ -63,7 +63,7 @@ void NPCCraftsman::resolve_adjacency(DisplayObject *obj, int status){
 
         int recipe_minerals_max = 2;
         int recipe_cavelakes_max = 1;
-        int recipe_wood_max = 3;
+        int recipe_wood_max = 0;
         int counter = 0;
 
         //CHECK THAT YOU HAVE ENOUGH SUPPLIES
