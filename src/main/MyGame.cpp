@@ -15,6 +15,35 @@ MyGame::MyGame() : Game(1000, 1000)
 	container = new DisplayObjectContainer();
 	instance->addChild(allSprites);
 
+	// intro stuff
+	startScreen = new AnimatedSprite();
+	allSprites->addChild(startScreen);
+	startScreen->addAnimation("./resources/start/","main",4,36,true);
+	startScreen->width = 1000;
+	startScreen->height = 1000;
+	startScreen->play("main");
+
+	loreScreen = new AnimatedSprite();
+	loreScreen->addAnimation("./resources/start/","lore",1,1,true,"lore");
+	loreScreen->width = 1000;
+	loreScreen->height = 700;
+	loreScreen->position.y = 60;
+	loreScreen->alpha = 0;
+	loreScreen->play("lore");
+
+	mapTutorial = new AnimatedSprite();
+	mapTutorial->addAnimation("./resources/map/", "gameMap", 1, 1, true, "plain");
+	mapTutorial->addAnimation("./resources/map/", "tutorial", 12, 60, true, "tutorial");
+	mapTutorial->addAnimation("./resources/map/", "townTutorial", 1, 1, true, "townTutorial");
+  mapTutorial->addAnimation("./resources/map/", "forestHighlight", 1, 1, true, "forest");
+  mapTutorial->addAnimation("./resources/map/", "swampHighlight", 1, 1, true, "swamp");
+  mapTutorial->addAnimation("./resources/map/", "beachHighlight", 1, 1, true, "beach");
+  mapTutorial->addAnimation("./resources/map/", "mountainsHighlight", 1, 1, true, "mountain");
+	mapTutorial->addAnimation("./resources/map/", "townHighlight", 1, 1, true, "town");
+	mapTutorial->position.y = 50;
+	mapTutorial->width = 1000;
+	mapTutorial->height = 700;
+
 	//uncomment following line to check that collision boxes for objects are identical to drawing
 	//allSprites->addChild(container);
 
