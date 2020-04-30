@@ -7,6 +7,7 @@
 #include "CaveLake.h"
 #include "Workbench.h"
 #include "Bucket.h"
+#include "MountainTree.h"
 
 using namespace std;
 

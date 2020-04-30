@@ -213,6 +213,10 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 unit = new Bucket(Collisioncontainer);
                 break;
 
+            case MOUNTAINTREE_SUBTYPE:
+                unit = new MountainTree(Collisioncontainer);
+                break;
+
             /*--------------------------Universal--------------------------*/
             case GHOST_SUBTYPE:
                 unit = new Ghost();

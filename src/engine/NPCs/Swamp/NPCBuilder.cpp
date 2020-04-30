@@ -33,6 +33,7 @@ void NPCBuilder::resolve_adjacency(DisplayObject *obj, int status){
         vector<DisplayObject*> wood_to_spend;
 
         int recipe_wood_max = 5;
+        bool has_hammer = false;
         int counter = 0;
 
         //CHECK THAT YOU HAVE ENOUGH SUPPLIES
@@ -40,10 +41,13 @@ void NPCBuilder::resolve_adjacency(DisplayObject *obj, int status){
             if (inv[i]->id == "Driftwood"){
                 wood_to_spend.push_back(inv[i]);
             }
+            if (inv[i]->id == "Hammer"){
+                has_hammer = true;
+            }
         }
 
         //BUILD BRIDGE
-        if (wood_to_spend.size() >= recipe_wood_max){
+        if (wood_to_spend.size() >= recipe_wood_max && has_hammer){
 
             cout << "BRIDGE CRAFTED" << endl;
             

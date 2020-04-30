@@ -4,7 +4,7 @@
 
 #include "Controller.h"
 #include "MainEnvObj.h"
-
+#include "SceneTrigger.h"
 
 using namespace std;
 
@@ -15,6 +15,7 @@ class Sign : public MainEnvObj{
         void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 
         bool posted = false;
+        SceneTrigger * exit = NULL;
 };
 
 #endif

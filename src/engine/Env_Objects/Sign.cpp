@@ -21,5 +21,13 @@ void Sign::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currS
 
     if (posted){
         this->play("sign");
+
+        //SPAWN THE EXIT
+        if (exit == NULL){
+            exit = new SceneTrigger(this->collisionContainer, "./resources/scenes/campsite.json");
+            this->collisionContainer->addChild(exit);
+            exit->position.x = 200;
+            exit->position.y = 100;
+        }
     }
 }

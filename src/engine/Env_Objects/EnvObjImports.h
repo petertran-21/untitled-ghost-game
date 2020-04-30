@@ -18,4 +18,5 @@
 #include "PoisonGas.h"
 #include "SwampTree.h"
 #include "SwampBridge.h"
+#include "MountainTree.h"
 #include "MainEnvObj.h"
