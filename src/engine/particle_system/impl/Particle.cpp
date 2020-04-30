@@ -7,10 +7,11 @@ Particle::Particle() : DisplayObject()
     position.y = 0;
     horizontal_domain = 0;
     vertical_domain = 0;
-    alpha = 120;
+    alpha = 110;
     scaleX = 0.55;
     scaleY = 0.55;
     isTextureSet = false;
+    biomeChanged = false;
 
     //Randomize age so deaths occur async
     age = rand() % LIFE_SPAN;
@@ -67,8 +68,8 @@ void Particle::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState 
     if( age % UPDATE_RATE == 0 )
     {
         //Simulate random movement
-        position.x = (rand() % horizontal_domain) - ((int) horizontal_domain / 2);
-        position.y = (rand() % vertical_domain) - ((int) vertical_domain / 2);
+        position.x = (rand() % horizontal_domain) - ((int) horizontal_domain / 2) - 5;
+        position.y = (rand() % vertical_domain) - ((int) vertical_domain / 2) + 13;
     }
     
     DisplayObject::update( pressedKeys, currState );
@@ -76,15 +77,48 @@ void Particle::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState 
 
 void Particle::draw( AffineTransform &at )
 {
-    if( isTextureSet == false )
-    {
-        //Assign texture by type of grandparent
-        switch( parent->parent->subtype )
-        {
-            case GHOST_SUBTYPE: this->loadTexture("./resources/particles/grendel_particle.png" ); break;
-        }
-        isTextureSet = true;
-    }
-
+    if( isTextureSet == false ) loadParticleTexture();
+    if( biomeChanged ) loadParticleTexture();
     DisplayObject::draw( at );
+}
+
+void Particle::loadParticleTexture()
+{
+    if( parent != NULL )
+    {
+        if( parent->parent != NULL )
+        {
+            switch( parent->parent->subtype )
+            {
+                case GHOST_SUBTYPE:
+                    switch( biome )
+                    {
+                        case Beach: this->loadTexture( "./resources/particles/grendel_particle_beach.png" ); break;
+                        case Forest: this->loadTexture( "./resources/particles/grendel_particle_forest.png" ); break;
+                        default: this->loadTexture( "./resources/particles/grendel_particle_default.png" ); break;
+                    }
+                    isTextureSet = true;
+                    biomeChanged = false;
+                default:
+                    break;
+            }
+        }
+    }
+}
+
+void Particle::setBiome( string sceneFilePath ) 
+{
+    biomeChanged = true;
+    if( sceneFilePath.find("beach") != string::npos ) {
+        this->biome = Beach;
+        alpha = 110;
+    }
+    else if( sceneFilePath.find("forest") != string::npos ) {
+        this->biome = Forest;
+        alpha = 150;
+    }
+    else {
+        this->biome = DEFAULT;
+        alpha = 110;
+    }
 }

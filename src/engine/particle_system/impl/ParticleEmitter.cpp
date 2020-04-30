@@ -41,3 +41,15 @@ void ParticleEmitter::draw( AffineTransform &at )
 {
     DisplayObjectContainer::draw( at );
 }
+
+void ParticleEmitter::setBiome( string sceneFilePath )
+{
+    for( int i = 0; i < this->numChildren(); i++ )
+    {
+        DisplayObject* child = this->getChild(i);
+        if( child->type == "Particle" )
+        {
+            ((Particle*) child)->setBiome( sceneFilePath );
+        }
+    }
+}
