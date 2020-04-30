@@ -5,14 +5,15 @@
 
 using namespace std;
 
-NPCArcher::NPCArcher(DisplayObjectContainer* container, DisplayObjectContainer* allSprites) : MainNPC(){
+NPCArcher::NPCArcher(DisplayObjectContainer* container, DisplayObjectContainer* allSprites, vector<DisplayObject*> &passedInventory) : MainNPC(){
 	this->addAnimation("../resources/npcs/", "npc_base", 2, 1, true);
     this->addAnimation("./resources/npcs/archer/", "archer_idle", 1, 1, true, "idle");
     this->addAnimation("./resources/npcs/archer/", "archer_forward", 6, 10, true, "forward");
-    this->addAnimation("./resources/npcs/archer/", "archer_left", 6, 10, true, "left'");
+    this->addAnimation("./resources/npcs/archer/", "archer_left", 6, 10, true, "left");
     this->addAnimation("./resources/npcs/archer/", "archer_right", 6, 10, true, "right");
     this->addAnimation("./resources/npcs/archer/", "archer_back", 6, 10, true, "back");
 
+    this->inventory = &passedInventory;
 	this->play("idle");
     this->collisionContainer = container;
     container->addChild(this);

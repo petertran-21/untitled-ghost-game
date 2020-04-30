@@ -16,10 +16,12 @@ public:
 	Scene();
 	~Scene();
 
-	void loadScene(string sceneFilePath, DisplayObjectContainer* collisionContainer);
+	void loadScene(string sceneFilePath, DisplayObjectContainer* collisionContainer, vector<DisplayObject*> &inventory);
 
 	virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 	virtual void draw(AffineTransform &at);
+	void SaveScene();
+	string FilePath;
 
 	/**
 	 * Checked in Camera.h when drawing.

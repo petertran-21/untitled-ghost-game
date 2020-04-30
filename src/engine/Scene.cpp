@@ -8,6 +8,7 @@
 #include "particle_system/ParticleEmitter.h"
 #include "BossImports.h"
 #include "Camera.h"
+#include <iomanip>
 
 Scene::Scene() : DisplayObjectContainer()
 {
@@ -25,7 +26,8 @@ Scene::~Scene()
     isActive = false;
 }
 
-void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncontainer){
+void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncontainer, vector<DisplayObject*> &inventory){
+    this->FilePath = sceneFilePath;
     std::ifstream i(sceneFilePath);
     json j = json::parse(i);
     unordered_map<string, DisplayObjectContainer*> parents = {};
@@ -36,16 +38,18 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
     DisplayObjectContainer* lightEmittingObjects = new DisplayObjectContainer();
     DisplayObjectContainer* lightLayer = new DisplayObjectContainer();
     DisplayObjectContainer* shadowLayer = new DisplayObjectContainer();
-
+   
     background->parent = this;
     this->addChild(background);
 
     foreground->parent = this;
     this->addChild(foreground);
 
+    // vector<DisplayObject*> updatedInv=inventory;
     vector<DisplayObject*> pairedItems;
     for (auto sprite : j["sprites"]){
         // Get sprite subtype
+        DisplayObject* filler = new DisplayObject();
         DisplayObjectContainer* unit;
         std::string imgPath = ""; //Cannot declare variables in a switch
         ParticleEmitter* partEmit;
@@ -61,6 +65,11 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                     sprite["isStaticBaseFile"] == "treeTop.png"
                 ){
                     unit->type = "Wall";
+                    Collisioncontainer->addChild(unit);
+                }
+                else{
+                    unit->type = "Land";
+                    cout<<sprite["isStaticBaseFile"]<<" "<<unit->type<<endl;
                     Collisioncontainer->addChild(unit);
                 }
 
@@ -88,23 +97,23 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 unit = new Wolf(Collisioncontainer, foreground);
                 break;
             case NPCPYROMANCER_SUBTYPE:
-                unit = new NPCPyromancer(Collisioncontainer, foreground);
+                unit = new NPCPyromancer(Collisioncontainer, foreground, inventory);
                 break;
             case NPCLUMBERJACK_SUBTYPE:
-                unit = new NPCLumberjack(Collisioncontainer, foreground);
+                unit = new NPCLumberjack(Collisioncontainer, foreground, inventory);
                 break;
             case NPCARCHER_SUBTYPE:
-                unit = new NPCArcher(Collisioncontainer, foreground);
+                unit = new NPCArcher(Collisioncontainer, foreground, inventory);
                 break;
             case NPCSKELETON_SUBTYPE:
-                unit = new NPCSkeleton(Collisioncontainer, foreground);
+                unit = new NPCSkeleton(Collisioncontainer, foreground, inventory);
                 break;
             /*--------------------------Beach--------------------------*/
             case VALVE_SUBTYPE:
                 //check which dir from the id
-                if (((string) sprite["id"]).find("Left") != std::string::npos) { cout<<"MADE LEFT VALVE"<<endl; unit = new Valve(Collisioncontainer, W);}
-                else if (((string) sprite["id"]).find("Right") != std::string::npos) { cout<<"MADE RIGHT VALVE"<<endl; unit = new Valve(Collisioncontainer, E);}
-                else if (((string) sprite["id"]).find("Up") != std::string::npos) { cout<<"MADE UP VALVE"<<endl; unit = new Valve(Collisioncontainer, N);}
+                if ((sprite["id"]).get<std::string>().find("Left") != std::string::npos) { cout<<"MADE LEFT VALVE"<<endl; unit = new Valve(Collisioncontainer, W);}
+                else if ((sprite["id"]).get<std::string>().find("Right") != std::string::npos) { cout<<"MADE RIGHT VALVE"<<endl; unit = new Valve(Collisioncontainer, E);}
+                else if (( sprite["id"]).get<std::string>().find("Up") != std::string::npos) { cout<<"MADE UP VALVE"<<endl; unit = new Valve(Collisioncontainer, N);}
                 else { cout<<"MADE DOWN VALVE"<<endl; unit = new Valve(Collisioncontainer, S);}
                 
                 break;
@@ -130,22 +139,85 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 pairedItems.push_back(unit);
                 break;
             case NPCOPERATOR_SUBTYPE:
-                unit = new NPCOperator(Collisioncontainer, foreground);
+                unit = new NPCOperator(Collisioncontainer, foreground, inventory);
                 break;
             case NPCEXCAVATOR_SUBTYPE:
-                unit = new NPCExcavator(Collisioncontainer, foreground);
+                unit = new NPCExcavator(Collisioncontainer, foreground, inventory);
                 break;
             case NPCCOLLECTOR_SUBTYPE:
-                unit = new NPCCollector(Collisioncontainer, foreground);
+                unit = new NPCCollector(Collisioncontainer, foreground, inventory);
                 break;
             case PIRATE_SUBTYPE:
                 unit = new Pirate();
                 break;
+
+            /*--------------------------Swamp--------------------------*/
+            case HERB_SUBTYPE:
+                unit = new Herb(Collisioncontainer);
+                break;
+            case BOAT_SUBTYPE:
+                unit = new Boat(Collisioncontainer);
+                break;
+            case SWAMPTREE_SUBTYPE:
+                unit = new SwampTree(Collisioncontainer, foreground);
+                break;
+            case CRAFTSTATION_SUBTYPE:
+                unit = new CraftStation(Collisioncontainer);
+                break;
             case SNAKE_SUBTYPE:
                 unit = new Snake(Collisioncontainer, foreground);
                 break;
+            case NPCCROC_SUBTYPE:
+                unit = new NPCCroc(Collisioncontainer, foreground, inventory);
+                break;
+            case NPCDOCTOR_SUBTYPE:
+                unit = new NPCDoctor(Collisioncontainer, foreground, inventory);
+                break;
+            case NPCFISHERMAN_SUBTYPE:
+                unit = new NPCFisherman(Collisioncontainer, foreground, inventory);
+                break;
+            case NPCBUILDER_SUBTYPE:
+                unit = new NPCBuilder(Collisioncontainer, foreground, inventory);
+                break;
+
+            /*--------------------------Mountain--------------------------*/
             case DRAGON_SUBTYPE:
                 unit = new Dragon(Collisioncontainer, foreground);
+                break;
+            case NPCSTRONGMAN_SUBTYPE:
+                unit = new NPCStrongman(Collisioncontainer, foreground, inventory);
+                break;
+
+            case NPCCRAFTSMAN_SUBTYPE:
+                unit = new NPCCraftsman(Collisioncontainer, foreground, inventory);
+                break;
+
+            case BOULDER_SUBTYPE:
+                unit = new Boulder(Collisioncontainer);
+                break;
+            
+            case MINERAL_SUBTYPE:
+                unit = new Mineral(Collisioncontainer);
+                break;
+
+            case CAVELAKE_SUBTYPE:
+                unit = new CaveLake(Collisioncontainer);
+                break;
+
+            case WORKBENCH_SUBTYPE:
+                unit = new Workbench(Collisioncontainer);
+                break;
+
+            case SIGN_SUBTYPE:
+                unit = new Sign(Collisioncontainer);
+                break;
+
+            case BUCKET_SUBTYPE:
+                unit = new Bucket(Collisioncontainer);
+                break;
+
+            case MOUNTAINTREE_SUBTYPE:
+                unit = new MountainTree(Collisioncontainer);
                 break;
 
             /*--------------------------Universal--------------------------*/
@@ -158,6 +230,12 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 //Part of Camera tracking Ghost pipeline
                 this->ghost = (Ghost*) unit;
 
+                //Allows Ghost particles to change by biome
+                partEmit->setBiome(sceneFilePath);
+
+                break;
+            case HORNFRAGMENT_SUBTYPE:
+                unit = new HornFragment(Collisioncontainer);
                 break;
             case SCENE_TRIGGER_SUBTYPE:
                 unit = new SceneTrigger(Collisioncontainer, sprite["scene_path"]);     
@@ -167,7 +245,7 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
         }
 
         if (unit != NULL) {
-            unit->id = (string) sprite["id"];
+            unit->id = sprite["id"];
             unit->imgPath = sprite["basePathFolder"];
             unit->position.x = sprite["posX"];
             unit->position.y = sprite["posY"];
@@ -270,9 +348,61 @@ void Scene::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState curr
             }
         }
     }
-
     DisplayObjectContainer::update(pressedKeys, currState);
 }
+
+void Scene::SaveScene(){
+    std::ifstream i(this->FilePath);
+    json j = json::parse(i);
+
+    // Clear out foreground with exceptions like scene triggers and other objects
+    for (int index = 0; index < j["sprites"].size(); index++){
+        int subtype = j["sprites"].at(index)["subtype"];
+        
+        if (subtype != SPRITE_SUBTYPE && subtype != SCENE_TRIGGER_SUBTYPE && subtype != DISPLAYOBJECTCONTAINER_SUBTYPE && subtype != GHOST_SUBTYPE){
+            cout << "Save Scene Erasing" << j["sprites"].at(index)["id"] << endl;
+            j["sprites"].erase(j["sprites"].begin() + index);
+            index--;
+        }
+    }
+    DisplayObjectContainer* foreground = static_cast<DisplayObjectContainer*>(this->getChild(1));
+    for (int i = 0; i < foreground->numChildren(); i++) {
+        DisplayObject* sprite = foreground->getChild(i);
+        int subtype = sprite->getSubtype();
+        if (subtype != SPRITE_SUBTYPE && subtype != SCENE_TRIGGER_SUBTYPE && subtype != DISPLAYOBJECTCONTAINER_SUBTYPE && subtype != GHOST_SUBTYPE && sprite->id != "EnvObj") {
+            json jsonSprite = {
+                {"id", sprite->id},
+                {"basePathFolder", sprite->imgPath},
+                {"isStatic", true},
+                {"posX", sprite->position.x},
+                {"posY", sprite->position.y},
+                {"pivotX", sprite->pivot.x},
+                {"pivotY", sprite->pivot.y},
+                {"alpha", sprite->alpha},
+                {"isVisible", sprite->visible},
+                {"rotation", sprite->rotation},
+                {"width", sprite->width},
+                {"height", sprite->height},
+                {"subtype", sprite->subtype}, 
+            };
+            string parent = "foreground";
+            /*
+            if (sprite->parent != this){
+                parent = sprite->parent->id;
+                //cout << parent << endl;
+            } else if (sprite->subtype != 2) {
+                parent = "foreground";
+            } */
+            
+            jsonSprite["parent"] = parent;
+            j["sprites"].push_back(jsonSprite);
+        }
+    }
+    
+    // Save the scene
+    std::ofstream o(this->FilePath);
+    o << std::setw(4) << j << std::endl;
+    }
 
 void Scene::draw(AffineTransform &at){
     DisplayObjectContainer::draw(at);
