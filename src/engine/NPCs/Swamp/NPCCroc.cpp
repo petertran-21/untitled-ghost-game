@@ -52,7 +52,7 @@ void NPCCroc::resolve_collision(DisplayObject * obj){
 
         if (!tree->mined){
             //add wood to inventory
-            DisplayObject* wood = new DisplayObject("Wood","./resources/items/wood_1.png");     
+            DisplayObject* wood = new DisplayObject("Driftwood","./resources/items/wood_1.png");     
             inventory->push_back(wood);
             tree->mined = true;
         }

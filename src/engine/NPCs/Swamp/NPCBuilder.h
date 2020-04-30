@@ -4,6 +4,7 @@
 
 #include "MainNPC.h"
 #include "Workbench.h"
+#include "SwampBridge.h"
 
 using namespace std;
 
