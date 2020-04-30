@@ -34,23 +34,32 @@ void Particle::update( set<SDL_Scancode> pressedKeys, Controller::JoystickState 
     age++;
 
     //Creates a trailing effect when the Ghost moves.
-    if( parent->parent->subtype == GHOST_SUBTYPE )
+    if( parent->parent != NULL )
     {
-        if( Controls::holdLeft( pressedKeys, currState ) )
+        if( parent->parent->subtype == GHOST_SUBTYPE )
         {
-            position.x += TRAIL_LENGTH;
-        }
-        if( Controls::holdRight( pressedKeys, currState ) )
-        {
-            position.x -= TRAIL_LENGTH;
-        }
-        if ( Controls::holdUp( pressedKeys, currState ) )
-        {
-            position.y += TRAIL_LENGTH;
-        }
-        if ( Controls::holdDown( pressedKeys, currState ) )
-        {
-            position.y -= TRAIL_LENGTH;
+            bool reversed = ((Ghost*) parent->parent)->reverse_controls;
+            int trail_length = TRAIL_LENGTH;
+            if( reversed )
+            {
+                trail_length = -trail_length;
+            }
+            if( Controls::holdLeft( pressedKeys, currState ) )
+            {
+                position.x += trail_length;
+            }
+            if( Controls::holdRight( pressedKeys, currState ) )
+            {
+                position.x -= trail_length;
+            }
+            if ( Controls::holdUp( pressedKeys, currState ) )
+            {
+                position.y += trail_length;
+            }
+            if ( Controls::holdDown( pressedKeys, currState ) )
+            {
+                position.y -= trail_length;
+            }
         }
     }
 
