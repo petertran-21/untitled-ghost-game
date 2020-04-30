@@ -71,9 +71,9 @@ void NPCFisherman::resolve_collision(DisplayObject * obj){
 }
 
 void NPCFisherman::resolve_adjacency(DisplayObject * obj, int status){
-    cout << "ADJACENCY STATUS :" << status << endl;
-    cout<<" offboat: "<<(offBoat)<< " hasboat: "<<
-        hasBoat<<" hitboat: "<<(hitBoat == true)<<"land? "<<(obj->type == "Land")<<endl;
+    // cout << "ADJACENCY STATUS :" << status << endl;
+    // cout<<" offboat: "<<(offBoat)<< " hasboat: "<<
+    //     hasBoat<<" hitboat: "<<(hitBoat == true)<<"land? "<<(obj->type == "Land")<<endl;
     
     if (status && (hasBoat == true) && (hitBoat == true)){        
         //get off boat

@@ -304,7 +304,7 @@ void MainNPC::resolve_adjacency(DisplayObject *obj, int status){
 void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectContainer* collideContainer, DisplayObjectContainer* drawContainer){
     //COLLISIONS WITH COLLECTIBLES
     // cout<<"foreground NPC address: "<<drawingContainer<<endl;
-    // cout << "TYPE: "<<obj->type<<", subtype:  "<<obj->getSubtype()<<", "<<(obj->type=="Collectible")<<" HERE:"<<obj->imgPath<<endl;
+    cout << "TYPE: "<<obj->type<<", subtype:  "<<obj->getSubtype()<<", "<<(obj->type=="Collectible")<<" HERE:"<<obj->imgPath<<endl;
     // cout<<"NUM COLLIDE CHILDREN: "<<collideContainer->children.size()<<endl;
     // cout<<"NUM DRAW CHILDREN: "<<drawContainer->children.size()<<endl;
     if (obj->type == "Collectible"){
@@ -340,14 +340,13 @@ void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectCon
                     break;
                 }
                 // case 126:{ //wood
+                //     cout<<"COLLECTED WOOD"<<endl;
                 //     DisplayObject* wood = new DisplayObject(obj->id,obj->imgPath+"wood_1.png");     
                 //     inventory->push_back(wood);
                 //     Wood* wood_collect = (Wood*) obj;
                 //     vector<DisplayObject*>::iterator woodcollideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), wood_collect);
-                //     vector<DisplayObject*>::iterator wooddrawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), wood_collect);
-                //     if (woodcollideItr != this->collisionContainer->children.end() && wooddrawItr != this->drawingContainer->children.end()){
+                //     if (woodcollideItr != this->collisionContainer->children.end()){
                 //         this->collisionContainer->children.erase(woodcollideItr);
-                //         this->drawingContainer->children.erase(wooddrawItr);
                 //     } 
                 //     break;
                 // }
