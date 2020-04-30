@@ -1,18 +1,24 @@
-#ifndef NPCArcher_H
-#define NPCArcher_H
+#ifndef NPCCRAFTSMAN_H
+#define NPCCRAFTSMAN_H
+#define NPCCRAFTSMAN_SUBTYPE 25
 
 #include "MainNPC.h"
-#include "Arrow.h"
+#include "Mineral.h"
+#include "CaveLake.h"
+#include "Workbench.h"
 
 using namespace std;
 
 class NPCCraftsman : public MainNPC{
     
     public:
-        NPCCraftsman(DisplayObjectContainer* container, DisplayObjectContainer* allSprites);
+        NPCCraftsman(DisplayObjectContainer* container, DisplayObjectContainer* allSprites, vector<DisplayObject*> &passedInventory);
         void state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
         DisplayObjectContainer* collisionContainer;
-        int subtype = 25;
+
+        bool ability = false;
+
+        void resolve_adjacency(DisplayObject *obj, int status);
 };
 
 

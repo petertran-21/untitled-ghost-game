@@ -245,7 +245,6 @@ void MainNPC::resolve_collision(DisplayObject *obj){
     // cout<<"Colliing wiht envObj"<<(obj&&(obj->type == "EnvObj"))<< " "<<(obj->type == "EnvObj")<<endl;
 	if (reverseCollisions){
         if (obj && (obj->type == "Land")){
-        cout<<"COLLIDING WITH REVERSE ENV: "<<obj->type<<" "<<obj->getSubtype()<<endl;
         //check that npcs are overlapping
         if ((position.y == obj->position.y) && (position.x == obj->position.x)){
             switch (dir){
@@ -273,7 +272,7 @@ void MainNPC::resolve_collision(DisplayObject *obj){
     else if (obj && (obj->type == "EnvObj" || obj->type == "Wall")){
         // cout<<"COLLIDING WITH ENV"<<endl;
         //check that npcs are overlapping
-        cout<<"COLLIDING ENV: "<<obj->type<<" "<<obj->getSubtype()<<endl;
+        // cout<<"COLLIDING ENV: "<<obj->type<<" "<<obj->getSubtype()<<endl;
         if ((position.y == obj->position.y) && (position.x == obj->position.x)){
             switch (dir){
             //reset possessed npc's location to previous based on location it came from
@@ -305,7 +304,7 @@ void MainNPC::resolve_adjacency(DisplayObject *obj, int status){
 void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectContainer* collideContainer, DisplayObjectContainer* drawContainer){
     //COLLISIONS WITH COLLECTIBLES
     // cout<<"foreground NPC address: "<<drawingContainer<<endl;
-    // cout << "TYPE: "<<obj->type<<", subtype:  "<<obj->getSubtype()<<", "<<(obj->type=="Collectible")<<" HERE:"<<obj->imgPath<<endl;
+    cout << "TYPE: "<<obj->type<<", subtype:  "<<obj->getSubtype()<<", "<<(obj->type=="Collectible")<<" HERE:"<<obj->imgPath<<endl;
     // cout<<"NUM COLLIDE CHILDREN: "<<collideContainer->children.size()<<endl;
     // cout<<"NUM DRAW CHILDREN: "<<drawContainer->children.size()<<endl;
     if (obj->type == "Collectible"){
@@ -319,13 +318,13 @@ void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectCon
                     cout << "MainNPC: After Push Inventory: "<< inventory->size() << endl;
                     ItemPouch* collect = (ItemPouch*) obj;
                     //doesn't work in certain rooms (swampIsland)
-                    // vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), collect);
-                    // vector<DisplayObject*>::iterator drawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), collect);
-                    // if (collideItr != this->collisionContainer->children.end() && drawItr != this->drawingContainer->children.end()){
-                    //     cout<<"DELETE IT"<<endl;
-                    //     this->collisionContainer->children.erase(collideItr);
-                    //     this->drawingContainer->children.erase(drawItr);
-                    // } 
+                    vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), collect);
+                    vector<DisplayObject*>::iterator drawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), collect);
+                    if (collideItr != this->collisionContainer->children.end() && drawItr != this->drawingContainer->children.end()){
+                        cout<<"DELETE IT"<<endl;
+                        this->collisionContainer->children.erase(collideItr);
+                        this->drawingContainer->children.erase(drawItr);
+                    } 
                     break;
                 }
                 case 122:{ //herb
@@ -340,18 +339,17 @@ void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectCon
                     } 
                     break;
                 }
-                case 126:{ //wood
-                    DisplayObject* wood = new DisplayObject(obj->id,obj->imgPath+"wood_1.png");     
-                    inventory->push_back(wood);
-                    Wood* wood_collect = (Wood*) obj;
-                    vector<DisplayObject*>::iterator woodcollideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), wood_collect);
-                    vector<DisplayObject*>::iterator wooddrawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), wood_collect);
-                    if (woodcollideItr != this->collisionContainer->children.end() && wooddrawItr != this->drawingContainer->children.end()){
-                        this->collisionContainer->children.erase(woodcollideItr);
-                        this->drawingContainer->children.erase(wooddrawItr);
-                    } 
-                    break;
-                }
+                // case 126:{ //wood
+                //     cout<<"COLLECTED WOOD"<<endl;
+                //     DisplayObject* wood = new DisplayObject(obj->id,obj->imgPath+"wood_1.png");     
+                //     inventory->push_back(wood);
+                //     Wood* wood_collect = (Wood*) obj;
+                //     vector<DisplayObject*>::iterator woodcollideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), wood_collect);
+                //     if (woodcollideItr != this->collisionContainer->children.end()){
+                //         this->collisionContainer->children.erase(woodcollideItr);
+                //     } 
+                //     break;
+                // }
             }
         } 
     }
