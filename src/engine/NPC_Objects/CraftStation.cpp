@@ -6,10 +6,13 @@
 
 using namespace std;
 
-CraftStation::CraftStation() : MainNPCObj(){
-    this->subtype = 121;
+CraftStation::CraftStation(DisplayObjectContainer* container) : MainNPCObj(){
+    this->subtype = CRAFTSTATION_SUBTYPE;
     this->addAnimation("./resources/items/", "craftstation", 1, 1, false);
 	this->play("craftstation");
+
+    this->collisionContainer = container;
+    container->addChild(this);
 }
 
 void CraftStation::resolve_collision(DisplayObject *obj){

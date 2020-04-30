@@ -159,6 +159,9 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             case SWAMPTREE_SUBTYPE:
                 unit = new SwampTree(Collisioncontainer, foreground);
                 break;
+            case CRAFTSTATION_SUBTYPE:
+                unit = new CraftStation(Collisioncontainer);
+                break;
             case SNAKE_SUBTYPE:
                 unit = new Snake(Collisioncontainer, foreground);
                 break;

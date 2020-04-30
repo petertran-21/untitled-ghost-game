@@ -10,8 +10,7 @@ using namespace std;
 class CraftStation : public MainNPCObj{
     
     public:
-
-        CraftStation();
+        CraftStation(DisplayObjectContainer* container);
 
         void resolve_collision(DisplayObject *obj);
 };
