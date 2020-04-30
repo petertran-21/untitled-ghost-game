@@ -54,9 +54,6 @@ MyGame::MyGame() : Game(1000, 1000)
 	displayTreeDisp->addEventListener(collisionSystem, DOAddedEvent::DO_ADDED);
 	displayTreeDisp->addEventListener(collisionSystem, DORemovedEvent::DO_REMOVED);
 
-
-	//scene_1->loadScene("./resources/Saves/Slot1/beachEntrance.json", container, inventory);
-
 	DOAdded->checkCondition();
 
 	// SFX Menu stuff
@@ -84,6 +81,7 @@ MyGame::~MyGame()
 
 void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
 	if(playStartSequence) {
+		std::cout << "true" << std::endl;
 		if(pressedKeys.size() > 0 && startScreenVisible) {
 			fadeStart = true;
 		}
@@ -98,6 +96,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 			allSprites->removeImmediateChild(startScreen);
 			allSprites->addChild(loreScreen);
 			fadeLoreIn = true;
+			std::cout << "true2" << std::endl;
 		}
 		if(fadeLoreIn && !loreScreenVisible) {
 			loreScreen->alpha = loreScreen->alpha + 5;
@@ -123,6 +122,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 			allSprites->addChild(mapTutorial);
 			mapScreenVisible = true;
 			mapTutorial->play("tutorial");
+			std::cout << "true3" << std::endl;
 		}
 		if(mapScreenVisible) {
 			if(pressedKeys.find(SDL_SCANCODE_1) != pressedKeys.end()) {
@@ -146,12 +146,14 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 				townHighlighted = true;
 			}
 			if(townHighlighted && pressedKeys.find(SDL_SCANCODE_RETURN) != pressedKeys.end()) {
-				//town scene load goes here
+				//REPLACE BEACH SCENE LOAD PLS town scene load goes here instead
+				scene_1->loadScene("./resources/Saves/Slot1/beachEntrance.json", container, inventory);
 				allSprites->removeImmediateChild(mapTutorial);
 				playStartSequence = false;
 			}
 		}
 
+		Game::update(pressedKeys, currState);
 	}
 	else {
 		if (!UIOpen){
