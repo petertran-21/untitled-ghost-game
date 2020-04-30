@@ -6,7 +6,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	camera = new Camera();
 	scene_1 = new Scene();
 	soundManager = new Sound();
-	
+
 	camera->addChild(scene_1);
 	this->addChild(camera);
 
@@ -24,7 +24,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	DORemoved = new DORemovedEvent(displayTreeDisp, container);
 	displayTreeDisp->addEventListener(collisionSystem, DOAddedEvent::DO_ADDED);
 	displayTreeDisp->addEventListener(collisionSystem, DORemovedEvent::DO_REMOVED);
-	
+
 
 	scene_1->loadScene("./resources/Saves/Slot1/beachEntrance.json", container, inventory);
 
@@ -54,51 +54,123 @@ MyGame::~MyGame()
 }
 
 void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
-	if (!UIOpen){
-		DORemoved->checkCondition();
-		DOAdded->checkCondition();
-		collisionSystem->update();
-		Game::update(pressedKeys, currState);
+	if(playStartSequence) {
+		if(pressedKeys.size() > 0 && startScreenVisible) {
+			fadeStart = true;
+		}
+		if(fadeStart) {
+			startScreen->alpha = startScreen->alpha - 5;
+			if(startScreen->alpha <= 0) {
+				startScreenVisible = false;
+				fadeStart = false;
+			}
+		}
+		if(!startScreenVisible && !fadeLoreIn && !loreScreenVisible && !fadeLoreOut && !mapScreenVisible) {
+			allSprites->removeImmediateChild(startScreen);
+			allSprites->addChild(loreScreen);
+			fadeLoreIn = true;
+		}
+		if(fadeLoreIn && !loreScreenVisible) {
+			loreScreen->alpha = loreScreen->alpha + 5;
+			if(loreScreen->alpha >= 255) {
+				loreScreen->alpha = 255;
+				loreScreenVisible = true;
+				fadeLoreIn = false;
+			}
+		}
+		if(pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end() && loreScreenVisible) {
+			fadeLoreOut = true;
+		}
+		if(fadeLoreOut && loreScreenVisible) {
+			loreScreen->alpha = loreScreen->alpha - 5;
+			if(loreScreen->alpha <= 0) {
+				loreScreen->alpha = 0;
+				loreScreenVisible = false;
+				fadeLoreOut = false;
+			}
+		}
+		if(!startScreenVisible && !fadeLoreIn && !fadeLoreOut && !loreScreenVisible && !mapScreenVisible) {
+			allSprites->removeImmediateChild(loreScreen);
+			allSprites->addChild(mapTutorial);
+			mapScreenVisible = true;
+			mapTutorial->play("tutorial");
+		}
+		if(mapScreenVisible) {
+			if(pressedKeys.find(SDL_SCANCODE_1) != pressedKeys.end()) {
+				mapTutorial->play("mountain");
+				townHighlighted = false;
+			}
+			else if(pressedKeys.find(SDL_SCANCODE_2) != pressedKeys.end()) {
+				mapTutorial->play("swamp");
+				townHighlighted = false;
+			}
+			else if(pressedKeys.find(SDL_SCANCODE_3) != pressedKeys.end()) {
+				mapTutorial->play("forest");
+				townHighlighted = false;
+			}
+			else if(pressedKeys.find(SDL_SCANCODE_4) != pressedKeys.end()) {
+				mapTutorial->play("beach");
+				townHighlighted = false;
+			}
+			else if(pressedKeys.find(SDL_SCANCODE_5) != pressedKeys.end()) {
+				mapTutorial->play("townTutorial");
+				townHighlighted = true;
+			}
+			if(townHighlighted && pressedKeys.find(SDL_SCANCODE_RETURN) != pressedKeys.end()) {
+				//town scene load goes here
+				allSprites->removeImmediateChild(mapTutorial);
+				playStartSequence = false;
+			}
+		}
 
-		if (pressedKeys.find(SDL_SCANCODE_N) != pressedKeys.end()){
-			camera->getChild(0)->scaleX /= 1.1;
-			camera->getChild(0)->scaleY /= 1.1;
-		}
-		if (pressedKeys.find(SDL_SCANCODE_M) != pressedKeys.end()){
-			camera->getChild(0)->scaleX *= 1.1;
-			camera->getChild(0)->scaleY *= 1.1;
-		}
 	}
-	//cout << "MyGame: Inventory: "<< inventory.size() << endl;
-	// cout << "InventoryUI" << inventoryUI->entries.size() << endl;
-	if(inventoryUI->entries.size()!=inventory.size()){
-		inventoryUI->entries=inventory; 
-	}
+	else {
+		if (!UIOpen){
+			DORemoved->checkCondition();
+			DOAdded->checkCondition();
+			collisionSystem->update();
+			Game::update(pressedKeys, currState);
 
-	if (pressedKeys.find(SDL_SCANCODE_DOWN) != pressedKeys.end() && UIOpen){
-		selectionMenuTest->incrementPosition();
-	}
-	if (pressedKeys.find(SDL_SCANCODE_UP) != pressedKeys.end() && UIOpen){
-		selectionMenuTest->decrementPosition();
-	}
-	if (pressedKeys.find(SDL_SCANCODE_RETURN) != pressedKeys.end() && UIOpen){
-		std::string result = selectionMenuTest->getCurrentlySelected();
-		if (result == "Stats"){
-			std::string stat = "You've been playing for " + std::to_string(Game::frameCounter/60) + " seconds.";
-			textboxTest->setText(stat);
+			if (pressedKeys.find(SDL_SCANCODE_N) != pressedKeys.end()){
+				camera->getChild(0)->scaleX /= 1.1;
+				camera->getChild(0)->scaleY /= 1.1;
+			}
+			if (pressedKeys.find(SDL_SCANCODE_M) != pressedKeys.end()){
+				camera->getChild(0)->scaleX *= 1.1;
+				camera->getChild(0)->scaleY *= 1.1;
+			}
 		}
-		if (result == "Quit") delete this;		// It *does* quit, yes, but segfaults.
-	}
-	if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end() && !UIOpen){
-		soundManager->playSFX("./resources/sfx/pauseOn.ogg");
-		this->addChild(UIContainer);
-		textboxTest->setText("Press RETURN to choose option, Q to quit menu.");
-		UIOpen = !UIOpen;
-	}
-	if (pressedKeys.find(SDL_SCANCODE_Q) != pressedKeys.end() && UIOpen){
-		soundManager->playSFX("./resources/sfx/pauseOff.ogg");
-		this->children.erase(std::remove(this->children.begin(), this->children.end(), UIContainer), this->children.end());
-		UIOpen = false;
+		//cout << "MyGame: Inventory: "<< inventory.size() << endl;
+		// cout << "InventoryUI" << inventoryUI->entries.size() << endl;
+		if(inventoryUI->entries.size()!=inventory.size()){
+			inventoryUI->entries=inventory;
+		}
+
+		if (pressedKeys.find(SDL_SCANCODE_DOWN) != pressedKeys.end() && UIOpen){
+			selectionMenuTest->incrementPosition();
+		}
+		if (pressedKeys.find(SDL_SCANCODE_UP) != pressedKeys.end() && UIOpen){
+			selectionMenuTest->decrementPosition();
+		}
+		if (pressedKeys.find(SDL_SCANCODE_RETURN) != pressedKeys.end() && UIOpen){
+			std::string result = selectionMenuTest->getCurrentlySelected();
+			if (result == "Stats"){
+				std::string stat = "You've been playing for " + std::to_string(Game::frameCounter/60) + " seconds.";
+				textboxTest->setText(stat);
+			}
+			if (result == "Quit") delete this;		// It *does* quit, yes, but segfaults.
+		}
+		if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end() && !UIOpen){
+			soundManager->playSFX("./resources/sfx/pauseOn.ogg");
+			this->addChild(UIContainer);
+			textboxTest->setText("Press RETURN to choose option, Q to quit menu.");
+			UIOpen = !UIOpen;
+		}
+		if (pressedKeys.find(SDL_SCANCODE_Q) != pressedKeys.end() && UIOpen){
+			soundManager->playSFX("./resources/sfx/pauseOff.ogg");
+			this->children.erase(std::remove(this->children.begin(), this->children.end(), UIContainer), this->children.end());
+			UIOpen = false;
+		}
 	}
 }
 
