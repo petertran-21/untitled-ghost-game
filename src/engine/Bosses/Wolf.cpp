@@ -57,7 +57,7 @@ void Wolf::state_attack(set<SDL_Scancode> pressedKeys, Controller::JoystickState
 	//anything that should always run while in this state
     this->play("wolf_attack");
     bark_timer++;
-    if (bark_timer == bark_timer_max+30) {
+    if (bark_timer == bark_timer_max+60) {
         for (int i=0; i<8; i++){
             DisplayObject* object = *this->children.begin();
             vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), object);

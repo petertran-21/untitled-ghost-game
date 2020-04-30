@@ -30,7 +30,6 @@ void Snake::state_attack(set<SDL_Scancode> pressedKeys, Controller::JoystickStat
     if (state_new){
         cout << "SNAKE STATE: ATTACK" << endl;
         for (int i=0; i < 8; i++){
-            cout<<"POSITION SNAKE: "<<position.x<<" "<<position.y<<endl;
             Poison *p = new Poison(this->width, this->height, (M_PI/4 + poison_angle)*i, collisionContainer, drawingContainer);
             this->addChild(p);
         }

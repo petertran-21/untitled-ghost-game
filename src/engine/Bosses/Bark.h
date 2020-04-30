@@ -16,7 +16,7 @@ class Bark : public MainNPCObj{
         DisplayObjectContainer* collisionContainer;
         DisplayObjectContainer* drawingContainer;
 
-        int movespeed = 16;
+        int movespeed = 6;
 
         void resolve_collision(DisplayObject* obj);
    

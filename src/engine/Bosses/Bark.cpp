@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include "Bark.h"
+#include "Ghost.h"
 #include <math.h>
 
 using namespace std;
@@ -31,4 +32,5 @@ void Bark::resolve_collision(DisplayObject* obj){
     if (npc){
         npc->is_possessed = false;
     }
+
 }

@@ -10,7 +10,6 @@ Poison::Poison(int width, int height, int angle, DisplayObjectContainer* contain
     this->id = "poison";
     this->position.x = width/2;
     this->position.y = height/2;
-    cout<<"POSITION POISON: "<<position.x<<" "<<position.y<<endl;
     this->rotation = angle;
 
 	this->addAnimation("./resources/bosses/", "bark", 1, 1, false);
