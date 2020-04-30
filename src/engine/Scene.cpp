@@ -158,6 +158,9 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 //Part of Camera tracking Ghost pipeline
                 this->ghost = (Ghost*) unit;
 
+                //Allows Ghost particles to change by biome
+                partEmit->setBiome(sceneFilePath);
+
                 break;
             case SCENE_TRIGGER_SUBTYPE:
                 unit = new SceneTrigger(Collisioncontainer, sprite["scene_path"]);     

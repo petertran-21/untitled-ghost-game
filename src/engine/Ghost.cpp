@@ -174,6 +174,10 @@ void Ghost::state_possessing(set<SDL_Scancode> pressedKeys, Controller::Joystick
 	//wait for NPC to eject player
 	if (npc->is_possessed == false){
 		isPossessing = false;
+
+		//End walking animation
+		npc->stop();
+
 		npc = NULL;
 		alpha = 255;
 		state_switch(ghost_states::Idle);
