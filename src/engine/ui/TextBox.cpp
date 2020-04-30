@@ -51,6 +51,7 @@ void TextBox::setText(std::string newText){
     this->text->content = newText;
     this->text->reloadFont();
     this->text->width = newText.size() * 20;        // Fixes scaling issue.
+    this->width = (newText.size() * 20) + 10;       // Fixes BG scaling issue.
 }
 
 void TextBox::draw(AffineTransform &at){
