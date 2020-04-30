@@ -32,10 +32,8 @@ void Camera::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
             bool reversed = this->ghost->reverse_controls;
             int windowWidth = 1000;
             int windowHeight = 1000;
-            // int minDistWidth = windowWidth / 2;
-            // int minDistHeight = windowHeight / 2;
-            int minDistWidth = 500;
-            int minDistHeight = 500;
+            int minDistWidth = windowWidth / 2;
+            int minDistHeight = windowHeight / 2;
 
             int xDiff = abs(scene->position.x + this->ghost->position.x);
             int xTotal = abs(abs(scene->position.x + this->ghost->position.x) - windowWidth);
