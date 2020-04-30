@@ -700,15 +700,18 @@ void CollisionSystem::resolveCollision_SceneTrigger(DisplayObject* triggerObj, D
       nextForeground->addChild(npc);
       cout << "Crossing NPC:" << npc->getSubtype() << endl;
       
-      for (int i = 0; i < next->numChildren(); i++){
+      for (int i = 0; i < nextForeground->numChildren(); i++){
         if (nextForeground->getChild(i)->getSubtype() == GHOST_SUBTYPE){
           npc->position = nextForeground->getChild(i)->position;
           Ghost* new_ghost = dynamic_cast<Ghost*>(nextForeground->getChild(i));
+          cout << "Position changed for crossing NPC" << endl;
           new_ghost->npc = npc;
           new_ghost->npc->is_possessed = true;
           new_ghost->setIsPossessing(true);
           new_ghost->state_switch(ghost_states::Possessing);
           collisionContainer->addChild(npc);
+          npc->is_possessed = false;
+          npc->state_switch(npc_states::Idle);
         }
       }
 
