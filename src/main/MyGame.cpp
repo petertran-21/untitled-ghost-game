@@ -25,7 +25,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	displayTreeDisp->addEventListener(collisionSystem, DORemovedEvent::DO_REMOVED);
 	
 
-	scene_1->loadScene("./resources/scenes/mountainPathSeparation.json", container, inventory);
+	scene_1->loadScene("./resources/scenes/beachEntrance.json", container, inventory);
 
 	DOAdded->checkCondition();
 

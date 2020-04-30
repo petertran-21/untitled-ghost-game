@@ -5,11 +5,12 @@
 
 using namespace std;
 
-Poison::Poison(SDL_Point pos, int angle, DisplayObjectContainer* container, DisplayObjectContainer* allSprites) : MainNPCObj(){
+Poison::Poison(int width, int height, int angle, DisplayObjectContainer* container, DisplayObjectContainer* allSprites) : MainNPCObj(){
     this->subtype = POISON_SUBTYPE;
     this->id = "poison";
-
-    this->position = pos;
+    this->position.x = width/2;
+    this->position.y = height/2;
+    cout<<"POSITION POISON: "<<position.x<<" "<<position.y<<endl;
     this->rotation = angle;
 
 	this->addAnimation("./resources/bosses/", "bark", 1, 1, false);
@@ -17,8 +18,6 @@ Poison::Poison(SDL_Point pos, int angle, DisplayObjectContainer* container, Disp
     this->play("bark");
     this->collisionContainer = container;
     container->addChild(this);
-    this->drawingContainer = allSprites;
-    drawingContainer->addChild(this);
 }
 
 void Poison::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){

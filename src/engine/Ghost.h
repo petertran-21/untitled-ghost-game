@@ -33,7 +33,7 @@ public:
 	int maxHealth = 100;
 	bool reverse_controls = false;
 	int reverse_controls_timer = 0;
-	int reverse_controls_max = 400;
+	int reverse_controls_max = 200; 
 
 	float movespeed = 4;
 

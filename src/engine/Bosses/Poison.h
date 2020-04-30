@@ -11,7 +11,7 @@ using namespace std;
 class Poison : public MainNPCObj{
     
     public:
-        Poison(SDL_Point pos, int angle, DisplayObjectContainer* container, DisplayObjectContainer* allSprites);
+        Poison(int width, int height, int angle, DisplayObjectContainer* container, DisplayObjectContainer* allSprites);
         void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
         
         DisplayObjectContainer* collisionContainer;
