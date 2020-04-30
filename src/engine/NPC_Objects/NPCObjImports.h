@@ -4,3 +4,5 @@
 #include "Log.h"
 #include "GemHolder.h"
 #include "Bark.h"
+#include "Boat.h"
+#include "CraftStation.h"

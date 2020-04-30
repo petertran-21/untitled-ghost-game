@@ -12,3 +12,5 @@
 #include "NPCStrongman.h"
 #include "NPCDoctor.h"
 #include "NPCFisherman.h"
+#include "NPCBuilder.h"
+#include "NPCCroc.h"

@@ -8,9 +8,10 @@
 
 CollisionSystem::CollisionSystem() { }
 
-CollisionSystem::CollisionSystem(Camera *maincam, DisplayObjectContainer *collisionContainer){
+CollisionSystem::CollisionSystem(Camera *maincam, DisplayObjectContainer *collisionContainer, vector<DisplayObject*> &passedInventory){
   this->maincam = maincam;
   this->collisionContainer = collisionContainer;
+  this->inventory = &passedInventory;
 }
 
 CollisionSystem::~CollisionSystem(){
@@ -28,6 +29,7 @@ void CollisionSystem::update(){
   watchForCollisions("Ghost", "NPCObj");
   watchForCollisions("NPC", "Collectible");
   watchForCollisions("NPC", "Wall");
+  watchForCollisions("NPC", "Land");
   watchForCollisions("NPCObj", "EnvObj");
   watchForCollisions("NPCObj", "Wall");
   watchForCollisions("Boss", "NPCObj");
@@ -36,6 +38,7 @@ void CollisionSystem::update(){
   watchForAdjacency("NPC", "NPCObj");
   watchForAdjacency("NPCObj", "EnvObj");
   watchForAdjacency("EnvObj", "EnvObj");
+  watchForAdjacency("NPC", "Land");
 }
 
 //This system watches the game's display tree and is notified whenever a display object is placed onto
@@ -44,7 +47,7 @@ void CollisionSystem::handleEvent(Event* e){
   if (e->getType() == DOAddedEvent::DO_ADDED) {
     DOAddedEvent* event = (DOAddedEvent*) e;
     inView.push_back(event->recentlyAdded);
-    std::cout << "DO added to the game. " << event->recentlyAdded->type << std::endl;
+    //std::cout << "DO added to the game. " << event->recentlyAdded->type << std::endl;
   }
   if (e->getType() == DORemovedEvent::DO_REMOVED) {
     DORemovedEvent* event = (DORemovedEvent*) e;
@@ -100,6 +103,9 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
             else if ((type1 == "NPCObj") && (type2 == "Wall")){
               resolveCollision_NPCObj_Wall(inView[i], inView[j]);
             }
+            else if ((type1 == "NPC") && (type2 == "Land")){
+              resolveCollision_NPC_Land(inView[i], inView[j]);
+            }
             else{
               // resolveCollision(inView[i], inView[j],
               // inView[i]->position.x - inView[i]->lastNonCollidedPos.x + inView[i]->parent->position.x,
@@ -142,6 +148,9 @@ void CollisionSystem::watchForAdjacency(string type1, string type2) {
           }
           else if ((type1 == "EnvObj" && type2 == "EnvObj")){
               resolveAdjacency_EnvObj_EnvObj(inView[i], inView[j], status);
+          }
+          else if ((type1 == "NPC" && type2 == "Land")){
+            resolve_adjacency_NPC_Land(inView[i], inView[j], status);
           }
         }
       }
@@ -672,8 +681,8 @@ void CollisionSystem::resolveCollision_SceneTrigger(DisplayObject* triggerObj){
 
   SceneTrigger *trigger = dynamic_cast<SceneTrigger*>(triggerObj);
 
-  if (trigger->active){
-    next->loadScene(trigger->scene_path, this->collisionContainer);
+  if (trigger->active){ 
+    next->loadScene(trigger->scene_path, this->collisionContainer, *inventory);
     maincam->changeScene(current, next);
 
     //REMOVING COLLISION BOXES?
@@ -708,6 +717,13 @@ void CollisionSystem::resolveCollision_NPCObj_Wall(DisplayObject* npcObj, Displa
   npcObj->resolve_collision(wall);
 }
 
+void CollisionSystem::resolveCollision_NPC_Land(DisplayObject* npc, DisplayObject* land){
+  npc->resolve_collision(land);
+}
+
+void CollisionSystem::resolve_adjacency_NPC_Land(DisplayObject* npc, DisplayObject* land, int status){
+  npc->resolve_adjacency(land, status);
+}
 
 
 //===============ADJACENCY

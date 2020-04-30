@@ -16,9 +16,10 @@ class CollisionSystem : public EventListener{
 public:
 
 	CollisionSystem();
-	CollisionSystem(Camera *maincam, DisplayObjectContainer *collisionContainer);
+	CollisionSystem(Camera *maincam, DisplayObjectContainer *collisionContainer, vector<DisplayObject*> &passedInventory);
 	~CollisionSystem();
 
+	vector<DisplayObject*> *inventory;
 	Camera *maincam;
 
 	//checks collisions between pairs of DOs where the corresponding types have been requested
@@ -65,6 +66,8 @@ public:
 	void resolveCollision_Boss_NPCObj(DisplayObject* bossObj, DisplayObject* npcObj);
 	void resolveCollision_NPC_Wall(DisplayObject* npc, DisplayObject* wall);
 	void resolveCollision_NPCObj_Wall(DisplayObject* npcObj, DisplayObject* wall);
+	void resolveCollision_NPC_Land(DisplayObject* npc, DisplayObject* land);
+	void resolve_adjacency_NPC_Land(DisplayObject* npc, DisplayObject* land, int status);
 
 	void resolveAdjacency_NPC_EnvObj(DisplayObject* npc, DisplayObject* envObj, int status);
 	void resolveAdjacency_NPC_NPCObj(DisplayObject* npc, DisplayObject* npcObj, int status);
