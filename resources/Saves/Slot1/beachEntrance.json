@@ -1785,22 +1785,6 @@
             "rotation": 0.0,
             "subtype": 10,
             "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/npcs/",
-            "height": 100,
-            "id": "lumberjack",
-            "isStatic": true,
-            "isVisible": true,
-            "parent": "foreground",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 300,
-            "posY": 400,
-            "rotation": 0.0,
-            "subtype": 21,
-            "width": 100
         }
     ]
 }
