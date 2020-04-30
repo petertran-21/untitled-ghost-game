@@ -1967,8 +1967,8 @@
             "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
-            "posX": -500,
-            "posY": 100,
+            "posX": 200,
+            "posY": 400,
             "rotation": 0.0,
             "subtype": 7,
             "width": 100

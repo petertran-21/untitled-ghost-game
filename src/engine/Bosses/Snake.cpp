@@ -10,6 +10,8 @@ Snake::Snake(DisplayObjectContainer* container, DisplayObjectContainer* allSprit
 
     this->collisionContainer = container;
     this->drawingContainer = allSprites;
+    this->scaleX = 0.5;
+    this->scaleY = 0.5;
 
     this->addAnimation("./resources/bosses/", "snake_idle", 1, 1, false);
 
