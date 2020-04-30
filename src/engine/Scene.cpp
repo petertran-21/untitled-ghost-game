@@ -179,8 +179,6 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             case DRAGON_SUBTYPE:
                 unit = new Dragon(Collisioncontainer, foreground);
                 break;
-
-            /*--------------------------Mountain--------------------------*/
             case NPCSTRONGMAN_SUBTYPE:
                 unit = new NPCStrongman(Collisioncontainer, foreground, inventory);
                 break;
