@@ -25,7 +25,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	displayTreeDisp->addEventListener(collisionSystem, DORemovedEvent::DO_REMOVED);
 	
 
-	scene_1->loadScene("./resources/scenes/swampIsland.json", container, inventory);
+	scene_1->loadScene("./resources/scenes/treeSwamp.json", container, inventory);
 
 	DOAdded->checkCondition();
 
@@ -75,7 +75,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 			camera->getChild(0)->scaleY *= 1.1;
 		}
 	}
-	// cout << "MyGame: Inventory: "<< inventory.size() << endl;
+	cout << "MyGame: Inventory: "<< inventory.size() << endl;
 	// cout << "InventoryUI" << inventoryUI->entries.size() << endl;
 	if(inventoryUI->entries.size()!=inventory.size()){
 		inventoryUI->entries=inventory; 
