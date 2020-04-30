@@ -81,7 +81,6 @@ MyGame::~MyGame()
 
 void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
 	if(playStartSequence) {
-		std::cout << "true" << std::endl;
 		if(pressedKeys.size() > 0 && startScreenVisible) {
 			fadeStart = true;
 		}
@@ -96,7 +95,6 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 			allSprites->removeImmediateChild(startScreen);
 			allSprites->addChild(loreScreen);
 			fadeLoreIn = true;
-			std::cout << "true2" << std::endl;
 		}
 		if(fadeLoreIn && !loreScreenVisible) {
 			loreScreen->alpha = loreScreen->alpha + 5;
@@ -122,7 +120,6 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 			allSprites->addChild(mapTutorial);
 			mapScreenVisible = true;
 			mapTutorial->play("tutorial");
-			std::cout << "true3" << std::endl;
 		}
 		if(mapScreenVisible) {
 			if(pressedKeys.find(SDL_SCANCODE_1) != pressedKeys.end()) {
@@ -162,11 +159,11 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 			collisionSystem->update();
 			Game::update(pressedKeys, currState);
 
-			if (pressedKeys.find(SDL_SCANCODE_N) != pressedKeys.end()){
+			if (pressedKeys.find(SDL_SCANCODE_Z) != pressedKeys.end()){
 				camera->getChild(0)->scaleX /= 1.1;
 				camera->getChild(0)->scaleY /= 1.1;
 			}
-			if (pressedKeys.find(SDL_SCANCODE_M) != pressedKeys.end()){
+			if (pressedKeys.find(SDL_SCANCODE_X) != pressedKeys.end()){
 				camera->getChild(0)->scaleX *= 1.1;
 				camera->getChild(0)->scaleY *= 1.1;
 			}
