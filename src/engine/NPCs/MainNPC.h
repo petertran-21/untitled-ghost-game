@@ -40,6 +40,7 @@ class MainNPC : public AnimatedSprite{
         int reverse_controls_max = 400;
         bool changeAnim = true;
         bool reverseCollisions = false;
+        bool detox = false;
 
         npc_states state = npc_states::Idle;
         bool state_new = true;

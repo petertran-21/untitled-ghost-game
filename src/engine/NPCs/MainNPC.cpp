@@ -279,9 +279,8 @@ void MainNPC::resolve_collision(DisplayObject *obj){
         cout<<"NPC AT: "<<position.x<<" "<<position.y<<endl;
         if (d->open) cout<<"IS OPEN"<<endl;
     }
-
     // DEFAULT FOR COLLIDING WITH SOLIDS
-    // cout<<"Colliing wiht envObj"<<(obj&&(obj->type == "EnvObj"))<< " "<<(obj->type == "EnvObj")<<endl;
+    // cout<<"Colliing wiht envObj"<<(obj&&(obj->type == "EnvObj"))<< " "<< obj->type << " " << obj->getSubtype()<<endl;
 	if (reverseCollisions){
         if (obj && (obj->type == "Land")){
         //check that npcs are overlapping
@@ -308,11 +307,22 @@ void MainNPC::resolve_collision(DisplayObject *obj){
             }
         }
 	}
-    else if (obj && (obj->type == "EnvObj" || obj->type == "Wall")){
+    else if (obj && ((obj->type == "EnvObj" || obj->type == "Wall") || obj->getSubtype() == 127)){
         // cout<<"COLLIDING WITH ENV"<<endl;
         //check that npcs are overlapping
         //cout<<"COLLIDING ENV: "<<obj->type<<" "<<obj->getSubtype()<<endl;
-        if ((position.y == obj->position.y) && (position.x == obj->position.x)){
+        if (obj->getSubtype() == 127){
+            SwampBridge* s = (SwampBridge*) obj;
+            if (s->cancross==true){
+                return;
+            }
+        }
+        if (((position.y == obj->position.y) && (position.x == obj->position.x)) || (obj->getSubtype() == 120)){ //enter this if poisongas touches
+            if (obj->getSubtype() == 120){
+                if (this->detox == true){
+                    return;
+                }
+            }
             switch (dir){
             //reset possessed npc's location to previous based on location it came from
             case N:
@@ -345,7 +355,7 @@ void MainNPC::resolve_adjacency(DisplayObject *obj, int status){
 void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectContainer* collideContainer, DisplayObjectContainer* drawContainer){
     //COLLISIONS WITH COLLECTIBLES
     // cout<<"foreground NPC address: "<<drawingContainer<<endl;
-    //cout << "TYPE: "<<obj->type<<", subtype:  "<<obj->getSubtype()<<", "<<(obj->type=="Collectible")<<" HERE:"<<obj->imgPath<<endl;
+    // cout << "TYPE: "<<obj->type<<", subtype:  "<<obj->getSubtype()<<", "<<(obj->type=="Collectible")<<" HERE:"<<obj->imgPath<<endl;
     // cout<<"NUM COLLIDE CHILDREN: "<<collideContainer->children.size()<<endl;
     // cout<<"NUM DRAW CHILDREN: "<<drawContainer->children.size()<<endl;
     if (obj->type == "Collectible"){
@@ -369,6 +379,7 @@ void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectCon
                     break;
                 }
                 case 122:{ //herb
+                    cout<<"COLLECT HERB"<<endl;
                     DisplayObject* herb = new DisplayObject(obj->id,obj->imgPath+"herb_1.png");     
                     inventory->push_back(herb);
                     Herb* herb_collect = (Herb*) obj;

@@ -161,8 +161,19 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             case SWAMPTREE_SUBTYPE:
                 unit = new SwampTree(Collisioncontainer, foreground);
                 break;
+            case SWAMPBRIDGE_SUBTYPE:
+                if ((sprite["id"]).get<std::string>().find("notbuilt") != std::string::npos) {
+                    unit = new SwampBridge(Collisioncontainer, false);
+                }
+                else{
+                    unit = new SwampBridge(Collisioncontainer, true);
+                }
+                break;
             case CRAFTSTATION_SUBTYPE:
                 unit = new CraftStation(Collisioncontainer);
+                break;
+            case POISONGAS_SUBTYPE:
+                unit = new PoisonGas(Collisioncontainer);
                 break;
             case SNAKE_SUBTYPE:
                 unit = new Snake(Collisioncontainer, foreground);
