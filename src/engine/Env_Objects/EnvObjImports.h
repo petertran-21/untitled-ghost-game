@@ -14,6 +14,7 @@
 #include "CaveLake.h"
 #include "Workbench.h"
 #include "Sign.h"
+#include "Bucket.h"
 #include "PoisonGas.h"
 #include "SwampTree.h"
 #include "SwampBridge.h"

@@ -233,6 +233,21 @@ void MainNPC::resolve_collision(DisplayObject *obj){
         if (br->open) return;
     }
 
+    //COLLIDES WITH BUCKET
+    Bucket *bu = dynamic_cast<Bucket*>(obj);
+    if (bu){
+        DisplayObject* bucket = new DisplayObject("Bucket","./resources/items/bucket_empty_1.png");     
+        inventory->push_back(bucket);
+        // vector<DisplayObject*>::iterator bucketcollideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), bu);
+        // vector<DisplayObject*>::iterator bucketdrawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), bu);
+        // if (bucketcollideItr != this->collisionContainer->children.end() && bucketdrawItr != this->drawingContainer->children.end()){
+        //     this->collisionContainer->children.erase(bucketcollideItr);
+        //     this->drawingContainer->children.erase(bucketdrawItr);
+        // } 
+        bu->position.x = -100000;
+        bu->position.y = -100000;
+    }
+
     //COLLIDES WITH DOOR
     if (obj->getSubtype() == DOOR_SUBTYPE){
         Door* d = dynamic_cast<Door*>(d);
@@ -272,7 +287,7 @@ void MainNPC::resolve_collision(DisplayObject *obj){
     else if (obj && (obj->type == "EnvObj" || obj->type == "Wall")){
         // cout<<"COLLIDING WITH ENV"<<endl;
         //check that npcs are overlapping
-        // cout<<"COLLIDING ENV: "<<obj->type<<" "<<obj->getSubtype()<<endl;
+        //cout<<"COLLIDING ENV: "<<obj->type<<" "<<obj->getSubtype()<<endl;
         if ((position.y == obj->position.y) && (position.x == obj->position.x)){
             switch (dir){
             //reset possessed npc's location to previous based on location it came from
