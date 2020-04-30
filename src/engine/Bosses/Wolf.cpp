@@ -47,7 +47,8 @@ void Wolf::state_attack(set<SDL_Scancode> pressedKeys, Controller::JoystickState
 		cout << "WOLF STATE: ATTACK" << endl;
         //BARK
         for (int i=0; i < 8; i++){
-            Bark *b = new Bark(position, (M_PI/4 + bark_angle)*i, collisionContainer, drawingContainer);
+            Bark *b = new Bark(this->width, this->height, (M_PI/4 + bark_angle)*i, collisionContainer, drawingContainer);
+            this->addChild(b);
         }
 
         bark_angle += M_PI/16;
@@ -56,7 +57,17 @@ void Wolf::state_attack(set<SDL_Scancode> pressedKeys, Controller::JoystickState
 	//anything that should always run while in this state
     this->play("wolf_attack");
     bark_timer++;
-    if (bark_timer == bark_timer_max+20) state_switch(boss_states::Idle);
+    if (bark_timer == bark_timer_max+30) {
+        for (int i=0; i<8; i++){
+            DisplayObject* object = *this->children.begin();
+            vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), object);
+            if (collideItr != this->collisionContainer->children.end()){
+                    this->collisionContainer->children.erase(collideItr);
+            }                    
+            this->children.erase(this->children.begin());
+        }
+        state_switch(boss_states::Idle);
+    }
 }
 
 void Wolf::resolve_collision(DisplayObject *obj){

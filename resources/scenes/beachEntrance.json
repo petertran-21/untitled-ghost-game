@@ -1822,23 +1822,6 @@
             "subtype": 2
         },
         {
-            "alpha": 255,
-            "basePathFolder": "./resources/animals/",
-            "height": 100,
-            "id": "snakeBoss",
-            "isStatic": true,
-            "isStaticBaseFile": "snake.png",
-            "isVisible": true,
-            "parent": "foreground",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 200,
-            "posY": 400,
-            "rotation": 0.0,
-            "subtype": 7,
-            "width": 100
-        },
-        {
             "id": "Ghost",
             "basePathFolder": "./resources/grendel/",
             "isStaticBaseFile": "Idle",
