@@ -57,6 +57,8 @@ public:
 	Enemy* curEnemy = NULL;
 
 	void resolve_collision(DisplayObject *obj);
+	bool getIsPosessing(){return isPossessing;};
+	void setIsPossessing(bool p){isPossessing = p;};
 
 private:
 
