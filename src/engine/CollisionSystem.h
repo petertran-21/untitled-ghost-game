@@ -67,6 +67,7 @@ public:
 	void resolveCollision_NPC_Wall(DisplayObject* npc, DisplayObject* wall);
 	void resolveCollision_NPCObj_Wall(DisplayObject* npcObj, DisplayObject* wall);
 	void resolveCollision_NPC_Land(DisplayObject* npc, DisplayObject* land);
+	void resolve_adjacency_NPC_Land(DisplayObject* npc, DisplayObject* land, int status);
 
 	void resolveAdjacency_NPC_EnvObj(DisplayObject* npc, DisplayObject* envObj, int status);
 	void resolveAdjacency_NPC_NPCObj(DisplayObject* npc, DisplayObject* npcObj, int status);
