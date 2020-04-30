@@ -109,9 +109,9 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             /*--------------------------Beach--------------------------*/
             case VALVE_SUBTYPE:
                 //check which dir from the id
-                if (((string) sprite["id"]).find("Left") != std::string::npos) { cout<<"MADE LEFT VALVE"<<endl; unit = new Valve(Collisioncontainer, W);}
-                else if (((string) sprite["id"]).find("Right") != std::string::npos) { cout<<"MADE RIGHT VALVE"<<endl; unit = new Valve(Collisioncontainer, E);}
-                else if (((string) sprite["id"]).find("Up") != std::string::npos) { cout<<"MADE UP VALVE"<<endl; unit = new Valve(Collisioncontainer, N);}
+                if ((sprite["id"]).get<std::string>().find("Left") != std::string::npos) { cout<<"MADE LEFT VALVE"<<endl; unit = new Valve(Collisioncontainer, W);}
+                else if ((sprite["id"]).get<std::string>().find("Right") != std::string::npos) { cout<<"MADE RIGHT VALVE"<<endl; unit = new Valve(Collisioncontainer, E);}
+                else if (( sprite["id"]).get<std::string>().find("Up") != std::string::npos) { cout<<"MADE UP VALVE"<<endl; unit = new Valve(Collisioncontainer, N);}
                 else { cout<<"MADE DOWN VALVE"<<endl; unit = new Valve(Collisioncontainer, S);}
                 
                 break;
@@ -228,6 +228,9 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 //Part of Camera tracking Ghost pipeline
                 this->ghost = (Ghost*) unit;
 
+                //Allows Ghost particles to change by biome
+                partEmit->setBiome(sceneFilePath);
+
                 break;
             case HORNFRAGMENT_SUBTYPE:
                 unit = new HornFragment(Collisioncontainer);
@@ -240,7 +243,7 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
         }
 
         if (unit != NULL) {
-            unit->id = (string) sprite["id"];
+            unit->id = sprite["id"];
             unit->imgPath = sprite["basePathFolder"];
             unit->position.x = sprite["posX"];
             unit->position.y = sprite["posY"];

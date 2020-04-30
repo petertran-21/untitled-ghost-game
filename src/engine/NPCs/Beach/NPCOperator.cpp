@@ -7,7 +7,7 @@ using namespace std;
 NPCOperator::NPCOperator(DisplayObjectContainer* container, DisplayObjectContainer* allSprites, vector<DisplayObject*> &passedInventory) : MainNPC(){
 	this->addAnimation("./resources/npcs/operator/", "operator_idle", 1, 1, true, "idle");
     this->addAnimation("./resources/npcs/operator/", "operator_forward", 6, 10, true, "forward");
-    this->addAnimation("./resources/npcs/operator/", "operator_left", 6, 10, true, "left'");
+    this->addAnimation("./resources/npcs/operator/", "operator_left", 6, 10, true, "left");
     this->addAnimation("./resources/npcs/operator/", "operator_right", 6, 10, true, "right");
     this->addAnimation("./resources/npcs/operator/", "operator_back", 6, 10, true, "back");
 

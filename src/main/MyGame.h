@@ -23,6 +23,8 @@
 #include "UIDefs.h"
 #include "BossImports.h"
 #include "particle_system/ParticleEmitter.h"
+#include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -58,7 +60,7 @@ private:
 	TweenJuggler* tweenJuggler;
 	Sprite* crocodile;
 	Scene* scene_2;
-	Sound* new_sound;
+	Sound* soundManager;
 	Checklist* checklistTest;
 	SelectionMenu* selectionMenuTest;
 	TextBox* textboxTest;

@@ -24,6 +24,9 @@ class ParticleEmitter : public DisplayObjectContainer
         virtual void update( set<SDL_Scancode> pressedKeys, Controller::JoystickState currState );
 	    virtual void draw( AffineTransform &at );
 
+        //Passes biome to particles
+        void setBiome( string sceneFilePath );
+
     private:
 
         //Total number of particles
