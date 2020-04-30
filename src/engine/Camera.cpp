@@ -40,7 +40,7 @@ void Camera::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
             int xDiff = abs(scene->position.x + this->ghost->position.x);
             int xTotal = abs(abs(scene->position.x + this->ghost->position.x) - windowWidth);
 
-            if (pressedKeys.find(SDL_SCANCODE_A) != pressedKeys.end())
+            if (pressedKeys.find(SDL_SCANCODE_A) != pressedKeys.end() || currState.leftStickX == -1)
             {
                 if(reversed)
                 {
@@ -57,7 +57,7 @@ void Camera::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
                     }
                 }
             }
-            if (pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end())
+            if (pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end() || currState.leftStickX == 1)
             {
                 if(reversed)
                 {
@@ -78,7 +78,7 @@ void Camera::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
             int yDiff = abs(scene->position.y + this->ghost->position.y);
             int yTotal = abs(abs(scene->position.y + this->ghost->position.y) - windowHeight);
             
-            if (pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end())
+            if (pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end() || currState.leftStickY == -1)
             {
                 if(reversed)
                 {
@@ -95,7 +95,7 @@ void Camera::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
                     }
                 }
             }
-            if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end())
+            if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end() || currState.leftStickY == 1)
             {
                 if(reversed)
                 {
