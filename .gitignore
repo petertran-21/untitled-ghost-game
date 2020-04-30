@@ -36,3 +36,6 @@ bin/
 demos/
 .DS_Store
 .vscode/
+
+# Local game saves
+resources/Saves/
