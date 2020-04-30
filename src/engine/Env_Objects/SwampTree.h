@@ -12,7 +12,8 @@ class SwampTree : public MainEnvObj{
     
     public:
         SwampTree(DisplayObjectContainer* container, DisplayObjectContainer* drawContainer);
-        void resolve_collision(DisplayObject *obj);
+
+        bool mined = false;
         
         DisplayObjectContainer* drawingContainer;
         DisplayObjectContainer* collisionContainer;
