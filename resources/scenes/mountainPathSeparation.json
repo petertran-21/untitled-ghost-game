@@ -857,23 +857,6 @@
             "alpha": 255,
             "basePathFolder": "./resources/tiles/mountainTiles/",
             "height": 100,
-            "id": "signPostHole",
-            "isStatic": true,
-            "isStaticBaseFile": "signPostHole.png",
-            "isVisible": true,
-            "parent": "foreground",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 500,
-            "posY": -600,
-            "rotation": 0.0,
-            "subtype": 2,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/mountainTiles/",
-            "height": 100,
             "id": "149798315",
             "isStatic": true,
             "isStaticBaseFile": "grass.png",
@@ -1531,6 +1514,22 @@
             "posY": 300,
             "rotation": 0.0,
             "subtype": 4,
+            "width": 100
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/tiles/mountainTiles/",
+            "height": 100,
+            "id": "signPostHole",
+            "isStatic": true,
+            "isVisible": true,
+            "parent": "foreground",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 500,
+            "posY": -600,
+            "rotation": 0.0,
+            "subtype": 304,
             "width": 100
         }
     ]
