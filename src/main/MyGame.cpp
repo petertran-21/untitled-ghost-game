@@ -60,6 +60,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	UIContainer = new DisplayObjectContainer();
 
 	inventoryUI = new Inventory(0,0,300,300);
+	mapUi = new Map();
 
 	selectionMenuTest = new SelectionMenu(0, 0);
 	selectionMenuTest->addToMenu("Stats");

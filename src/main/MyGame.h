@@ -66,6 +66,7 @@ private:
 	TextBox* textboxTest;
 	vector<DisplayObject*> inventory;
 	Inventory* inventoryUI;
+	Map* mapUI;
 
 	DisplayObjectContainer* UIContainer;		// Holds all UI elements as children.
 
