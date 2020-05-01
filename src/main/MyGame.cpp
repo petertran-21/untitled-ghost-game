@@ -154,19 +154,36 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 	}
 	else {
 		if (!UIOpen){
+			if (pressedKeys.find(SDL_SCANCODE_I) != pressedKeys.end() && !InvOpen){
+				this->addChild(inventoryUI);
+				InvOpen = !InvOpen;
+			}
+			if (pressedKeys.find(SDL_SCANCODE_Q) != pressedKeys.end() && InvOpen){
+				this->children.erase(std::remove(this->children.begin(), this->children.end(), inventoryUI), this->children.end());
+				InvOpen = !InvOpen;
+			}
+			if (pressedKeys.find(SDL_SCANCODE_M) != pressedKeys.end() && !mapOpen){
+				this->addChild(mapUI);
+				mapOpen = !mapOpen;
+			}
+			if (pressedKeys.find(SDL_SCANCODE_Q) != pressedKeys.end() && mapOpen){
+				this->children.erase(std::remove(this->children.begin(), this->children.end(), mapUI), this->children.end());
+				mapOpen = !mapOpen;
+			}
+
+			if (pressedKeys.find(SDL_SCANCODE_N) != pressedKeys.end()){
+				camera->getChild(0)->scaleX /= 1.1;
+				camera->getChild(0)->scaleY /= 1.1;
+			}
+			if (pressedKeys.find(SDL_SCANCODE_M) != pressedKeys.end()){
+				camera->getChild(0)->scaleX *= 1.1;
+				camera->getChild(0)->scaleY *= 1.1;
+			}
+
 			DORemoved->checkCondition();
 			DOAdded->checkCondition();
 			collisionSystem->update();
 			Game::update(pressedKeys, currState);
-
-			if (pressedKeys.find(SDL_SCANCODE_Z) != pressedKeys.end()){
-				camera->getChild(0)->scaleX /= 1.1;
-				camera->getChild(0)->scaleY /= 1.1;
-			}
-			if (pressedKeys.find(SDL_SCANCODE_X) != pressedKeys.end()){
-				camera->getChild(0)->scaleX *= 1.1;
-				camera->getChild(0)->scaleY *= 1.1;
-			}
 		}
 		//cout << "MyGame: Inventory: "<< inventory.size() << endl;
 		// cout << "InventoryUI" << inventoryUI->entries.size() << endl;
