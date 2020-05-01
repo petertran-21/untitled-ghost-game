@@ -74,6 +74,7 @@ private:
 	bool walking = false;
 	bool transition = false;
 	bool UIOpen = false;
+	bool InvOpen = false;
 
 };
 

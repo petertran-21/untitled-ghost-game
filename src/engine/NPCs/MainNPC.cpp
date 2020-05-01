@@ -270,9 +270,6 @@ void MainNPC::resolve_collision(DisplayObject *obj){
     //COLLIDES WITH DOOR
     if (obj->getSubtype() == DOOR_SUBTYPE){
         Door* d = dynamic_cast<Door*>(d);
-        cout<<"DOOR EXISTS: "<<d->position.x<<" "<<d->position.y<<endl;
-        cout<<"NPC AT: "<<position.x<<" "<<position.y<<endl;
-        if (d->open) cout<<"IS OPEN"<<endl;
     }
 
     //COLLIDES WITH GEM

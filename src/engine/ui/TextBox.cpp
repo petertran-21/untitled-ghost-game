@@ -2,6 +2,7 @@
 #include <iostream>
 
 TextBox::TextBox(int posX, int posY, int width, int height) : DisplayObjectContainer(){
+    this->type = "TextBox";
     this->text = new Text();
 
     DisplayObject::loadTexture("./resources/UI_BG.png");
@@ -13,6 +14,7 @@ TextBox::TextBox(int posX, int posY, int width, int height) : DisplayObjectConta
 }
 
 TextBox::TextBox(std::string content, int posX, int posY, int width, int height)  : DisplayObjectContainer(){
+    this->type = "TextBox";
     this->text = new Text(content);
 
     DisplayObject::loadTexture("./resources/UI_BG.png");

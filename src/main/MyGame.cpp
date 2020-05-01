@@ -34,7 +34,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	 * SFX MENU STUFF
 	 */
 	UIContainer = new DisplayObjectContainer();
-	inventoryUI = new Inventory(0,0,300,300);
+	inventoryUI = new Inventory(100,100,300,300);
 	selectionMenuTest = new SelectionMenu(20, 20, 250, 0);
 	selectionMenuTest->addToMenu("Save");
 	selectionMenuTest->addToMenu("Quit");
@@ -67,6 +67,15 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 		DORemoved->checkCondition();
 		DOAdded->checkCondition();
 		collisionSystem->update();
+		if (pressedKeys.find(SDL_SCANCODE_I) != pressedKeys.end() && !InvOpen){
+			this->addChild(inventoryUI);
+			InvOpen = !InvOpen;
+		}
+		if (pressedKeys.find(SDL_SCANCODE_T) != pressedKeys.end() && InvOpen){
+			this->children.erase(std::remove(this->children.begin(), this->children.end(), inventoryUI), this->children.end());
+			InvOpen = !InvOpen;
+		}
+		
 		Game::update(pressedKeys, currState);
 
 		if (pressedKeys.find(SDL_SCANCODE_N) != pressedKeys.end()){
