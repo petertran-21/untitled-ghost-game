@@ -1675,7 +1675,7 @@
             "id": "Ghost",
             "basePathFolder": "./resources/grendel/",
             "isStaticBaseFile": "Idle",
-            "posX": 200,
+            "posX": 999,
             "posY": 200,
             "pivotX": 0,
             "pivotY": 0,

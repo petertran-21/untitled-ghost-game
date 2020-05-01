@@ -51,7 +51,7 @@ void NPCDoctor::resolve_adjacency(DisplayObject *obj, int status){
             }
         }
 
-        if (counter >= 1){
+        if (counter >= 3){
             int used = 0;
 
             //delete used herb from inv
@@ -61,7 +61,7 @@ void NPCDoctor::resolve_adjacency(DisplayObject *obj, int status){
                     inventory->erase(position);
                 }
                 used++;
-                if (used == 1) {this->detox = true; break;}
+                if (used == 3) {this->detox = true; break;}
             }
         } 
 

@@ -297,6 +297,8 @@ void MainNPC::resolve_collision(DisplayObject *obj){
     }
 
     // DEFAULT FOR COLLIDING WITH SOLIDS
+
+    cout<<"INVENTORY"<<inventory->size()<<endl;
 	if (reverseCollisions){
         if (obj && (obj->type == "Land")){
         //check that npcs are overlapping
@@ -407,12 +409,14 @@ void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectCon
                     DisplayObject* herb = new DisplayObject(obj->id,obj->imgPath+"herb_1.png");     
                     inventory->push_back(herb);
                     Herb* herb_collect = (Herb*) obj;
-                    vector<DisplayObject*>::iterator herbcollideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), herb_collect);
-                    vector<DisplayObject*>::iterator herbdrawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), herb_collect);
-                    if (herbcollideItr != this->collisionContainer->children.end() && herbdrawItr != this->drawingContainer->children.end()){
-                        this->collisionContainer->children.erase(herbcollideItr);
-                        this->drawingContainer->children.erase(herbdrawItr);
-                    } 
+                    // vector<DisplayObject*>::iterator herbcollideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), herb_collect);
+                    // vector<DisplayObject*>::iterator herbdrawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), herb_collect);
+                    // if (herbcollideItr != this->collisionContainer->children.end() && herbdrawItr != this->drawingContainer->children.end()){
+                    //     this->collisionContainer->children.erase(herbcollideItr);
+                    //     this->drawingContainer->children.erase(herbdrawItr);
+                    // } 
+                    obj->position.x = -100000;
+                    obj->position.y = -100000;
                     break;
                 }
                 case 305:{ //bucket
@@ -421,12 +425,14 @@ void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectCon
                     DisplayObject* bucket = new DisplayObject(obj->id,obj->imgPath+"bucket_empty_1.png");     
                     inventory->push_back(bucket);
                     Bucket* bucket_collect = (Bucket*) obj;
-                    vector<DisplayObject*>::iterator bucketcollideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), bucket_collect);
-                    vector<DisplayObject*>::iterator bucketdrawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), bucket_collect);
-                    if (bucketcollideItr != this->collisionContainer->children.end() && bucketdrawItr != this->drawingContainer->children.end()){
-                        this->collisionContainer->children.erase(bucketcollideItr);
-                        this->drawingContainer->children.erase(bucketdrawItr);
-                    } 
+                    // vector<DisplayObject*>::iterator bucketcollideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), bucket_collect);
+                    // vector<DisplayObject*>::iterator bucketdrawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), bucket_collect);
+                    // if (bucketcollideItr != this->collisionContainer->children.end() && bucketdrawItr != this->drawingContainer->children.end()){
+                    //     this->collisionContainer->children.erase(bucketcollideItr);
+                    //     this->drawingContainer->children.erase(bucketdrawItr);
+                    // } 
+                    obj->position.x = -100000;
+                    obj->position.y = -100000;
                     break;
                 }
             }
