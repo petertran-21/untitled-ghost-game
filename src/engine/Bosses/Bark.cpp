@@ -1,15 +1,17 @@
 #include <iostream>
 #include <cstdlib>
 #include "Bark.h"
+#include "Ghost.h"
 #include <math.h>
 
 using namespace std;
 
-Bark::Bark(SDL_Point pos, int angle, DisplayObjectContainer* container, DisplayObjectContainer* allSprites) : MainNPCObj(){
+Bark::Bark(int width, int height, int angle, DisplayObjectContainer* container, DisplayObjectContainer* allSprites) : MainNPCObj(){
     this->subtype = 109;
     this->id = "bark";
 
-    this->position = pos;
+    this->position.x = width/2;
+    this->position.y = height/2;
     this->rotation = angle;
 
 	this->addAnimation("./resources/bosses/", "bark", 1, 1, false);
@@ -17,8 +19,6 @@ Bark::Bark(SDL_Point pos, int angle, DisplayObjectContainer* container, DisplayO
     this->play("bark");
     this->collisionContainer = container;
     container->addChild(this);
-    this->drawingContainer = allSprites;
-    drawingContainer->addChild(this);
 }
 
 void Bark::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
@@ -32,4 +32,5 @@ void Bark::resolve_collision(DisplayObject* obj){
     if (npc){
         npc->is_possessed = false;
     }
+
 }
