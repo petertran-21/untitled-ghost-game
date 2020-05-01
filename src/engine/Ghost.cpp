@@ -1,4 +1,5 @@
 #include "Ghost.h"
+#include "Sound.h"
 
 Ghost::Ghost() : AnimatedSprite("Ghost"){
 
@@ -199,6 +200,9 @@ void Ghost::state_fizzle(set<SDL_Scancode> pressedKeys, Controller::JoystickStat
 
 void Ghost::boo(){
 	//play boo noise
+	Sound* soundManager = new Sound();
+	soundManager->playSFX("./resources/sfx/Ahhh_Boo.wav");
+		
 	cout<< "boos"<<endl;
 }
 
