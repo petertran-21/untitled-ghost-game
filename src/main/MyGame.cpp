@@ -60,7 +60,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	UIContainer = new DisplayObjectContainer();
 
 	inventoryUI = new Inventory(0,0,300,300);
-	mapUi = new Map();
+	mapUI = new Map();
 
 	selectionMenuTest = new SelectionMenu(0, 0);
 	selectionMenuTest->addToMenu("Stats");
@@ -166,17 +166,20 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 			if (pressedKeys.find(SDL_SCANCODE_M) != pressedKeys.end() && !mapOpen){
 				this->addChild(mapUI);
 				mapOpen = !mapOpen;
+				mapUI->active = mapOpen;
 			}
 			if (pressedKeys.find(SDL_SCANCODE_Q) != pressedKeys.end() && mapOpen){
-				this->children.erase(std::remove(this->children.begin(), this->children.end(), mapUI), this->children.end());
 				mapOpen = !mapOpen;
+				mapUI->active = mapOpen;
+				Game::update(pressedKeys, currState);
+				this->children.erase(std::remove(this->children.begin(), this->children.end(), mapUI), this->children.end());
 			}
 
-			if (pressedKeys.find(SDL_SCANCODE_N) != pressedKeys.end()){
+			if (pressedKeys.find(SDL_SCANCODE_Z) != pressedKeys.end()){
 				camera->getChild(0)->scaleX /= 1.1;
 				camera->getChild(0)->scaleY /= 1.1;
 			}
-			if (pressedKeys.find(SDL_SCANCODE_M) != pressedKeys.end()){
+			if (pressedKeys.find(SDL_SCANCODE_X) != pressedKeys.end()){
 				camera->getChild(0)->scaleX *= 1.1;
 				camera->getChild(0)->scaleY *= 1.1;
 			}

@@ -42,12 +42,12 @@ private:
 	Scene* scene_1;
 
 	DisplayObjectContainer* allSprites;
-	DisplayObjectContainer* environment;
+	//DisplayObjectContainer* environment;
 	EventDispatcher* controllerDisp;
 
-	AnimatedSprite* character;
-	MainNPC* npc;
-	Ghost* player;
+	//AnimatedSprite* character;
+	//MainNPC* npc;
+	//Ghost* player;
 
 	DisplayObjectContainer* container;
 
@@ -58,7 +58,7 @@ private:
 
 	//From UI_WORK
 	TweenJuggler* tweenJuggler;
-	Sprite* crocodile;
+	//Sprite* crocodile;
 	Scene* scene_2;
 	Sound* soundManager;
 	Checklist* checklistTest;
@@ -70,9 +70,11 @@ private:
 
 	DisplayObjectContainer* UIContainer;		// Holds all UI elements as children.
 
-	bool walking = false;
-	bool transition = false;
+	//bool walking = false;
+	//bool transition = false;
 	bool UIOpen = false;
+	bool InvOpen = false;
+	bool mapOpen = false;
 
 	// intro stuff
 	AnimatedSprite* startScreen;
