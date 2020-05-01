@@ -88,22 +88,24 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 				if (child->type == "Scene"){
 					static_cast<Scene*>(child)->SaveScene();
 					textboxTest->setText("Saved!");
+					soundManager->playSFX("./resources/sfx/pauseOn.ogg");
 					this->children.erase(std::remove(this->children.begin(), this->children.end(), UIContainer), this->children.end());
 					UIOpen = false;
 					break;
 				}
 			}
 		}
-		if (result == "Quit") delete this;		// It *does* quit, yes, but segfaults.
+		if (result == "Quit"){
+			soundManager->playSFX("./resources/sfx/pauseOff.ogg");
+			delete this;
+		}
 	}
 	if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end() && !UIOpen){
-		soundManager->playSFX("./resources/sfx/pauseOn.ogg");
 		this->addChild(UIContainer);
 		textboxTest->setText("Press RETURN to choose option, Q to exit menu.");
 		UIOpen = !UIOpen;
 	}
 	if (pressedKeys.find(SDL_SCANCODE_Q) != pressedKeys.end() && UIOpen){
-		soundManager->playSFX("./resources/sfx/pauseOff.ogg");
 		this->children.erase(std::remove(this->children.begin(), this->children.end(), UIContainer), this->children.end());
 		UIOpen = false;
 	}
