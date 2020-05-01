@@ -30,12 +30,12 @@ MyGame::MyGame() : Game(1000, 1000)
 
 	DOAdded->checkCondition();
 
-	// SFX Menu stuff
+	/**
+	 * SFX MENU STUFF
+	 */
 	UIContainer = new DisplayObjectContainer();
-
 	inventoryUI = new Inventory(0,0,300,300);
-
-	selectionMenuTest = new SelectionMenu(10, 10, 200, 0);
+	selectionMenuTest = new SelectionMenu(20, 20, 250, 0);
 	selectionMenuTest->addToMenu("Save");
 	selectionMenuTest->addToMenu("Quit");
 	textboxTest = new TextBox(150, 500, 800, 300);
