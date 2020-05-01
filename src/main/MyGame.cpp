@@ -30,16 +30,25 @@ MyGame::MyGame() : Game(1000, 1000)
 
 	DOAdded->checkCondition();
 
-	// SFX Menu stuff
+	/**
+	 * SFX MENU STUFF
+	 */
 	UIContainer = new DisplayObjectContainer();
-
 	inventoryUI = new Inventory(0,0,300,300);
-
-	selectionMenuTest = new SelectionMenu(0, 0);
+	selectionMenuTest = new SelectionMenu(20, 20, 250, 0);
 	selectionMenuTest->addToMenu("Save");
 	selectionMenuTest->addToMenu("Quit");
-
-	textboxTest = new TextBox(0, 400);
+	textboxTest = new TextBox(150, 500, 800, 300);
+	line1 = new Text("Press RETURN to select an option.");
+	line2 = new Text("Press Q to resume game.");
+	line1->width = line1->content.size() * 20;
+	line2->width = line2->content.size() * 20;
+	textboxTest->addChild(line1);
+	textboxTest->children.back()->position.x += 50;
+	textboxTest->children.back()->position.y += 50;
+	textboxTest->addChild(line2);
+	textboxTest->children.back()->position.x += 50;
+	textboxTest->children.back()->position.y += 150;
 	UIContainer->addChild(selectionMenuTest);
 	UIContainer->addChild(textboxTest);
 
@@ -87,17 +96,19 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 			for (auto child : camera->children){
 				if (child->type == "Scene"){
 					static_cast<Scene*>(child)->SaveScene();
-					textboxTest->setText("Saved!");
+					soundManager->playSFX("./resources/sfx/pauseOn.ogg");
+					this->children.erase(std::remove(this->children.begin(), this->children.end(), UIContainer), this->children.end());
+					UIOpen = false;
 					break;
 				}
 			}
 		}
-		if (result == "Quit") delete this;		// It *does* quit, yes, but segfaults.
+		if (result == "Quit"){
+			Game::quitGame = true;
+		}
 	}
 	if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end() && !UIOpen){
-		soundManager->playSFX("./resources/sfx/pauseOn.ogg");
 		this->addChild(UIContainer);
-		textboxTest->setText("Press RETURN to choose option, Q to exit menu.");
 		UIOpen = !UIOpen;
 	}
 	if (pressedKeys.find(SDL_SCANCODE_Q) != pressedKeys.end() && UIOpen){
