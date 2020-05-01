@@ -35,7 +35,7 @@ MyGame::MyGame() : Game(1000, 1000)
 
 	inventoryUI = new Inventory(0,0,300,300);
 
-	selectionMenuTest = new SelectionMenu(0, 0);
+	selectionMenuTest = new SelectionMenu(10, 10, 200, 0);
 	selectionMenuTest->addToMenu("Save");
 	selectionMenuTest->addToMenu("Quit");
 

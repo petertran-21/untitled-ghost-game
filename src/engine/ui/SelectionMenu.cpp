@@ -19,8 +19,8 @@ void SelectionMenu::addToMenu(std::string entry){
     this->addChild(newTextObject);
 
     // Offset menu options.                                         // remember indexed at 0
-    this->children.back()->position.x += 20;    // margins
-    this->children.back()->position.y += (100 * (this->entries.size() - 1));
+    this->children.back()->position.x += (width / 2) - 40;    // margins
+    this->children.back()->position.y += (100 * (this->entries.size() - 1)) - 10;
 
     // Automatically scale the height of the SelectionMenu equal to number of options on it.
     this->height += 100;
