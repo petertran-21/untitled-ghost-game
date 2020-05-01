@@ -46,7 +46,9 @@ void MainNPC::state_idle(set<SDL_Scancode> pressedKeys, Controller::JoystickStat
 }
 
 void MainNPC::state_possessed(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
-    if (state_new) cout << "STATE: POSSESSED" << endl;
+    if (state_new){
+       
+    }
 
     if (Controls::holdLeft(pressedKeys, currState))state_switch(npc_states::Moving);
     if (Controls::holdRight(pressedKeys, currState)) state_switch(npc_states::Moving);
@@ -272,6 +274,28 @@ void MainNPC::resolve_collision(DisplayObject *obj){
         cout<<"NPC AT: "<<position.x<<" "<<position.y<<endl;
         if (d->open) cout<<"IS OPEN"<<endl;
     }
+
+    //COLLIDES WITH GEM
+    Gem* g = dynamic_cast<Gem*>(obj);
+    if (g){
+        TextAlert* t = new TextAlert(position.x, position.y, "Gem Collected", this->drawingContainer);
+        DisplayObject* gem = new DisplayObject("Gem","./resources/items/gem_1.png");     
+        inventory->push_back(gem);
+        g->position.x = -100000;
+        g->position.y = -100000;
+        
+    }
+
+    //COLLIDES WITH HORN
+    HornFragment* hf = dynamic_cast<HornFragment*>(obj);
+    if (hf){
+        TextAlert* t = new TextAlert(position.x, position.y, "Horn Fragment Collected", this->drawingContainer);
+        DisplayObject* horn = new DisplayObject("HornFragment","./resources/items/horn_fragment_1.png");     
+        inventory->push_back(horn);
+        hf->position.x = -100000;
+        hf->position.y = -100000;
+    }
+
     // DEFAULT FOR COLLIDING WITH SOLIDS
 	if (reverseCollisions){
         if (obj && (obj->type == "Land")){
@@ -359,17 +383,24 @@ void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectCon
                 case 9:{//item pouch  
                     DisplayObject* item = new DisplayObject(obj->id,obj->imgPath+"item_pouch_1.png");     
                     inventory->push_back(item);
-                    cout << "MainNPC: After Push Inventory: "<< inventory->size() << endl;
-                    ItemPouch* collect = (ItemPouch*) obj;
-                    //doesn't work in certain rooms (swampIsland)
-                    vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), collect);
-                    vector<DisplayObject*>::iterator drawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), collect);
-                    if (collideItr != this->collisionContainer->children.end() && drawItr != this->drawingContainer->children.end()){
-                        cout<<"DELETE IT"<<endl;
-                        this->collisionContainer->children.erase(collideItr);
-                        this->drawingContainer->children.erase(drawItr);
-                    } 
+                    
+                    // ItemPouch* collect = (ItemPouch*) obj;
+                    // //doesn't work in certain rooms (swampIsland)
+                    // vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), collect);
+                    // vector<DisplayObject*>::iterator drawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), collect);
+                    // if (collideItr != this->collisionContainer->children.end() && drawItr != this->drawingContainer->children.end()){
+                    //     cout<<"DELETE IT"<<endl;
+                    //     this->collisionContainer->children.erase(collideItr);
+                    //     this->drawingContainer->children.erase(drawItr);
+                    // } 
+                    // break;
+
+                    TextAlert* t = new TextAlert(position.x, position.y, "Collectible Found", this);
+                    
+                    obj->position.x = -100000;
+                    obj->position.y = -100000;
                     break;
+
                 }
                 case 122:{ //herb
                     cout<<"COLLECT HERB"<<endl;

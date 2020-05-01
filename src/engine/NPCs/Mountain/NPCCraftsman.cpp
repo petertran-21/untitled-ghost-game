@@ -122,7 +122,7 @@ void NPCCraftsman::resolve_adjacency(DisplayObject *obj, int status){
 
             DisplayObject* sign = new DisplayObject("Sign","./resources/items/sign_1.png");     
             inventory->push_back(sign);
-            cout << "SIGN CRAFTED" << endl;
+            TextAlert* t = new TextAlert(position.x, position.y, "Sign Crafted", this->drawingContainer);
 
             counter = 0;
 

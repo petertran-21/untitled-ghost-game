@@ -60,3 +60,4 @@ For referencing which number corresponds to each subtype of object due to C++ no
 305: Bucket
 306: MountainTree
 307: FallenTree
+400: ForestDoor

@@ -44,7 +44,3 @@ void NPCSkeleton::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joyst
     }
     state_switch(npc_states::Possessed);
 }
-
-void NPCSkeleton::resolve_collision(DisplayObject *obj){
-    MainNPC::resolve_collectible_collision(obj, this->collisionContainer, this->drawingContainer);
-}

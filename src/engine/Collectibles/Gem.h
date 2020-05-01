@@ -12,8 +12,6 @@ class Gem : public MainCollectibles{
     
     public:
         Gem(DisplayObjectContainer* container);
-        int subtype = 100;
-        void resolve_collision(DisplayObject *obj);
 
 };
 

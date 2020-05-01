@@ -13,8 +13,6 @@ class ItemPouch : public MainCollectibles{
     public:
         ItemPouch(DisplayObjectContainer* container);
 
-        void resolve_collision(DisplayObject *obj);
-
 };
 
 #endif

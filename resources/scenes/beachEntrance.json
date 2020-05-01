@@ -14,7 +14,7 @@
             "posX": 400,
             "posY": 0,
             "rotation": 0.0,
-            "scene_path": "./resources/scenes/forestHub.json",
+            "scene_path": "./resources/scenes/village.json",
             "subtype": 108,
             "width": 100
         },
@@ -1754,6 +1754,7 @@
             "width": 100
         },
         {
+            "id": "Ghost",
             "alpha": 255,
             "basePathFolder": "./resources/grendel/",
             "height": 100,
