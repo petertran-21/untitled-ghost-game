@@ -272,9 +272,7 @@ void MainNPC::resolve_collision(DisplayObject *obj){
         cout<<"NPC AT: "<<position.x<<" "<<position.y<<endl;
         if (d->open) cout<<"IS OPEN"<<endl;
     }
-
     // DEFAULT FOR COLLIDING WITH SOLIDS
-    // cout<<"Colliing wiht "<<obj->type<< " "<<obj->getSubtype()<<endl;
 	if (reverseCollisions){
         if (obj && (obj->type == "Land")){
         //check that npcs are overlapping
@@ -301,11 +299,23 @@ void MainNPC::resolve_collision(DisplayObject *obj){
             }
         }
 	}
-    else if (obj && (obj->type == "EnvObj" || obj->type == "Wall")){
+    else if (obj && ((obj->type == "EnvObj" || obj->type == "Wall") || obj->getSubtype() == 127)){
         // cout<<"COLLIDING WITH ENV"<<endl;
         //check that npcs are overlapping
         // cout<<"COLLIDING ENV: "<<obj->type<<" "<<obj->getSubtype()<<endl;
-        if ((position.y == obj->position.y) && (position.x == obj->position.x)){
+        //cout<<"COLLIDING ENV: "<<obj->type<<" "<<obj->getSubtype()<<endl;
+        if (obj->getSubtype() == 127){
+            SwampBridge* s = (SwampBridge*) obj;
+            if (s->cancross==true){
+                return;
+            }
+        }
+        if (((position.y == obj->position.y) && (position.x == obj->position.x)) || (obj->getSubtype() == 120)){ //enter this if poisongas touches
+            if (obj->getSubtype() == 120){
+                if (this->detox == true){
+                    return;
+                }
+            }
             switch (dir){
             //reset possessed npc's location to previous based on location it came from
             case N:
@@ -362,6 +372,7 @@ void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectCon
                     break;
                 }
                 case 122:{ //herb
+                    cout<<"COLLECT HERB"<<endl;
                     DisplayObject* herb = new DisplayObject(obj->id,obj->imgPath+"herb_1.png");     
                     inventory->push_back(herb);
                     Herb* herb_collect = (Herb*) obj;

@@ -9,10 +9,11 @@ using namespace std;
 PoisonGas::PoisonGas(DisplayObjectContainer* container) : MainEnvObj(){
     this->subtype = 120;
     //TO DO: Change out with translucent green image
-    this->addAnimation("./resources/items/", "rock", 1, 1, false);
+    this->addAnimation("./resources/items/", "poisonGas", 1, 1, false);
 
-	this->play("rock");
+	this->play("poisonGas");
     this->collisionContainer = container;
+    container->addChild(this);
 }
 
 void PoisonGas::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
