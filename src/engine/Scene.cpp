@@ -194,39 +194,30 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             case NPCSTRONGMAN_SUBTYPE:
                 unit = new NPCStrongman(Collisioncontainer, foreground, inventory);
                 break;
-
             case NPCCRAFTSMAN_SUBTYPE:
                 unit = new NPCCraftsman(Collisioncontainer, foreground, inventory);
                 break;
-
             case BOULDER_SUBTYPE:
                 unit = new Boulder(Collisioncontainer);
                 break;
-            
             case MINERAL_SUBTYPE:
                 unit = new Mineral(Collisioncontainer);
                 break;
-
             case CAVELAKE_SUBTYPE:
                 unit = new CaveLake(Collisioncontainer);
                 break;
-
             case WORKBENCH_SUBTYPE:
                 unit = new Workbench(Collisioncontainer);
                 break;
-
             case SIGN_SUBTYPE:
                 unit = new Sign(Collisioncontainer);
                 break;
-
             case FALLENTREE_SUBTYPE:
                 unit = new FallenTree(Collisioncontainer);
                 break;
-
             case BUCKET_SUBTYPE:
                 unit = new Bucket(Collisioncontainer);
                 break;
-
             case MOUNTAINTREE_SUBTYPE:
                 unit = new MountainTree(Collisioncontainer);
                 break;

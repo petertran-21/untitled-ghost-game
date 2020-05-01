@@ -10,6 +10,7 @@ NPCCraftsman::NPCCraftsman(DisplayObjectContainer* container, DisplayObjectConta
     this->collisionContainer = container;
     container->addChild(this);
     this->drawingContainer = allSprites;
+    this->subtype = NPCCRAFTSMAN_SUBTYPE;
 
     this->inventory = &passedInventory;
 }
@@ -22,6 +23,12 @@ void NPCCraftsman::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joys
     state_switch(npc_states::Possessed);
 }
 
+void NPCCraftsman::resolve_collision(DisplayObject *obj){
+    MainNPC::resolve_collision(obj);
+    MainNPC::resolve_collectible_collision(obj, this->collisionContainer, this->drawingContainer);
+}
+
+
 void NPCCraftsman::resolve_adjacency(DisplayObject *obj, int status){
     Mineral * m = dynamic_cast<Mineral*>(obj);
     CaveLake * c = dynamic_cast<CaveLake*>(obj);
@@ -29,9 +36,9 @@ void NPCCraftsman::resolve_adjacency(DisplayObject *obj, int status){
     Workbench * w = dynamic_cast<Workbench*>(obj);
 
     vector<DisplayObject*> inv = *inventory;
-
+    
     //MINE MINERAL
-    if (m && ability){
+    if (m && ability && !m->mined){
 
         if (status != 0 && !m->mined){
             //ADD ITEM TO INVENTORY
@@ -47,11 +54,12 @@ void NPCCraftsman::resolve_adjacency(DisplayObject *obj, int status){
 
     //MINE LAKE W/BUCKET
     if (c && ability){
-        
+
         if (status != 0 && !c->mined){
 
             //make sure you have bucket
             for (int i = 0; i < inv.size(); i++){
+                cout<<"INV ID: "<<inv[i]->id<<endl;
                 if (inv[i]->id == "Bucket"){
                     std::vector<DisplayObject*>::iterator position = std::find(inventory->begin(), inventory->end(), inv[i]);
                     if (position != inventory->end()){
