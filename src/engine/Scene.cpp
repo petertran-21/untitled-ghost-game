@@ -62,7 +62,14 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 if (sprite["isStaticBaseFile"] == "ocean.png" ||
                     sprite["isStaticBaseFile"] == "water.png" ||
                     sprite["isStaticBaseFile"] == "caveWall.png" ||
-                    sprite["isStaticBaseFile"] == "treeTop.png"
+                    sprite["isStaticBaseFile"] == "treeTop.png" ||
+                    sprite["isStaticBaseFile"] == "mountainCorner1.png" ||
+                    sprite["isStaticBaseFile"] == "mountainCorner2.png" ||
+                    sprite["isStaticBaseFile"] == "mountainCorner3.png" ||
+                    sprite["isStaticBaseFile"] == "mountainSide.png" ||
+                    sprite["isStaticBaseFile"] == "mountainSide1.png" ||
+                    sprite["isStaticBaseFile"] == "cavePitRight.png" ||
+                    sprite["isStaticBaseFile"] == "cavePitLeft.png"
                 ){
                     unit->type = "Wall";
                     Collisioncontainer->addChild(unit);
@@ -210,6 +217,10 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
 
             case SIGN_SUBTYPE:
                 unit = new Sign(Collisioncontainer);
+                break;
+
+            case FALLENTREE_SUBTYPE:
+                unit = new FallenTree(Collisioncontainer);
                 break;
 
             case BUCKET_SUBTYPE:

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include "NPCStrongman.h"
+#include "FallenTree.h"
 
 using namespace std;
 
@@ -36,6 +37,14 @@ void NPCStrongman::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joys
 }
 
 void NPCStrongman::resolve_adjacency(DisplayObject *obj, int status){
+
+    FallenTree* ft = dynamic_cast<FallenTree*>(obj);
+
+    if (ft && strongmode){
+        ft->destroyed = true;
+        return;
+    }
+
     Sign * s = dynamic_cast<Sign*>(obj);
 
     //POST SIGN

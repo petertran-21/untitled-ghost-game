@@ -26,7 +26,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	displayTreeDisp->addEventListener(collisionSystem, DORemovedEvent::DO_REMOVED);
 	
 
-	scene_1->loadScene("./resources/Saves/Slot1/beachEntrance.json", container, inventory);
+	scene_1->loadScene("./resources/Saves/Slot1/mountainBridge.json", container, inventory);
 
 	DOAdded->checkCondition();
 

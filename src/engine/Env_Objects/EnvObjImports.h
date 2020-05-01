@@ -20,4 +20,5 @@
 #include "Bucket.h"
 #include "SwampBridge.h"
 #include "MountainTree.h"
+#include "FallenTree.h"
 #include "MainEnvObj.h"

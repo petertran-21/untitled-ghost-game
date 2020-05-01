@@ -67,7 +67,7 @@ public:
 	int alpha = 255;
 	bool facingRight = true;
 	string layer="foreground";
-	bool drawBox = false;
+	bool drawBox = true;
 
 	SDL_Surface* image = NULL;
 	void createHitbox();

@@ -257,6 +257,14 @@ void MainNPC::resolve_collision(DisplayObject *obj){
         if (br->open) return;
     }
 
+    //COLLIDES WITH FALLEN TREE
+    FallenTree* ft = dynamic_cast<FallenTree*>(obj);
+    if (ft){
+
+        //DO NOTHING 
+        if (ft->destroyed) return;
+    }
+
     //COLLIDES WITH BUCKET
     Bucket *bu = dynamic_cast<Bucket*>(obj);
     if (bu){
