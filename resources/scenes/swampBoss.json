@@ -4,7 +4,7 @@
             "id": "SceneTrigger",
             "basePathFolder": "./resources/items/",
             "isStaticBaseFile": "scene_trigger",
-            "scene_path": "./resources/scenes/beachEntrance.json",
+            "scene_path": "./resources/scenes/swampHub.json",
             "posX": 900,
             "posY": 0,
             "pivotX": 0,
