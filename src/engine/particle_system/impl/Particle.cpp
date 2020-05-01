@@ -111,14 +111,14 @@ void Particle::setBiome( string sceneFilePath )
     biomeChanged = true;
     if( sceneFilePath.find("beach") != string::npos ) {
         this->biome = Beach;
-        alpha = 110;
+        alpha = 240;
     }
     else if( sceneFilePath.find("forest") != string::npos ) {
         this->biome = Forest;
-        alpha = 150;
+        alpha = 180;
     }
     else {
         this->biome = DEFAULT;
-        alpha = 110;
+        alpha = 180;
     }
 }
