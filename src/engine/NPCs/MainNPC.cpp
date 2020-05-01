@@ -257,19 +257,12 @@ void MainNPC::resolve_collision(DisplayObject *obj){
         if (br->open) return;
     }
 
-    //COLLIDES WITH BUCKET
-    Bucket *bu = dynamic_cast<Bucket*>(obj);
-    if (bu){
-        DisplayObject* bucket = new DisplayObject("Bucket","./resources/items/bucket_empty_1.png");     
-        inventory->push_back(bucket);
-        // vector<DisplayObject*>::iterator bucketcollideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), bu);
-        // vector<DisplayObject*>::iterator bucketdrawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), bu);
-        // if (bucketcollideItr != this->collisionContainer->children.end() && bucketdrawItr != this->drawingContainer->children.end()){
-        //     this->collisionContainer->children.erase(bucketcollideItr);
-        //     this->drawingContainer->children.erase(bucketdrawItr);
-        // } 
-        bu->position.x = -100000;
-        bu->position.y = -100000;
+    //COLLIDES WITH FALLEN TREE
+    FallenTree* ft = dynamic_cast<FallenTree*>(obj);
+    if (ft){
+
+        //DO NOTHING 
+        if (ft->destroyed) return;
     }
 
     //COLLIDES WITH DOOR
@@ -280,7 +273,6 @@ void MainNPC::resolve_collision(DisplayObject *obj){
         if (d->open) cout<<"IS OPEN"<<endl;
     }
     // DEFAULT FOR COLLIDING WITH SOLIDS
-    // cout<<"Colliing wiht envObj"<<(obj&&(obj->type == "EnvObj"))<< " "<< obj->type << " " << obj->getSubtype()<<endl;
 	if (reverseCollisions){
         if (obj && (obj->type == "Land")){
         //check that npcs are overlapping
@@ -310,6 +302,7 @@ void MainNPC::resolve_collision(DisplayObject *obj){
     else if (obj && ((obj->type == "EnvObj" || obj->type == "Wall") || obj->getSubtype() == 127)){
         // cout<<"COLLIDING WITH ENV"<<endl;
         //check that npcs are overlapping
+        // cout<<"COLLIDING ENV: "<<obj->type<<" "<<obj->getSubtype()<<endl;
         //cout<<"COLLIDING ENV: "<<obj->type<<" "<<obj->getSubtype()<<endl;
         if (obj->getSubtype() == 127){
             SwampBridge* s = (SwampBridge*) obj;
@@ -356,14 +349,14 @@ void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectCon
     //COLLISIONS WITH COLLECTIBLES
     // cout<<"foreground NPC address: "<<drawingContainer<<endl;
     // cout << "TYPE: "<<obj->type<<", subtype:  "<<obj->getSubtype()<<", "<<(obj->type=="Collectible")<<" HERE:"<<obj->imgPath<<endl;
+    // cout << "POS: "<<obj->position.x<<" "<<obj->position.y<<" NPC POS: "<<this->position.x<<this->position.y<<endl;
     // cout<<"NUM COLLIDE CHILDREN: "<<collideContainer->children.size()<<endl;
     // cout<<"NUM DRAW CHILDREN: "<<drawContainer->children.size()<<endl;
     if (obj->type == "Collectible"){
         if ((obj->position.x == this->position.x) && (obj->position.y == this->position.y)){
+            cout<<"RIGTJ ON TOP EACH OTHER"<<endl;
             switch(obj->getSubtype()){
                 case 9:{//item pouch  
-                    cout<<"MADE IT"<<endl;
-
                     DisplayObject* item = new DisplayObject(obj->id,obj->imgPath+"item_pouch_1.png");     
                     inventory->push_back(item);
                     cout << "MainNPC: After Push Inventory: "<< inventory->size() << endl;
@@ -388,6 +381,20 @@ void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectCon
                     if (herbcollideItr != this->collisionContainer->children.end() && herbdrawItr != this->drawingContainer->children.end()){
                         this->collisionContainer->children.erase(herbcollideItr);
                         this->drawingContainer->children.erase(herbdrawItr);
+                    } 
+                    break;
+                }
+                case 305:{ //bucket
+
+                    cout<<"MADE IT"<<endl;
+                    DisplayObject* bucket = new DisplayObject(obj->id,obj->imgPath+"bucket_empty_1.png");     
+                    inventory->push_back(bucket);
+                    Bucket* bucket_collect = (Bucket*) obj;
+                    vector<DisplayObject*>::iterator bucketcollideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), bucket_collect);
+                    vector<DisplayObject*>::iterator bucketdrawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), bucket_collect);
+                    if (bucketcollideItr != this->collisionContainer->children.end() && bucketdrawItr != this->drawingContainer->children.end()){
+                        this->collisionContainer->children.erase(bucketcollideItr);
+                        this->drawingContainer->children.erase(bucketdrawItr);
                     } 
                     break;
                 }

@@ -1,6 +1,6 @@
 import json
 
-filepath = 'scenes/mountainPathSeparation.json'
+filepath = 'Saves/Slot1/mountainCaveEntrance.json'
 with open(filepath, 'r') as json_file:
     data = json.load(json_file)
     for gameObject in data["sprites"]:

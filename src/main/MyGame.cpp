@@ -36,7 +36,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	inventoryUI = new Inventory(0,0,300,300);
 
 	selectionMenuTest = new SelectionMenu(0, 0);
-	selectionMenuTest->addToMenu("Stats");
+	selectionMenuTest->addToMenu("Save");
 	selectionMenuTest->addToMenu("Quit");
 
 	textboxTest = new TextBox(0, 400);
@@ -83,16 +83,21 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 	}
 	if (pressedKeys.find(SDL_SCANCODE_RETURN) != pressedKeys.end() && UIOpen){
 		std::string result = selectionMenuTest->getCurrentlySelected();
-		if (result == "Stats"){
-			std::string stat = "You've been playing for " + std::to_string(Game::frameCounter/60) + " seconds.";
-			textboxTest->setText(stat);
+		if (result == "Save"){
+			for (auto child : camera->children){
+				if (child->type == "Scene"){
+					static_cast<Scene*>(child)->SaveScene();
+					textboxTest->setText("Saved!");
+					break;
+				}
+			}
 		}
 		if (result == "Quit") delete this;		// It *does* quit, yes, but segfaults.
 	}
 	if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end() && !UIOpen){
 		soundManager->playSFX("./resources/sfx/pauseOn.ogg");
 		this->addChild(UIContainer);
-		textboxTest->setText("Press RETURN to choose option, Q to quit menu.");
+		textboxTest->setText("Press RETURN to choose option, Q to exit menu.");
 		UIOpen = !UIOpen;
 	}
 	if (pressedKeys.find(SDL_SCANCODE_Q) != pressedKeys.end() && UIOpen){

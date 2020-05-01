@@ -11,6 +11,7 @@ CaveLake::CaveLake(DisplayObjectContainer* container) : MainEnvObj(){
     this->addAnimation("./resources/items/", "cavelake", 1, 1, false);
     this->addAnimation("./resources/items/", "cavelake_mined", 1, 1, false);
 	this->play("cavelake");
+    this->subtype = CAVELAKE_SUBTYPE;
 
     this->collisionContainer = container;
     container->addChild(this);

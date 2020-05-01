@@ -3,12 +3,12 @@
 #define BUCKET_SUBTYPE 305
 
 #include "Controller.h"
-#include "MainEnvObj.h"
+#include "MainCollectibles.h"
 
 
 using namespace std;
 
-class Bucket : public MainEnvObj{
+class Bucket : public MainCollectibles{
     
     public:
         Bucket(DisplayObjectContainer* container);
