@@ -1058,6 +1058,23 @@
         },
         {
             "alpha": 255,
+            "basePathFolder": "/resources/items/",
+            "height": 100,
+            "id": "608413784",
+            "isStatic": true,
+            "isStaticBaseFile": "workbench_1.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 500,
+            "posY": -600,
+            "rotation": 0.0,
+            "subtype": 303,
+            "width": 100
+        },
+        {
+            "alpha": 255,
             "basePathFolder": "./resources/tiles/mountainTiles/",
             "height": 100,
             "id": "1804289383",

@@ -8,6 +8,7 @@
 #include "particle_system/ParticleEmitter.h"
 #include "BossImports.h"
 #include "Camera.h"
+#include <iomanip>
 
 Scene::Scene() : DisplayObjectContainer()
 {
@@ -26,6 +27,7 @@ Scene::~Scene()
 }
 
 void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncontainer, vector<DisplayObject*> &inventory){
+    this->FilePath = sceneFilePath;
     std::ifstream i(sceneFilePath);
     json j = json::parse(i);
     unordered_map<string, DisplayObjectContainer*> parents = {};
@@ -60,7 +62,14 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 if (sprite["isStaticBaseFile"] == "ocean.png" ||
                     sprite["isStaticBaseFile"] == "water.png" ||
                     sprite["isStaticBaseFile"] == "caveWall.png" ||
-                    sprite["isStaticBaseFile"] == "treeTop.png"
+                    sprite["isStaticBaseFile"] == "treeTop.png" ||
+                    sprite["isStaticBaseFile"] == "mountainCorner1.png" ||
+                    sprite["isStaticBaseFile"] == "mountainCorner2.png" ||
+                    sprite["isStaticBaseFile"] == "mountainCorner3.png" ||
+                    sprite["isStaticBaseFile"] == "mountainSide.png" ||
+                    sprite["isStaticBaseFile"] == "mountainSide1.png" ||
+                    sprite["isStaticBaseFile"] == "cavePitRight.png" ||
+                    sprite["isStaticBaseFile"] == "cavePitLeft.png"
                 ){
                     unit->type = "Wall";
                     Collisioncontainer->addChild(unit);
@@ -162,8 +171,19 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             case SWAMPTREE_SUBTYPE:
                 unit = new SwampTree(Collisioncontainer, foreground);
                 break;
+            case SWAMPBRIDGE_SUBTYPE:
+                if ((sprite["id"]).get<std::string>().find("notbuilt") != std::string::npos) {
+                    unit = new SwampBridge(Collisioncontainer, false);
+                }
+                else{
+                    unit = new SwampBridge(Collisioncontainer, true);
+                }
+                break;
             case CRAFTSTATION_SUBTYPE:
                 unit = new CraftStation(Collisioncontainer);
+                break;
+            case POISONGAS_SUBTYPE:
+                unit = new PoisonGas(Collisioncontainer);
                 break;
             case SNAKE_SUBTYPE:
                 unit = new Snake(Collisioncontainer, foreground);
@@ -188,35 +208,30 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             case NPCSTRONGMAN_SUBTYPE:
                 unit = new NPCStrongman(Collisioncontainer, foreground, inventory);
                 break;
-
             case NPCCRAFTSMAN_SUBTYPE:
                 unit = new NPCCraftsman(Collisioncontainer, foreground, inventory);
                 break;
-
             case BOULDER_SUBTYPE:
                 unit = new Boulder(Collisioncontainer);
                 break;
-            
             case MINERAL_SUBTYPE:
                 unit = new Mineral(Collisioncontainer);
                 break;
-
             case CAVELAKE_SUBTYPE:
                 unit = new CaveLake(Collisioncontainer);
                 break;
-
             case WORKBENCH_SUBTYPE:
                 unit = new Workbench(Collisioncontainer);
                 break;
-
             case SIGN_SUBTYPE:
                 unit = new Sign(Collisioncontainer);
                 break;
-
+            case FALLENTREE_SUBTYPE:
+                unit = new FallenTree(Collisioncontainer);
+                break;
             case BUCKET_SUBTYPE:
                 unit = new Bucket(Collisioncontainer);
                 break;
-
             case MOUNTAINTREE_SUBTYPE:
                 unit = new MountainTree(Collisioncontainer);
                 break;
@@ -349,9 +364,61 @@ void Scene::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState curr
             }
         }
     }
-
     DisplayObjectContainer::update(pressedKeys, currState);
 }
+
+void Scene::SaveScene(){
+    std::ifstream i(this->FilePath);
+    json j = json::parse(i);
+
+    // Clear out foreground with exceptions like scene triggers and other objects
+    for (int index = 0; index < j["sprites"].size(); index++){
+        int subtype = j["sprites"].at(index)["subtype"];
+        
+        if (subtype != SPRITE_SUBTYPE && subtype != SCENE_TRIGGER_SUBTYPE && subtype != DISPLAYOBJECTCONTAINER_SUBTYPE && subtype != GHOST_SUBTYPE){
+            cout << "Save Scene Erasing" << j["sprites"].at(index)["id"] << endl;
+            j["sprites"].erase(j["sprites"].begin() + index);
+            index--;
+        }
+    }
+    DisplayObjectContainer* foreground = static_cast<DisplayObjectContainer*>(this->getChild(1));
+    for (int i = 0; i < foreground->numChildren(); i++) {
+        DisplayObject* sprite = foreground->getChild(i);
+        int subtype = sprite->getSubtype();
+        if (subtype != SPRITE_SUBTYPE && subtype != SCENE_TRIGGER_SUBTYPE && subtype != DISPLAYOBJECTCONTAINER_SUBTYPE && subtype != GHOST_SUBTYPE && sprite->id != "EnvObj") {
+            json jsonSprite = {
+                {"id", sprite->id},
+                {"basePathFolder", sprite->imgPath},
+                {"isStatic", true},
+                {"posX", sprite->position.x},
+                {"posY", sprite->position.y},
+                {"pivotX", sprite->pivot.x},
+                {"pivotY", sprite->pivot.y},
+                {"alpha", sprite->alpha},
+                {"isVisible", sprite->visible},
+                {"rotation", sprite->rotation},
+                {"width", sprite->width},
+                {"height", sprite->height},
+                {"subtype", sprite->subtype}, 
+            };
+            string parent = "foreground";
+            /*
+            if (sprite->parent != this){
+                parent = sprite->parent->id;
+                //cout << parent << endl;
+            } else if (sprite->subtype != 2) {
+                parent = "foreground";
+            } */
+            
+            jsonSprite["parent"] = parent;
+            j["sprites"].push_back(jsonSprite);
+        }
+    }
+    
+    // Save the scene
+    std::ofstream o(this->FilePath);
+    o << std::setw(4) << j << std::endl;
+    }
 
 void Scene::draw(AffineTransform &at){
     DisplayObjectContainer::draw(at);

@@ -1,57 +1,40 @@
 {
     "sprites": [
         {
-            "id": "SceneTrigger",
+            "alpha": 255,
             "basePathFolder": "./resources/items/",
+            "height": 100,
+            "id": "SceneTrigger",
+            "isStatic": true,
             "isStaticBaseFile": "scene_trigger",
-            "scene_path": "./resources/scenes/village.json",
+            "isVisible": true,
+            "parent": "foreground",
+            "pivotX": 0,
+            "pivotY": 0,
             "posX": 400,
             "posY": 0,
-            "pivotX": 0,
-            "pivotY": 0,
             "rotation": 0.0,
-            "alpha": 255,
-            "isVisible": true,
-            "isStatic": true,
-            "parent": "foreground",
-            "width": 100,
-            "height": 100,
-            "subtype": 108
+            "scene_path": "./resources/scenes/village.json",
+            "subtype": 108,
+            "width": 100
         },
         {
-            "id": "SceneTrigger",
+            "alpha": 255,
             "basePathFolder": "./resources/items/",
+            "height": 100,
+            "id": "SceneTrigger",
+            "isStatic": true,
             "isStaticBaseFile": "scene_trigger",
-            "scene_path": "./resources/scenes/beachRoom1.json",
+            "isVisible": true,
+            "parent": "foreground",
+            "pivotX": 0,
+            "pivotY": 0,
             "posX": 200,
             "posY": 900,
-            "pivotX": 0,
-            "pivotY": 0,
             "rotation": 0.0,
-            "alpha": 255,
-            "isVisible": true,
-            "isStatic": true,
-            "parent": "foreground",
-            "width": 100,
-            "height": 100,
-            "subtype": 108
-        },
-        {
-            "id": "NPCExcavator",
-            "basePathFolder": "./resources/npcs/",
-            "isStaticBaseFile": "npc_base_1.png",
-            "posX": 300,
-            "posY": 300,
-            "pivotX": 0,
-            "pivotY": 0,
-            "rotation": 0.0,
-            "alpha": 255,
-            "isVisible": true,
-            "isStatic": true,
-            "parent": "foreground",
-            "width": 100,
-            "height": 100,
-            "subtype": 19
+            "scene_path": "./resources/scenes/beachRoom1.json",
+            "subtype": 108,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -67,8 +50,8 @@
             "posX": 0,
             "posY": 0,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -84,8 +67,8 @@
             "posX": 100,
             "posY": 0,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -101,8 +84,8 @@
             "posX": 200,
             "posY": 0,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -118,8 +101,8 @@
             "posX": 300,
             "posY": 0,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -135,8 +118,8 @@
             "posX": 400,
             "posY": 0,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -152,8 +135,8 @@
             "posX": 500,
             "posY": 0,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -169,8 +152,8 @@
             "posX": 600,
             "posY": 0,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -186,8 +169,8 @@
             "posX": 700,
             "posY": 0,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -203,8 +186,8 @@
             "posX": 800,
             "posY": 0,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -220,8 +203,8 @@
             "posX": 900,
             "posY": 0,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -237,8 +220,8 @@
             "posX": 0,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -254,8 +237,8 @@
             "posX": 0,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -271,8 +254,8 @@
             "posX": 0,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -288,8 +271,8 @@
             "posX": 0,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -305,8 +288,8 @@
             "posX": 0,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -322,8 +305,8 @@
             "posX": 0,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -339,8 +322,8 @@
             "posX": 0,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -356,8 +339,8 @@
             "posX": 0,
             "posY": 800,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -373,8 +356,8 @@
             "posX": 0,
             "posY": 900,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -390,8 +373,8 @@
             "posX": 100,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -407,8 +390,8 @@
             "posX": 200,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -424,8 +407,8 @@
             "posX": 300,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -441,8 +424,8 @@
             "posX": 400,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -458,8 +441,8 @@
             "posX": 500,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -475,8 +458,8 @@
             "posX": 600,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -492,8 +475,8 @@
             "posX": 700,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -509,8 +492,8 @@
             "posX": 800,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -526,8 +509,8 @@
             "posX": 900,
             "posY": 100,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -543,8 +526,8 @@
             "posX": 100,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -560,8 +543,8 @@
             "posX": 200,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -577,8 +560,8 @@
             "posX": 300,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -594,8 +577,8 @@
             "posX": 400,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -611,8 +594,8 @@
             "posX": 500,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -628,8 +611,8 @@
             "posX": 600,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -645,8 +628,8 @@
             "posX": 700,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -662,8 +645,8 @@
             "posX": 800,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -679,8 +662,8 @@
             "posX": 900,
             "posY": 200,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -696,8 +679,8 @@
             "posX": 100,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -713,8 +696,8 @@
             "posX": 200,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -730,8 +713,8 @@
             "posX": 300,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -747,8 +730,8 @@
             "posX": 400,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -764,8 +747,8 @@
             "posX": 500,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -781,8 +764,8 @@
             "posX": 600,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -798,8 +781,8 @@
             "posX": 700,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -815,8 +798,8 @@
             "posX": 800,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -832,8 +815,8 @@
             "posX": 900,
             "posY": 300,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -849,8 +832,8 @@
             "posX": 100,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -866,8 +849,8 @@
             "posX": 200,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -883,8 +866,8 @@
             "posX": 300,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -900,8 +883,8 @@
             "posX": 400,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -917,8 +900,8 @@
             "posX": 500,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -934,8 +917,8 @@
             "posX": 600,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -951,8 +934,8 @@
             "posX": 700,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -968,8 +951,8 @@
             "posX": 800,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -985,8 +968,8 @@
             "posX": 100,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1002,8 +985,8 @@
             "posX": 200,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1019,8 +1002,8 @@
             "posX": 300,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1036,8 +1019,8 @@
             "posX": 300,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1053,8 +1036,8 @@
             "posX": 200,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1070,8 +1053,8 @@
             "posX": 100,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1087,8 +1070,8 @@
             "posX": 400,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1104,8 +1087,8 @@
             "posX": 500,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1121,8 +1104,8 @@
             "posX": 900,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1138,8 +1121,8 @@
             "posX": 700,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1155,8 +1138,8 @@
             "posX": 800,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1172,8 +1155,8 @@
             "posX": 900,
             "posY": 400,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1189,8 +1172,8 @@
             "posX": 600,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1206,8 +1189,8 @@
             "posX": 900,
             "posY": 500,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1223,8 +1206,8 @@
             "posX": 400,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1240,25 +1223,8 @@
             "posX": 300,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/items/",
-            "height": 100,
-            "id": "BreakableWall",
-            "isStatic": true,
-            "isStaticBaseFile": "breakable_wall_1.png",
-            "isVisible": true,
-            "parent": "foreground",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 300,
-            "posY": 700,
-            "rotation": 0.0,
-            "width": 100,
-            "subtype": 10
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1274,8 +1240,8 @@
             "posX": 400,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1291,8 +1257,8 @@
             "posX": 500,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1308,8 +1274,8 @@
             "posX": 600,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1325,8 +1291,8 @@
             "posX": 700,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1342,8 +1308,8 @@
             "posX": 800,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1359,8 +1325,8 @@
             "posX": 900,
             "posY": 600,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1376,25 +1342,8 @@
             "posX": 100,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/items/",
-            "height": 100,
-            "id": "BreakableWall",
-            "isStatic": true,
-            "isStaticBaseFile": "breakable_wall_1.png",
-            "isVisible": true,
-            "parent": "foreground",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 100,
-            "posY": 700,
-            "rotation": 0.0,
-            "width": 100,
-            "subtype": 10
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1410,25 +1359,8 @@
             "posX": 200,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/items/",
-            "height": 100,
-            "id": "BreakableWall",
-            "isStatic": true,
-            "isStaticBaseFile": "breakable_wall_1.png",
-            "isVisible": true,
-            "parent": "foreground",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 200,
-            "posY": 700,
-            "rotation": 0.0,
-            "width": 100,
-            "subtype": 10
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1444,8 +1376,8 @@
             "posX": 100,
             "posY": 800,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1461,8 +1393,8 @@
             "posX": 200,
             "posY": 800,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1478,8 +1410,8 @@
             "posX": 300,
             "posY": 800,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1495,8 +1427,8 @@
             "posX": 200,
             "posY": 900,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1512,8 +1444,8 @@
             "posX": 100,
             "posY": 900,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1529,8 +1461,8 @@
             "posX": 300,
             "posY": 900,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1546,8 +1478,8 @@
             "posX": 400,
             "posY": 800,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1563,8 +1495,8 @@
             "posX": 400,
             "posY": 900,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1580,8 +1512,8 @@
             "posX": 500,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1597,8 +1529,8 @@
             "posX": 500,
             "posY": 800,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1614,8 +1546,8 @@
             "posX": 500,
             "posY": 900,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1631,8 +1563,8 @@
             "posX": 600,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1648,8 +1580,8 @@
             "posX": 600,
             "posY": 800,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1665,8 +1597,8 @@
             "posX": 600,
             "posY": 900,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1682,8 +1614,8 @@
             "posX": 700,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1699,8 +1631,8 @@
             "posX": 700,
             "posY": 800,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1716,8 +1648,8 @@
             "posX": 700,
             "posY": 900,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1733,8 +1665,8 @@
             "posX": 800,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1750,8 +1682,8 @@
             "posX": 800,
             "posY": 800,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1767,8 +1699,8 @@
             "posX": 800,
             "posY": 900,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1784,8 +1716,8 @@
             "posX": 900,
             "posY": 700,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1801,8 +1733,8 @@
             "posX": 900,
             "posY": 800,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
+            "subtype": 2,
+            "width": 100
         },
         {
             "alpha": 255,
@@ -1818,42 +1750,90 @@
             "posX": 900,
             "posY": 900,
             "rotation": 0.0,
-            "width": 100,
-            "subtype": 2
-        },
-        {
-            "id": "Craftsman",
-            "basePathFolder": "./resources/grendel/",
-            "isStaticBaseFile": "Idle",
-            "posX": 400,
-            "posY": 200,
-            "pivotX": 0,
-            "pivotY": 0,
-            "rotation": 0.0,
-            "alpha": 255,
-            "isVisible": true,
-            "isStatic": true,
-            "parent": "foreground",
-            "width": 100,
-            "height": 100,
-            "subtype": 25
+            "subtype": 2,
+            "width": 100
         },
         {
             "id": "Ghost",
+            "alpha": 255,
             "basePathFolder": "./resources/grendel/",
+            "height": 100,
+            "id": "Ghost",
+            "isStatic": true,
             "isStaticBaseFile": "Idle",
-            "posX": 200,
-            "posY": 200,
+            "isVisible": true,
+            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
+            "posX": 200,
+            "posY": 200,
             "rotation": 0.0,
+            "subtype": 4,
+            "width": 100
+        },
+        {
             "alpha": 255,
-            "isVisible": true,
-            "isStatic": true,
-            "parent": "foreground",
-            "width": 100,
+            "basePathFolder": "./resources/npcs/",
             "height": 100,
-            "subtype": 4
-        }        
+            "id": "NPCExcavator",
+            "isStatic": true,
+            "isVisible": true,
+            "parent": "foreground",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 300,
+            "posY": 300,
+            "rotation": 0.0,
+            "subtype": 19,
+            "width": 100
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/items/",
+            "height": 100,
+            "id": "BreakableWall",
+            "isStatic": true,
+            "isVisible": true,
+            "parent": "foreground",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 300,
+            "posY": 700,
+            "rotation": 0.0,
+            "subtype": 10,
+            "width": 100
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/items/",
+            "height": 100,
+            "id": "BreakableWall",
+            "isStatic": true,
+            "isVisible": true,
+            "parent": "foreground",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 100,
+            "posY": 700,
+            "rotation": 0.0,
+            "subtype": 10,
+            "width": 100
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/items/",
+            "height": 100,
+            "id": "BreakableWall",
+            "isStatic": true,
+            "isVisible": true,
+            "parent": "foreground",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 200,
+            "posY": 700,
+            "rotation": 0.0,
+            "subtype": 10,
+            "width": 100
+        }
     ]
 }

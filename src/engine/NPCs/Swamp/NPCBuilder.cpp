@@ -5,8 +5,13 @@
 using namespace std;
 
 NPCBuilder::NPCBuilder(DisplayObjectContainer* container, DisplayObjectContainer* allSprites, vector<DisplayObject*> &passedInventory) : MainNPC(){
-    this->addAnimation("./resources/npcs/craftsman/", "craftsman_idle", 1, 1, true);
-	this->play("craftsman_idle");
+    this->addAnimation("./resources/npcs/craftsman/", "craftsman_idle", 1, 1, true, "idle");
+    this->addAnimation("./resources/npcs/craftsman/", "craftsman_forward", 6, 10, true, "forward");
+    this->addAnimation("./resources/npcs/craftsman/", "craftsman_left", 6, 10, true, "left'");
+    this->addAnimation("./resources/npcs/craftsman/", "craftsman_right", 6, 10, true, "right");
+    this->addAnimation("./resources/npcs/craftsman/", "craftsman_back", 6, 10, true, "back");
+	
+    this->play("idle");
     this->collisionContainer = container;
     container->addChild(this);
     this->drawingContainer = allSprites;
@@ -29,11 +34,11 @@ void NPCBuilder::resolve_adjacency(DisplayObject *obj, int status){
     vector<DisplayObject*> inv = *inventory;
 
     //BUILD BRIDGE
-    if (s && ability){
+    if (s && ability){    
         vector<DisplayObject*> wood_to_spend;
 
-        int recipe_wood_max = 5;
-        bool has_hammer = false;
+        int recipe_wood_max = 1; 
+        bool has_hammer = false; 
         int counter = 0;
 
         //CHECK THAT YOU HAVE ENOUGH SUPPLIES
@@ -48,8 +53,11 @@ void NPCBuilder::resolve_adjacency(DisplayObject *obj, int status){
 
         //BUILD BRIDGE
         if (wood_to_spend.size() >= recipe_wood_max && has_hammer){
-
-            cout << "BRIDGE CRAFTED" << endl;
+            if (s->cancross == true){
+                return;
+            }
+            s->play("built");
+            s->cancross = true;
             
             counter = 0;
 

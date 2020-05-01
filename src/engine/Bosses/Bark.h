@@ -10,13 +10,13 @@ using namespace std;
 class Bark : public MainNPCObj{
     
     public:
-        Bark(SDL_Point pos, int angle, DisplayObjectContainer* container, DisplayObjectContainer* allSprites);
+        Bark(int width, int height, int angle, DisplayObjectContainer* container, DisplayObjectContainer* allSprites);
         void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
         
         DisplayObjectContainer* collisionContainer;
         DisplayObjectContainer* drawingContainer;
 
-        int movespeed = 16;
+        int movespeed = 6;
 
         void resolve_collision(DisplayObject* obj);
    

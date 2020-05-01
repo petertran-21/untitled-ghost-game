@@ -12,7 +12,6 @@ Snake::Snake(DisplayObjectContainer* container, DisplayObjectContainer* allSprit
     this->drawingContainer = allSprites;
     this->scaleX = 0.5;
     this->scaleY = 0.5;
-
     this->addAnimation("./resources/bosses/", "snake_idle", 1, 1, false);
 
     this->play("snake_idle");
@@ -32,7 +31,8 @@ void Snake::state_attack(set<SDL_Scancode> pressedKeys, Controller::JoystickStat
     if (state_new){
         cout << "SNAKE STATE: ATTACK" << endl;
         for (int i=0; i < 8; i++){
-            Poison *b = new Poison(position, (M_PI/4 + poison_angle)*i, collisionContainer, drawingContainer);
+            Poison *p = new Poison(this->width, this->height, (M_PI/4 + poison_angle)*i, collisionContainer, drawingContainer);
+            this->addChild(p);
         }
         poison_angle += M_PI/16;
     }
@@ -40,17 +40,15 @@ void Snake::state_attack(set<SDL_Scancode> pressedKeys, Controller::JoystickStat
     poison_timer++;
 
     if (poison_timer == poison_timer_max+20){
-        //delete Poison
-        // for (DisplayObject* poison: this->collisionContainer->children){
-        //     if (poison->getSubtype() == POISON_SUBTYPE){
-        //         this->collisionContainer->removeImmediateChild(poison);
-        //     }
-        // }
-        // for (DisplayObject* poison: this->drawingContainer->children){
-        //     if (poison->getSubtype() == POISON_SUBTYPE){
-        //         this->drawingContainer->removeImmediateChild(poison);
-        //     }
-        // }
+        //deletes Poison
+        for (int i=0; i<8; i++){
+            DisplayObject* object = *this->children.begin();
+            vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), object);
+            if (collideItr != this->collisionContainer->children.end()){
+                    this->collisionContainer->children.erase(collideItr);
+            }                    
+            this->children.erase(this->children.begin());
+        }
         poison_timer=0;
         state_switch(boss_states::Idle);
     }
