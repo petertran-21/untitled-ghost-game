@@ -4,7 +4,7 @@
             "id": "SceneTrigger",
             "basePathFolder": "./resources/items/",
             "isStaticBaseFile": "scene_trigger",
-            "scene_path": "./resources/scenes/beachEntrance.json",
+            "scene_path": "./resources/scenes/village.json",
             "posX": 400,
             "posY": 200,
             "pivotX": 0,
