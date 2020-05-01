@@ -29,10 +29,10 @@
             "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
-            "posX": 200,
-            "posY": 900,
+            "posX": 900,
+            "posY": 200,
             "rotation": 0.0,
-            "scene_path": "./resources/Saves/Slot1/beachRoom1.json",
+            "scene_path": "./resources/Saves/Slot1/beachPartyRoom.json",
             "subtype": 108,
             "width": 100
         },
@@ -1754,10 +1754,10 @@
             "width": 100
         },
         {
-            "id": "Ghost",
             "alpha": 255,
             "basePathFolder": "./resources/grendel/",
             "height": 100,
+            "id": "Ghost",
             "isStatic": true,
             "isStaticBaseFile": "Idle",
             "isVisible": true,
