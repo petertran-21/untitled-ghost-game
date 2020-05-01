@@ -88,6 +88,8 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 				if (child->type == "Scene"){
 					static_cast<Scene*>(child)->SaveScene();
 					textboxTest->setText("Saved!");
+					this->children.erase(std::remove(this->children.begin(), this->children.end(), UIContainer), this->children.end());
+					UIOpen = false;
 					break;
 				}
 			}
