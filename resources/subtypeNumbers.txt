@@ -61,3 +61,4 @@ For referencing which number corresponds to each subtype of object due to C++ no
 306: MountainTree
 307: FallenTree
 400: ForestDoor
+500: Monument

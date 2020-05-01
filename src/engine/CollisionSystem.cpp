@@ -22,6 +22,7 @@ CollisionSystem::~CollisionSystem(){
 //to be checked (via a single call to watchForCollisions) below.
 void CollisionSystem::update(){
   watchForCollisions("Ghost", "NPC");
+  watchForCollisions("Ghost", "Monument");
   watchForCollisions("Ghost", "SceneTrigger");
   watchForCollisions("NPC", "NPC");
   watchForCollisions("NPC", "NPCObj");
@@ -105,6 +106,9 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
             }
             else if ((type1 == "NPC") && (type2 == "Land")){
               resolveCollision_NPC_Land(inView[i], inView[j]);
+            }
+            else if ((type1 == "Ghost") && (type2 == "Monument")){
+              resolveCollision_Ghost_NPCObj(inView[i], inView[j]);
             }
             else{
               // resolveCollision(inView[i], inView[j],

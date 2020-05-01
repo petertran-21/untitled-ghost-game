@@ -21,4 +21,5 @@
 #include "MountainTree.h"
 #include "ForestDoor.h"
 #include "FallenTree.h"
+#include "Monument.h"
 #include "MainEnvObj.h"

@@ -68,7 +68,7 @@
             "posX": 0,
             "posY": 300,
             "rotation": 0.0,
-            "scene_path": "./resources/scenes/beachEntrance.json",
+            "scene_path": "./resources/scenes/village.json",
             "subtype": 108,
             "width": 100
         },
