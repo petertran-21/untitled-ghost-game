@@ -33,7 +33,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	// SFX Menu stuff
 	UIContainer = new DisplayObjectContainer();
 
-	inventoryUI = new Inventory(200,200,300,300);
+	inventoryUI = new Inventory(100,100,300,300);
 
 	selectionMenuTest = new SelectionMenu(0, 0);
 	selectionMenuTest->addToMenu("Stats");

@@ -95,6 +95,7 @@ public:
 
     bool active;        // The selection menu should not start checking tasks off unless it's active
     std::vector<DisplayObject*> entries;   // The actual reference to object images are added to the 'children' attribute inherited from DOC.
+    TextBox* label;
 
     virtual void draw(AffineTransform &at);
 };

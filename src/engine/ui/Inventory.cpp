@@ -8,6 +8,10 @@ Inventory::Inventory(int posX, int posY, int width, int height) : DisplayObjectC
     this->position.y = posY;
     this->width = width;
     this->height = height;
+    this->label = new TextBox("Inventory", 0, -65, width, 65);
+    this->label->children.back()->position.x += (width / 2) - 50;
+    this->label->children.back()->position.y -= 20;
+    this->addChild(this->label);
     // DisplayObject* a = new DisplayObject();
     // this->entries.push_back(a);
 
