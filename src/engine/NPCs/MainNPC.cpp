@@ -413,6 +413,8 @@ void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectCon
                         this->collisionContainer->children.erase(herbcollideItr);
                         this->drawingContainer->children.erase(herbdrawItr);
                     } 
+
+                    TextAlert* t = new TextAlert(position.x, position.y, "Herb Collected", this->drawingContainer);
                     break;
                 }
                 case 305:{ //bucket
