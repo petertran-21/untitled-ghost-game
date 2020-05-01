@@ -280,12 +280,22 @@ void MainNPC::resolve_collision(DisplayObject *obj){
         if (d->open) cout<<"IS OPEN"<<endl;
     }
 
+    //COLLIDES WITH GEM
     Gem* g = dynamic_cast<Gem*>(obj);
     if (g){
         DisplayObject* gem = new DisplayObject("Gem","./resources/items/gem_1.png");     
         inventory->push_back(gem);
         g->position.x = -100000;
         g->position.y = -100000;
+    }
+
+    //COLLIDES WITH HORN
+    HornFragment* hf = dynamic_cast<HornFragment*>(obj);
+    if (hf){
+        DisplayObject* horn = new DisplayObject("HornFragment","./resources/items/horn_fragment_1.png");     
+        inventory->push_back(horn);
+        hf->position.x = -100000;
+        hf->position.y = -100000;
     }
 
     // DEFAULT FOR COLLIDING WITH SOLIDS

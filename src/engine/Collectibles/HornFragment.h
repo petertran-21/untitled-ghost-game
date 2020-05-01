@@ -13,8 +13,6 @@ class HornFragment : public MainCollectibles{
     public:
         HornFragment(DisplayObjectContainer* container);
 
-        void resolve_collision(DisplayObject *obj);
-
 };
 
 #endif
