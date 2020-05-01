@@ -24,6 +24,9 @@ Inventory::~Inventory(){
 
 void Inventory::draw(AffineTransform &at){
     for(int i = 0; i < this->entries.size(); i++){
+        if(this->entries[i]->type == "TextBox"){
+            continue;
+        }
         if(i > 8){
             break;
         }
