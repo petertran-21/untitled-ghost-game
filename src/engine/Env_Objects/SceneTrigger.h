@@ -18,6 +18,7 @@ class SceneTrigger : public AnimatedSprite{
         string scene_path = "";
         bool active = true;
         DisplayObjectContainer *collisionContainer;
+        SDL_Point ghost_pos;
 
         void resolve_collision(DisplayObject *obj);
 
