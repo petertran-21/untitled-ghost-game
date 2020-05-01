@@ -47,6 +47,18 @@ public:
     Text* text;
 };
 
+class TextAlert : public DisplayObjectContainer{
+public:
+    // Note: A TextBox consists of both a box object (for background to text) and a Text class which contains the actual text content.
+    TextAlert(int posX, int posY, std::string content, DisplayObjectContainer* allSprites);
+    void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
+
+    DisplayObjectContainer* drawingContainer;
+
+    Text* text;
+};
+
+
 // Effectively a TextBox with slightly altered functionality.
 class SelectionMenu : public DisplayObjectContainer{
 public:

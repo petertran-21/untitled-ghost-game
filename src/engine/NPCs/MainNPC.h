@@ -8,6 +8,7 @@
 #include "EnvObjImports.h"
 #include "CollectiblesImports.h"
 #include "NPCObjImports.h"
+#include "UIDefs.h"
 
 using namespace std;
 

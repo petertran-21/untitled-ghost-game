@@ -1822,6 +1822,23 @@
             "subtype": 2
         },
         {
+            "id": "Craftsman",
+            "basePathFolder": "./resources/grendel/",
+            "isStaticBaseFile": "Idle",
+            "posX": 400,
+            "posY": 200,
+            "pivotX": 0,
+            "pivotY": 0,
+            "rotation": 0.0,
+            "alpha": 255,
+            "isVisible": true,
+            "isStatic": true,
+            "parent": "foreground",
+            "width": 100,
+            "height": 100,
+            "subtype": 25
+        },
+        {
             "id": "Ghost",
             "basePathFolder": "./resources/grendel/",
             "isStaticBaseFile": "Idle",

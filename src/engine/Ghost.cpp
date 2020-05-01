@@ -160,6 +160,7 @@ void Ghost::state_possessing(set<SDL_Scancode> pressedKeys, Controller::Joystick
 			return;
 		}
 
+		TextAlert* t = new TextAlert(position.x, position.y, string(npc->id), npc->drawingContainer);
 		isPossessing = true;
 		npc->is_possessed = true;
 	}
