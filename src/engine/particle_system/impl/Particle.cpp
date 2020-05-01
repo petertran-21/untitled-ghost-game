@@ -95,6 +95,8 @@ void Particle::loadParticleTexture()
                     {
                         case Beach: this->loadTexture( "./resources/particles/grendel_particle_beach.png" ); break;
                         case Forest: this->loadTexture( "./resources/particles/grendel_particle_forest.png" ); break;
+                        case Swamp: this->loadTexture( "./resources/particles/grendel_particle_swamp.png" ); break;
+                        case Mountain: this->loadTexture( "./resources/particles/grendel_particle_mountain.png" ); break;
                         default: this->loadTexture( "./resources/particles/grendel_particle_default.png" ); break;
                     }
                     isTextureSet = true;
@@ -115,6 +117,14 @@ void Particle::setBiome( string sceneFilePath )
     }
     else if( sceneFilePath.find("forest") != string::npos ) {
         this->biome = Forest;
+        alpha = 180;
+    }
+    else if( sceneFilePath.find("swamp") != string::npos ) {
+        this->biome = Swamp;
+        alpha = 180;
+    }
+    else if( sceneFilePath.find("mountain") != string::npos ) {
+        this->biome = Mountain;
         alpha = 180;
     }
     else {

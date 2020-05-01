@@ -7,7 +7,7 @@
 
 using namespace std;
 
-enum biomes { DEFAULT, Beach, Forest };
+enum biomes { DEFAULT, Beach, Forest, Swamp, Mountain };
 
 /**
  * Author: Bradley Knaysi
