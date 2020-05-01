@@ -289,7 +289,7 @@ void MainNPC::resolve_collision(DisplayObject *obj){
     }
 
     // DEFAULT FOR COLLIDING WITH SOLIDS
-    // cout<<"Colliing wiht envObj"<<(obj&&(obj->type == "EnvObj"))<< " "<<(obj->type == "EnvObj")<<endl;
+    cout<<"Colliing wiht "<<obj->type<< " "<<obj->getSubtype()<<endl;
 	if (reverseCollisions){
         if (obj && (obj->type == "Land")){
         //check that npcs are overlapping
@@ -316,11 +316,11 @@ void MainNPC::resolve_collision(DisplayObject *obj){
             }
         }
 	}
-    else if (obj && (obj->type == "EnvObj" || obj->type == "Wall")){
-        // cout<<"COLLIDING WITH ENV"<<endl;
+    else if (obj && ((obj->type == "EnvObj" || obj->type == "Wall") || obj->type == "MTNEnv")){
+        cout<<"COLLIDING WITH ENV"<<endl;
         //check that npcs are overlapping
         //cout<<"COLLIDING ENV: "<<obj->type<<" "<<obj->getSubtype()<<endl;
-        if ((position.y == obj->position.y) && (position.x == obj->position.x)){
+        if ((position.y == obj->position.y) && (position.x == obj->position.x) || (obj->type == "MTNEnv")){
             switch (dir){
             //reset possessed npc's location to previous based on location it came from
             case N:
