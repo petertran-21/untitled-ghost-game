@@ -42,6 +42,7 @@ void NPCCraftsman::resolve_adjacency(DisplayObject *obj, int status){
 
         if (status != 0 && !m->mined){
             //ADD ITEM TO INVENTORY
+            TextAlert* t = new TextAlert(this->position.x, this->position.y, "Mineral Collected", this->drawingContainer);
             DisplayObject* item = new DisplayObject(m->id,"./resources/items/mineral_1.png");     
             inventory->push_back(item);
 
@@ -66,7 +67,7 @@ void NPCCraftsman::resolve_adjacency(DisplayObject *obj, int status){
                         inventory->erase(position);
                         cout << "FILLED BUCKET" << endl;
                     }
-                    //ADD ITEM TO INVENTORY
+                    TextAlert* t = new TextAlert(this->position.x, this->position.y, "Filled Water Bucket", this->drawingContainer);
                     DisplayObject* item = new DisplayObject("Water Bucket","./resources/items/bucket_full_1.png");     
                     inventory->push_back(item);
                     c->mined = true;
@@ -84,6 +85,7 @@ void NPCCraftsman::resolve_adjacency(DisplayObject *obj, int status){
 
         if (status != 0 && !t->mined){
             //ADD ITEM TO INVENTORY
+            TextAlert* te = new TextAlert(this->position.x, this->position.y, "Collected Wood", this->drawingContainer);
             DisplayObject* item = new DisplayObject("Wood","./resources/items/wood_1.png");     
             inventory->push_back(item);
 

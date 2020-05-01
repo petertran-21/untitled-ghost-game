@@ -417,6 +417,14 @@ void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectCon
                     // } 
                     obj->position.x = -100000;
                     obj->position.y = -100000;
+//                     vector<DisplayObject*>::iterator herbcollideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), herb_collect);
+//                     vector<DisplayObject*>::iterator herbdrawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), herb_collect);
+//                     if (herbcollideItr != this->collisionContainer->children.end() && herbdrawItr != this->drawingContainer->children.end()){
+//                         this->collisionContainer->children.erase(herbcollideItr);
+//                         this->drawingContainer->children.erase(herbdrawItr);
+//                     } 
+
+                    TextAlert* t = new TextAlert(position.x, position.y, "Herb Collected", this->drawingContainer);
                     break;
                 }
                 case 305:{ //bucket
@@ -433,6 +441,7 @@ void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectCon
                     // } 
                     obj->position.x = -100000;
                     obj->position.y = -100000;
+                    TextAlert* t = new TextAlert(position.x, position.y, "Bucket Collected", this->drawingContainer);
                     break;
                 }
             }
