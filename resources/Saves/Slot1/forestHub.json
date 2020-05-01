@@ -14,7 +14,7 @@
             "posX": 700,
             "posY": -100,
             "rotation": 0.0,
-            "scene_path": "resources/Saves/Slot1/forest1.json",
+            "scene_path": "./resources/Saves/Slot1/forest1.json",
             "subtype": 108,
             "width": 100
         },
@@ -32,7 +32,7 @@
             "posX": 400,
             "posY": 700,
             "rotation": 0.0,
-            "scene_path": "resources/Saves/Slot1/forest2.json",
+            "scene_path": "./resources/Saves/Slot1/forest2.json",
             "subtype": 108,
             "width": 100
         },
@@ -50,7 +50,7 @@
             "posX": 1000,
             "posY": 300,
             "rotation": 0.0,
-            "scene_path": "resources/Saves/Slot1/forest3.json",
+            "scene_path": "./resources/Saves/Slot1/forest3.json",
             "subtype": 108,
             "width": 100
         },
@@ -68,7 +68,7 @@
             "posX": 0,
             "posY": 300,
             "rotation": 0.0,
-            "scene_path": "./resources/scenes/village.json",
+            "scene_path": "./resources/Saves/Slot1/village.json",
             "subtype": 108,
             "width": 100
         },
@@ -1909,21 +1909,22 @@
             "width": 100
         },
         {
-            "alpha": 255,
-            "basePathFolder": "./resources/tiles/forestTiles/",
-            "height": 100,
-            "id": "treeTop91",
-            "isStatic": true,
-            "isStaticBaseFile": "treeTop.png",
-            "isVisible": true,
-            "parent": "",
+            "id": "SceneTrigger",
+            "basePathFolder": "./resources/items/",
+            "isStaticBaseFile": "scene_trigger",
+            "scene_path": "./resources/Saves/Slot1/village.json",
+            "posX": 0,
+            "posY": 300,
             "pivotX": 0,
             "pivotY": 0,
-            "posX": 800,
-            "posY": 700,
             "rotation": 0.0,
-            "subtype": 2,
-            "width": 100
+            "alpha": 255,
+            "isVisible": true,
+            "isStatic": true,
+            "parent": "foreground",
+            "width": 100,
+            "height": 100,
+            "subtype": 108
         },
         {
             "alpha": 255,
@@ -2074,6 +2075,22 @@
         },
         {
             "alpha": 255,
+            "basePathFolder": "./resources/npcs/",
+            "height": 100,
+            "id": "lumberjack",
+            "isStatic": true,
+            "isVisible": true,
+            "parent": "foreground",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 300,
+            "posY": 400,
+            "rotation": 0.0,
+            "subtype": 21,
+            "width": 100
+        },
+        {
+            "alpha": 255,
             "basePathFolder": "./resources/bosses/",
             "height": 100,
             "id": "dragon",
@@ -2086,22 +2103,6 @@
             "posY": 0,
             "rotation": 0.0,
             "subtype": 5,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/npcs/",
-            "height": 100,
-            "id": "lumberjack",
-            "isStatic": true,
-            "isVisible": true,
-            "parent": "foreground",
-            "pivotX": 0,
-            "pivotY": 0,
-            "posX": 300,
-            "posY": 300,
-            "rotation": 0.0,
-            "subtype": 21,
             "width": 100
         }
     ]

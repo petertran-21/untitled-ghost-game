@@ -1,22 +1,22 @@
 {
     "sprites": [
         {
-            "alpha": 255,
-            "basePathFolder": "./resources/items/",
-            "height": 100,
             "id": "SceneTrigger",
-            "isStatic": true,
+            "basePathFolder": "./resources/items/",
             "isStaticBaseFile": "scene_trigger",
-            "isVisible": true,
-            "parent": "foreground",
-            "pivotX": 0,
-            "pivotY": 0,
+            "scene_path": "./resources/Saves/Slot1/beachEntrance.json",
             "posX": 900,
             "posY": 0,
+            "pivotX": 0,
+            "pivotY": 0,
             "rotation": 0.0,
-            "scene_path": "./resources/scenes/beachEntrance.json",
-            "subtype": 108,
-            "width": 100
+            "alpha": 255,
+            "isVisible": true,
+            "isStatic": true,
+            "parent": "foreground",
+            "width": 100,
+            "height": 100,
+            "subtype": 108
         },
         {
             "alpha": 255,
@@ -1584,6 +1584,23 @@
         },
         {
             "alpha": 255,
+            "basePathFolder": "./resources/items/",
+            "height": 100,
+            "id": "HornFragment",
+            "isStatic": true,
+            "isStaticBaseFile": "horn_fragment_1.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": -1440,
+            "posY": 80,
+            "rotation": 0.0,
+            "subtype": 30,
+            "width": 100
+        },
+        {
+            "alpha": 255,
             "basePathFolder": "./resources/tiles/swampTiles/",
             "height": 100,
             "id": "859484421",
@@ -1937,6 +1954,22 @@
             "posY": 100,
             "rotation": 0.0,
             "subtype": 2,
+            "width": 100
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/animals/",
+            "height": 100,
+            "id": "snakeBoss",
+            "isStatic": true,
+            "isVisible": true,
+            "parent": "foreground",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": -1000,
+            "posY": -100,
+            "rotation": 0.0,
+            "subtype": 7,
             "width": 100
         },
         {
@@ -3198,37 +3231,21 @@
             "width": 100
         },
         {
-            "alpha": 255,
-            "basePathFolder": "./resources/grendel/",
-            "height": 100,
             "id": "Ghost",
-            "isStatic": true,
+            "basePathFolder": "./resources/grendel/",
             "isStaticBaseFile": "Idle",
-            "isVisible": true,
-            "parent": "foreground",
-            "pivotX": 0,
-            "pivotY": 0,
             "posX": 200,
             "posY": 200,
-            "rotation": 0.0,
-            "subtype": 4,
-            "width": 100
-        },
-        {
-            "alpha": 255,
-            "basePathFolder": "./resources/animals/",
-            "height": 800,
-            "id": "snakeBoss",
-            "isStatic": true,
-            "isVisible": true,
-            "parent": "foreground",
             "pivotX": 0,
             "pivotY": 0,
-            "posX": -600,
-            "posY": -100,
             "rotation": 0.0,
-            "subtype": 7,
-            "width": 800
+            "alpha": 255,
+            "isVisible": true,
+            "isStatic": true,
+            "parent": "foreground",
+            "width": 100,
+            "height": 100,
+            "subtype": 4
         }
     ]
 }

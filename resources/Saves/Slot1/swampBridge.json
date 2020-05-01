@@ -4,7 +4,7 @@
             "id": "SceneTrigger",
             "basePathFolder": "./resources/items/",
             "isStaticBaseFile": "scene_trigger",
-            "scene_path": "./resources/scenes/house.json",
+            "scene_path": "./resources/Saves/Slot1/house.json",
             "posX": -100,
             "posY": 0,
             "pivotX": 0,
@@ -22,7 +22,7 @@
             "id": "SceneTrigger",
             "basePathFolder": "./resources/items/",
             "isStaticBaseFile": "scene_trigger",
-            "scene_path": "./resources/scenes/marshTrail.json",
+            "scene_path": "./resources/Saves/Slot1/marshTrail.json",
             "posX": 1800,
             "posY": 0,
             "pivotX": 0,
@@ -936,6 +936,6 @@
             "width": 100,
             "height": 100,
             "subtype": 4
-        } 
+        }
     ]
 }
