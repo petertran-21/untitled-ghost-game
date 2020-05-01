@@ -6,6 +6,7 @@
 Game* Game::instance;
 SDL_Renderer* Game::renderer;
 unsigned int Game::frameCounter = 0;
+bool Game::quitGame = false;
 
 Game::Game() : DisplayObjectContainer()
 {
@@ -77,6 +78,7 @@ void Game::start(){
 			this->draw(at);
 		}
 
+		if( Game::quitGame ) quit = true;
 		SDL_PollEvent(&event);
 		gameController->setState(event);
 		switch (event.type)

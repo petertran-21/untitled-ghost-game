@@ -96,8 +96,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 			}
 		}
 		if (result == "Quit"){
-			soundManager->playSFX("./resources/sfx/pauseOff.ogg");
-			delete this;
+			Game::quitGame = true;
 		}
 	}
 	if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end() && !UIOpen){
@@ -106,6 +105,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 		UIOpen = !UIOpen;
 	}
 	if (pressedKeys.find(SDL_SCANCODE_Q) != pressedKeys.end() && UIOpen){
+		soundManager->playSFX("./resources/sfx/pauseOff.ogg");
 		this->children.erase(std::remove(this->children.begin(), this->children.end(), UIContainer), this->children.end());
 		UIOpen = false;
 	}

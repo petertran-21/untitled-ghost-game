@@ -19,6 +19,7 @@ public:
 	//Static allows for global reference
 	static SDL_Renderer* renderer;
 	static unsigned int frameCounter;
+	static bool quitGame;
 
 	void start();
 	virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
