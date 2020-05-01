@@ -275,7 +275,6 @@ void MainNPC::resolve_collision(DisplayObject *obj){
     //COLLIDES WITH DOOR
     if (obj->getSubtype() == DOOR_SUBTYPE){
         Door* d = dynamic_cast<Door*>(d);
-        if (d->open) cout<<"IS OPEN"<<endl;
     }
 
     // DEFAULT FOR COLLIDING WITH SOLIDS
