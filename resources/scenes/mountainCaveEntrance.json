@@ -12,7 +12,7 @@
             "pivotX": 0,
             "pivotY": 0,
             "posX": 200,
-            "posY": -600,
+            "posY": -800,
             "rotation": 0.0,
             "scene_path": "./resources/scenes/mountainCave1.json",
             "subtype": 108,
@@ -1514,6 +1514,23 @@
             "rotation": 0.0,
             "subtype": 2,
             "width": 200
+        },
+        {
+            "alpha": 255,
+            "basePathFolder": "./resources/items/",
+            "height": 150,
+            "id": "Boulder",
+            "isStatic": true,
+            "isStaticBaseFile": "boulder_1.png",
+            "isVisible": true,
+            "parent": "",
+            "pivotX": 0,
+            "pivotY": 0,
+            "posX": 200,
+            "posY": -600,
+            "rotation": 0.0,
+            "subtype": 300,
+            "width": 150
         },
         {
             "alpha": 255,

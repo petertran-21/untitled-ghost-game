@@ -26,7 +26,7 @@ void Boulder::resolve_adjacency(DisplayObject* obj, int status){
             case 0: return; break;
             case 1: position.x -= 100; break;
             case 2: position.x += 100; break;
-            case 3: position.y += 100; break;
+            case 3: break;
             case 4: position.y -= 100; break;
         }
     }
