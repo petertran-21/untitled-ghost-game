@@ -38,6 +38,7 @@ public:
 	virtual void draw(AffineTransform &at);
 
 	Camera* camera;
+	Sound* bgmusic;
 private:
 	Scene* scene_1;
 

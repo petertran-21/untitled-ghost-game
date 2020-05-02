@@ -6,6 +6,8 @@ MyGame::MyGame() : Game(1000, 1000)
 	camera = new Camera();
 	scene_1 = new Scene();
 	soundManager = new Sound();
+	bgmusic = new Sound();
+	bgmusic->playSFX("./resources/sfx/village.wav");
 
 	camera->addChild(scene_1);
 	this->addChild(camera);
