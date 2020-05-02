@@ -40,7 +40,7 @@ void MainNPC::draw(AffineTransform &at){
 
 //GENERAL NPC STATES
 void MainNPC::state_idle(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
-    if (state_new) cout << "STATE: IDLE" << endl;
+    //if (state_new) cout << "STATE: IDLE" << endl;
 
     if (is_possessed) state_switch(npc_states::Possessed);
 }
@@ -72,7 +72,7 @@ void MainNPC::state_possessed(set<SDL_Scancode> pressedKeys, Controller::Joystic
 }
 
 void MainNPC::state_moving(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
-    if (state_new) cout << "STATE: MOVING" << endl;
+    //if (state_new) cout << "STATE: MOVING" << endl;
 
     bool is_moving = false;
     //check for movement on controller
@@ -295,7 +295,7 @@ void MainNPC::resolve_collision(DisplayObject *obj){
 
     // DEFAULT FOR COLLIDING WITH SOLIDS
 
-    cout<<"INVENTORY"<<inventory->size()<<endl;
+    //cout<<"INVENTORY"<<inventory->size()<<endl;
 	if (reverseCollisions){
         if (obj && (obj->type == "Land")){
         //check that npcs are overlapping

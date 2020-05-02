@@ -40,11 +40,11 @@ void NPCDoctor::resolve_adjacency(DisplayObject *obj, int status){
         vector<DisplayObject*> herb_to_spend;
         int counter = 0;
 
-        cout<<"DETOX: "<<this->detox<<" "<<this->inventory->size()<<endl;
+        //cout<<"DETOX: "<<this->detox<<" "<<this->inventory->size()<<endl;
 
         //CHECK THAT YOU HAVE HERB
         for (int i = 0; i < inv.size(); i++){
-            cout<<"INV: "<<inv[i]->id<<endl;
+            //cout<<"INV: "<<inv[i]->id<<endl;
             if (inv[i]->id == "Herb"){
                 counter++;
                 herb_to_spend.push_back(inv[i]);
@@ -66,7 +66,7 @@ void NPCDoctor::resolve_adjacency(DisplayObject *obj, int status){
         } 
 
         ability = false;
-        cout<<"DETOX: "<<this->detox<<endl;
+        //cout<<"DETOX: "<<this->detox<<endl;
         return;
 
     }
