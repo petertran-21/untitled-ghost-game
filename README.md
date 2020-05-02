@@ -64,6 +64,7 @@ For PS4 controller:
 - Press **SPACE** to use ability of NPC.
 - Press **P** to pause the game and open the menu.
 - Press **M** to open the game map.
+- Press **F** to boo.
 
 ### Notes
 - We didn't have time for music, so we added start music but that's it!
