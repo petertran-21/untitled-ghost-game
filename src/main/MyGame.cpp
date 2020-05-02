@@ -159,7 +159,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 				allSprites->removeImmediateChild(npcTutorial);
 			}
 			//REPLACE BEACH SCENE LOAD PLS town scene load goes here instead
-			scene_1->loadScene("./resources/Saves/Slot1/beachEntrance.json", container, inventory);
+			scene_1->loadScene("./resources/Saves/Slot1/village.json", container, inventory);
 			playStartSequence = false;
 		}
 		if(pressedKeys.find(SDL_SCANCODE_Q) == pressedKeys.end() && pressedKeys.size() > 0 && startScreenVisible) {
@@ -383,7 +383,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 			}
 			if(townHighlighted && pressedKeys.find(SDL_SCANCODE_RETURN) != pressedKeys.end()) {
 				//REPLACE BEACH SCENE LOAD PLS town scene load goes here instead
-				scene_1->loadScene("./resources/Saves/Slot1/beachEntrance.json", container, inventory);
+				scene_1->loadScene("./resources/Saves/Slot1/village.json", container, inventory);
 				allSprites->removeImmediateChild(mapTutorial);
 				playStartSequence = false;
 			}
