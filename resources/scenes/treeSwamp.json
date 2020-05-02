@@ -38,23 +38,6 @@
         },
         {
             "isStatic": true, 
-            "parent": "foreground", 
-            "subtype": 124, 
-            "pivotX": 0, 
-            "pivotY": 0, 
-            "basePathFolder": "./resources/animals/", 
-            "isStaticBaseFile": "crocodile.png", 
-            "width": 100, 
-            "posY": 400, 
-            "posX": 400, 
-            "isVisible": true, 
-            "alpha": 255, 
-            "rotation": 0.0, 
-            "height": 100, 
-            "id": "Crocodile"
-        }, 
-        {
-            "isStatic": true, 
             "parent": "", 
             "subtype": 2, 
             "pivotX": 0, 
