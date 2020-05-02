@@ -85,7 +85,8 @@ private:
 	AnimatedSprite* loreScreen5;
 	AnimatedSprite* loreScreen6;
 	AnimatedSprite* mapTutorial;
-	AnimatedSprite* grendelTutorial;
+	Ghost* grendelTutorial;
+	NPCArcher* npcTutorial;
 	AnimatedSprite* curChild;
 	bool playStartSequence = true;
 	bool startScreenVisible = true;

@@ -77,12 +77,17 @@ MyGame::MyGame() : Game(1000, 1000)
 	loreScreen6->alpha = 0;
 	loreScreen6->play("ghostColor");
 
-	grendelTutorial = new AnimatedSprite();
-	grendelTutorial->addAnimation("./resources/grendel/","idle",3,36,true,"idle");
-	grendelTutorial->addAnimation("./resources/grendel/","move",4,36,true,"move");
-	grendelTutorial->play("move");
-	grendelTutorial->position.x = 225;
-	grendelTutorial->position.y = 350;
+	grendelTutorial = new Ghost();
+	grendelTutorial->width = 100;
+	grendelTutorial->height = 100;
+	grendelTutorial->position.x = 500;
+	grendelTutorial->position.y = 400;
+
+	npcTutorial = new NPCArcher(container,allSprites,inventory);
+	npcTutorial->width = 100;
+	npcTutorial->height = 100;
+	npcTutorial->position.x = 200;
+	npcTutorial->position.y = 200;
 
 	mapTutorial = new AnimatedSprite();
 	mapTutorial->addAnimation("./resources/map/", "gameMap", 1, 1, true, "plain");
@@ -306,18 +311,16 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 				loreScreen6->alpha = 255;
 				lore6ScreenVisible = true;
 				fadeLoreIn6 = false;
-				loreScreen6->addChild(grendelTutorial);
+				allSprites->addChild(grendelTutorial);
+				allSprites->addChild(npcTutorial);
 			}
 		}
-		if(pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end() && lore6ScreenVisible) {
-			grendelTutorial->position.y -= 5;
-		} else if(pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end() && lore6ScreenVisible) {
-			grendelTutorial->position.y += 5;
-		} else if(pressedKeys.find(SDL_SCANCODE_A) != pressedKeys.end() && lore6ScreenVisible) {
-			grendelTutorial->position.x -= 5;
-		} else if(pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end() && lore6ScreenVisible) {
-			grendelTutorial->position.x += 5;
-		} else if(pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end() && lore6ScreenVisible) {
+		if(pressedKeys.find(SDL_SCANCODE_E) != pressedKeys.end() && lore6ScreenVisible) {
+			grendelTutorial->setIsPossessing(true);
+			grendelTutorial->alpha = 0;
+			npcTutorial->is_possessed = true;
+		}
+		else if(pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end() && lore6ScreenVisible) {
 			fadeLoreOut6 = true;
 		 }
 
