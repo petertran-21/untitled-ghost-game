@@ -26,8 +26,6 @@ Untitled Ghost Game (lovingly shortened to UGG) is a 2D Exploratory Puzzle Game 
 
 **NOTE!!!** The first scene has a slight bug with the camera. To fix it, move the Ghost down, then up!
 
-- Play the game!
-
 ## Resetting the game
 If you want to reset the game, run the following commands...
 - Run `cd resources/`
