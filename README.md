@@ -14,6 +14,27 @@ Untitled Ghost Game (lovingly shortened to UGG) is a 2D Exploratory Puzzle Game 
     - William Wong
     - Joseph Kim
 
+# Installation
+- Unzip the `untitled-ghost-game.zip` folder
+- Open a terminal
+- Run `cd untitled-ghost-game/`
+- Run `cd resources/`
+- Run `python resetScenes.py`
+- Run `cd ..`
+- Run `make`
+- Run `./bin/myGame`
+
+**NOTE!!!** The first scene has a slight bug with the camera. To fix it, move the Ghost down, then up!
+
+- Play the game!
+
+## Resetting the game
+If you want to reset the game, run the following commands...
+- Run `cd resources/`
+- Run `python resetScenes.py`
+- Run `cd ..`
+- Run `make`
+- Run `./bin/myGame`
 
 ## Error Help
 
@@ -28,19 +49,6 @@ If you receive the `fatal error: 'SDL2/SDL_mixer.h' file not found` message upon
 
 Connect your controller to your computer via Bluetooth. There are good tutorials for this on YouTube. Next, run `./bin/myGame`. Note that the controller must be connected via Bluetooth to your computer before you run `./bin/myGame` for it to be recognized in the code! Look for `SDL_NumJoysticks() = 1` to be printed in the terminal.
 
-## Demo for character programming 
-When the demo is started, the beach hub room is shown. Several characters will show up on the screen: ghost, pyromancer, and another NPC.
-
-The following functionalities were implemented for this character:
- - movement of ghost
- - possession of pyromancer NPC by ghost
- - state ability of NPC
- - movement of NPC in cardinal directions (N,E,S,W) when possessed
-
- NPC Possession Instructions:
- - Uncomment line 69 and comment line 72 in MyGame.cpp in order to possess pyromancer NPC. 
- - Comment line 69 and uncomment line 72 in MyGame.cpp in order to possess archer NPC. 
-
 ### Movement w/ Controller
 Move your controller's **left analog stick** to move the character up, down, right, and left. Diagonal movement for ghost is also supported but not for NPC.
 For PS4 controller:
@@ -48,7 +56,7 @@ For PS4 controller:
 - Press **triangle button** to make boo noise. 
 - Press **circle button** to use NPC's ability (only can do this if already possessing NPC).
 
-(Did not test xBox controller, but PS4 controller was tested.)
+(Tested on Xbox One and PS4 controllers)
 
 ### Movement w/ Keyboard
 - Press **WASD** to move character up, left, down, and right. Diagnoal movmeent for ghost is also supported but not for NPC. 
@@ -59,17 +67,5 @@ For PS4 controller:
 - Press **P** to pause the game and open the menu.
 - Press **M** to open the game map.
 
-### Enemy Programming Demo
-Implemented some NPC and object interactions. You can do the following with the NPCs present:
-- All NPCs can collect item pouch object
-- Pyromancer NPC can set fire to shrub (either on the shurb or next to shrub)
-- Collectors will pick up a crab on collision, the crab then sticks to your position until you press space. Then the crab is placed at the adjacent tile (in the direction you are facing) and you have a about a second or so before you pick it up again
-- Operators can turn on/off valves by standing next to them and pressing space. The corresponding water jets linked to the valve will turn on and create a stream of water. If an npc or crab steps into the water, they get pushed to the end of the stream. 
-- Excavators can dig up rocks by standing next to them and pressing space. This will allow npcs to pass through that space
-
-
-
 ### Notes
-- We connected the beach and forest areas directly for the sake of this demo.
-- The forest area is currently not interactive, but you can navigate the area freely.
-- The beach is mostly interactive but some of the object collisions may not be working.
+- We didn't have time for music, so we added start music but that's it!
