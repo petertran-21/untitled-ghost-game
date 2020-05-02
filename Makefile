@@ -1,5 +1,11 @@
 TARGET_EXEC ?= myGame
 
+extensions:
+	@echo "---> setting resetScenes.py permissions"
+	chmod 755 ./resources/resetScenes.py
+	@echo "---> running resetScenes.py"
+	$(python) ./resources/resetScenes.py
+
 BUILD_DIR ?= ./bin
 SRC_DIRS ?= ./src
 
