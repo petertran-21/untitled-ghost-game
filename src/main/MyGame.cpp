@@ -142,6 +142,10 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 	if(playStartSequence) {
 		if(pressedKeys.find(SDL_SCANCODE_Q) != pressedKeys.end()) {
 			allSprites->removeImmediateChild(curChild);
+			if(lore6ScreenVisible) {
+				allSprites->removeImmediateChild(grendelTutorial);
+				allSprites->removeImmediateChild(npcTutorial);
+			}
 			//REPLACE BEACH SCENE LOAD PLS town scene load goes here instead
 			scene_1->loadScene("./resources/Saves/Slot1/beachEntrance.json", container, inventory);
 			playStartSequence = false;
