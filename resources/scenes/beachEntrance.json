@@ -1758,7 +1758,6 @@
             "alpha": 255,
             "basePathFolder": "./resources/grendel/",
             "height": 100,
-            "id": "Ghost",
             "isStatic": true,
             "isStaticBaseFile": "Idle",
             "isVisible": true,

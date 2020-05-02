@@ -157,7 +157,7 @@ void Ghost::state_possessing(set<SDL_Scancode> pressedKeys, Controller::Joystick
 
 		if (npc == NULL){
 			state_switch(ghost_states::Idle);
-			//cout << "Yuck" << endl;
+			
 			return;
 		}
 

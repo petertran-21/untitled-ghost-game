@@ -109,7 +109,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	 */
 	mapUI = new Map();
 	UIContainer = new DisplayObjectContainer();
-	inventoryUI = new Inventory(100,100,300,300);
+	inventoryUI = new Inventory(100,100,200,120);
 	selectionMenuTest = new SelectionMenu(20, 20, 250, 0);
 	selectionMenuTest->addToMenu("Save");
 	selectionMenuTest->addToMenu("Quit");

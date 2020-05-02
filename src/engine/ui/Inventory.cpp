@@ -31,10 +31,13 @@ void Inventory::draw(AffineTransform &at){
             break;
         }
         DisplayObject* temp=new DisplayObject(this->entries[i]->id,this->entries[i]->imgPath);
-
-        temp->position.x=i*100;
-        if(i>4)
-            temp->position.y=100; //another row, so it's 2 rows x 4 columns ideally
+        temp->width=50;
+        temp->height=50;
+        temp->position.x=i*50;
+        if(i>3){
+            temp->position.x=((i-1)%4)*50;
+            temp->position.y=50; //another row, so it's 2 rows x 4 columns ideally
+        }
         this->addChild(temp);
     }
     DisplayObjectContainer::draw(at);
