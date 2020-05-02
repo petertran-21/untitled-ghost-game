@@ -18,7 +18,7 @@ Ghost::Ghost() : AnimatedSprite("Ghost"){
 
 	//eventually replace the following with "recourses/PlayerSprites/"
 	this->addAnimation("./resources/grendel/","idle",3,12,true,"idle");
-	this->addAnimation("./resources/grendel/","move",4,12,true,"move");
+	this->addAnimation("./resources/grendel/","move",4,24,true,"move");
 
 	this->play("move");
 }

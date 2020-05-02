@@ -22,6 +22,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	startScreen->width = 1000;
 	startScreen->height = 1000;
 	startScreen->play("main");
+	curChild = startScreen;
 
 	// stone henge
 	loreScreen1 = new AnimatedSprite();
@@ -134,7 +135,6 @@ MyGame::~MyGame()
 
 void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
 	if(playStartSequence) {
-		curChild = startScreen;
 		if(pressedKeys.find(SDL_SCANCODE_Q) != pressedKeys.end()) {
 			allSprites->removeImmediateChild(curChild);
 			//REPLACE BEACH SCENE LOAD PLS town scene load goes here instead
