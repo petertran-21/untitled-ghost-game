@@ -383,7 +383,7 @@ void Scene::SaveScene(){
     for (int index = 0; index < j["sprites"].size(); index++){
         int subtype = j["sprites"].at(index)["subtype"];
         
-        if (subtype != SPRITE_SUBTYPE && subtype != SCENE_TRIGGER_SUBTYPE && subtype != DISPLAYOBJECTCONTAINER_SUBTYPE && subtype != GHOST_SUBTYPE){
+        if (subtype != SPRITE_SUBTYPE && subtype != SCENE_TRIGGER_SUBTYPE && subtype != DISPLAYOBJECTCONTAINER_SUBTYPE && subtype != GHOST_SUBTYPE && subtype != LOG_SUBTYPE && subtype != GEM_SUBTYPE){
             cout << "Save Scene Erasing" << j["sprites"].at(index)["id"] << endl;
             j["sprites"].erase(j["sprites"].begin() + index);
             index--;
@@ -393,7 +393,7 @@ void Scene::SaveScene(){
     for (int i = 0; i < foreground->numChildren(); i++) {
         DisplayObject* sprite = foreground->getChild(i);
         int subtype = sprite->getSubtype();
-        if (subtype != SPRITE_SUBTYPE && subtype != SCENE_TRIGGER_SUBTYPE && subtype != DISPLAYOBJECTCONTAINER_SUBTYPE && subtype != GHOST_SUBTYPE && sprite->id != "EnvObj") {
+        if (subtype != SPRITE_SUBTYPE && subtype != SCENE_TRIGGER_SUBTYPE && subtype != DISPLAYOBJECTCONTAINER_SUBTYPE && subtype != GHOST_SUBTYPE && sprite->id != "EnvObj" && subtype != LOG_SUBTYPE && subtype != GEM_SUBTYPE) {
             json jsonSprite = {
                 {"id", sprite->id},
                 {"basePathFolder", sprite->imgPath},
