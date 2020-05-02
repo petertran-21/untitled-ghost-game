@@ -22,6 +22,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	startScreen->width = 1000;
 	startScreen->height = 1000;
 	startScreen->play("main");
+	curChild = startScreen;
 
 	// stone henge
 	loreScreen1 = new AnimatedSprite();
@@ -75,6 +76,18 @@ MyGame::MyGame() : Game(1000, 1000)
 	loreScreen6->position.y = 60;
 	loreScreen6->alpha = 0;
 	loreScreen6->play("ghostColor");
+
+	grendelTutorial = new Ghost();
+	grendelTutorial->width = 100;
+	grendelTutorial->height = 100;
+	grendelTutorial->position.x = 500;
+	grendelTutorial->position.y = 400;
+
+	npcTutorial = new NPCArcher(container,allSprites,inventory);
+	npcTutorial->width = 100;
+	npcTutorial->height = 100;
+	npcTutorial->position.x = 200;
+	npcTutorial->position.y = 200;
 
 	mapTutorial = new AnimatedSprite();
 	mapTutorial->addAnimation("./resources/map/", "gameMap", 1, 1, true, "plain");
@@ -139,7 +152,17 @@ MyGame::~MyGame()
 
 void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
 	if(playStartSequence) {
-		if(pressedKeys.size() > 0 && startScreenVisible) {
+		if(pressedKeys.find(SDL_SCANCODE_Q) != pressedKeys.end()) {
+			allSprites->removeImmediateChild(curChild);
+			if(lore6ScreenVisible) {
+				allSprites->removeImmediateChild(grendelTutorial);
+				allSprites->removeImmediateChild(npcTutorial);
+			}
+			//REPLACE BEACH SCENE LOAD PLS town scene load goes here instead
+			scene_1->loadScene("./resources/Saves/Slot1/beachEntrance.json", container, inventory);
+			playStartSequence = false;
+		}
+		if(pressedKeys.find(SDL_SCANCODE_Q) == pressedKeys.end() && pressedKeys.size() > 0 && startScreenVisible) {
 			fadeStart = true;
 		}
 		if(fadeStart) {
@@ -152,6 +175,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 		if(!startScreenVisible && !fadeLoreIn1 && !lore1ScreenVisible && !fadeLoreOut1 && !screen1Complete) {
 			allSprites->removeImmediateChild(startScreen);
 			allSprites->addChild(loreScreen1);
+			curChild = loreScreen1;
 			fadeLoreIn1 = true;
 		}
 		if(fadeLoreIn1 && !lore1ScreenVisible) {
@@ -162,7 +186,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 				fadeLoreIn1 = false;
 			}
 		}
-		if(pressedKeys.size() > 0 && lore1ScreenVisible) {
+		if(pressedKeys.find(SDL_SCANCODE_Q) == pressedKeys.end() && pressedKeys.size() > 0 && lore1ScreenVisible) {
 			fadeLoreOut1 = true;
 		}
 		if(fadeLoreOut1 && lore1ScreenVisible) {
@@ -179,6 +203,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 		if(screen1Complete && !lore1ScreenVisible && !fadeLoreIn2 && !lore2ScreenVisible && !fadeLoreOut2 && !screen2Complete) {
 			allSprites->removeImmediateChild(loreScreen1);
 			allSprites->addChild(loreScreen2);
+			curChild = loreScreen2;
 			fadeLoreIn2 = true;
 		}
 		if(fadeLoreIn2 && !lore2ScreenVisible) {
@@ -189,7 +214,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 				fadeLoreIn2 = false;
 			}
 		}
-		if(pressedKeys.size() > 0 && lore2ScreenVisible) {
+		if(pressedKeys.find(SDL_SCANCODE_Q) == pressedKeys.end() && pressedKeys.size() > 0 && lore2ScreenVisible) {
 			fadeLoreOut2 = true;
 		}
 		if(fadeLoreOut2 && lore2ScreenVisible) {
@@ -217,7 +242,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 				fadeLoreIn3 = false;
 			}
 		}
-		if(pressedKeys.size() > 0 && lore3ScreenVisible) {
+		if(pressedKeys.find(SDL_SCANCODE_Q) == pressedKeys.end() && pressedKeys.size() > 0 && lore3ScreenVisible) {
 			fadeLoreOut3 = true;
 		}
 		if(fadeLoreOut3 && lore3ScreenVisible) {
@@ -235,6 +260,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 		if(screen3Complete && !lore3ScreenVisible && !fadeLoreIn4 && !lore4ScreenVisible && !fadeLoreOut4 && !screen4Complete) {
 			allSprites->removeImmediateChild(loreScreen3);
 			allSprites->addChild(loreScreen4);
+			curChild = loreScreen4;
 			fadeLoreIn4 = true;
 		}
 		if(fadeLoreIn4 && !lore4ScreenVisible) {
@@ -245,7 +271,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 				fadeLoreIn4 = false;
 			}
 		}
-		if(pressedKeys.size() > 0 && lore4ScreenVisible) {
+		if(pressedKeys.find(SDL_SCANCODE_Q) == pressedKeys.end() && pressedKeys.size() > 0 && lore4ScreenVisible) {
 			fadeLoreOut4 = true;
 		}
 		if(fadeLoreOut4 && lore4ScreenVisible) {
@@ -263,6 +289,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 		if(screen4Complete && !lore4ScreenVisible && !fadeLoreIn5 && !lore5ScreenVisible && !fadeLoreOut5 && !screen5Complete) {
 			allSprites->removeImmediateChild(loreScreen4);
 			allSprites->addChild(loreScreen5);
+			curChild = loreScreen5;
 			fadeLoreIn5 = true;
 		}
 		if(fadeLoreIn5 && !lore5ScreenVisible) {
@@ -273,7 +300,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 				fadeLoreIn5 = false;
 			}
 		}
-		if(pressedKeys.size() > 0 && lore5ScreenVisible) {
+		if(pressedKeys.find(SDL_SCANCODE_Q) == pressedKeys.end() && pressedKeys.size() > 0 && lore5ScreenVisible) {
 			fadeLoreOut5 = true;
 		}
 		if(fadeLoreOut5 && lore5ScreenVisible) {
@@ -291,6 +318,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 		if(screen5Complete && !lore5ScreenVisible && !fadeLoreIn6 && !lore6ScreenVisible && !fadeLoreOut6 && !screen6Complete) {
 			allSprites->removeImmediateChild(loreScreen5);
 			allSprites->addChild(loreScreen6);
+			curChild = loreScreen6;
 			fadeLoreIn6 = true;
 		}
 		if(fadeLoreIn6 && !lore6ScreenVisible) {
@@ -299,11 +327,19 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 				loreScreen6->alpha = 255;
 				lore6ScreenVisible = true;
 				fadeLoreIn6 = false;
+				allSprites->addChild(grendelTutorial);
+				allSprites->addChild(npcTutorial);
 			}
 		}
-		if(pressedKeys.size() > 0 && lore6ScreenVisible) {
-			fadeLoreOut6 = true;
+		if(pressedKeys.find(SDL_SCANCODE_E) != pressedKeys.end() && lore6ScreenVisible) {
+			grendelTutorial->setIsPossessing(true);
+			grendelTutorial->alpha = 0;
+			npcTutorial->is_possessed = true;
 		}
+		else if(pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end() && lore6ScreenVisible) {
+			fadeLoreOut6 = true;
+		 }
+
 		if(fadeLoreOut6 && lore6ScreenVisible) {
 			loreScreen6->alpha = loreScreen6->alpha - 5;
 			if(loreScreen6->alpha <= 0) {
@@ -318,7 +354,9 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 		//
 		if(!mapScreenVisible && screen1Complete && screen2Complete && screen3Complete && screen4Complete && screen5Complete && screen6Complete) {
 			allSprites->removeImmediateChild(loreScreen6);
+			allSprites->removeImmediateChild(grendelTutorial);
 			allSprites->addChild(mapTutorial);
+			curChild = mapTutorial;
 			mapScreenVisible = true;
 			mapTutorial->play("tutorial");
 		}
