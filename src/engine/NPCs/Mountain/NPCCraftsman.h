@@ -16,10 +16,9 @@ class NPCCraftsman : public MainNPC{
     public:
         NPCCraftsman(DisplayObjectContainer* container, DisplayObjectContainer* allSprites, vector<DisplayObject*> &passedInventory);
         void state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
-        DisplayObjectContainer* collisionContainer;
-
+        
         bool ability = false;
-
+        void resolve_collision(DisplayObject *obj);
         void resolve_adjacency(DisplayObject *obj, int status);
 };
 

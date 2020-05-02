@@ -3,6 +3,7 @@
 
 #include "../Game.h"
 #include "../DisplayObjectContainer.h"
+#include "../AnimatedSprite.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <string>
@@ -41,17 +42,29 @@ public:
     void setFontColor(int r, int g, int b);
     void setFontColor(SDL_Color color);
     void setFontSize(int sz);
-    
+
     virtual void draw(AffineTransform &at);
 
     Text* text;
 };
 
+class TextAlert : public DisplayObjectContainer{
+public:
+    // Note: A TextBox consists of both a box object (for background to text) and a Text class which contains the actual text content.
+    TextAlert(int posX, int posY, std::string content, DisplayObjectContainer* allSprites);
+    void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
+
+    DisplayObjectContainer* drawingContainer;
+
+    Text* text;
+};
+
+
 // Effectively a TextBox with slightly altered functionality.
 class SelectionMenu : public DisplayObjectContainer{
 public:
     SelectionMenu(int posX = 0, int posY = 0, int width = 400, int height = 0);
-    
+
     void addToMenu(std::string entry);
     void removeFromMenu(std::string entry);
     std::string getCurrentlySelected();
@@ -72,7 +85,7 @@ public:
 class Checklist : public DisplayObjectContainer{
 public:
     Checklist(int posX = 1025, int posY = 525, int width = 400, int height = 200);
-    
+
     void addEntry(std::string entry);
     void removeEntry(std::string entry);
     void completeEntry(std::string entry);
@@ -91,15 +104,30 @@ class Inventory : public DisplayObjectContainer{
 public:
     Inventory(int posX = 1025, int posY = 525, int width = 400, int height = 200);
     
-    void addEntry(std::string id,std::string path);
-    void removeEntry(std::string entry);
-
     ~Inventory();
 
     bool active;        // The selection menu should not start checking tasks off unless it's active
     std::vector<DisplayObject*> entries;   // The actual reference to object images are added to the 'children' attribute inherited from DOC.
+    TextBox* label;
 
     virtual void draw(AffineTransform &at);
+};
+
+class Map : public AnimatedSprite {
+public:
+    Map();
+    ~Map();
+
+    bool mountainHighlighted = false;
+    bool forestHighlighted = false;
+    bool swampHighlighted = false;
+    bool beachHighlighted = false;
+    bool townHighlighted = false;
+
+    bool active = false;
+
+    virtual void draw(AffineTransform &at);
+    virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 };
 
 #endif

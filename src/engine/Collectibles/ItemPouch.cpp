@@ -12,7 +12,3 @@ ItemPouch::ItemPouch(DisplayObjectContainer* container):MainCollectibles(){
     container->addChild(this);
     this->subtype = ITEMPOUCH_SUBTYPE;
 }
-
-void ItemPouch::resolve_collision(DisplayObject *obj){   
-
-}

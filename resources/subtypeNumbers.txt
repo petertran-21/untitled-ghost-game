@@ -18,18 +18,18 @@ For referencing which number corresponds to each subtype of object due to C++ no
 15: Arrow
 16: Crab
 17: Fire
-18: NPCCollector
-19: NPCExcavator
-20: NPCOperator
-21: NPCLumberjack
-451: NPCPyromancer
-22: NPCArcher
+18: NPCCollector -
+19: NPCExcavator -
+20: NPCOperator -
+21: NPCLumberjack -
+451: NPCPyromancer -
+22: NPCArcher -
 23: NPCSwordsman
 24: NPCVillager
 25: NPCCraftsman
-26: NPCStrongman
+26: NPCStrongman - 
 27: NPCDoctor
-28: NPCFisherman
+28: NPCFisherman -
 29: NPCSkeleton
 30: HornFragment
 31: NPCBuilder
@@ -59,3 +59,6 @@ For referencing which number corresponds to each subtype of object due to C++ no
 304: Sign
 305: Bucket
 306: MountainTree
+307: FallenTree
+400: ForestDoor
+500: Monument

@@ -8,6 +8,10 @@ Inventory::Inventory(int posX, int posY, int width, int height) : DisplayObjectC
     this->position.y = posY;
     this->width = width;
     this->height = height;
+    this->label = new TextBox("Inventory", 0, -65, width, 65);
+    this->label->children.back()->position.x += (width / 2) - 50;
+    this->label->children.back()->position.y -= 20;
+    this->addChild(this->label);
     // DisplayObject* a = new DisplayObject();
     // this->entries.push_back(a);
 
@@ -17,37 +21,21 @@ Inventory::~Inventory(){
     DisplayObjectContainer::removeThis();
 }
 
-/* TO-DO: Can I skip the adding/removing as a whole and just update InventoryUI (in myGame) to = inventory?
-*I don't think I even need addEntry, as the adding can occur via MainNPC's collision_resolution 
-*/
-
-/*
-void Inventory::addEntry(DisplayObject obj){ //**to pass in a DO** or a std::string id and std::string imgPath...?
-    this->entries.push_back(obj);
-    DisplayObjectContainer* newItem = new DisplayObjectContainer(id,path);
-    this->addChild(newItem);
-
-    // Offset menu options.                                         // remember indexed at 0
-    this->children.back()->position.x += (100 * (this->entries.size() - 1));
-}
-*/
-
-/*Come to think of it, do I even need this method below in here? Shouldn't this logic be in the files handling
-* interactions because they can just manipulate the inventory that myGame will just read from?
-*/
-
-/*
-void Inventory::removeEntry(std::string id){ //if I take in DOs, can I search via id and delete appropriately? Or do I need to pass in DOs
-    std::vector<DisplayObject> entries = this->entries; 
-    entries.erase(std::remove_if(entries.begin(), entries.end(), [&](const DisplayObject & o){return o.id==id;}), entries.end());
-
-    //DisplayObjectContainer* removeThis = new DisplayObjectContainer(id,);
-    this->removeImmediateChild(id);        // Remove from the 'children' vector, which SelectionMenu inherits from DOC.
-    // delete removeThis;
-}
-*/
-
 
 void Inventory::draw(AffineTransform &at){
+    for(int i = 0; i < this->entries.size(); i++){
+        if(this->entries[i]->type == "TextBox"){
+            continue;
+        }
+        if(i > 8){
+            break;
+        }
+        DisplayObject* temp=new DisplayObject(this->entries[i]->id,this->entries[i]->imgPath);
+
+        temp->position.x=i*100;
+        if(i>4)
+            temp->position.y=100; //another row, so it's 2 rows x 4 columns ideally
+        this->addChild(temp);
+    }
     DisplayObjectContainer::draw(at);
 }

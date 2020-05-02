@@ -22,6 +22,7 @@ CollisionSystem::~CollisionSystem(){
 //to be checked (via a single call to watchForCollisions) below.
 void CollisionSystem::update(){
   watchForCollisions("Ghost", "NPC");
+  watchForCollisions("Ghost", "Monument");
   watchForCollisions("Ghost", "SceneTrigger");
   watchForCollisions("NPC", "NPC");
   watchForCollisions("NPC", "NPCObj");
@@ -105,6 +106,9 @@ void CollisionSystem::watchForCollisions(string type1, string type2){
             }
             else if ((type1 == "NPC") && (type2 == "Land")){
               resolveCollision_NPC_Land(inView[i], inView[j]);
+            }
+            else if ((type1 == "Ghost") && (type2 == "Monument")){
+              resolveCollision_Ghost_NPCObj(inView[i], inView[j]);
             }
             else{
               // resolveCollision(inView[i], inView[j],
@@ -694,6 +698,17 @@ void CollisionSystem::resolveCollision_SceneTrigger(DisplayObject* triggerObj, D
       collisionContainer->children.erase(itr);
     }
 
+    DisplayObjectContainer* nextForeground = static_cast<DisplayObjectContainer*>(next->getChild(1));
+    if (trigger->ghost_pos.x != -5000) {
+      for (int i = 0; i < nextForeground->numChildren(); i++){
+          if (nextForeground->getChild(i)->getSubtype() == GHOST_SUBTYPE){
+            Ghost* new_ghost = dynamic_cast<Ghost*>(nextForeground->getChild(i));
+            new_ghost->position = trigger->ghost_pos;
+            cout << "Changin new ghost position to " << new_ghost->position.x;
+          }
+        }
+    }
+
     if (ghost->getIsPosessing() && ghost->npc != NULL) {
       MainNPC* npc = ghost->npc;
       DisplayObjectContainer* curForeground = static_cast<DisplayObjectContainer*>(current->getChild(1));
@@ -703,7 +718,7 @@ void CollisionSystem::resolveCollision_SceneTrigger(DisplayObject* triggerObj, D
           curForeground->children.erase(curForeground->children.begin() + i);
         }
       }
-      DisplayObjectContainer* nextForeground = static_cast<DisplayObjectContainer*>(next->getChild(1));
+      
       npc->parent = nextForeground;
       npc->drawingContainer = nextForeground;
       nextForeground->addChild(npc);

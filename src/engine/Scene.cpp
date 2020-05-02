@@ -62,7 +62,14 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 if (sprite["isStaticBaseFile"] == "ocean.png" ||
                     sprite["isStaticBaseFile"] == "water.png" ||
                     sprite["isStaticBaseFile"] == "caveWall.png" ||
-                    sprite["isStaticBaseFile"] == "treeTop.png"
+                    sprite["isStaticBaseFile"] == "treeTop.png" ||
+                    sprite["isStaticBaseFile"] == "mountainCorner1.png" ||
+                    sprite["isStaticBaseFile"] == "mountainCorner2.png" ||
+                    sprite["isStaticBaseFile"] == "mountainCorner3.png" ||
+                    sprite["isStaticBaseFile"] == "mountainSide.png" ||
+                    sprite["isStaticBaseFile"] == "mountainSide1.png" ||
+                    sprite["isStaticBaseFile"] == "cavePitRight.png" ||
+                    sprite["isStaticBaseFile"] == "cavePitLeft.png"
                 ){
                     unit->type = "Wall";
                     Collisioncontainer->addChild(unit);
@@ -107,6 +114,9 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 break;
             case NPCSKELETON_SUBTYPE:
                 unit = new NPCSkeleton(Collisioncontainer, foreground, inventory);
+                break;
+            case FORESTDOOR_SUBTYPE:
+                unit = new ForestDoor(Collisioncontainer, inventory);
                 break;
             /*--------------------------Beach--------------------------*/
             case VALVE_SUBTYPE:
@@ -161,8 +171,19 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             case SWAMPTREE_SUBTYPE:
                 unit = new SwampTree(Collisioncontainer, foreground);
                 break;
+            case SWAMPBRIDGE_SUBTYPE:
+                if ((sprite["id"]).get<std::string>().find("notbuilt") != std::string::npos) {
+                    unit = new SwampBridge(Collisioncontainer, false);
+                }
+                else{
+                    unit = new SwampBridge(Collisioncontainer, true);
+                }
+                break;
             case CRAFTSTATION_SUBTYPE:
                 unit = new CraftStation(Collisioncontainer);
+                break;
+            case POISONGAS_SUBTYPE:
+                unit = new PoisonGas(Collisioncontainer);
                 break;
             case SNAKE_SUBTYPE:
                 unit = new Snake(Collisioncontainer, foreground);
@@ -187,35 +208,30 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             case NPCSTRONGMAN_SUBTYPE:
                 unit = new NPCStrongman(Collisioncontainer, foreground, inventory);
                 break;
-
             case NPCCRAFTSMAN_SUBTYPE:
                 unit = new NPCCraftsman(Collisioncontainer, foreground, inventory);
                 break;
-
             case BOULDER_SUBTYPE:
                 unit = new Boulder(Collisioncontainer);
                 break;
-            
             case MINERAL_SUBTYPE:
                 unit = new Mineral(Collisioncontainer);
                 break;
-
             case CAVELAKE_SUBTYPE:
                 unit = new CaveLake(Collisioncontainer);
                 break;
-
             case WORKBENCH_SUBTYPE:
                 unit = new Workbench(Collisioncontainer);
                 break;
-
             case SIGN_SUBTYPE:
                 unit = new Sign(Collisioncontainer);
                 break;
-
+            case FALLENTREE_SUBTYPE:
+                unit = new FallenTree(Collisioncontainer);
+                break;
             case BUCKET_SUBTYPE:
                 unit = new Bucket(Collisioncontainer);
                 break;
-
             case MOUNTAINTREE_SUBTYPE:
                 unit = new MountainTree(Collisioncontainer);
                 break;
@@ -237,9 +253,12 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             case HORNFRAGMENT_SUBTYPE:
                 unit = new HornFragment(Collisioncontainer);
                 break;
+            case MONUMENT_SUBTYPE:
+                unit = new Monument(Collisioncontainer, inventory);
+                break;
             case SCENE_TRIGGER_SUBTYPE:
                 unit = new SceneTrigger(Collisioncontainer, sprite["scene_path"]);     
-                Collisioncontainer->addChild(unit);        
+                Collisioncontainer->addChild(unit);
                 break;
 
         }
@@ -257,6 +276,11 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             unit->width = sprite["width"];
             unit->height = sprite["height"];
             unit->subtype = sprite["subtype"];
+
+            if (unit->getSubtype() == SCENE_TRIGGER_SUBTYPE && sprite.find("ghostX") != sprite.end()){
+                dynamic_cast<SceneTrigger*>(unit)->ghost_pos = {sprite["ghostX"], sprite["ghostY"]};
+                cout << "Scene Trigger X Position " << sprite["ghostX"] << endl;
+            }
 
             if (sprite["parent"] == "") {
                 background->addChild(unit);

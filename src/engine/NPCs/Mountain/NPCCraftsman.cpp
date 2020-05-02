@@ -10,6 +10,7 @@ NPCCraftsman::NPCCraftsman(DisplayObjectContainer* container, DisplayObjectConta
     this->collisionContainer = container;
     container->addChild(this);
     this->drawingContainer = allSprites;
+    this->subtype = NPCCRAFTSMAN_SUBTYPE;
 
     this->inventory = &passedInventory;
 }
@@ -22,6 +23,12 @@ void NPCCraftsman::state_ability(set<SDL_Scancode> pressedKeys, Controller::Joys
     state_switch(npc_states::Possessed);
 }
 
+void NPCCraftsman::resolve_collision(DisplayObject *obj){
+    MainNPC::resolve_collision(obj);
+    MainNPC::resolve_collectible_collision(obj, this->collisionContainer, this->drawingContainer);
+}
+
+
 void NPCCraftsman::resolve_adjacency(DisplayObject *obj, int status){
     Mineral * m = dynamic_cast<Mineral*>(obj);
     CaveLake * c = dynamic_cast<CaveLake*>(obj);
@@ -29,12 +36,13 @@ void NPCCraftsman::resolve_adjacency(DisplayObject *obj, int status){
     Workbench * w = dynamic_cast<Workbench*>(obj);
 
     vector<DisplayObject*> inv = *inventory;
-
+    
     //MINE MINERAL
-    if (m && ability){
+    if (m && ability && !m->mined){
 
         if (status != 0 && !m->mined){
             //ADD ITEM TO INVENTORY
+            TextAlert* t = new TextAlert(this->position.x, this->position.y, "Mineral Collected", this->drawingContainer);
             DisplayObject* item = new DisplayObject(m->id,"./resources/items/mineral_1.png");     
             inventory->push_back(item);
 
@@ -47,18 +55,19 @@ void NPCCraftsman::resolve_adjacency(DisplayObject *obj, int status){
 
     //MINE LAKE W/BUCKET
     if (c && ability){
-        
+
         if (status != 0 && !c->mined){
 
             //make sure you have bucket
             for (int i = 0; i < inv.size(); i++){
+                cout<<"INV ID: "<<inv[i]->id<<endl;
                 if (inv[i]->id == "Bucket"){
                     std::vector<DisplayObject*>::iterator position = std::find(inventory->begin(), inventory->end(), inv[i]);
                     if (position != inventory->end()){
                         inventory->erase(position);
                         cout << "FILLED BUCKET" << endl;
                     }
-                    //ADD ITEM TO INVENTORY
+                    TextAlert* t = new TextAlert(this->position.x, this->position.y, "Filled Water Bucket", this->drawingContainer);
                     DisplayObject* item = new DisplayObject("Water Bucket","./resources/items/bucket_full_1.png");     
                     inventory->push_back(item);
                     c->mined = true;
@@ -76,6 +85,7 @@ void NPCCraftsman::resolve_adjacency(DisplayObject *obj, int status){
 
         if (status != 0 && !t->mined){
             //ADD ITEM TO INVENTORY
+            TextAlert* te = new TextAlert(this->position.x, this->position.y, "Collected Wood", this->drawingContainer);
             DisplayObject* item = new DisplayObject("Wood","./resources/items/wood_1.png");     
             inventory->push_back(item);
 
@@ -114,7 +124,7 @@ void NPCCraftsman::resolve_adjacency(DisplayObject *obj, int status){
 
             DisplayObject* sign = new DisplayObject("Sign","./resources/items/sign_1.png");     
             inventory->push_back(sign);
-            cout << "SIGN CRAFTED" << endl;
+            TextAlert* t = new TextAlert(position.x, position.y, "Sign Crafted", this->drawingContainer);
 
             counter = 0;
 

@@ -13,7 +13,7 @@ class Snake : public MainBoss{
         Snake(DisplayObjectContainer* container, DisplayObjectContainer* allSprites);
 
         int poison_timer = 0;
-        int poison_timer_max = 100;
+        int poison_timer_max = 150;
         int poison_angle = 0;
 
         void state_idle(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);

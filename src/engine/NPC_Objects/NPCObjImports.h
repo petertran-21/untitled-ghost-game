@@ -6,3 +6,4 @@
 #include "Bark.h"
 #include "Boat.h"
 #include "CraftStation.h"
+#include "SwampBridge.h"

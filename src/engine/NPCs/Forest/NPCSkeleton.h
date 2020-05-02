@@ -14,7 +14,6 @@ class NPCSkeleton : public MainNPC{
         void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
         void state_ability(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
         DisplayObjectContainer* collisionContainer;
-        void resolve_collision(DisplayObject *obj);
 
         bool alive = false;
         int life_timer = 0;

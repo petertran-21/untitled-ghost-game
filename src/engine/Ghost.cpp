@@ -75,7 +75,7 @@ void Ghost::onEnemyCollision(Enemy* enemy){
 void Ghost::state_idle(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
 	if (state_new){
 		//anything that should happen once, right at the start of the state
-		cout << "GHOST: IDLE" << endl;
+		//cout << "GHOST: IDLE" << endl;
 	}
 	//anything that should always run while in this state
 	this->play("Idle");
@@ -95,7 +95,7 @@ void Ghost::state_idle(set<SDL_Scancode> pressedKeys, Controller::JoystickState 
 void Ghost::state_moving(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
 	if (state_new){
 		//anything that should happen once, right at the start of the state
-		cout << "GHOST: MOVING" << endl;
+		//cout << "GHOST: MOVING" << endl;
 		movespeed = 4;
 	}
 	//anything that should always run while in this state
@@ -149,7 +149,7 @@ void Ghost::state_moving(set<SDL_Scancode> pressedKeys, Controller::JoystickStat
 void Ghost::state_possessing(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
 	if (state_new){
 		//anything that should happen once, right at the start of the state
-		cout << "GHOST: POSSESSING" << endl;
+		//cout << "GHOST: POSSESSING" << endl;
 
 		//CHECK COLLISION WITH NPC HERE
 		// if (colliding w/NPC) MainNPC* npc = npc we're colliding with;
@@ -157,10 +157,11 @@ void Ghost::state_possessing(set<SDL_Scancode> pressedKeys, Controller::Joystick
 
 		if (npc == NULL){
 			state_switch(ghost_states::Idle);
-			cout << "Yuck" << endl;
+			//cout << "Yuck" << endl;
 			return;
 		}
 
+		TextAlert* t = new TextAlert(position.x, position.y, string(npc->id), npc->drawingContainer);
 		isPossessing = true;
 		npc->is_possessed = true;
 	}
@@ -189,7 +190,7 @@ void Ghost::state_possessing(set<SDL_Scancode> pressedKeys, Controller::Joystick
 void Ghost::state_fizzle(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
 	if (state_new){
 		//anything that should happen once, right at the start of the state
-		cout << "GHOST: FIZZLE" << endl;
+		//cout << "GHOST: FIZZLE" << endl;
 	}
 	//anything that should always run while in this state
 

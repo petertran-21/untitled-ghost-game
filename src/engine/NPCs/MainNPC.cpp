@@ -40,13 +40,15 @@ void MainNPC::draw(AffineTransform &at){
 
 //GENERAL NPC STATES
 void MainNPC::state_idle(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
-    if (state_new) cout << "STATE: IDLE" << endl;
+    //if (state_new) cout << "STATE: IDLE" << endl;
 
     if (is_possessed) state_switch(npc_states::Possessed);
 }
 
 void MainNPC::state_possessed(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
-    if (state_new) cout << "STATE: POSSESSED" << endl;
+    if (state_new){
+       
+    }
 
     if (Controls::holdLeft(pressedKeys, currState))state_switch(npc_states::Moving);
     if (Controls::holdRight(pressedKeys, currState)) state_switch(npc_states::Moving);
@@ -70,7 +72,7 @@ void MainNPC::state_possessed(set<SDL_Scancode> pressedKeys, Controller::Joystic
 }
 
 void MainNPC::state_moving(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
-    if (state_new) cout << "STATE: MOVING" << endl;
+    //if (state_new) cout << "STATE: MOVING" << endl;
 
     bool is_moving = false;
     //check for movement on controller
@@ -124,14 +126,12 @@ void MainNPC::state_moving(set<SDL_Scancode> pressedKeys, Controller::JoystickSt
                 //check collision @ direction//
                 position.x += grid_size; 
                 abilityPt = {100, 0};
-                this->facingRight = true;
                 if (this->changeAnim){this->play("right");}
                 break;
             case W: 
                 //check collision @ direction//
                 position.x -= grid_size; 
                 abilityPt = {-100, 0};
-                this->facingRight = false;
                 if (this->changeAnim){this->play("left");}
                 break;
             default:
@@ -257,31 +257,43 @@ void MainNPC::resolve_collision(DisplayObject *obj){
         if (br->open) return;
     }
 
-    //COLLIDES WITH BUCKET
-    Bucket *bu = dynamic_cast<Bucket*>(obj);
-    if (bu){
-        DisplayObject* bucket = new DisplayObject("Bucket","./resources/items/bucket_empty_1.png");     
-        inventory->push_back(bucket);
-        // vector<DisplayObject*>::iterator bucketcollideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), bu);
-        // vector<DisplayObject*>::iterator bucketdrawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), bu);
-        // if (bucketcollideItr != this->collisionContainer->children.end() && bucketdrawItr != this->drawingContainer->children.end()){
-        //     this->collisionContainer->children.erase(bucketcollideItr);
-        //     this->drawingContainer->children.erase(bucketdrawItr);
-        // } 
-        bu->position.x = -100000;
-        bu->position.y = -100000;
+    //COLLIDES WITH FALLEN TREE
+    FallenTree* ft = dynamic_cast<FallenTree*>(obj);
+    if (ft){
+
+        //DO NOTHING 
+        if (ft->destroyed) return;
     }
 
     //COLLIDES WITH DOOR
     if (obj->getSubtype() == DOOR_SUBTYPE){
         Door* d = dynamic_cast<Door*>(d);
-        cout<<"DOOR EXISTS: "<<d->position.x<<" "<<d->position.y<<endl;
-        cout<<"NPC AT: "<<position.x<<" "<<position.y<<endl;
-        if (d->open) cout<<"IS OPEN"<<endl;
+    }
+
+    //COLLIDES WITH GEM
+    Gem* g = dynamic_cast<Gem*>(obj);
+    if (g){
+        TextAlert* t = new TextAlert(position.x, position.y, "Gem Collected", this->drawingContainer);
+        DisplayObject* gem = new DisplayObject("Gem","./resources/items/gem_1.png");     
+        inventory->push_back(gem);
+        g->position.x = -100000;
+        g->position.y = -100000;
+        
+    }
+
+    //COLLIDES WITH HORN
+    HornFragment* hf = dynamic_cast<HornFragment*>(obj);
+    if (hf){
+        TextAlert* t = new TextAlert(position.x, position.y, "Horn Fragment Collected", this->drawingContainer);
+        DisplayObject* horn = new DisplayObject("HornFragment","./resources/items/horn_fragment_1.png");     
+        inventory->push_back(horn);
+        hf->position.x = -100000;
+        hf->position.y = -100000;
     }
 
     // DEFAULT FOR COLLIDING WITH SOLIDS
-    // cout<<"Colliing wiht envObj"<<(obj&&(obj->type == "EnvObj"))<< " "<<(obj->type == "EnvObj")<<endl;
+
+    //cout<<"INVENTORY"<<inventory->size()<<endl;
 	if (reverseCollisions){
         if (obj && (obj->type == "Land")){
         //check that npcs are overlapping
@@ -308,11 +320,23 @@ void MainNPC::resolve_collision(DisplayObject *obj){
             }
         }
 	}
-    else if (obj && (obj->type == "EnvObj" || obj->type == "Wall")){
+    else if (obj && ((obj->type == "EnvObj" || obj->type == "Wall") || obj->getSubtype() == 127)){
         // cout<<"COLLIDING WITH ENV"<<endl;
         //check that npcs are overlapping
+        // cout<<"COLLIDING ENV: "<<obj->type<<" "<<obj->getSubtype()<<endl;
         //cout<<"COLLIDING ENV: "<<obj->type<<" "<<obj->getSubtype()<<endl;
-        if ((position.y == obj->position.y) && (position.x == obj->position.x)){
+        if (obj->getSubtype() == 127){
+            SwampBridge* s = (SwampBridge*) obj;
+            if (s->cancross==true){
+                return;
+            }
+        }
+        if (((position.y == obj->position.y) && (position.x == obj->position.x)) || (obj->getSubtype() == 120)){ //enter this if poisongas touches
+            if (obj->getSubtype() == 120){
+                if (this->detox == true){
+                    return;
+                }
+            }
             switch (dir){
             //reset possessed npc's location to previous based on location it came from
             case N:
@@ -345,39 +369,74 @@ void MainNPC::resolve_adjacency(DisplayObject *obj, int status){
 void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectContainer* collideContainer, DisplayObjectContainer* drawContainer){
     //COLLISIONS WITH COLLECTIBLES
     // cout<<"foreground NPC address: "<<drawingContainer<<endl;
-    //cout << "TYPE: "<<obj->type<<", subtype:  "<<obj->getSubtype()<<", "<<(obj->type=="Collectible")<<" HERE:"<<obj->imgPath<<endl;
+    // cout << "TYPE: "<<obj->type<<", subtype:  "<<obj->getSubtype()<<", "<<(obj->type=="Collectible")<<" HERE:"<<obj->imgPath<<endl;
+    // cout << "POS: "<<obj->position.x<<" "<<obj->position.y<<" NPC POS: "<<this->position.x<<this->position.y<<endl;
     // cout<<"NUM COLLIDE CHILDREN: "<<collideContainer->children.size()<<endl;
     // cout<<"NUM DRAW CHILDREN: "<<drawContainer->children.size()<<endl;
     if (obj->type == "Collectible"){
         if ((obj->position.x == this->position.x) && (obj->position.y == this->position.y)){
+            cout<<"RIGTJ ON TOP EACH OTHER"<<endl;
             switch(obj->getSubtype()){
                 case 9:{//item pouch  
-                    cout<<"MADE IT"<<endl;
-
                     DisplayObject* item = new DisplayObject(obj->id,obj->imgPath+"item_pouch_1.png");     
                     inventory->push_back(item);
-                    cout << "MainNPC: After Push Inventory: "<< inventory->size() << endl;
-                    ItemPouch* collect = (ItemPouch*) obj;
-                    //doesn't work in certain rooms (swampIsland)
-                    vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), collect);
-                    vector<DisplayObject*>::iterator drawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), collect);
-                    if (collideItr != this->collisionContainer->children.end() && drawItr != this->drawingContainer->children.end()){
-                        cout<<"DELETE IT"<<endl;
-                        this->collisionContainer->children.erase(collideItr);
-                        this->drawingContainer->children.erase(drawItr);
-                    } 
+                    
+                    // ItemPouch* collect = (ItemPouch*) obj;
+                    // //doesn't work in certain rooms (swampIsland)
+                    // vector<DisplayObject*>::iterator collideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), collect);
+                    // vector<DisplayObject*>::iterator drawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), collect);
+                    // if (collideItr != this->collisionContainer->children.end() && drawItr != this->drawingContainer->children.end()){
+                    //     cout<<"DELETE IT"<<endl;
+                    //     this->collisionContainer->children.erase(collideItr);
+                    //     this->drawingContainer->children.erase(drawItr);
+                    // } 
+                    // break;
+
+                    TextAlert* t = new TextAlert(position.x, position.y, "Collectible Found", this);
+                    
+                    obj->position.x = -100000;
+                    obj->position.y = -100000;
                     break;
+
                 }
                 case 122:{ //herb
+                    cout<<"COLLECT HERB"<<endl;
                     DisplayObject* herb = new DisplayObject(obj->id,obj->imgPath+"herb_1.png");     
                     inventory->push_back(herb);
                     Herb* herb_collect = (Herb*) obj;
-                    vector<DisplayObject*>::iterator herbcollideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), herb_collect);
-                    vector<DisplayObject*>::iterator herbdrawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), herb_collect);
-                    if (herbcollideItr != this->collisionContainer->children.end() && herbdrawItr != this->drawingContainer->children.end()){
-                        this->collisionContainer->children.erase(herbcollideItr);
-                        this->drawingContainer->children.erase(herbdrawItr);
-                    } 
+                    // vector<DisplayObject*>::iterator herbcollideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), herb_collect);
+                    // vector<DisplayObject*>::iterator herbdrawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), herb_collect);
+                    // if (herbcollideItr != this->collisionContainer->children.end() && herbdrawItr != this->drawingContainer->children.end()){
+                    //     this->collisionContainer->children.erase(herbcollideItr);
+                    //     this->drawingContainer->children.erase(herbdrawItr);
+                    // } 
+                    obj->position.x = -100000;
+                    obj->position.y = -100000;
+//                     vector<DisplayObject*>::iterator herbcollideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), herb_collect);
+//                     vector<DisplayObject*>::iterator herbdrawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), herb_collect);
+//                     if (herbcollideItr != this->collisionContainer->children.end() && herbdrawItr != this->drawingContainer->children.end()){
+//                         this->collisionContainer->children.erase(herbcollideItr);
+//                         this->drawingContainer->children.erase(herbdrawItr);
+//                     } 
+
+                    TextAlert* t = new TextAlert(position.x, position.y, "Herb Collected", this->drawingContainer);
+                    break;
+                }
+                case 305:{ //bucket
+
+                    cout<<"MADE IT"<<endl;
+                    DisplayObject* bucket = new DisplayObject(obj->id,obj->imgPath+"bucket_empty_1.png");     
+                    inventory->push_back(bucket);
+                    Bucket* bucket_collect = (Bucket*) obj;
+                    // vector<DisplayObject*>::iterator bucketcollideItr = find(this->collisionContainer->children.begin(), this->collisionContainer->children.end(), bucket_collect);
+                    // vector<DisplayObject*>::iterator bucketdrawItr = find(this->drawingContainer->children.begin(), this->drawingContainer->children.end(), bucket_collect);
+                    // if (bucketcollideItr != this->collisionContainer->children.end() && bucketdrawItr != this->drawingContainer->children.end()){
+                    //     this->collisionContainer->children.erase(bucketcollideItr);
+                    //     this->drawingContainer->children.erase(bucketdrawItr);
+                    // } 
+                    obj->position.x = -100000;
+                    obj->position.y = -100000;
+                    TextAlert* t = new TextAlert(position.x, position.y, "Bucket Collected", this->drawingContainer);
                     break;
                 }
             }
