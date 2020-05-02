@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import json, os
 import glob
 NewPaths = glob.glob(os.getcwd()+"/Saves/Slot1/*.json")
