@@ -421,7 +421,6 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 		if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end() && !UIOpen){
 			soundManager->playSFX("./resources/sfx/pauseOn.ogg");
 			this->addChild(UIContainer);
-			textboxTest->setText("Press RETURN to choose option, Q to quit menu.");
 			UIOpen = !UIOpen;
 		}
 		if (pressedKeys.find(SDL_SCANCODE_Q) != pressedKeys.end() && UIOpen){
