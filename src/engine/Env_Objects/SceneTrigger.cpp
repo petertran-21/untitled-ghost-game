@@ -12,7 +12,7 @@ SceneTrigger::SceneTrigger(DisplayObjectContainer *container, string scene_path)
     this->addAnimation("./resources/items/", "scene_trigger", 1, 1, false);
 	this->play("scene_trigger");
     this->collisionContainer = container;
-
+    this->ghost_pos = { -5000, -5000 };
     this->scene_path = scene_path;
 }
 

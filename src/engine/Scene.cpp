@@ -258,7 +258,7 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
                 break;
             case SCENE_TRIGGER_SUBTYPE:
                 unit = new SceneTrigger(Collisioncontainer, sprite["scene_path"]);     
-                Collisioncontainer->addChild(unit);        
+                Collisioncontainer->addChild(unit);
                 break;
 
         }
@@ -276,6 +276,11 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
             unit->width = sprite["width"];
             unit->height = sprite["height"];
             unit->subtype = sprite["subtype"];
+
+            if (unit->getSubtype() == SCENE_TRIGGER_SUBTYPE && sprite.find("ghostX") != sprite.end()){
+                dynamic_cast<SceneTrigger*>(unit)->ghost_pos = {sprite["ghostX"], sprite["ghostY"]};
+                cout << "Scene Trigger X Position " << sprite["ghostX"] << endl;
+            }
 
             if (sprite["parent"] == "") {
                 background->addChild(unit);

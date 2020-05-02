@@ -698,6 +698,17 @@ void CollisionSystem::resolveCollision_SceneTrigger(DisplayObject* triggerObj, D
       collisionContainer->children.erase(itr);
     }
 
+    DisplayObjectContainer* nextForeground = static_cast<DisplayObjectContainer*>(next->getChild(1));
+    if (trigger->ghost_pos.x != -5000) {
+      for (int i = 0; i < nextForeground->numChildren(); i++){
+          if (nextForeground->getChild(i)->getSubtype() == GHOST_SUBTYPE){
+            Ghost* new_ghost = dynamic_cast<Ghost*>(nextForeground->getChild(i));
+            new_ghost->position = trigger->ghost_pos;
+            cout << "Changin new ghost position to " << new_ghost->position.x;
+          }
+        }
+    }
+
     if (ghost->getIsPosessing() && ghost->npc != NULL) {
       MainNPC* npc = ghost->npc;
       DisplayObjectContainer* curForeground = static_cast<DisplayObjectContainer*>(current->getChild(1));
@@ -707,7 +718,7 @@ void CollisionSystem::resolveCollision_SceneTrigger(DisplayObject* triggerObj, D
           curForeground->children.erase(curForeground->children.begin() + i);
         }
       }
-      DisplayObjectContainer* nextForeground = static_cast<DisplayObjectContainer*>(next->getChild(1));
+      
       npc->parent = nextForeground;
       npc->drawingContainer = nextForeground;
       nextForeground->addChild(npc);
