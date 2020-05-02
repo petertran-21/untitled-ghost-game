@@ -6,7 +6,7 @@ Ghost::Ghost() : AnimatedSprite("Ghost"){
 	this->id = "Ghost";
 	this->subtype = GHOST_SUBTYPE;
 	this->npc = NULL;
-	
+
 	this->position.x = 55;
 	this->position.y = 200;
 	this->width = 416;
@@ -17,9 +17,9 @@ Ghost::Ghost() : AnimatedSprite("Ghost"){
 	this->pivot.y = this->height / 2;
 
 	//eventually replace the following with "recourses/PlayerSprites/"
-	this->addSpriteSheet("./resources/grendel/Grendel_Idle_Sheet.png", "./resources/grendel/grendel_idle.xml", "idle", 3, 12, true);
-	this->addSpriteSheet("./resources/grendel/Grendel_Move_Sheet.png", "./resources/grendel/grendel_move.xml", "move", 4, 12, true);
-	
+	this->addAnimation("./resources/grendel/","idle",3,12,true,"idle");
+	this->addAnimation("./resources/grendel/","move",4,12,true,"move");
+
 	this->play("move");
 }
 
@@ -29,7 +29,7 @@ Ghost::~Ghost() {}
 //our job is to simply react to that collision.
 void Ghost::onCollision(DisplayObject* other){
 	if(other->type == "Platform"){
-		// Game::instance->collisionSystem.resolveCollision(this, other, this->x - oldX, this->y - oldY);	
+		// Game::instance->collisionSystem.resolveCollision(this, other, this->x - oldX, this->y - oldY);
 		_yVel = 0;
 		_standing=true;
 	}
@@ -80,9 +80,9 @@ void Ghost::state_idle(set<SDL_Scancode> pressedKeys, Controller::JoystickState 
 	this->play("Idle");
 
 	//switch to moving
-	if (Controls::holdRight(pressedKeys, currState) || 
-	    Controls::holdLeft(pressedKeys, currState)  || 
-		Controls::holdUp(pressedKeys, currState)    || 
+	if (Controls::holdRight(pressedKeys, currState) ||
+	    Controls::holdLeft(pressedKeys, currState)  ||
+		Controls::holdUp(pressedKeys, currState)    ||
 		Controls::holdDown(pressedKeys, currState)  ){
 			state_switch(ghost_states::Moving);
 	}
@@ -129,12 +129,12 @@ void Ghost::state_moving(set<SDL_Scancode> pressedKeys, Controller::JoystickStat
 		if(_standing){
 			this->play("Run");
 		}
-	}	
+	}
 
 	if (movespeed < 16) movespeed++;
-	
+
 	//slow down and change state
-	if( !Controls::holdLeft(pressedKeys, currState)  && 
+	if( !Controls::holdLeft(pressedKeys, currState)  &&
 		!Controls::holdRight(pressedKeys, currState) &&
 		!Controls::holdUp(pressedKeys, currState)    &&
 		!Controls::holdDown(pressedKeys, currState)  ){
