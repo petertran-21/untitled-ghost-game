@@ -26,14 +26,14 @@ MyGame::MyGame() : Game(1000, 1000)
 	displayTreeDisp->addEventListener(collisionSystem, DORemovedEvent::DO_REMOVED);
 	
 
-	scene_1->loadScene("./resources/Saves/Slot1/beachEntrance.json", container, inventory);
+	scene_1->loadScene("./resources/scenes/beachEntrance.json", container, inventory);
 
 	DOAdded->checkCondition();
 
 	// SFX Menu stuff
 	UIContainer = new DisplayObjectContainer();
 
-	inventoryUI = new Inventory(100,100,300,300);
+	inventoryUI = new Inventory(100,100,200,120);
 
 	selectionMenuTest = new SelectionMenu(0, 0);
 	selectionMenuTest->addToMenu("Stats");

@@ -349,7 +349,6 @@ void MainNPC::resolve_collectible_collision(DisplayObject *obj, DisplayObjectCon
         if ((obj->position.x == this->position.x) && (obj->position.y == this->position.y)){
             switch(obj->getSubtype()){
                 case 9:{//item pouch  
-                    cout<<"MADE IT"<<endl;
 
                     DisplayObject* item = new DisplayObject(obj->id,obj->imgPath+"item_pouch_1.png");     
                     inventory->push_back(item);
