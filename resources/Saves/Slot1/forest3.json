@@ -2241,7 +2241,7 @@
             "posX": 100,
             "posY": 700,
             "rotation": 0.0,
-            "scene_path": "resources/Saves/Slot1/forest2.json",
+            "scene_path": "./resources/Saves/Slot1/forest2.json",
             "subtype": 108,
             "width": 100
         },
@@ -2259,7 +2259,7 @@
             "posX": 0,
             "posY": 300,
             "rotation": 0.0,
-            "scene_path": "resources/Saves/Slot1/forestHub.json",
+            "scene_path": "./resources/Saves/Slot1/forestHub.json",
             "subtype": 108,
             "width": 100
         },
@@ -2277,7 +2277,7 @@
             "posX": 700,
             "posY": -100,
             "rotation": 0.0,
-            "scene_path": "resources/Saves/Slot1/forest4.json",
+            "scene_path": "./resources/Saves/Slot1/forest4.json",
             "subtype": 108,
             "width": 100
         },
@@ -2295,7 +2295,7 @@
             "posX": 1200,
             "posY": 600,
             "rotation": 0.0,
-            "scene_path": "resources/Saves/Slot1/forest5.json",
+            "scene_path": "./resources/Saves/Slot1/forest5.json",
             "subtype": 108,
             "width": 100
         },
@@ -2420,17 +2420,6 @@
             "isStatic": true,
             "isVisible": true,
             "parent": "foreground",
-            "width": 100,
-            "height": 100,
-            "subtype": 108
-        },
-        {
-            "id": "SceneTrigger",
-            "basePathFolder": "./resources/items/",
-            "isStaticBaseFile": "scene_trigger",
-            "scene_path": "./resources/Saves/Slot1/forest4.json",
-            "posX": 700,
-            "posY": -100,
             "pivotX": 0,
             "pivotY": 0,
             "posX": 800,
@@ -2447,17 +2436,6 @@
             "isStatic": true,
             "isVisible": true,
             "parent": "foreground",
-            "width": 100,
-            "height": 100,
-            "subtype": 108
-        },
-        {
-            "id": "SceneTrigger",
-            "basePathFolder": "./resources/items/",
-            "isStaticBaseFile": "scene_trigger",
-            "scene_path": "./resources/Saves/Slot1/forest5.json",
-            "posX": 1200,
-            "posY": 600,
             "pivotX": 0,
             "pivotY": 0,
             "posX": 900,

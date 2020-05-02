@@ -47,16 +47,16 @@ MyGame::MyGame() : Game(1000, 1000)
 	// horn
 	loreScreen3 = new AnimatedSprite();
 	loreScreen3->addAnimation("./resources/start/","horn",6,36,true,"horn");
-	loreScreen3->width = 1000;
-	loreScreen3->height = 1000;
+	loreScreen3->width = 900;
+	loreScreen3->height = 900;
 	loreScreen3->alpha = 0;
 	loreScreen3->play("horn");
 
 	// grendel monster
 	loreScreen4 = new AnimatedSprite();
 	loreScreen4->addAnimation("./resources/start/","grendelMonster",4,36,true,"monster");
-	loreScreen4->width = 1000;
-	loreScreen4->height = 1000;
+	loreScreen4->width = 900;
+	loreScreen4->height = 900;
 	loreScreen4->alpha = 0;
 	loreScreen4->play("monster");
 
@@ -65,16 +65,16 @@ MyGame::MyGame() : Game(1000, 1000)
 	loreScreen5->addAnimation("./resources/start/","grendelGhost",4,36,true,"ghost");
 	loreScreen5->width = 800;
 	loreScreen5->height = 900;
-	loreScreen5->position.x = 150;
+	loreScreen5->position.x = 100;
 	loreScreen5->alpha = 0;
 	loreScreen5->play("ghost");
 
 	//grendel ghost colored
 	loreScreen6 = new AnimatedSprite();
 	loreScreen6->addAnimation("./resources/start/","gren",1,1,true,"ghostColor");
-	loreScreen6->width = 450;
+	loreScreen6->width = 400;
 	loreScreen6->height = 700;
-	loreScreen6->position.x = 250;
+	loreScreen6->position.x = 260;
 	loreScreen6->position.y = 60;
 	loreScreen6->alpha = 0;
 	loreScreen6->play("ghostColor");
@@ -82,14 +82,14 @@ MyGame::MyGame() : Game(1000, 1000)
 	grendelTutorial = new Ghost();
 	grendelTutorial->width = 100;
 	grendelTutorial->height = 100;
-	grendelTutorial->position.x = 500;
-	grendelTutorial->position.y = 400;
+	grendelTutorial->position.x = 900;
+	grendelTutorial->position.y = 900;
 
 	npcTutorial = new NPCArcher(container,allSprites,inventory);
 	npcTutorial->width = 100;
 	npcTutorial->height = 100;
-	npcTutorial->position.x = 200;
-	npcTutorial->position.y = 200;
+	npcTutorial->position.x = 100;
+	npcTutorial->position.y = 100;
 
 	mapTutorial = new AnimatedSprite();
 	mapTutorial->addAnimation("./resources/map/", "gameMap", 1, 1, true, "plain");
@@ -113,7 +113,7 @@ MyGame::MyGame() : Game(1000, 1000)
 	DORemoved = new DORemovedEvent(displayTreeDisp, container);
 	displayTreeDisp->addEventListener(collisionSystem, DOAddedEvent::DO_ADDED);
 	displayTreeDisp->addEventListener(collisionSystem, DORemovedEvent::DO_REMOVED);
-	
+
 
 	//scene_1->loadScene("./resources/Saves/Slot1/village.json", container, inventory);
 
@@ -357,6 +357,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 		if(!mapScreenVisible && screen1Complete && screen2Complete && screen3Complete && screen4Complete && screen5Complete && screen6Complete) {
 			allSprites->removeImmediateChild(loreScreen6);
 			allSprites->removeImmediateChild(grendelTutorial);
+			allSprites->removeImmediateChild(npcTutorial);
 			allSprites->addChild(mapTutorial);
 			curChild = mapTutorial;
 			mapScreenVisible = true;
