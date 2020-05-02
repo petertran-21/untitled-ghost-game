@@ -80,8 +80,8 @@ MyGame::MyGame() : Game(1000, 1000)
 	grendelTutorial->addAnimation("./resources/grendel/","idle",3,36,true,"idle");
 	grendelTutorial->addAnimation("./resources/grendel/","move",4,36,true,"move");
 	grendelTutorial->play("move");
-	grendelTutorial->position.x = 450;
-	grendelTutorial->position.y = 450;
+	grendelTutorial->position.x = 225;
+	grendelTutorial->position.y = 350;
 
 	mapTutorial = new AnimatedSprite();
 	mapTutorial->addAnimation("./resources/map/", "gameMap", 1, 1, true, "plain");
@@ -310,13 +310,13 @@ void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState cur
 			}
 		}
 		if(pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end() && lore6ScreenVisible) {
-			grendelTutorial->position.y -= 10;
+			grendelTutorial->position.y -= 5;
 		} else if(pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end() && lore6ScreenVisible) {
-			grendelTutorial->position.y += 10;
+			grendelTutorial->position.y += 5;
 		} else if(pressedKeys.find(SDL_SCANCODE_A) != pressedKeys.end() && lore6ScreenVisible) {
-			grendelTutorial->position.x -= 10;
+			grendelTutorial->position.x -= 5;
 		} else if(pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end() && lore6ScreenVisible) {
-			grendelTutorial->position.x += 10;
+			grendelTutorial->position.x += 5;
 		} else if(pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end() && lore6ScreenVisible) {
 			fadeLoreOut6 = true;
 		 }
