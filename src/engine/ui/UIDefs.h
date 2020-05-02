@@ -3,6 +3,7 @@
 
 #include "../Game.h"
 #include "../DisplayObjectContainer.h"
+#include "../AnimatedSprite.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <string>
@@ -41,7 +42,7 @@ public:
     void setFontColor(int r, int g, int b);
     void setFontColor(SDL_Color color);
     void setFontSize(int sz);
-    
+
     virtual void draw(AffineTransform &at);
 
     Text* text;
@@ -63,7 +64,7 @@ public:
 class SelectionMenu : public DisplayObjectContainer{
 public:
     SelectionMenu(int posX = 0, int posY = 0, int width = 400, int height = 0);
-    
+
     void addToMenu(std::string entry);
     void removeFromMenu(std::string entry);
     std::string getCurrentlySelected();
@@ -84,7 +85,7 @@ public:
 class Checklist : public DisplayObjectContainer{
 public:
     Checklist(int posX = 1025, int posY = 525, int width = 400, int height = 200);
-    
+
     void addEntry(std::string entry);
     void removeEntry(std::string entry);
     void completeEntry(std::string entry);
@@ -110,6 +111,23 @@ public:
     TextBox* label;
 
     virtual void draw(AffineTransform &at);
+};
+
+class Map : public AnimatedSprite {
+public:
+    Map();
+    ~Map();
+
+    bool mountainHighlighted = false;
+    bool forestHighlighted = false;
+    bool swampHighlighted = false;
+    bool beachHighlighted = false;
+    bool townHighlighted = false;
+
+    bool active = false;
+
+    virtual void draw(AffineTransform &at);
+    virtual void update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState);
 };
 
 #endif
