@@ -23,6 +23,7 @@ Untitled Ghost Game (lovingly shortened to UGG) is a 2D Exploratory Puzzle Game 
 - Run `cd ..`
 - Run `make`
 - Run `./bin/myGame`
+- Hit the right arrow key to progress through tutorial!
 
 **NOTE!!!** The first scene has a slight bug with the camera. To fix it, move the Ghost down, then up!
 
@@ -58,8 +59,6 @@ For PS4 controller:
 
 ### Movement w/ Keyboard
 - Press **WASD** to move character up, left, down, and right. Diagnoal movmeent for ghost is also supported but not for NPC. 
-- Press **IJKL** to move the camera.
-- Press **ZX** to scale the camera.
 - Press **E** to possess NPC. 
 - Press **SPACE** to use ability of NPC.
 - Press **P** to pause the game and open the menu.
