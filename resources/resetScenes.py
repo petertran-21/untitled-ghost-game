@@ -1,8 +1,9 @@
 import json, os
 import glob
-NewPaths = glob.glob(os.getcwd()+"/Saves/Slot1/*.json")
-OGPaths =  glob.glob(os.getcwd()+"/scenes/*.json")
 
+basePath = "~/Users/bradleybk/untitled-ghost-game/resources"
+NewPaths = glob.glob(basePath+"/Saves/Slot1/*.json")
+OGPaths =  glob.glob(basePath+"/scenes/*.json")
 
 #remove paths from Saves/Slot1
 for path in NewPaths:

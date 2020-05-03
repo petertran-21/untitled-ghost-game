@@ -45,3 +45,7 @@ MKDIR_P ?= mkdir -p
 
 start:
 	./bin/myGame
+
+setup:
+	python ./resources/resetScenes.py
+
