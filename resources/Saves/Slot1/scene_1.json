@@ -1,30 +1,30 @@
 {
     "sprites": [
         {
-            "id": "testAnim",
-            "basePathFolder": "./resources/character/",
-            "posX": 120,
-            "posY": 120,
-            "pivotX": 0,
-            "pivotY": 0,
-            "rotation": 0.0,
-            "alpha": 255,
-            "isVisible": true,
-            "isStatic": false,
-            "parent": "",
-            "width": 200,
-            "height": 200,
+            "isStatic": false, 
+            "parent": "", 
             "animationInfo": {
-                "playing": true,
+                "playing": true, 
                 "animations": [
                     {
-                        "animId": "Run",
-                        "frameCount": 20,
-                        "frameRate": 3,
+                        "frameRate": 3, 
+                        "frameCount": 20, 
+                        "animId": "Run", 
                         "loop": true
                     }
                 ]
-            }
+            }, 
+            "pivotX": 0, 
+            "pivotY": 0, 
+            "basePathFolder": "./resources/character/", 
+            "isVisible": true, 
+            "width": 200, 
+            "posX": 120, 
+            "posY": 120, 
+            "alpha": 255, 
+            "rotation": 0.0, 
+            "height": 200, 
+            "id": "testAnim"
         }
     ]
 }

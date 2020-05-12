@@ -32,6 +32,6 @@ void Sound::playMusic(string fullPath){
     if (Mix_PlayMusic(music, -1)){
         return;
     }
-    while (Mix_PlayingMusic()){}
+    //while (Mix_PlayingMusic()){}
     // Mix_FreeMusic(music);         // Haven't tested playMusic function yet, FYI
 }
