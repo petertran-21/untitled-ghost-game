@@ -1,4 +1,5 @@
 #include "Controls.h"
+#include "Sound.h"
 
 bool Controls::pressing_possess = false;
 bool Controls::pressing_boo = false;
@@ -41,6 +42,8 @@ bool Controls::pressPossess(set<SDL_Scancode> pressedKeys, Controller::JoystickS
   if (pressedKeys.find(SDL_SCANCODE_E) != pressedKeys.end() || currState.buttonA){
 
     if (pressing_possess == false){
+      Sound* soundManager = new Sound();
+      soundManager->playSFX("./resources/sfx/possession.wav");
       pressing_possess = true;
       return true;
     }
