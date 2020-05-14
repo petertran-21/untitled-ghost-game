@@ -15,7 +15,10 @@ public:
 
 	void playSFX(string fullPath);
 	void playMusic(string fullPath);
-
+        void stopMusic();
+        
+        Mix_Music *music;
+        
 private:
 
 	

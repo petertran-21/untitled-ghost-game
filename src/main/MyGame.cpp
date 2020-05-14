@@ -155,6 +155,7 @@ MyGame::~MyGame()
 void MyGame::update(set<SDL_Scancode> pressedKeys, Controller::JoystickState currState){
 	if(playStartSequence) {
 		if(pressedKeys.find(SDL_SCANCODE_Q) != pressedKeys.end()) {
+                        bgmusic->stopMusic();
 			allSprites->removeImmediateChild(curChild);
 			if(lore6ScreenVisible) {
 				allSprites->removeImmediateChild(grendelTutorial);

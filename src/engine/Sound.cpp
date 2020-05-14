@@ -19,19 +19,25 @@ void Sound::playSFX(string fullPath){
         return;
     }
     if (Mix_PlayChannel(-1, wave, 0) == -1){
+        Mix_FreeChunk(wave);
         return;
     }
-    // Mix_FreeChunk(wave);         // Having this line prevents audio from playing, but may have memleak if not freeing?
 }
 
 void Sound::playMusic(string fullPath){
-    Mix_Music *music = Mix_LoadMUS(fullPath.c_str());
-    if (music == NULL){
+    this->music = Mix_LoadMUS(fullPath.c_str());
+    if (this->music == NULL){
         return;
     }
-    if (Mix_PlayMusic(music, -1)){
+    if (Mix_PlayMusic(this->music, -1)){
         return;
     }
     //while (Mix_PlayingMusic()){}
     // Mix_FreeMusic(music);         // Haven't tested playMusic function yet, FYI
+}
+
+void Sound::stopMusic(){
+    if (this->music != NULL) {
+        Mix_FreeMusic(this->music);
+    }
 }
