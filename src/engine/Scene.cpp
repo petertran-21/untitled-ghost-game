@@ -248,7 +248,7 @@ void Scene::loadScene(string sceneFilePath, DisplayObjectContainer* Collisioncon
 
                 //Allows Ghost particles to change by biome
                 partEmit->setBiome(sceneFilePath);
-
+                isGhostSentToCamera = false;
                 break;
             case HORNFRAGMENT_SUBTYPE:
                 unit = new HornFragment(Collisioncontainer);
