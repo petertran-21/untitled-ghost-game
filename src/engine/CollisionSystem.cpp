@@ -614,8 +614,10 @@ void CollisionSystem::resolveCollision(DisplayObject* d, DisplayObject* other, i
 
 void CollisionSystem::resolveCollision_Ghost_NPC(DisplayObject* ghost, DisplayObject* npc) {
   Ghost* g = dynamic_cast<Ghost*>(ghost);
-
-  g->npc = (MainNPC*)npc;
+  if (!g->getIsPosessing()){
+    g->npc = (MainNPC*)npc;
+  }
+  
 }
 
 void CollisionSystem::resolveCollision_NPC_NPC(DisplayObject* npc, DisplayObject* npc1){
